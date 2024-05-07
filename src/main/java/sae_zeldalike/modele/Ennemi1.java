@@ -1,4 +1,4 @@
-package modele;
+package sae_zeldalike.modele;
 
 public class Ennemi1 extends Personnage {
 

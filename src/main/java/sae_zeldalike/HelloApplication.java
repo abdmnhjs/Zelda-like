@@ -1,4 +1,4 @@
-package com.example.sae_zeldalike;
+package sae_zeldalike;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

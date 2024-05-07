@@ -1,4 +1,4 @@
-package entite;
+package sae_zeldalike.entite;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -26,8 +26,6 @@ public class Keyboard implements KeyListener {
         }if (touche == KeyEvent.VK_D){
             rightPressed = true;
         }
-
-
     }
 
     @Override

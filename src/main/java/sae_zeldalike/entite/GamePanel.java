@@ -1,4 +1,4 @@
-package entite;
+package sae_zeldalike.entite;
 
 import modele.Environnement;
 

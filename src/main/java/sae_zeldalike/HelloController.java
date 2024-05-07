@@ -1,4 +1,4 @@
-package com.example.sae_zeldalike;
+package sae_zeldalike;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

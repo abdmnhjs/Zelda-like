@@ -1,4 +1,4 @@
-package modele;
+package sae_zeldalike.modele;
 
 import java.util.ArrayList;
 
