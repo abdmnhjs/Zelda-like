@@ -76,7 +76,6 @@ public abstract class Personnage {
         return id;
     }
 
-    public abstract void seDeplace();
 
     @Override
     public String toString() {
