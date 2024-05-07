@@ -4,10 +4,8 @@ package modele;
 import entite.GamePanel;
 import entite.Keyboard;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Link extends Personnage {
 
@@ -23,7 +21,6 @@ public class Link extends Personnage {
         this.gamePanel=gamePanel;
         this.keyH =keyH;
         this.direction = "down";
-        getPlayerImage();
 
     }
 
@@ -33,42 +30,25 @@ public class Link extends Personnage {
         this.gamePanel=gamePanel;
         this.keyH =keyH;
         this.direction = "down";
-        getPlayerImage();
 
     }
 
-    public void getPlayerImage() {
 
-        try {
-
-            up1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_up_1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_up_2.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_down_1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_down_2.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_left_1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_left_2.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_2.png"));
-
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
 
     public void update(){
         if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true){
             if (keyH.upPressed == true){
                 direction = "up";
-                 setPositionY(getPositionY()-getVitesseDéplacement());
+                 setPositionY(getPositionY()- getVitesseDeplacement());
             } else if (keyH.downPressed == true) {
                 direction = "down";
-                setPositionY(getPositionY()+getVitesseDéplacement());
+                setPositionY(getPositionY()+ getVitesseDeplacement());
             } else if (keyH.leftPressed == true) {
                 direction = "left";
-                setPositionX(getPositionX()-getVitesseDéplacement());
+                setPositionX(getPositionX()- getVitesseDeplacement());
             } else if (keyH.rightPressed == true) {
                 direction = "right";
-                setPositionX(getPositionX()+getVitesseDéplacement());
+                setPositionX(getPositionX()+ getVitesseDeplacement());
             }
 
         }

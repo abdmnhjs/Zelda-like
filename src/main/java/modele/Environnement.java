@@ -1,12 +1,17 @@
 package modele;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 
 public class Environnement {
 
     private String id;
     private static int compteurEnvironnement=0;
-    private ArrayList<Personnage> personnages;
+    private ObservableList<Personnage> personnages;
     private int width;
     private int height;
     private int[][] tableau;
@@ -18,14 +23,14 @@ public class Environnement {
         this.width = width;
         this.height = height;
         this.tableau = new int[this.width][this.height];
-        this.personnages= new ArrayList<Personnage>();
+        this.personnages= FXCollections.observableArrayList();
     }
 
     public void ajouterPersonnage(Personnage personnage){
         personnages.add(personnage);
     }
 
-    public ArrayList<Personnage> getPersonnages() {
+    public ObservableList<Personnage> getPersonnages() {
         return personnages;
     }
 

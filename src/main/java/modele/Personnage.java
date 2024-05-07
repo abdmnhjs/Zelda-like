@@ -1,5 +1,8 @@
 package modele;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 import java.util.Random;
 public abstract class Personnage {
 
@@ -7,9 +10,9 @@ public abstract class Personnage {
     private static int compteurPersonnage=0;
     private int pointVie;
     private int pointAttaque;
-    private int positionX;
-    private int positionY;
-    private int vitesseDéplacement;
+    private IntegerProperty positionX;
+    private IntegerProperty positionY;
+    private int vitesseDeplacement;
     protected Environnement environnement;
 
     public Personnage( int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDéplacement) {
@@ -17,9 +20,9 @@ public abstract class Personnage {
         compteurPersonnage++;
         this.pointVie = pointVie;
         this.pointAttaque = pointAttaque;
-        this.positionX = positionX;
-        this.positionY = positionY;
-        this.vitesseDéplacement = vitesseDéplacement;
+        this.positionX = new SimpleIntegerProperty(positionX);
+        this.positionY = new SimpleIntegerProperty(positionY);
+        this.vitesseDeplacement = vitesseDéplacement;
         this.environnement = environnement;
     }
 
@@ -30,43 +33,47 @@ public abstract class Personnage {
         this.pointAttaque = pointAttaque;
         this.environnement = environnement;
         Random random = new Random();
-        this.positionX = random.nextInt(environnement.getWidth() - 1);
-        this.positionY = random.nextInt(environnement.getHeight() - 1);
-        this.vitesseDéplacement = vitesseDéplacement;
+        this.positionX = new SimpleIntegerProperty(random.nextInt(environnement.getWidth() - 1));
+        this.positionY = new SimpleIntegerProperty(random.nextInt(environnement.getHeight() - 1));
+        this.vitesseDeplacement = vitesseDéplacement;
 
     }
 
-    public int getPositionX() {
+    public void setPositionXProperty(int x){
+        positionX.setValue(x);
+    }
+    public IntegerProperty getPositionXProperty() {
         return positionX;
     }
-
-    public void setPositionX(int positionX) {
-        this.positionX = positionX;
+    public int getPositionX() {
+        return positionX.getValue();
     }
 
     public int getPositionY() {
+        return positionY.getValue();
+    }
+    public IntegerProperty getPositionYProperty() {
         return positionY;
     }
-
-    public void setPositionY(int positionY) {
-        this.positionY = positionY;
+    public void setPositionYProperty(int y) {
+        positionY.setValue(y);
     }
 
-    public int getVitesseDéplacement() {
-        return vitesseDéplacement;
+    public int getVitesseDeplacement() {
+        return vitesseDeplacement;
     }
 
     public int getPointVie() {
         return pointVie;
     }
-    public void setPointVie(int dégâts){
-        this.pointVie -= dégâts;
+    public void setPointVie(int degats){
+        this.pointVie -= degats;
     }
 
     public int getPointAttaque() {
         return pointAttaque;
     }
-    public void faireDégâts(Personnage personnage){
+    public void faireDegats(Personnage personnage){
         if(this.pointAttaque <= personnage.getPointVie()){
             personnage.setPointVie(this.pointAttaque);
         }
@@ -85,7 +92,7 @@ public abstract class Personnage {
                 ", pointAttaque=" + pointAttaque +
                 ", positionX=" + positionX +
                 ", positionY=" + positionY +
-                ", vitesseDéplacement=" + vitesseDéplacement +
+                ", vitesseDéplacement=" + vitesseDeplacement +
                 ", environnement=" + environnement +
                 '}';
     }
