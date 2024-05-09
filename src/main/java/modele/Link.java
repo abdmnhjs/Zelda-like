@@ -39,16 +39,16 @@ public class Link extends Personnage {
         if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true){
             if (keyH.upPressed == true){
                 direction = "up";
-                 setPositionY(getPositionY()- getVitesseDeplacement());
+                 setPositionYProperty(getPositionY()- getVitesseDeplacement());
             } else if (keyH.downPressed == true) {
                 direction = "down";
-                setPositionY(getPositionY()+ getVitesseDeplacement());
+                setPositionYProperty(getPositionY()+ getVitesseDeplacement());
             } else if (keyH.leftPressed == true) {
                 direction = "left";
-                setPositionX(getPositionX()- getVitesseDeplacement());
+                setPositionXProperty(getPositionX()- getVitesseDeplacement());
             } else if (keyH.rightPressed == true) {
                 direction = "right";
-                setPositionX(getPositionX()+ getVitesseDeplacement());
+                setPositionXProperty(getPositionX()+ getVitesseDeplacement());
             }
 
         }
