@@ -21,8 +21,7 @@ public class GamePanel extends JPanel implements Runnable {
     final int FPS =60;
 
     Thread gameThread;
-    KeyHandler keyH = new KeyHandler();
-    bgqiugrnqjgrnjkg;
+    Keyboard keyH = new Keyboard();
 
 
     public GamePanel(){
@@ -51,16 +50,12 @@ public class GamePanel extends JPanel implements Runnable {
             delta+= (tempsActuel-tempsPrecedent)/intervale;
             tempsPrecedent=tempsActuel;
             if (delta>1){
-                update();
                 repaint();
                 delta--;
             }
         }
     }
 
-    public void update(){
-        if ()
-    }
 
 
 }

@@ -1,12 +1,16 @@
 package modele;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 
 public class Environnement {
 
     private String id;
     private static int compteurEnvironnement=0;
-    private ArrayList<Personnage> personnages;
+    private ObservableList<Personnage> personnages;
     private int width;
     private int height;
     private int[][] tableau;
@@ -18,15 +22,30 @@ public class Environnement {
         this.width = width;
         this.height = height;
         this.tableau = new int[this.width][this.height];
-        this.personnages= new ArrayList<Personnage>();
+        this.personnages= FXCollections.observableArrayList();
     }
 
     public void ajouterPersonnage(Personnage personnage){
         personnages.add(personnage);
     }
 
-    public ArrayList<Personnage> getPersonnages() {
+    public ObservableList<Personnage> getPersonnages() {
         return personnages;
+    }
+
+    public int[][] getTableau() {
+        return tableau;
+    }
+
+    public void setTableau() {
+
+        for (int ligne=0;ligne< tableau.length;ligne++){
+            int nbrRandom;
+            for (int colonne=0;colonne<tableau[ligne].length;colonne++){
+                nbrRandom = (int)(Math.random()*3);
+                tableau[ligne][colonne]=nbrRandom;
+            }
+        }
     }
 
     public String getId() {
