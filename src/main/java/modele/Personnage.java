@@ -8,45 +8,45 @@ public abstract class Personnage {
 
     private String id;
     private static int compteurPersonnage=0;
-    private int pointVie;
-    private int pointAttaque;
+    private IntegerProperty pointVie;
+    private IntegerProperty pointAttaque;
     private IntegerProperty positionX;
     private IntegerProperty positionY;
-    private int vitesseDeplacement;
+    private IntegerProperty vitesseDeplacement;
     protected Environnement environnement;
 
-    public Personnage( int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDéplacement) {
+    public Personnage( int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDeplacement) {
         this.id = "P"+compteurPersonnage;
         compteurPersonnage++;
-        this.pointVie = pointVie;
-        this.pointAttaque = pointAttaque;
+        this.pointVie = new SimpleIntegerProperty(pointVie);
+        this.pointAttaque = new SimpleIntegerProperty(pointAttaque);
         this.positionX = new SimpleIntegerProperty(positionX);
         this.positionY = new SimpleIntegerProperty(positionY);
-        this.vitesseDeplacement = vitesseDéplacement;
+        this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
         this.environnement = environnement;
     }
 
-    public Personnage( int pointVie, int pointAttaque, Environnement environnement, int vitesseDéplacement) {
+    public Personnage( int pointVie, int pointAttaque, Environnement environnement, int vitesseDeplacement) {
         this.id = "P"+compteurPersonnage;
         compteurPersonnage++;
-        this.pointVie = pointVie;
-        this.pointAttaque = pointAttaque;
+        this.pointVie = new SimpleIntegerProperty(pointVie);
+        this.pointAttaque = new SimpleIntegerProperty(pointAttaque);
         this.environnement = environnement;
         Random random = new Random();
         this.positionX = new SimpleIntegerProperty(random.nextInt(environnement.getWidth() - 1));
         this.positionY = new SimpleIntegerProperty(random.nextInt(environnement.getHeight() - 1));
-        this.vitesseDeplacement = vitesseDéplacement;
+        this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
 
     }
 
-    public void setPositionXProperty(int x){
-        positionX.setValue(x);
+    public int getPositionX() {
+        return positionX.getValue();
     }
     public IntegerProperty getPositionXProperty() {
         return positionX;
     }
-    public int getPositionX() {
-        return positionX.getValue();
+    public void setPositionXProperty(int x){
+        positionX.setValue(x);
     }
 
     public int getPositionY() {
@@ -60,24 +60,24 @@ public abstract class Personnage {
     }
 
     public int getVitesseDeplacement() {
-        return vitesseDeplacement;
+        return vitesseDeplacement.getValue();
     }
+    public IntegerProperty getVitesseDeplacementProperty(){ return vitesseDeplacement;}
+    public void setVitesseDeplacementProperty(int v){ vitesseDeplacement.setValue(v);}
 
     public int getPointVie() {
-        return pointVie;
+        return pointVie.getValue();
     }
-    public void setPointVie(int degats){
-        this.pointVie -= degats;
+    public IntegerProperty getPointVieProperty() { return pointVie;}
+    public void setPointVieProperty(int degats){
+        pointVie.setValue(getPointVie()-degats);
     }
 
     public int getPointAttaque() {
-        return pointAttaque;
+        return pointAttaque.getValue();
     }
-    public void faireDegats(Personnage personnage){
-        if(this.pointAttaque <= personnage.getPointVie()){
-            personnage.setPointVie(this.pointAttaque);
-        }
-    }
+    public IntegerProperty getPointAttaqueProperty(){ return pointAttaque;}
+    public void setPointAttaqueProperty(int attaque) { pointAttaque.setValue(attaque);}
 
     public String getId() {
         return id;
