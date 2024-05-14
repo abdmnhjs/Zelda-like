@@ -13,10 +13,9 @@ public class Lancement extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sae_zeldalike/nterface.fxml"));
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("com/example/sae_zeldalike/nterface.fxml"));
         Parent root = loader.load();
-
-
         primaryStage.setScene(new Scene(root, 900, 600));
         primaryStage.show();
     }

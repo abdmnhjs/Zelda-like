@@ -42,7 +42,14 @@ public class Controlleur implements Initializable {
         // Ajouter un gestionnaire d'événements pour détecter lorsque la scène est définie
         player.sceneProperty().addListener((observable, oldScene, newScene) -> {
             if (newScene != null) {
-                checkSceneSize();
+                Platform.runLater(() -> {
+                    try {
+                        Thread.sleep(1); // Attendre 1 milliseconde pour laisser le temps à la scène de se définir
+                        checkSceneSize();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                });
             }
         });
     }
