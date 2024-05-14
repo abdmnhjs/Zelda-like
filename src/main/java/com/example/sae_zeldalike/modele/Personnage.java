@@ -1,4 +1,4 @@
-package modele;
+package com.example.sae_zeldalike.modele;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

@@ -1,4 +1,4 @@
-package Vue;
+package com.example.sae_zeldalike.Vue;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;

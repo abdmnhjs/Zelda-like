@@ -2,12 +2,12 @@
 
 <?import java.net.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
 <Pane xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="Vue.Controlleur"
+      fx:controller="com.example.sae_zeldalike.Vue.Controlleur"
       prefWidth="900" prefHeight="600"
       fx:id="rootPane"
       focusTraversable="true">

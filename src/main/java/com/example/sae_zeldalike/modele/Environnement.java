@@ -1,4 +1,4 @@
-package modele;
+package com.example.sae_zeldalike.modele;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
