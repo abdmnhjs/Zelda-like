@@ -8,4 +8,6 @@ module com.example.sae_zeldalike {
 
     opens com.example.sae_zeldalike to javafx.fxml;
     exports com.example.sae_zeldalike;
+    exports com.example.sae_zeldalike.Vue;
+    opens com.example.sae_zeldalike.Vue to javafx.fxml;
 }
