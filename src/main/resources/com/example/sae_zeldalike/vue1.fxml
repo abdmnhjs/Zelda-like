@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            prefHeight="800.0" prefWidth="600.0">
+<Pane xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="Vue.Controlleur"
+      prefWidth="900" prefHeight="600"
+      fx:id="rootPane"
+      focusTraversable="true">
 
-</BorderPane>
+    <children>
+        <!-- -->
+        <Label fx:id="pieceCounterLabel" layoutX="1300" layoutY="300" style="-fx-font-size: 30px; -fx-background-color: WHITE;" text="Nombre de pièces : 0"/>
+        <!-- Placez le joueur en dernier pour qu'il soit en premier plan -->
+        <ImageView fx:id="player" fitWidth="50" fitHeight="50" x="30" y="30" onKeyPressed="#handleKeyPressed"/>
+    </children>
+
+    <stylesheets>
+        <URL value="@styles.css" />
+    </stylesheets>
+
+</Pane>
