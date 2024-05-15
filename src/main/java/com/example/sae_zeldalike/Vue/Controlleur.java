@@ -77,6 +77,7 @@ public class Controlleur implements Initializable {
         // Gérer les événements des touches
         double newX = player.getX();
         double newY = player.getY();
+
         double tileSize = 32; // Taille des tuiles
         int playerTileX = (int) ((newX + player.getFitWidth() / 2) / tileSize); // Utiliser le centre de l'image pour les calculs de position
         int playerTileY = (int) ((newY + player.getFitHeight() / 2) / tileSize); // Utiliser le centre de l'image pour les calculs de position
