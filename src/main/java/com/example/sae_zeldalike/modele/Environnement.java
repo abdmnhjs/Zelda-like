@@ -15,7 +15,7 @@ public class Environnement {
     private ObservableList<Personnage> personnages;
     private int width;
     private int height;
-    private int[][] tableau;
+    private int[] tableau;
 
     public Environnement(int width,int height){
 
@@ -23,7 +23,7 @@ public class Environnement {
         compteurEnvironnement++;
         this.width = width;
         this.height = height;
-        this.tableau = new int[this.width][this.height];
+        this.tableau = new int[this.width * this.height];
         this.personnages= FXCollections.observableArrayList();
     }
 
@@ -35,19 +35,12 @@ public class Environnement {
         return personnages;
     }
 
-    public int[][] getTableau() {
+    public int[] getTableau() {
         return tableau;
     }
 
     public void setTableau() {
 
-        for (int ligne=0;ligne< tableau.length;ligne++){
-            int nbrRandom;
-            for (int colonne=0;colonne<tableau[ligne].length;colonne++){
-                nbrRandom = (int)(Math.random()*3);
-                tableau[ligne][colonne]=nbrRandom;
-            }
-        }
     }
 
     public String getId() {
