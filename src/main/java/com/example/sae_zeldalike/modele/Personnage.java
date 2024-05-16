@@ -26,7 +26,7 @@ public abstract class Personnage {
         this.environnement = environnement;
     }
 
-    public Personnage( int pointVie, int pointAttaque, Environnement environnement, int vitesseDeplacement) {
+   /* public Personnage( int pointVie, int pointAttaque, Environnement environnement, int vitesseDeplacement) {
         this.id = "P"+compteurPersonnage;
         compteurPersonnage++;
         this.pointVie = new SimpleIntegerProperty(pointVie);
@@ -36,8 +36,7 @@ public abstract class Personnage {
         this.positionX = new SimpleIntegerProperty(random.nextInt(environnement.getWidth() - 1));
         this.positionY = new SimpleIntegerProperty(random.nextInt(environnement.getHeight() - 1));
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
-
-    }
+    }**/
 
     public int getPositionX() {
         return positionX.getValue();
