@@ -14,13 +14,23 @@ public class Clavier implements EventHandler<KeyEvent> {
 
     @Override
     public void handle(KeyEvent keyEvent) {
-
         switch (keyEvent.getCode()){
-
-            case Z-> personnage.setPositionYProperty(personnage.getPositionY()-personnage.getVitesseDeplacement());
-            case S-> personnage.setPositionYProperty(personnage.getPositionY()+ personnage.getVitesseDeplacement());
-            case Q-> personnage.setPositionXProperty(personnage.getPositionX()- personnage.getVitesseDeplacement());
-            case D-> personnage.setPositionXProperty(personnage.getPositionX()+ personnage.getVitesseDeplacement());
+            case Z -> {
+                personnage.setPositionYProperty(personnage.getPositionY() - personnage.getVitesseDeplacement());
+                System.out.println("haut : " + this.personnage.getPositionY());
+            }
+            case S -> {
+                personnage.setPositionYProperty(personnage.getPositionY() + personnage.getVitesseDeplacement());
+                System.out.println("bas : " + this.personnage.getPositionY());
+            }
+            case Q -> {
+                personnage.setPositionXProperty(personnage.getPositionX() - personnage.getVitesseDeplacement());
+                System.out.println("droite : " + this.personnage.getPositionX());
+            }
+            case D -> {
+                personnage.setPositionXProperty(personnage.getPositionX() + personnage.getVitesseDeplacement());
+                System.out.println("gauche : " + this.personnage.getPositionX());
+            }
         }
     }
 }

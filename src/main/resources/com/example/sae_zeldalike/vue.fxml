@@ -4,8 +4,12 @@
 <?import javafx.scene.layout.Pane?>
 
 
+<?import java.net.URL?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae_zeldalike.Controleur">
    <children>
       <Pane fx:id="terrain" prefHeight="400.0" prefWidth="600.0" />
    </children>
+   <stylesheets>
+      <URL value="@styles.css" />
+   </stylesheets>
 </AnchorPane>
