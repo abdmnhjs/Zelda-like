@@ -34,6 +34,10 @@ public class Map {
 
     }
 
+    public int[] getMap() {
+        return map;
+    }
+
     public int getLigne() {
         return ligne;
     }
