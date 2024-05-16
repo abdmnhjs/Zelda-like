@@ -35,9 +35,6 @@ public class Environnement {
         return map;
     }
 
-    public void setTableau() {
-
-    }
 
     public String getId() {
         return id;
