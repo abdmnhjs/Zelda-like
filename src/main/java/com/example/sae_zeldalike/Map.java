@@ -2,8 +2,6 @@ package com.example.sae_zeldalike;
 
 public class Map {
 
-
-
     private int [] map1 ;
 
 
