@@ -19,7 +19,7 @@ public class Controleur implements Initializable {
     private Link link;
 
     @FXML
-    private Pane terrain;
+    private Pane terrain = new Pane();
 
     private Clavier clavier;
 
