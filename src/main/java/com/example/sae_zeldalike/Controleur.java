@@ -2,6 +2,7 @@ package com.example.sae_zeldalike;
 
 import com.example.sae_zeldalike.modele.Environnement;
 import com.example.sae_zeldalike.modele.Link;
+import com.example.sae_zeldalike.modele.Map;
 import com.example.sae_zeldalike.modele.Personnage;
 import javafx.fxml.Initializable;
 import javafx.scene.input.KeyCode;
@@ -17,7 +18,7 @@ import java.util.ResourceBundle;
 public class Controleur implements Initializable {
     private Environnement environnement;
     private Link link;
-
+    private Map map;
     @FXML
     private Pane terrain = new Pane();
 
@@ -38,7 +39,8 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.environnement = new Environnement();
+        this.map = new Map();
+        this.environnement = new Environnement(map);
         this.link = new Link(environnement, 5, 5);
         creerSprite(link);
         this.clavier = new Clavier(link);
