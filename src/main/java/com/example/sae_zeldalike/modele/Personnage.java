@@ -33,8 +33,8 @@ public abstract class Personnage {
         this.pointAttaque = new SimpleIntegerProperty(pointAttaque);
         this.environnement = environnement;
         Random random = new Random();
-        this.positionX = new SimpleIntegerProperty(random.nextInt(environnement.getWidth() - 1));
-        this.positionY = new SimpleIntegerProperty(random.nextInt(environnement.getHeight() - 1));
+        this.positionX = new SimpleIntegerProperty(random.nextInt(environnement.getMap().getColonne() - 1));
+        this.positionY = new SimpleIntegerProperty(random.nextInt(environnement.getMap().getLigne() - 1));
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
 
     }
