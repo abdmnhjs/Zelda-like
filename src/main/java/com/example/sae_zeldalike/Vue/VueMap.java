@@ -18,9 +18,10 @@ public class VueMap {
 
         this.tilePane=tilePane;
         this.map=map;
-        this.mur= new Image("/home/edetommaso/Documents/S2/SAE Dev/Zelda-like/src/main/resources/54.png");
-        this.sol = new Image("/home/edetommaso/Documents/S2/SAE Dev/Zelda-like/src/main/resources/11.png");
-        this.piece = new Image("/home/edetommaso/Documents/S2/SAE Dev/Zelda-like/src/main/resources/55.png");
+        this.mur= new Image("file:src/main/resources/com/example/sae_zeldalike/Map/54.png");
+        this.sol = new Image("file:src/main/resources/com/example/sae_zeldalike/Map/11.png");
+        this.piece = new Image("file:src/main/resources/com/example/sae_zeldalike/Map/55.png");
+
 
         genererMap();
     }

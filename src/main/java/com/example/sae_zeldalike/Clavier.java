@@ -2,7 +2,7 @@ package com.example.sae_zeldalike;
 
 import com.example.sae_zeldalike.modele.Personnage;
 import javafx.event.EventHandler;
-import javafx.scene.input.KeyCode;
+import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 
 public class Clavier implements EventHandler<KeyEvent> {
@@ -12,23 +12,15 @@ public class Clavier implements EventHandler<KeyEvent> {
     public Clavier(Personnage p){
         this.personnage=p;
     }
-
     @Override
-    public void handle(KeyEvent keyEvent) {
-        if(keyEvent.getCode() == KeyCode.Z){
-            personnage.setPositionYProperty(personnage.getPositionY() - personnage.getVitesseDeplacement());
-        }
-        if(keyEvent.getCode() == KeyCode.S){
-            personnage.setPositionYProperty(personnage.getPositionY() + personnage.getVitesseDeplacement());
-        }
-        if(keyEvent.getCode() == KeyCode.Q){
-            personnage.setPositionXProperty(personnage.getPositionX() - personnage.getVitesseDeplacement());
-        }
-        if(keyEvent.getCode() == KeyCode.D){
-            personnage.setPositionXProperty(personnage.getPositionX() + personnage.getVitesseDeplacement());
-        }
+    public void handle (KeyEvent keyEvent){
+        evenementTouche(keyEvent);
+    }
 
-        /*switch (keyEvent.getCode()){
+
+    private void evenementTouche(KeyEvent keyEvent) {
+
+        switch (keyEvent.getCode()){
             case Z -> {
                 personnage.setPositionYProperty(personnage.getPositionY() - personnage.getVitesseDeplacement());
             }
@@ -41,6 +33,7 @@ public class Clavier implements EventHandler<KeyEvent> {
             case D -> {
                 personnage.setPositionXProperty(personnage.getPositionX() + personnage.getVitesseDeplacement());
             }
-        }*/
+        }
+        System.out.println("Position X : "+ personnage.getPositionX()+" Position Y : "+ personnage.getPositionY());
     }
 }

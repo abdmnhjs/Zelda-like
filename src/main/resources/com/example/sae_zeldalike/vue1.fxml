@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.TilePane?>
-<?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.sae_zeldalike.Vue.Controlleur">
-
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae_zeldalike.Controleur">
     <center>
-        <Pane fx:id="pane" focusTraversable="true" prefHeight="600.0" prefWidth="600.0">
-
-            <TilePane fx:id="tilePane" alignment="CENTER" maxHeight="-Infinity"
-            maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefColumns="30" prefHeight="480.0" prefRows="30" prefTileHeight="16"
-            prefTileWidth="16" prefWidth="480.0" />
+        <Pane fx:id="pane" focusTraversable="true" onMouseClicked="#afficher" prefHeight="600.0" prefWidth="1100.0">
+            <TilePane fx:id="tilePane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefColumns="34" prefHeight="544.0" prefRows="17" prefTileHeight="32" prefTileWidth="32" prefWidth="1088.0" />
         </Pane>
     </center>
-
-
 </BorderPane>
