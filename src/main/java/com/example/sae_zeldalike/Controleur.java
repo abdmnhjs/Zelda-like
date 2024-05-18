@@ -1,5 +1,6 @@
 package com.example.sae_zeldalike;
 
+import com.example.sae_zeldalike.Vue.VueMap;
 import com.example.sae_zeldalike.modele.Environnement;
 import com.example.sae_zeldalike.modele.Link;
 import com.example.sae_zeldalike.modele.Map;
@@ -8,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.fxml.FXML;
 import javafx.scene.shape.Circle;
@@ -19,6 +21,10 @@ public class Controleur implements Initializable {
     private Environnement environnement;
     private Link link;
     private Map map;
+    @FXML
+    private TilePane tilePane;
+    private VueMap vueMap;
+
     @FXML
     private Pane terrain = new Pane();
 
@@ -34,20 +40,23 @@ public class Controleur implements Initializable {
         circle.setId(personnage.getId());
         circle.translateXProperty().bind(personnage.getPositionXProperty());
         circle.translateYProperty().bind(personnage.getPositionYProperty());
-        this.terrain.getChildren().add(circle);
+        this.vueMap.getTilePane().getChildren().add(circle);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.map = new Map();
-        this.environnement = new Environnement(map);
+        this.tilePane = new TilePane();
+        this.vueMap = new VueMap(this.tilePane, this.environnement.getMap());
+        this.environnement = new Environnement(this.map);
+        this.vueMap.genererMap();
         this.link = new Link(environnement, 5, 5);
         creerSprite(link);
         this.clavier = new Clavier(link);
         KeyEvent keyEvent = new KeyEvent(KeyEvent.KEY_PRESSED, "", "", KeyCode.Z, false, false, false, false);
         this.clavier.handle(keyEvent);
-        this.terrain.setOnKeyPressed(clavier);
-        this.terrain.requestFocus();
+        this.vueMap.getTilePane().setOnKeyPressed(clavier);
+        this.vueMap.getTilePane().requestFocus();
     }
 
 }

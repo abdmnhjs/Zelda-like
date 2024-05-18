@@ -37,4 +37,8 @@ public class VueMap {
             this.tilePane.getChildren().add(imageView);
         }
     }
+
+    public TilePane getTilePane() {
+        return this.tilePane;
+    }
 }

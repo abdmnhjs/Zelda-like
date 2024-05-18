@@ -3,8 +3,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae_zeldalike.Controleur">
+<?import javafx.scene.layout.TilePane?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae_zeldalike.Controleur" stylesheets="@styles.css">
    <children>
-      <Pane id="#terrain" prefHeight="400.0" prefWidth="600.0" />
+      <TilePane id="#tilePane" prefHeight="400.0" prefWidth="600.0" />
    </children>
 </AnchorPane>
+
