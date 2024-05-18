@@ -16,11 +16,11 @@ public class Link extends Personnage {
 
     }
 
-    public Link(Environnement environnement) {
+    /*public Link(Environnement environnement) {
 
         super(100, 0, environnement, 5);
         this.pieces=FXCollections.observableArrayList();
-    }
+    }*/
 
 
     public ObservableList getPieces(){

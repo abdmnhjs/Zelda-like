@@ -11,17 +11,18 @@ import java.io.IOException;
 
 public class Lancement extends Application {
 
-    @Override
-    public void start(Stage primaryStage) throws IOException {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sae_zeldalike/vue1.fxml"));
-        Parent root = loader.load();
-
-        primaryStage.setScene(new Scene(root, 900, 600));
-        primaryStage.show();
-    }
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("vue1.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root,1088,550);
+        stage.setScene(scene);
+        stage.setTitle("Zelda");
+        stage.show();
     }
 }

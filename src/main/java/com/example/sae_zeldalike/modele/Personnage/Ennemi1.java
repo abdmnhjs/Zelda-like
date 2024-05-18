@@ -8,9 +8,9 @@ public class Ennemi1 extends Personnage {
         super(pointVie, pointAttaque, environnement, positionX, positionY, 2);
     }
 
-    public Ennemi1(int pointVie, int pointAttaque, Environnement environnement) {
+    /*public Ennemi1(int pointVie, int pointAttaque, Environnement environnement) {
         super(pointVie, pointAttaque, environnement, 2);
-    }
+    }*/
 
 
 }
