@@ -1,6 +1,6 @@
 package com.example.sae_zeldalike.Vue;
 
-import com.example.sae_zeldalike.modele.Map;
+import com.example.sae_zeldalike.modele.Environnement.Map;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
