@@ -1,0 +1,211 @@
+Index: src/main/java/modele/Personnage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package modele;\n\nimport javafx.beans.property.IntegerProperty;\nimport javafx.beans.property.SimpleIntegerProperty;\n\nimport java.util.Random;\npublic abstract class Personnage {\n\n    private String id;\n    private static int compteurPersonnage=0;\n    private int pointVie;\n    private int pointAttaque;\n    private IntegerProperty positionX;\n    private IntegerProperty positionY;\n    private int vitesseDeplacement;\n    protected Environnement environnement;\n\n    public Personnage( int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDéplacement) {\n        this.id = \"P\"+compteurPersonnage;\n        compteurPersonnage++;\n        this.pointVie = pointVie;\n        this.pointAttaque = pointAttaque;\n        this.positionX = new SimpleIntegerProperty(positionX);\n        this.positionY = new SimpleIntegerProperty(positionY);\n        this.vitesseDeplacement = vitesseDéplacement;\n        this.environnement = environnement;\n    }\n\n    public Personnage( int pointVie, int pointAttaque, Environnement environnement, int vitesseDéplacement) {\n        this.id = \"P\"+compteurPersonnage;\n        compteurPersonnage++;\n        this.pointVie = pointVie;\n        this.pointAttaque = pointAttaque;\n        this.environnement = environnement;\n        Random random = new Random();\n        this.positionX = new SimpleIntegerProperty(random.nextInt(environnement.getWidth() - 1));\n        this.positionY = new SimpleIntegerProperty(random.nextInt(environnement.getHeight() - 1));\n        this.vitesseDeplacement = vitesseDéplacement;\n\n    }\n\n    public void setPositionXProperty(int x){\n        positionX.setValue(x);\n    }\n    public IntegerProperty getPositionXProperty() {\n        return positionX;\n    }\n    public int getPositionX() {\n        return positionX.getValue();\n    }\n\n    public int getPositionY() {\n        return positionY.getValue();\n    }\n    public IntegerProperty getPositionYProperty() {\n        return positionY;\n    }\n    public void setPositionYProperty(int y) {\n        positionY.setValue(y);\n    }\n\n    public int getVitesseDeplacement() {\n        return vitesseDeplacement;\n    }\n\n    public int getPointVie() {\n        return pointVie;\n    }\n    public void setPointVie(int degats){\n        this.pointVie -= degats;\n    }\n\n    public int getPointAttaque() {\n        return pointAttaque;\n    }\n    public void faireDegats(Personnage personnage){\n        if(this.pointAttaque <= personnage.getPointVie()){\n            personnage.setPointVie(this.pointAttaque);\n        }\n    }\n\n    public String getId() {\n        return id;\n    }\n\n\n    @Override\n    public String toString() {\n        return \"Personnage{\" +\n                \"id='\" + id + '\\'' +\n                \", pointVie=\" + pointVie +\n                \", pointAttaque=\" + pointAttaque +\n                \", positionX=\" + positionX +\n                \", positionY=\" + positionY +\n                \", vitesseDéplacement=\" + vitesseDeplacement +\n                \", environnement=\" + environnement +\n                '}';\n    }\n}\n
+===================================================================
+diff --git a/src/main/java/modele/Personnage.java b/src/main/java/modele/Personnage.java
+--- a/src/main/java/modele/Personnage.java	
++++ b/src/main/java/modele/Personnage.java	
+@@ -1,8 +1,5 @@
+ package modele;
+ 
+-import javafx.beans.property.IntegerProperty;
+-import javafx.beans.property.SimpleIntegerProperty;
+-
+ import java.util.Random;
+ public abstract class Personnage {
+ 
+@@ -10,9 +7,9 @@
+     private static int compteurPersonnage=0;
+     private int pointVie;
+     private int pointAttaque;
+-    private IntegerProperty positionX;
+-    private IntegerProperty positionY;
+-    private int vitesseDeplacement;
++    private int positionX;
++    private int positionY;
++    private int vitesseDéplacement;
+     protected Environnement environnement;
+ 
+     public Personnage( int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDéplacement) {
+@@ -20,9 +17,9 @@
+         compteurPersonnage++;
+         this.pointVie = pointVie;
+         this.pointAttaque = pointAttaque;
+-        this.positionX = new SimpleIntegerProperty(positionX);
+-        this.positionY = new SimpleIntegerProperty(positionY);
+-        this.vitesseDeplacement = vitesseDéplacement;
++        this.positionX = positionX;
++        this.positionY = positionY;
++        this.vitesseDéplacement = vitesseDéplacement;
+         this.environnement = environnement;
+     }
+ 
+@@ -33,47 +30,43 @@
+         this.pointAttaque = pointAttaque;
+         this.environnement = environnement;
+         Random random = new Random();
+-        this.positionX = new SimpleIntegerProperty(random.nextInt(environnement.getWidth() - 1));
+-        this.positionY = new SimpleIntegerProperty(random.nextInt(environnement.getHeight() - 1));
+-        this.vitesseDeplacement = vitesseDéplacement;
++        this.positionX = random.nextInt(environnement.getWidth() - 1);
++        this.positionY = random.nextInt(environnement.getHeight() - 1);
++        this.vitesseDéplacement = vitesseDéplacement;
+ 
+     }
+ 
+-    public void setPositionXProperty(int x){
+-        positionX.setValue(x);
+-    }
+-    public IntegerProperty getPositionXProperty() {
+-        return positionX;
+-    }
+     public int getPositionX() {
+-        return positionX.getValue();
++        return positionX;
++    }
++
++    public void setPositionX(int positionX) {
++        this.positionX = positionX;
+     }
+ 
+     public int getPositionY() {
+-        return positionY.getValue();
+-    }
+-    public IntegerProperty getPositionYProperty() {
+         return positionY;
+     }
+-    public void setPositionYProperty(int y) {
+-        positionY.setValue(y);
++
++    public void setPositionY(int positionY) {
++        this.positionY = positionY;
+     }
+ 
+-    public int getVitesseDeplacement() {
+-        return vitesseDeplacement;
++    public int getVitesseDéplacement() {
++        return vitesseDéplacement;
+     }
+ 
+     public int getPointVie() {
+         return pointVie;
+     }
+-    public void setPointVie(int degats){
+-        this.pointVie -= degats;
++    public void setPointVie(int dégâts){
++        this.pointVie -= dégâts;
+     }
+ 
+     public int getPointAttaque() {
+         return pointAttaque;
+     }
+-    public void faireDegats(Personnage personnage){
++    public void faireDégâts(Personnage personnage){
+         if(this.pointAttaque <= personnage.getPointVie()){
+             personnage.setPointVie(this.pointAttaque);
+         }
+@@ -83,6 +76,8 @@
+         return id;
+     }
+ 
++    //public abstract void seDeplace();
++
+ 
+     @Override
+     public String toString() {
+@@ -92,7 +87,7 @@
+                 ", pointAttaque=" + pointAttaque +
+                 ", positionX=" + positionX +
+                 ", positionY=" + positionY +
+-                ", vitesseDéplacement=" + vitesseDeplacement +
++                ", vitesseDéplacement=" + vitesseDéplacement +
+                 ", environnement=" + environnement +
+                 '}';
+     }
+Index: src/main/java/modele/Environnement.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package modele;\n\nimport javafx.beans.property.IntegerProperty;\nimport javafx.beans.property.SimpleIntegerProperty;\nimport javafx.collections.FXCollections;\nimport javafx.collections.ObservableList;\n\nimport java.util.ArrayList;\n\npublic class Environnement {\n\n    private String id;\n    private static int compteurEnvironnement=0;\n    private ObservableList<Personnage> personnages;\n    private int width;\n    private int height;\n    private int[][] tableau;\n\n    public Environnement(int width,int height){\n\n        this.id = \"E\"+compteurEnvironnement;\n        compteurEnvironnement++;\n        this.width = width;\n        this.height = height;\n        this.tableau = new int[this.width][this.height];\n        this.personnages= FXCollections.observableArrayList();\n    }\n\n    public void ajouterPersonnage(Personnage personnage){\n        personnages.add(personnage);\n    }\n\n    public ObservableList<Personnage> getPersonnages() {\n        return personnages;\n    }\n\n    public String getId() {\n        return id;\n    }\n    public int getHeight() {\n        return height;\n    }\n\n    public int getWidth() {\n        return width;\n    }\n\n    public boolean estDansTerrain(int x, int y){\n        return (0 <= x && x<this.width && 0<=y && y< this.height);\n    }\n\n    @Override\n    public String toString() {\n        return \"Environnement{\" +\n                \"id='\" + id + '\\'' +\n                \", personnages=\" + personnages +\n                \", width=\" + width +\n                \", height=\" + height +\n                '}';\n    }\n}\n
+===================================================================
+diff --git a/src/main/java/modele/Environnement.java b/src/main/java/modele/Environnement.java
+--- a/src/main/java/modele/Environnement.java	
++++ b/src/main/java/modele/Environnement.java	
+@@ -1,7 +1,6 @@
+ package modele;
+ 
+-import javafx.beans.property.IntegerProperty;
+-import javafx.beans.property.SimpleIntegerProperty;
++import javafx.beans.Observable;
+ import javafx.collections.FXCollections;
+ import javafx.collections.ObservableList;
+ 
+@@ -34,6 +33,21 @@
+         return personnages;
+     }
+ 
++    public int[][] getTableau() {
++        return tableau;
++    }
++
++    public void setTableau() {
++
++        for (int ligne=0;ligne< tableau.length;ligne++){
++            int nbrRandom;
++            for (int colonne=0;colonne<tableau[ligne].length;colonne++){
++                nbrRandom = (int)(Math.random()*3);
++                tableau[ligne][colonne]=nbrRandom;
++            }
++        }
++    }
++
+     public String getId() {
+         return id;
+     }
+Index: src/main/java/modele/Ennemi1.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package modele;\n\npublic class Ennemi1 extends Personnage {\n\n    public Ennemi1(int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY) {\n        super(pointVie, pointAttaque, environnement, positionX, positionY, 2);\n    }\n\n    public Ennemi1(int pointVie, int pointAttaque, Environnement environnement) {\n        super(pointVie, pointAttaque, environnement, 2);\n    }\n\n\n}\n\n
+===================================================================
+diff --git a/src/main/java/modele/Ennemi1.java b/src/main/java/modele/Ennemi1.java
+--- a/src/main/java/modele/Ennemi1.java	
++++ b/src/main/java/modele/Ennemi1.java	
+@@ -2,14 +2,17 @@
+ 
+ public class Ennemi1 extends Personnage {
+ 
+-    public Ennemi1(int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY) {
+-        super(pointVie, pointAttaque, environnement, positionX, positionY, 2);
++    public Ennemi1(Environnement environnement, int positionX, int positionY) {
++        super(100, 10, environnement, positionX, positionY, 2);
+     }
+ 
+-    public Ennemi1(int pointVie, int pointAttaque, Environnement environnement) {
+-        super(pointVie, pointAttaque, environnement, 2);
++    public Ennemi1(Environnement environnement) {
++        super(100, 10, environnement, 2);
+     }
+ 
++    @Override
++    public void agit() {
+ 
++    }
+ }
+ 
+Index: src/main/java/modele/Link.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package modele;\n\n\nimport entite.GamePanel;\nimport entite.Keyboard;\n\nimport java.awt.*;\nimport java.awt.image.BufferedImage;\n\npublic class Link extends Personnage {\n\n\n    GamePanel gamePanel;\n    Keyboard keyH;\n    private String direction;\n    public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;\n\n\n    public Link(Environnement environnement, int positionX, int positionY,GamePanel gamePanel,Keyboard keyH) {\n        super(100, 0, environnement, positionX, positionY, 5);\n        this.gamePanel=gamePanel;\n        this.keyH =keyH;\n        this.direction = \"down\";\n\n    }\n\n    public Link(Environnement environnement,GamePanel gamePanel,Keyboard keyH) {\n\n        super(100, 0, environnement, 5);\n        this.gamePanel=gamePanel;\n        this.keyH =keyH;\n        this.direction = \"down\";\n\n    }\n\n\n\n    public void update(){\n        if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true){\n            if (keyH.upPressed == true){\n                direction = \"up\";\n                 setPositionYProperty(getPositionY()- getVitesseDeplacement());\n            } else if (keyH.downPressed == true) {\n                direction = \"down\";\n                setPositionYProperty(getPositionY()+ getVitesseDeplacement());\n            } else if (keyH.leftPressed == true) {\n                direction = \"left\";\n                setPositionXProperty(getPositionX()- getVitesseDeplacement());\n            } else if (keyH.rightPressed == true) {\n                direction = \"right\";\n                setPositionXProperty(getPositionX()+ getVitesseDeplacement());\n            }\n\n        }\n    }\n\n    public void draw(Graphics2D g2){\n\n        g2.setColor(Color.white);\n        g2.fillRect(getPositionX(), getPositionY(), gamePanel.getTileSize(),gamePanel.getTileSize());\n\n    }\n\n\n}\n
+===================================================================
+diff --git a/src/main/java/modele/Link.java b/src/main/java/modele/Link.java
+--- a/src/main/java/modele/Link.java	
++++ b/src/main/java/modele/Link.java	
+@@ -62,4 +62,8 @@
+     }
+ 
+ 
++    @Override
++    public void agit() {
++
++    }
+ }

@@ -1,9 +1,9 @@
-package com.example.sae_zeldalike.modele;
+package com.example.sae_zeldalike.modele.Personnage;
 
+import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-import java.util.Random;
 public abstract class Personnage {
 
     private String id;

@@ -1,5 +1,6 @@
-package com.example.sae_zeldalike.modele;
+package com.example.sae_zeldalike.modele.Environnement;
 
+import com.example.sae_zeldalike.modele.Personnage.Personnage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

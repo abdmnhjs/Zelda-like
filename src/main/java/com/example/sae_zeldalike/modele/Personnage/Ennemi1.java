@@ -1,4 +1,6 @@
-package com.example.sae_zeldalike.modele;
+package com.example.sae_zeldalike.modele.Personnage;
+
+import com.example.sae_zeldalike.modele.Environnement.Environnement;
 
 public class Ennemi1 extends Personnage {
 

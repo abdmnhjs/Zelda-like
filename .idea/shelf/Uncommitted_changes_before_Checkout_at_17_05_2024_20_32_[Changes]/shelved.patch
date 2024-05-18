@@ -1,0 +1,28 @@
+Index: src/main/java/com/example/sae_zeldalike/Lancement.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.sae_zeldalike;\n\n\nimport javafx.application.Application;\nimport javafx.fxml.FXMLLoader;\nimport javafx.scene.Parent;\nimport javafx.scene.Scene;\nimport javafx.stage.Stage;\n\nimport java.io.IOException;\n\npublic class Lancement extends Application {\n\n    @Override\n    public void start(Stage primaryStage) throws IOException {\n\n        FXMLLoader loader = new FXMLLoader(getClass().getResource(\"/com/example/sae_zeldalike/vue1.fxml\"));\n        Parent root = loader.load();\n\n        primaryStage.setScene(new Scene(root, 900, 600));\n        primaryStage.show();\n    }\n\n    public static void main(String[] args) {\n        launch(args);\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/sae_zeldalike/Lancement.java b/src/main/java/com/example/sae_zeldalike/Lancement.java
+--- a/src/main/java/com/example/sae_zeldalike/Lancement.java	
++++ b/src/main/java/com/example/sae_zeldalike/Lancement.java	
+@@ -12,13 +12,13 @@
+ public class Lancement extends Application {
+ 
+     @Override
+-    public void start(Stage primaryStage) throws IOException {
++    public void start(Stage stage) throws IOException {
+ 
+-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/sae_zeldalike/vue1.fxml"));
++        FXMLLoader loader = new FXMLLoader(getClass().getResource("vue1.fxml"));
+         Parent root = loader.load();
+ 
+-        primaryStage.setScene(new Scene(root, 900, 600));
+-        primaryStage.show();
++        stage.setScene(new Scene(root, 900, 600));
++        stage.show();
+     }
+ 
+     public static void main(String[] args) {
