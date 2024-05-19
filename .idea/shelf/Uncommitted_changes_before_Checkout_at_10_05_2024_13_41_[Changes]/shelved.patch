@@ -1,0 +1,29 @@
+Index: src/main/java/modele/MainModele.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package modele;\n\npublic class MainModele {\n\n    public static void main(String[] args) {\n        Environnement e1 = new Environnement(5,5);\n        e1.setTableau();\n        for (int ligne=0;ligne< e1.getWidth();ligne++){\n            for (int colonne=0;colonne<e1.getHeight();colonne++){\n                while (!(ligne >=e1.getWidth()) || !(colonne >= e1.getHeight())){\n                System.out.println(e1.getTableau()[ligne][colonne]);\n\n            }\n        }\n    }\n}}\n
+===================================================================
+diff --git a/src/main/java/modele/MainModele.java b/src/main/java/modele/MainModele.java
+--- a/src/main/java/modele/MainModele.java	
++++ b/src/main/java/modele/MainModele.java	
+@@ -3,14 +3,16 @@
+ public class MainModele {
+ 
+     public static void main(String[] args) {
+-        Environnement e1 = new Environnement(5,5);
++        Environnement e1 = new Environnement(10,7);
+         e1.setTableau();
+         for (int ligne=0;ligne< e1.getWidth();ligne++){
+             for (int colonne=0;colonne<e1.getHeight();colonne++){
+-                while (!(ligne >=e1.getWidth()) || !(colonne >= e1.getHeight())){
+-                System.out.println(e1.getTableau()[ligne][colonne]);
++                System.out.print(e1.getTableau()[ligne][colonne]+"  ");
++                if ((colonne == e1.getHeight()-1)) {
++                    System.out.println();
++                }
+ 
+             }
+         }
+     }
+-}}
++}

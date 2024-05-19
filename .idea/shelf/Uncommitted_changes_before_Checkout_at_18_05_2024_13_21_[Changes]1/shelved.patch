@@ -1,0 +1,173 @@
+Index: src/main/java/com/example/sae_zeldalike/Map.java
+===================================================================
+diff --git a/src/main/java/com/example/sae_zeldalike/Map.java b/src/main/java/com/example/sae_zeldalike/Map.java
+deleted file mode 100644
+--- a/src/main/java/com/example/sae_zeldalike/Map.java	
++++ /dev/null	
+@@ -1,36 +0,0 @@
+-package com.example.sae_zeldalike;
+-
+-public class Map {
+-
+-    private int [] map ;
+-
+-
+-
+-    public Map() {
+-
+-
+-        this.map = new int [] {
+-                54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54,
+-                11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 54,
+-                11, 11, 11, 11, 11, 11, 11, 11, 55, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 55, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 55, 11, 11, 54,
+-                11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 54,
+-                54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 11, 11, 11, 11, 11, 54,
+-                54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 11, 11, 11, 11, 11, 54,
+-                54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 11, 11, 11, 11, 11, 54,
+-                54, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 55, 11, 11, 54,
+-                54, 11, 11, 55, 11, 11, 11, 11, 11, 55, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 55, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 54,
+-                54, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 54,
+-                54, 11, 11, 11, 11, 11, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54,
+-                54, 11, 11, 11, 11, 11, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54,
+-                54, 11, 11, 55, 11, 11, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54,
+-                54, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 55, 11, 11, 11, 11, 11, 11, 11, 11, 11, 55, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 55, 54,
+-                54, 11, 11, 11, 11, 11, 55, 11, 11, 11, 11, 11, 11, 11, 11, 11, 55, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 55, 11, 11, 11, 11, 54,
+-                54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54,
+-                54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54,
+-                54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54
+-
+-        } ;
+-
+-
+-    }
+-}
+Index: src/main/java/com/example/sae_zeldalike/modele/Piece.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/sae_zeldalike/modele/Piece.java b/src/main/java/com/example/sae_zeldalike/modele/Item/Piece.java
+rename from src/main/java/com/example/sae_zeldalike/modele/Piece.java
+rename to src/main/java/com/example/sae_zeldalike/modele/Item/Piece.java
+--- a/src/main/java/com/example/sae_zeldalike/modele/Piece.java	
++++ b/src/main/java/com/example/sae_zeldalike/modele/Item/Piece.java	
+@@ -1,4 +1,4 @@
+-package com.example.sae_zeldalike.modele;
++package com.example.sae_zeldalike.modele.Item;
+ 
+ public class Piece {
+ 
+Index: src/main/java/com/example/sae_zeldalike/modele/Ennemi1.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/sae_zeldalike/modele/Ennemi1.java b/src/main/java/com/example/sae_zeldalike/modele/Personnage/Ennemi1.java
+rename from src/main/java/com/example/sae_zeldalike/modele/Ennemi1.java
+rename to src/main/java/com/example/sae_zeldalike/modele/Personnage/Ennemi1.java
+--- a/src/main/java/com/example/sae_zeldalike/modele/Ennemi1.java	
++++ b/src/main/java/com/example/sae_zeldalike/modele/Personnage/Ennemi1.java	
+@@ -1,4 +1,6 @@
+-package com.example.sae_zeldalike.modele;
++package com.example.sae_zeldalike.modele.Personnage;
++
++import com.example.sae_zeldalike.modele.Environnement.Environnement;
+ 
+ public class Ennemi1 extends Personnage {
+ 
+Index: src/main/java/com/example/sae_zeldalike/modele/Link.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/sae_zeldalike/modele/Link.java b/src/main/java/com/example/sae_zeldalike/modele/Personnage/Link.java
+rename from src/main/java/com/example/sae_zeldalike/modele/Link.java
+rename to src/main/java/com/example/sae_zeldalike/modele/Personnage/Link.java
+--- a/src/main/java/com/example/sae_zeldalike/modele/Link.java	
++++ b/src/main/java/com/example/sae_zeldalike/modele/Personnage/Link.java	
+@@ -1,5 +1,7 @@
+-package com.example.sae_zeldalike.modele;
++package com.example.sae_zeldalike.modele.Personnage;
+ 
++import com.example.sae_zeldalike.modele.Environnement.Environnement;
++import com.example.sae_zeldalike.modele.Item.Piece;
+ import javafx.collections.FXCollections;
+ import javafx.collections.ObservableList;
+ 
+Index: src/main/resources/com/example/sae_zeldalike/vue1.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<?import javafx.scene.layout.BorderPane?>\n<?import javafx.scene.layout.Pane?>\n<?import javafx.scene.layout.TilePane?>\n\n<BorderPane xmlns=\"http://javafx.com/javafx/21\" xmlns:fx=\"http://javafx.com/fxml/1\" fx:controller=\"com.example.sae_zeldalike.Controleur\">\n    <center>\n        <Pane fx:id=\"pane\" focusTraversable=\"true\" onMouseClicked=\"#afficher\" prefHeight=\"600.0\" prefWidth=\"1100.0\">\n            <TilePane fx:id=\"tilePane\" alignment=\"CENTER\" maxHeight=\"-Infinity\" maxWidth=\"-Infinity\" minHeight=\"-Infinity\" minWidth=\"-Infinity\" prefColumns=\"34\" prefHeight=\"544.0\" prefRows=\"17\" prefTileHeight=\"32\" prefTileWidth=\"32\" prefWidth=\"1088.0\" />\n        </Pane>\n    </center>\n</BorderPane>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/com/example/sae_zeldalike/vue1.fxml b/src/main/resources/com/example/sae_zeldalike/vue1.fxml
+--- a/src/main/resources/com/example/sae_zeldalike/vue1.fxml	
++++ b/src/main/resources/com/example/sae_zeldalike/vue1.fxml	
+@@ -4,7 +4,7 @@
+ <?import javafx.scene.layout.Pane?>
+ <?import javafx.scene.layout.TilePane?>
+ 
+-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae_zeldalike.Controleur">
++<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae_zeldalike.modele.Controlleur.Controlleur">
+     <center>
+         <Pane fx:id="pane" focusTraversable="true" onMouseClicked="#afficher" prefHeight="600.0" prefWidth="1100.0">
+             <TilePane fx:id="tilePane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefColumns="34" prefHeight="544.0" prefRows="17" prefTileHeight="32" prefTileWidth="32" prefWidth="1088.0" />
+Index: src/main/java/com/example/sae_zeldalike/modele/Personnage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/sae_zeldalike/modele/Personnage.java b/src/main/java/com/example/sae_zeldalike/modele/Personnage/Personnage.java
+rename from src/main/java/com/example/sae_zeldalike/modele/Personnage.java
+rename to src/main/java/com/example/sae_zeldalike/modele/Personnage/Personnage.java
+--- a/src/main/java/com/example/sae_zeldalike/modele/Personnage.java	
++++ b/src/main/java/com/example/sae_zeldalike/modele/Personnage/Personnage.java	
+@@ -1,9 +1,9 @@
+-package com.example.sae_zeldalike.modele;
++package com.example.sae_zeldalike.modele.Personnage;
+ 
++import com.example.sae_zeldalike.modele.Environnement.Environnement;
+ import javafx.beans.property.IntegerProperty;
+ import javafx.beans.property.SimpleIntegerProperty;
+ 
+-import java.util.Random;
+ public abstract class Personnage {
+ 
+     private String id;
+Index: src/main/java/com/example/sae_zeldalike/modele/Environnement.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/sae_zeldalike/modele/Environnement.java b/src/main/java/com/example/sae_zeldalike/modele/Environnement/Environnement.java
+rename from src/main/java/com/example/sae_zeldalike/modele/Environnement.java
+rename to src/main/java/com/example/sae_zeldalike/modele/Environnement/Environnement.java
+--- a/src/main/java/com/example/sae_zeldalike/modele/Environnement.java	
++++ b/src/main/java/com/example/sae_zeldalike/modele/Environnement/Environnement.java	
+@@ -1,5 +1,6 @@
+-package com.example.sae_zeldalike.modele;
++package com.example.sae_zeldalike.modele.Environnement;
+ 
++import com.example.sae_zeldalike.modele.Personnage.Personnage;
+ import javafx.collections.FXCollections;
+ import javafx.collections.ObservableList;
+ 
+Index: src/main/java/module-info.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>module com.example.sae_zeldalike {\n    requires javafx.controls;\n    requires javafx.fxml;\n\n    requires org.controlsfx.controls;\n    requires java.desktop;\n    requires org.json;\n\n    opens com.example.sae_zeldalike to javafx.fxml;\n    exports com.example.sae_zeldalike;\n    exports com.example.sae_zeldalike.Vue;\n    opens com.example.sae_zeldalike.Vue to javafx.fxml;\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/module-info.java b/src/main/java/module-info.java
+--- a/src/main/java/module-info.java	
++++ b/src/main/java/module-info.java	
+@@ -10,4 +10,6 @@
+     exports com.example.sae_zeldalike;
+     exports com.example.sae_zeldalike.Vue;
+     opens com.example.sae_zeldalike.Vue to javafx.fxml;
++    exports com.example.sae_zeldalike.modele.Controlleur;
++    opens com.example.sae_zeldalike.modele.Controlleur to javafx.fxml;
+ }
+\ No newline at end of file
