@@ -11,7 +11,9 @@ public abstract class Personnage {
     private IntegerProperty pointVie;
     private IntegerProperty pointAttaque;
     private IntegerProperty positionX;
+    private IntegerProperty précédentePositionXProperty;
     private IntegerProperty positionY;
+    private IntegerProperty précédentePositionYProperty;
     private IntegerProperty vitesseDeplacement;
     protected Environnement environnement;
 
@@ -22,6 +24,8 @@ public abstract class Personnage {
         this.pointAttaque = new SimpleIntegerProperty(pointAttaque);
         this.positionX = new SimpleIntegerProperty(positionX);
         this.positionY = new SimpleIntegerProperty(positionY);
+        this.précédentePositionXProperty = new SimpleIntegerProperty(0);
+        this.précédentePositionYProperty = new SimpleIntegerProperty(0);
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
         this.environnement = environnement;
     }
@@ -35,6 +39,8 @@ public abstract class Personnage {
         Random random = new Random();
         this.positionX = new SimpleIntegerProperty(random.nextInt(environnement.getMap().getColonne() - 1));
         this.positionY = new SimpleIntegerProperty(random.nextInt(environnement.getMap().getLigne() - 1));
+        this.précédentePositionXProperty = new SimpleIntegerProperty(0);
+        this.précédentePositionYProperty = new SimpleIntegerProperty(0);
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
     }
 
@@ -45,17 +51,27 @@ public abstract class Personnage {
         return positionX;
     }
     public void setPositionXProperty(int x){
+        this.précédentePositionXProperty.setValue(this.positionX.getValue());
         positionX.setValue(x);
+    }
+
+    public IntegerProperty getPrécédentePositionXProperty() {
+        return this.précédentePositionXProperty;
     }
 
     public int getPositionY() {
         return positionY.getValue();
     }
     public IntegerProperty getPositionYProperty() {
+        this.précédentePositionYProperty.setValue(this.positionY.getValue());
         return positionY;
     }
     public void setPositionYProperty(int y) {
         positionY.setValue(y);
+    }
+
+    public IntegerProperty getPrécédentePositionYProperty() {
+        return this.précédentePositionYProperty;
     }
 
     public int getVitesseDeplacement() {

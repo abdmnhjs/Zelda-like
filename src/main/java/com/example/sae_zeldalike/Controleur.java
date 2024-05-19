@@ -4,7 +4,11 @@ import com.example.sae_zeldalike.Vue.VueMap;
 import com.example.sae_zeldalike.modele.Map;
 import com.example.sae_zeldalike.modele.Environnement;
 import com.example.sae_zeldalike.modele.Link;
+import com.example.sae_zeldalike.modele.Personnage;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
@@ -27,7 +31,7 @@ public class Controleur implements Initializable {
     private TilePane tilePane;
 
 
-    public void creerSprite(Link personnage){
+    public void creerSprite(Personnage personnage){
         Circle circle = new Circle(5);
         circle.setFill(Color.BLACK);
         circle.setId(personnage.getId());

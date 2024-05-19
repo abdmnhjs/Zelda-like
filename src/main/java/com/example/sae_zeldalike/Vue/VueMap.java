@@ -30,6 +30,7 @@ public class VueMap {
     public void genererMap(){
         for (int i = 0; i < map.getMap().length;i++){
             imageView = new ImageView();
+            imageView.setId("map1");
             switch (map.getMap()[i]){
                 case 11 -> imageView.setImage(mur);
                 case 54 -> imageView.setImage(sol);
@@ -37,6 +38,18 @@ public class VueMap {
             }
             this.tilePane.getChildren().add(imageView);
         }
+    }
+
+    public ImageView getImageView(){
+        return this.imageView;
+    }
+
+    public Image getMur() {
+        return this.mur;
+    }
+
+    public Image getSol() {
+        return this.sol;
     }
 
     public TilePane getTilePane() {
