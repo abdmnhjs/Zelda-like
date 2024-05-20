@@ -3,6 +3,7 @@ package com.example.sae_zeldalike.Vue;
 import com.example.sae_zeldalike.Controlleur.Clavier;
 import com.example.sae_zeldalike.modele.Personnage.Link;
 import com.example.sae_zeldalike.modele.Personnage.Personnage;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
