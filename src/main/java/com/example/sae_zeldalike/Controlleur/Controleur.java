@@ -6,6 +6,7 @@ import com.example.sae_zeldalike.modele.Personnage.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.Initializable;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.fxml.FXML;
@@ -20,6 +21,8 @@ public class Controleur implements Initializable {
     private Environnement environnement;
     private Personnage personnage;
     private VueLink vueLink;
+    private Ennemi1 ennemi1;
+    private VueEnnemi1 vueEnnemi1;
     private Map map;
     private VueMap vueMap;
 
@@ -38,10 +41,14 @@ public class Controleur implements Initializable {
         this.environnement = new Environnement(map);
         this.personnage = new Link(environnement, 32, 32);
         this.vueLink=new VueLink(pane,personnage);
+        this.ennemi1=new Ennemi1(environnement,250,350);
+        this.vueEnnemi1 = new VueEnnemi1(pane,ennemi1);
         vueMap = new VueMap(tilePane,map);
         initAnimation();
         // demarre l'animation
         gameLoop.play();
+
+
     }
 
     private void initAnimation() {
@@ -59,8 +66,9 @@ public class Controleur implements Initializable {
                         System.out.println("fini");
                        gameLoop.stop();
                     }
-                    else if (temps%5==0){
-                        System.out.println("un tour");
+                    else if (temps%10==0){
+
+                        ennemi1.seDeplace();
                         this.pane.requestFocus();
                     }
                     temps++;
