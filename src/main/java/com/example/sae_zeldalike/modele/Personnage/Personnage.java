@@ -83,6 +83,10 @@ public abstract class Personnage {
     }
 
 
+    public Environnement getEnvironnement() {
+        return environnement;
+    }
+
     @Override
     public String toString() {
         return "Personnage{" +

@@ -31,6 +31,11 @@ public class Environnement {
         return map;
     }
 
+    public boolean estDansLimiteTerrain(int x,int y){
+        return ((x>=0&&x<= (map.getColonne()*32))&&(y>=0 && x<=(map.getLigne()*32)));
+
+    }
+
 
     public String getId() {
         return id;

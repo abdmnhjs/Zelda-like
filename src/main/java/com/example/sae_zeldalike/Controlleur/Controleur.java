@@ -65,10 +65,13 @@ public class Controleur implements Initializable {
                     if(temps==1000000){
                         System.out.println("fini");
                        gameLoop.stop();
-                    }
-                    else if (temps%10==0){
-
+                    } else if (temps%10==0) {
+                        vueEnnemi1.changerImage();
                         ennemi1.seDeplace();
+                        vueLink.animationPersonnage();
+                    } else if (temps%3==0){
+
+
                         this.pane.requestFocus();
                     }
                     temps++;
