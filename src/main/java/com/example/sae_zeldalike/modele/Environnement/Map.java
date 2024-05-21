@@ -38,7 +38,7 @@ public class Map {
         return map;
     }
 
-    public int getPosition(int pos) { return map[pos];}
+    public int getTuile(int pos) { return map[pos];}
 
     public int getLigne() {
         return ligne;

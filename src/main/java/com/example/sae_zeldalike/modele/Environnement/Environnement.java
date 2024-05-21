@@ -32,15 +32,19 @@ public class Environnement {
     }
 
     public boolean estDansLimiteTerrain(int x,int y){
-        return ((x>=0&&x<((map.getColonne()-1)*32))&&(y>=0 && y<((map.getLigne()-1)*32)));
+        return ((x>0&&x<((map.getColonne()-1)*32))&&(y>0 && y<((map.getLigne()-1)*32)));
 
     }
 
     public boolean estDevantObstacle(int x, int y){
-        if (estDansLimiteTerrain(x, y)){
-            return true;
+        if (estDansLimiteTerrain(x,y)) {
+            int newX = x - 32;
+            int newY = y - 32;
+            if (this.map.getMap()[(newY * map.getLigne()) + newX] == 54) {
+                return true;
+            }
         }
-        return map.getPosition((y* getMap().getColonne())+x)==54;
+        return false;
     }
 
 
