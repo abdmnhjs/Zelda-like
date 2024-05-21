@@ -23,8 +23,8 @@ public class VueLink {
         this.personnage=personnage;
         this.id= personnage.getId();
         this.imageView.setId("#"+personnage.getId());
-        this.imageView.setFitHeight(32);
-        this.imageView.setFitWidth(32);
+        this.imageView.setFitHeight(personnage.getLongueur());
+        this.imageView.setFitWidth(personnage.getLargeur());
         this.imageView.setTranslateX(personnage.getPositionX());
         this.imageView.setTranslateY(personnage.getPositionY());
         pane.getChildren().add(this.imageView);

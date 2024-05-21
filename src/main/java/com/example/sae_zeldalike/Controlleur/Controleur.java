@@ -43,39 +43,9 @@ public class Controleur implements Initializable {
         this.personnage = new Link(environnement, 32, 32);
         this.vueLink=new VueLink(pane,personnage);
         vueMap = new VueMap(tilePane,map);
-        aRencontréCollision(this.personnage, this.vueLink.getImageView(), vueMap);
         initAnimation();
         // demarre l'animation
         gameLoop.play();
-    }
-
-    private boolean collisions(ImageView personnage, VueMap vueMap) {
-        double personnageX = personnage.getX();
-        double personnageY = personnage.getY();
-        double personnageWidth = personnage.getFitWidth();
-        double personnageHeight = personnage.getFitHeight();
-
-        for (ImageView obstacle : vueMap.getObstacles()) {
-            double obstacleX = obstacle.getX();
-            double obstacleY = obstacle.getY();
-            double obstacleWidth = obstacle.getFitWidth();
-            double obstacleHeight = obstacle.getFitHeight();
-
-            if (personnageX <= obstacleX + obstacleWidth &&
-                    personnageWidth >= obstacleX &&
-                    personnageY <= obstacleY + obstacleHeight &&
-                    personnageY + personnageHeight >= obstacleY) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private void aRencontréCollision(Personnage personnage, ImageView vuePerso, VueMap vueMap) {
-        if (collisions(vuePerso, vueMap)) {
-            personnage.setPositionXProperty(personnage.getPrécédentePositionXProperty().getValue());
-            personnage.setPositionYProperty(personnage.getPrécédentePositionYProperty().getValue());
-        }
     }
 
     private void initAnimation() {

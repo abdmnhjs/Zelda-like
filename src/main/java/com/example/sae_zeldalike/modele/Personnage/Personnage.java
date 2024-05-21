@@ -18,6 +18,8 @@ public abstract class Personnage {
     private IntegerProperty précédentePositionYProperty;
     private IntegerProperty vitesseDeplacement;
     protected Environnement environnement;
+    private int longueur;
+    private int largeur;
 
     public Personnage( int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDeplacement) {
         this.id = "P"+compteurPersonnage;
@@ -26,6 +28,8 @@ public abstract class Personnage {
         this.pointAttaque = new SimpleIntegerProperty(pointAttaque);
         this.positionX = new SimpleIntegerProperty(positionX);
         this.positionY = new SimpleIntegerProperty(positionY);
+        this.longueur = 32;
+        this.largeur = 32;
         this.précédentePositionXProperty = new SimpleIntegerProperty(0);
         this.précédentePositionYProperty = new SimpleIntegerProperty(0);
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
@@ -41,6 +45,8 @@ public abstract class Personnage {
         Random random = new Random();
         this.positionX = new SimpleIntegerProperty(random.nextInt(environnement.getMap().getColonne() - 1));
         this.positionY = new SimpleIntegerProperty(random.nextInt(environnement.getMap().getLigne() - 1));
+        this.longueur = 32;
+        this.largeur = 32;
         this.précédentePositionXProperty = new SimpleIntegerProperty(0);
         this.précédentePositionYProperty = new SimpleIntegerProperty(0);
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
@@ -95,6 +101,14 @@ public abstract class Personnage {
     }
     public IntegerProperty getPointAttaqueProperty(){ return pointAttaque;}
     public void setPointAttaqueProperty(int attaque) { pointAttaque.setValue(attaque);}
+
+    public int getLongueur() {
+        return this.longueur;
+    }
+
+    public int getLargeur() {
+        return this.largeur;
+    }
 
     public String getId() {
         return id;
