@@ -32,7 +32,7 @@ public class Environnement {
     }
 
     public boolean estDansLimiteTerrain(int x,int y){
-        return ((x>=0&&x<= (map.getColonne()*32))&&(y>=0 && x<=(map.getLigne()*32)));
+        return ((x>=0&&x<((map.getColonne()-1)*32))&&(y>=0 && y<((map.getLigne()-1)*32)));
 
     }
 
