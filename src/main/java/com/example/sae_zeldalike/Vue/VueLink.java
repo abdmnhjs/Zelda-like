@@ -22,6 +22,8 @@ public class VueLink {
     public VueLink(Pane pane, Personnage personnage) {
         this.clavier = new Clavier(personnage);
         pane.addEventFilter(KeyEvent.KEY_PRESSED,clavier);
+
+
         this.numeroImagePersonnage=1;
         this.spritePersonnage = new ImageView("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/DOWN_R.png");
         this.personnage=personnage;
@@ -32,7 +34,7 @@ public class VueLink {
         this.spritePersonnage.setTranslateY(personnage.getPositionY());
         pane.getChildren().add(this.spritePersonnage);
         direction = new SimpleStringProperty();
-        direction.bind(clavier.getDirectionProperty());
+        direction.bind(personnage.getDirectionProperty());
 
         spritePersonnage.translateXProperty().bind(personnage.getPositionXProperty());
         spritePersonnage.translateYProperty().bind(personnage.getPositionYProperty());
@@ -94,6 +96,7 @@ public class VueLink {
     public void setNumeroImagePersonnage(int numeroImagePersonnage) {
         this.numeroImagePersonnage = numeroImagePersonnage;
     }
+
 
     public Personnage getPersonnage() {
         return personnage;

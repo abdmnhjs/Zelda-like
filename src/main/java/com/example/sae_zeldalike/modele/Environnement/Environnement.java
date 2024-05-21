@@ -36,6 +36,13 @@ public class Environnement {
 
     }
 
+    public boolean estDevantObstacle(int x, int y){
+        if (estDansLimiteTerrain(x, y)){
+            return true;
+        }
+        return map.getPosition((y* getMap().getColonne())+x)==54;
+    }
+
 
     public String getId() {
         return id;

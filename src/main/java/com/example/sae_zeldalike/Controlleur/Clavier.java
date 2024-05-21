@@ -13,12 +13,10 @@ import javafx.scene.input.KeyEvent;
 public class Clavier implements EventHandler<KeyEvent> {
 
     private Personnage personnage;
-    private StringProperty direction;
 
 
     public Clavier(Personnage p) {
         this.personnage = p;
-        this.direction=new SimpleStringProperty("DOWN");
     }
 
     @Override
@@ -29,33 +27,44 @@ public class Clavier implements EventHandler<KeyEvent> {
 
     private void interactionTouche(KeyEvent keyEvent) {
 
+        int newX;
+        int newY;
         switch (keyEvent.getCode()) {
             case Z -> {
-                if (personnage.getEnvironnement().estDansLimiteTerrain(personnage.getPositionX(), personnage.getPositionY()- personnage.getVitesseDeplacement())==true) {
+                newX = personnage.getPositionX();
+                newY = (personnage.getPositionY()- personnage.getVitesseDeplacement());
+                if (!personnage.getEnvironnement().estDevantObstacle(newX, newY)) {
+                }
+                else {
                     personnage.setPositionYProperty(personnage.getPositionY() - personnage.getVitesseDeplacement());
                 }
-                setDirection("UP");
+                personnage.setDirection("UP");
 
             }
             case S -> {
-                if (personnage.getEnvironnement().estDansLimiteTerrain(personnage.getPositionX(), personnage.getPositionY()+ personnage.getVitesseDeplacement())==true) {
+                newX = personnage.getPositionX();
+                newY = personnage.getPositionY()+ personnage.getVitesseDeplacement();
+                if (!personnage.getEnvironnement().estDevantObstacle(newX,newY)) {
                     personnage.setPositionYProperty(personnage.getPositionY() + personnage.getVitesseDeplacement());
 
                 }
-                setDirection("DOWN");
+                personnage.setDirection("DOWN");
             }
             case Q -> {
-                if (personnage.getEnvironnement().estDansLimiteTerrain((personnage.getPositionX()- personnage.getVitesseDeplacement()), personnage.getPositionY())==true) {
+                newX = personnage.getPositionX()- personnage.getVitesseDeplacement();
+                newY = personnage.getPositionY();
+                if (!personnage.getEnvironnement().estDevantObstacle(newX,newY)) {
                     personnage.setPositionXProperty(personnage.getPositionX() - personnage.getVitesseDeplacement());
-
                 }
-                setDirection("LEFT");
+                personnage.setDirection("LEFT");
             }
             case D -> {
-                if (personnage.getEnvironnement().estDansLimiteTerrain((personnage.getPositionX()+ personnage.getVitesseDeplacement()), personnage.getPositionY())==true) {
+                newX = personnage.getPositionX()+ personnage.getVitesseDeplacement();
+                newY = personnage.getPositionY();
+                if (!personnage.getEnvironnement().estDevantObstacle(newX,newY)) {
                     personnage.setPositionXProperty(personnage.getPositionX() + personnage.getVitesseDeplacement());
                 }
-                setDirection("RIGHT");
+                personnage.setDirection("RIGHT");
 
             }
         }
@@ -63,12 +72,5 @@ public class Clavier implements EventHandler<KeyEvent> {
 
     }
 
-    public String getDirection() {
-        return direction.getValue();
-    }
-    public StringProperty getDirectionProperty() { return direction;}
 
-    public void setDirection(String direction) {
-        this.direction.setValue(direction);
-    }
 }

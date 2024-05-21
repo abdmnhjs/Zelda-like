@@ -3,6 +3,8 @@ package com.example.sae_zeldalike.modele.Personnage;
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public abstract class Personnage {
 
@@ -14,6 +16,7 @@ public abstract class Personnage {
     private IntegerProperty positionY;
     private IntegerProperty vitesseDeplacement;
     protected Environnement environnement;
+    private StringProperty direction;
 
     public Personnage( int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDeplacement) {
         this.id = "P"+compteurPersonnage;
@@ -24,6 +27,7 @@ public abstract class Personnage {
         this.positionY = new SimpleIntegerProperty(positionY);
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
         this.environnement = environnement;
+        this.direction = new SimpleStringProperty("DOWN");
     }
 
    /* public Personnage( int pointVie, int pointAttaque, Environnement environnement, int vitesseDeplacement) {
@@ -37,6 +41,16 @@ public abstract class Personnage {
         this.positionY = new SimpleIntegerProperty(random.nextInt(environnement.getMap().getLigne() - 1));
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
     }**/
+
+    public StringProperty getDirectionProperty() {
+        return direction;
+    }
+    public String getDirection() {
+        return direction.getValue();
+    }
+    public void setDirection(String direction){
+        this.direction.setValue(direction);
+    }
 
     public int getPositionX() {
         return positionX.getValue();
