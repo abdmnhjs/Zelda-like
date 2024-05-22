@@ -4,9 +4,11 @@ target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
-.idea/*
+
 <<<<<<< HEAD
 .mvn/*
+.idea/*
+
 =======
 >>>>>>> origin/environnement
 .idea/modules.xml
