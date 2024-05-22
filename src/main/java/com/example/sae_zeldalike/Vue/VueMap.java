@@ -29,13 +29,16 @@ public class VueMap {
 
     public void genererMap(){
         for (int i = 0; i < map.getMap().length;i++){
-            imageView = new ImageView();
-            switch (map.getMap()[i]){
-                case 11 -> imageView.setImage(mur);
-                case 54 -> imageView.setImage(sol);
-                case 55 -> imageView.setImage(piece);
+            for(int j = 0 ; j < map.getMap()[i].length ; j++){
+                imageView = new ImageView();
+                switch (map.getMap()[i][j]){
+                    case 54 -> imageView.setImage(mur);
+                    case 11 -> imageView.setImage(sol);
+                    case 55 -> imageView.setImage(piece);
+                }
+                this.tilePane.getChildren().add(imageView);
             }
-            this.tilePane.getChildren().add(imageView);
+
         }
     }
 }

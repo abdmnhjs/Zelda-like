@@ -27,52 +27,34 @@ public class Clavier implements EventHandler<KeyEvent> {
 
     private void interactionTouche(KeyEvent keyEvent) {
 
-        int newX;
-        int newY;
         switch (keyEvent.getCode()) {
             case Z -> {
-                newX = personnage.getPositionX();
-                newY = (personnage.getPositionY()- personnage.getVitesseDeplacement());
-                if (personnage.getEnvironnement().estDansLimiteTerrain(newX, newY)) {
-                    personnage.setPositionYProperty(personnage.getPositionY() - personnage.getVitesseDeplacement());
-                    System.out.println("peut avancer");
-                }else {
-                    System.out.println("n'avance pas");
+                int newY = this.personnage.getPositionY() - this.personnage.getVitesseDeplacement();
+                if (!this.personnage.getEnvironnement().estDevantObstacle(this.personnage.getPositionX(), newY)) {
+                    this.personnage.setPositionYProperty(newY);
                 }
-
-                personnage.setDirection("UP");
-
             }
             case S -> {
-                newX = personnage.getPositionX();
-                newY = personnage.getPositionY()+ personnage.getVitesseDeplacement();
-                if (personnage.getEnvironnement().estDevantObstacle(newX,newY)) {
-                    personnage.setPositionYProperty(personnage.getPositionY() + personnage.getVitesseDeplacement());
-                    System.out.println("peut avancer");
+                int newY = this.personnage.getPositionY() + this.personnage.getVitesseDeplacement();
+                if (!this.personnage.getEnvironnement().estDevantObstacle(this.personnage.getPositionX(), newY)) {
+                    this.personnage.setPositionYProperty(newY);
                 }
-                personnage.setDirection("DOWN");
-            }
-            case Q -> {
-                newX = personnage.getPositionX()- personnage.getVitesseDeplacement();
-                newY = personnage.getPositionY();
-                if (personnage.getEnvironnement().estDevantObstacle(newX,newY)) {
-                    personnage.setPositionXProperty(personnage.getPositionX() - personnage.getVitesseDeplacement());
-                }
-                personnage.setDirection("LEFT");
             }
             case D -> {
-                newX = personnage.getPositionX()+ personnage.getVitesseDeplacement();
-                newY = personnage.getPositionY();
-                if (personnage.getEnvironnement().estDevantObstacle(newX,newY)) {
-                    personnage.setPositionXProperty(personnage.getPositionX() + personnage.getVitesseDeplacement());
+                int newX = this.personnage.getPositionX() + this.personnage.getVitesseDeplacement();
+                if (!this.personnage.getEnvironnement().estDevantObstacle(newX, this.personnage.getPositionY())) {
+                    this.personnage.setPositionXProperty(newX);
                 }
-                personnage.setDirection("RIGHT");
-
+            }
+            case Q -> {
+                int newX = this.personnage.getPositionX() - this.personnage.getVitesseDeplacement();
+                if (!this.personnage.getEnvironnement().estDevantObstacle(newX, this.personnage.getPositionY())) {
+                    this.personnage.setPositionXProperty(newX);
+                }
             }
         }
         System.out.println("Position X : " + personnage.getPositionX() + " Position Y : " + personnage.getPositionY());
 
-    }
 
 
-}
+    }}

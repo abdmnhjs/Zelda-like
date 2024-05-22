@@ -36,7 +36,7 @@ public class Controleur implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.map= new Map();
         this.environnement = new Environnement(map);
-        this.personnage = new Link(environnement, 32, 32);
+        this.personnage = new Link(environnement, 70, 70);
         this.vueLink=new VueLink(pane,personnage);
         vueMap = new VueMap(tilePane,map);
         initAnimation();
@@ -56,11 +56,11 @@ public class Controleur implements Initializable {
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
                     if(temps==1000000){
-                        System.out.println("fini");
+
                        gameLoop.stop();
                     }
                     else if (temps%5==0){
-                        System.out.println("un tour");
+
                         this.pane.requestFocus();
                     }
                     temps++;
