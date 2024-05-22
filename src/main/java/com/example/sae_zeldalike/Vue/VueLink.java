@@ -31,7 +31,6 @@ public class VueLink {
         direction.bind(personnage.getDirectionProperty());
 
         creerPerso(pane);
-        creerHitBox(pane);
 
 
     }
@@ -50,19 +49,7 @@ public class VueLink {
         spritePersonnage.translateYProperty().bind(personnage.getPositionYProperty());
     }
 
-    public void creerHitBox(Pane pane){
-        this.rectangle = new Rectangle(personnage.getHitbox().getLargeur(),personnage.getHitbox().getLongueur());
-        this.rectangle.setId(personnage.getHitbox().getId());
-        this.rectangle.setTranslateX(personnage.getHitbox().getX());
-        this.rectangle.setTranslateY(personnage.getHitbox().getY());
-        this.rectangle.setFill(Color.PURPLE);
-        pane.getChildren().add(this.rectangle);
 
-        personnage.getHitbox().getXProperty().bind(personnage.getPositionXProperty());
-        personnage.getHitbox().getYProperty().bind(personnage.getPositionYProperty());
-        rectangle.translateXProperty().bind(personnage.getHitbox().getXProperty());
-        rectangle.translateYProperty().bind(personnage.getHitbox().getYProperty());
-    }
 
     public void animationPersonnage() {
         switch (getDirection()){

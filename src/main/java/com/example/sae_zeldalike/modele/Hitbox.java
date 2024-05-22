@@ -9,21 +9,17 @@ public class Hitbox {
     private IntegerProperty y;
     private int largeur;
     private int longueur;
-    private String id;
 
 
-    public Hitbox(int x, int y, int largeur, int longueur, String id) {
+
+    public Hitbox(int x, int y, int largeur, int longueur) {
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
         this.largeur=largeur;
         this.longueur=longueur;
-        this.id=id;
 
     }
 
-    public String getId() {
-        return id;
-    }
 
     public IntegerProperty getXProperty(){
         return x;

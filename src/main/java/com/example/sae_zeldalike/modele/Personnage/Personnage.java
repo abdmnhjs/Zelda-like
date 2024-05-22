@@ -18,7 +18,8 @@ public abstract class Personnage {
     private IntegerProperty vitesseDeplacement;
     protected Environnement environnement;
     private StringProperty direction;
-    private Hitbox hitbox;
+    private final int largeur;
+    private final int longueur;
 
     public Personnage( int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDeplacement) {
         this.id = "P"+compteurPersonnage;
@@ -30,7 +31,8 @@ public abstract class Personnage {
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
         this.environnement = environnement;
         this.direction = new SimpleStringProperty("DOWN");
-        this.hitbox=new Hitbox(getPositionX()+10,getPositionY()+10,32,32,id);
+        this.longueur=32;
+        this.largeur=32;
     }
 
    /* public Personnage( int pointVie, int pointAttaque, Environnement environnement, int vitesseDeplacement) {
@@ -45,6 +47,8 @@ public abstract class Personnage {
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
     }**/
 
+    private int getLargeur(){return largeur;}
+    private int getLongueur(){return longueur;}
     public StringProperty getDirectionProperty() {
         return direction;
     }
@@ -103,8 +107,9 @@ public abstract class Personnage {
         return environnement;
     }
 
-    public Hitbox getHitbox(){
-        return this.hitbox;
+    public Hitbox hitbox(int x,int y){
+        Hitbox hitbox = new Hitbox(x,y,getLargeur(),getLongueur());
+        return hitbox;
     }
 
     @Override

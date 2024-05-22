@@ -31,8 +31,6 @@ public class VueMap {
 
         for (int i = 0; i < map.getMap().length;i++){
             imageView = new ImageView();
-            imageView.setFitHeight(32);
-            imageView.setFitWidth(32);
             switch (map.getMap()[i]){
                 case 11 -> imageView.setImage(mur);
                 case 54 -> imageView.setImage(sol);

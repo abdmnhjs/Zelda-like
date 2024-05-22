@@ -30,16 +30,15 @@ public class Controleur implements Initializable {
     private Pane pane;
     @FXML
     private TilePane tilePane;
-
     private Timeline gameLoop;
-
     private int temps;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.map= new Map();
         this.environnement = new Environnement(map);
-        this.personnage = new Link(environnement, 32, 32);
+        this.personnage = new Link(environnement, 65, 65);
         this.vueLink=new VueLink(pane,personnage);
         this.ennemi1=new Ennemi1(environnement,250,350);
         this.vueEnnemi1 = new VueEnnemi1(pane,ennemi1);
