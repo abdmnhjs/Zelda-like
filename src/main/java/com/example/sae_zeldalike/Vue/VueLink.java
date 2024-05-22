@@ -8,7 +8,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 
 public class VueLink {
@@ -18,26 +19,49 @@ public class VueLink {
     private int numeroImagePersonnage;
     private StringProperty direction;
     private Clavier clavier;
+    private Rectangle rectangle;
 
     public VueLink(Pane pane, Personnage personnage) {
+
         this.clavier = new Clavier(personnage);
         pane.addEventFilter(KeyEvent.KEY_PRESSED,clavier);
 
+        this.personnage=personnage;
+        direction = new SimpleStringProperty();
+        direction.bind(personnage.getDirectionProperty());
 
+        creerPerso(pane);
+        creerHitBox(pane);
+
+
+    }
+
+    public void creerPerso(Pane pane){
         this.numeroImagePersonnage=1;
         this.spritePersonnage = new ImageView("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/DOWN_R.png");
-        this.personnage=personnage;
         this.spritePersonnage.setId("#"+personnage.getId());
         this.spritePersonnage.setFitHeight(32);
         this.spritePersonnage.setFitWidth(32);
         this.spritePersonnage.setTranslateX(personnage.getPositionX());
         this.spritePersonnage.setTranslateY(personnage.getPositionY());
         pane.getChildren().add(this.spritePersonnage);
-        direction = new SimpleStringProperty();
-        direction.bind(personnage.getDirectionProperty());
 
         spritePersonnage.translateXProperty().bind(personnage.getPositionXProperty());
         spritePersonnage.translateYProperty().bind(personnage.getPositionYProperty());
+    }
+
+    public void creerHitBox(Pane pane){
+        this.rectangle = new Rectangle(personnage.getHitbox().getLargeur(),personnage.getHitbox().getLongueur());
+        this.rectangle.setId(personnage.getHitbox().getId());
+        this.rectangle.setTranslateX(personnage.getHitbox().getX());
+        this.rectangle.setTranslateY(personnage.getHitbox().getY());
+        this.rectangle.setFill(Color.PURPLE);
+        pane.getChildren().add(this.rectangle);
+
+        personnage.getHitbox().getXProperty().bind(personnage.getPositionXProperty());
+        personnage.getHitbox().getYProperty().bind(personnage.getPositionYProperty());
+        rectangle.translateXProperty().bind(personnage.getHitbox().getXProperty());
+        rectangle.translateYProperty().bind(personnage.getHitbox().getYProperty());
     }
 
     public void animationPersonnage() {

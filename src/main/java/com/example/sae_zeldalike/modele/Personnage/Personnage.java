@@ -1,6 +1,7 @@
 package com.example.sae_zeldalike.modele.Personnage;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
+import com.example.sae_zeldalike.modele.Hitbox;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -17,6 +18,7 @@ public abstract class Personnage {
     private IntegerProperty vitesseDeplacement;
     protected Environnement environnement;
     private StringProperty direction;
+    private Hitbox hitbox;
 
     public Personnage( int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDeplacement) {
         this.id = "P"+compteurPersonnage;
@@ -28,6 +30,7 @@ public abstract class Personnage {
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
         this.environnement = environnement;
         this.direction = new SimpleStringProperty("DOWN");
+        this.hitbox=new Hitbox(getPositionX()+10,getPositionY()+10,32,32,id);
     }
 
    /* public Personnage( int pointVie, int pointAttaque, Environnement environnement, int vitesseDeplacement) {
@@ -96,9 +99,12 @@ public abstract class Personnage {
         return id;
     }
 
-
     public Environnement getEnvironnement() {
         return environnement;
+    }
+
+    public Hitbox getHitbox(){
+        return this.hitbox;
     }
 
     @Override
