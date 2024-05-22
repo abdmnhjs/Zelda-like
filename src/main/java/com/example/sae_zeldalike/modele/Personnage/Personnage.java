@@ -114,6 +114,9 @@ public abstract class Personnage {
         return id;
     }
 
+    public Environnement getEnvironnement() {
+        return this.environnement;
+    }
 
     @Override
     public String toString() {
