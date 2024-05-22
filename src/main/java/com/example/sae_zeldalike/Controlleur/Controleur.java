@@ -6,9 +6,6 @@ import com.example.sae_zeldalike.modele.Personnage.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.fxml.FXML;
@@ -38,7 +35,6 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.map= new Map();
-
         this.environnement = new Environnement(map);
         this.personnage = new Link(environnement, 32, 32);
         this.vueLink=new VueLink(pane,personnage);
@@ -60,11 +56,11 @@ public class Controleur implements Initializable {
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
                     if(temps==1000000){
-
+                        System.out.println("fini");
                        gameLoop.stop();
                     }
                     else if (temps%5==0){
-
+                        System.out.println("un tour");
                         this.pane.requestFocus();
                     }
                     temps++;

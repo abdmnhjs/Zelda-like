@@ -1,15 +1,10 @@
 package com.example.sae_zeldalike.modele.Environnement;
 
-import java.util.ArrayList;
-
 public class Map {
 
     private int[] map;
     private int ligne;
     private int colonne;
-    private int longueurTuile;
-    private int largeurTuile;
-    private ArrayList<int[]> coordonnéesObstacles;
 
     public Map(){
         this.map= new int[]
@@ -33,24 +28,14 @@ public class Map {
                 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54};
 
 
-        this.ligne = 17;
-        this.colonne = 34;
-        this.largeurTuile = 32;
-        this.longueurTuile = 32;
-        this.coordonnéesObstacles = new ArrayList<>();
+        this.ligne=17;
+
+        this.colonne=34;
 
     }
 
     public int[] getMap() {
         return map;
-    }
-
-    public int getLongueurTuile() {
-        return this.longueurTuile;
-    }
-
-    public int getLargeurTuile() {
-        return this.largeurTuile;
     }
 
     public int getLigne() {

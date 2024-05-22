@@ -4,8 +4,6 @@ import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-import java.util.Random;
-
 public abstract class Personnage {
 
     private String id;
@@ -13,13 +11,9 @@ public abstract class Personnage {
     private IntegerProperty pointVie;
     private IntegerProperty pointAttaque;
     private IntegerProperty positionX;
-    private IntegerProperty précédentePositionXProperty;
     private IntegerProperty positionY;
-    private IntegerProperty précédentePositionYProperty;
     private IntegerProperty vitesseDeplacement;
     protected Environnement environnement;
-    private int longueur;
-    private int largeur;
 
     public Personnage( int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDeplacement) {
         this.id = "P"+compteurPersonnage;
@@ -28,15 +22,11 @@ public abstract class Personnage {
         this.pointAttaque = new SimpleIntegerProperty(pointAttaque);
         this.positionX = new SimpleIntegerProperty(positionX);
         this.positionY = new SimpleIntegerProperty(positionY);
-        this.longueur = 32;
-        this.largeur = 32;
-        this.précédentePositionXProperty = new SimpleIntegerProperty(0);
-        this.précédentePositionYProperty = new SimpleIntegerProperty(0);
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
         this.environnement = environnement;
     }
 
-   public Personnage( int pointVie, int pointAttaque, Environnement environnement, int vitesseDeplacement) {
+   /* public Personnage( int pointVie, int pointAttaque, Environnement environnement, int vitesseDeplacement) {
         this.id = "P"+compteurPersonnage;
         compteurPersonnage++;
         this.pointVie = new SimpleIntegerProperty(pointVie);
@@ -45,12 +35,8 @@ public abstract class Personnage {
         Random random = new Random();
         this.positionX = new SimpleIntegerProperty(random.nextInt(environnement.getMap().getColonne() - 1));
         this.positionY = new SimpleIntegerProperty(random.nextInt(environnement.getMap().getLigne() - 1));
-        this.longueur = 32;
-        this.largeur = 32;
-        this.précédentePositionXProperty = new SimpleIntegerProperty(0);
-        this.précédentePositionYProperty = new SimpleIntegerProperty(0);
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
-    }
+    }**/
 
     public int getPositionX() {
         return positionX.getValue();
@@ -59,27 +45,17 @@ public abstract class Personnage {
         return positionX;
     }
     public void setPositionXProperty(int x){
-        this.précédentePositionXProperty.setValue(this.positionX.getValue());
         positionX.setValue(x);
-    }
-
-    public IntegerProperty getPrécédentePositionXProperty() {
-        return this.précédentePositionXProperty;
     }
 
     public int getPositionY() {
         return positionY.getValue();
     }
     public IntegerProperty getPositionYProperty() {
-        this.précédentePositionYProperty.setValue(this.positionY.getValue());
         return positionY;
     }
     public void setPositionYProperty(int y) {
         positionY.setValue(y);
-    }
-
-    public IntegerProperty getPrécédentePositionYProperty() {
-        return this.précédentePositionYProperty;
     }
 
     public int getVitesseDeplacement() {
@@ -96,27 +72,20 @@ public abstract class Personnage {
         pointVie.setValue(getPointVie()-degats);
     }
 
+    public Environnement getEnvironnement() {
+        return this.environnement;
+    }
+
     public int getPointAttaque() {
         return pointAttaque.getValue();
     }
     public IntegerProperty getPointAttaqueProperty(){ return pointAttaque;}
     public void setPointAttaqueProperty(int attaque) { pointAttaque.setValue(attaque);}
 
-    public int getLongueur() {
-        return this.longueur;
-    }
-
-    public int getLargeur() {
-        return this.largeur;
-    }
-
     public String getId() {
         return id;
     }
 
-    public Environnement getEnvironnement() {
-        return this.environnement;
-    }
 
     @Override
     public String toString() {
