@@ -10,8 +10,6 @@ public class Hitbox {
     private int largeur;
     private int longueur;
 
-
-
     public Hitbox(int x, int y, int largeur, int longueur) {
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
@@ -19,7 +17,6 @@ public class Hitbox {
         this.longueur=longueur;
 
     }
-
 
     public IntegerProperty getXProperty(){
         return x;
