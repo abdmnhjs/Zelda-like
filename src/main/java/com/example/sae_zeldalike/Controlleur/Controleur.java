@@ -22,6 +22,7 @@ public class Controleur implements Initializable {
     private Personnage personnage;
     private VueLink vueLink;
     private Ennemi1 ennemi1;
+
     private VueEnnemi1 vueEnnemi1;
     private Map map;
     private VueMap vueMap;
@@ -41,7 +42,7 @@ public class Controleur implements Initializable {
         this.environnement = new Environnement(map);
         this.personnage = new Link(environnement, 32, 32);
         this.vueLink=new VueLink(pane,personnage);
-        this.ennemi1=new Ennemi1(environnement,250,350);
+        this.ennemi1=new Ennemi1(environnement,600,650);
         this.vueEnnemi1 = new VueEnnemi1(pane,ennemi1);
         vueMap = new VueMap(tilePane,map);
         initAnimation();
@@ -67,7 +68,9 @@ public class Controleur implements Initializable {
                        gameLoop.stop();
                     } else if (temps%10==0) {
                         vueEnnemi1.changerImage();
-                        ennemi1.seDeplace();
+                        //ennemi1.seDeplace(link);
+                        ennemi1.seDeplace(personnage.getPositionX(), personnage.getPositionY());
+
                         vueLink.animationPersonnage();
                     } else if (temps%3==0){
 
@@ -79,5 +82,6 @@ public class Controleur implements Initializable {
         );
         gameLoop.getKeyFrames().add(kf);
     }
+
 
 }
