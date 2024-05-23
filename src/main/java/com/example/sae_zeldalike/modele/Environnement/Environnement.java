@@ -36,19 +36,18 @@ public class Environnement {
 
     }
 
-    public boolean estDevantObstacle(int x, int y){
-        for(int i = 0 ; i < this.map.getCoordonnéesTuilesNonTraversables().size() ; i++){
-            if(x < this.map.getCoordonnéesTuilesNonTraversables().get(i)[1] + 32 &&
-                    x + 32 > this.map.getCoordonnéesTuilesNonTraversables().get(i)[1] + 32 &&
+    public boolean estDevantObstacle(int x, int y) {
+        for (int i = 0; i < this.map.getCoordonnéesTuilesNonTraversables().size(); i++) {
+            if (x < this.map.getCoordonnéesTuilesNonTraversables().get(i)[1] + 32 &&
+                    x + 32 > this.map.getCoordonnéesTuilesNonTraversables().get(i)[1] &&
                     y < this.map.getCoordonnéesTuilesNonTraversables().get(i)[0] + 32 &&
-                    y + 32 > this.map.getCoordonnéesTuilesNonTraversables().get(i)[0]
-            ){
+                    y + 32 > this.map.getCoordonnéesTuilesNonTraversables().get(i)[0]) {
                 return true;
             }
         }
-
         return false;
     }
+
 
 
     public String getId() {

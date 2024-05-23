@@ -26,35 +26,34 @@
 
 
         private void interactionTouche(KeyEvent keyEvent) {
+            int vitesseDeplacement = this.personnage.getVitesseDeplacement();
 
             switch (keyEvent.getCode()) {
                 case Z -> {
-                    int newY = this.personnage.getPositionY() - this.personnage.getVitesseDeplacement();
+                    int newY = this.personnage.getPositionY() - vitesseDeplacement;
                     if (!this.personnage.getEnvironnement().estDevantObstacle(this.personnage.getPositionX(), newY)) {
                         this.personnage.setPositionYProperty(newY);
                     }
                 }
                 case S -> {
-                    int newY = this.personnage.getPositionY() + this.personnage.getVitesseDeplacement();
+                    int newY = this.personnage.getPositionY() + vitesseDeplacement;
                     if (!this.personnage.getEnvironnement().estDevantObstacle(this.personnage.getPositionX(), newY)) {
                         this.personnage.setPositionYProperty(newY);
                     }
                 }
                 case D -> {
-                    int newX = this.personnage.getPositionX() + this.personnage.getVitesseDeplacement();
+                    int newX = this.personnage.getPositionX() + vitesseDeplacement;
                     if (!this.personnage.getEnvironnement().estDevantObstacle(newX, this.personnage.getPositionY())) {
                         this.personnage.setPositionXProperty(newX);
                     }
                 }
                 case Q -> {
-                    int newX = this.personnage.getPositionX() - this.personnage.getVitesseDeplacement();
+                    int newX = this.personnage.getPositionX() - vitesseDeplacement;
                     if (!this.personnage.getEnvironnement().estDevantObstacle(newX, this.personnage.getPositionY())) {
                         this.personnage.setPositionXProperty(newX);
                     }
                 }
             }
             System.out.println("Position X : " + personnage.getPositionX() + " Position Y : " + personnage.getPositionY());
-
-
-
-        }}
+        }
+    }
