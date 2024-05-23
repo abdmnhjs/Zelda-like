@@ -95,7 +95,7 @@ public class Environnement {
         int coinBDX = (hitbox.getX()+ hitbox.getLargeur()-1)/ hitbox.getLargeur();
         int coinBDY = (hitbox.getY()+ hitbox.getLongueur()-1)/ hitbox.getLongueur();
 
-        //Connaitre les coordonées
+//        Connaitre les coordonées
 //        System.out.println("Coin HG: (" + coinHGX + ", " + coinHGY + ")");
 //        System.out.println("Coin HD: (" + coinHDX + ", " + coinHDY + ")");
 //        System.out.println("Coin BG: (" + coinBGX + ", " + coinBGY + ")");

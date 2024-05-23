@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="962266dd-f411-42a7-95d2-61d9cfb3b009" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Clavier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Clavier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Controleur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Environnement/Environnement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Environnement/Environnement.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,8 +126,7 @@
       <workItem from="1716119654236" duration="6950000" />
       <workItem from="1716128807048" duration="4605000" />
       <workItem from="1716220322341" duration="1221000" />
-      <workItem from="1716231618925" duration="3184000" />
-      <workItem from="1716416176452" duration="5067000" />
+      <workItem from="1716231618925" duration="2099000" />
     </task>
     <servers />
   </component>
