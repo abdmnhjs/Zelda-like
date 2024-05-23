@@ -28,6 +28,7 @@ public class VueMap {
 
 
     public void genererMap(){
+
         for (int i = 0; i < map.getMap().length;i++){
             imageView = new ImageView();
             switch (map.getMap()[i]){

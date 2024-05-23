@@ -8,7 +8,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 
 public class VueLink {
@@ -18,25 +19,37 @@ public class VueLink {
     private int numeroImagePersonnage;
     private StringProperty direction;
     private Clavier clavier;
+    private Rectangle rectangle;
 
     public VueLink(Pane pane, Personnage personnage) {
+
         this.clavier = new Clavier(personnage);
         pane.addEventFilter(KeyEvent.KEY_PRESSED,clavier);
+
+        this.personnage=personnage;
+        direction = new SimpleStringProperty();
+        direction.bind(personnage.getDirectionProperty());
+
+        creerPerso(pane);
+
+
+    }
+
+    public void creerPerso(Pane pane){
         this.numeroImagePersonnage=1;
         this.spritePersonnage = new ImageView("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/DOWN_R.png");
-        this.personnage=personnage;
         this.spritePersonnage.setId("#"+personnage.getId());
         this.spritePersonnage.setFitHeight(32);
         this.spritePersonnage.setFitWidth(32);
         this.spritePersonnage.setTranslateX(personnage.getPositionX());
         this.spritePersonnage.setTranslateY(personnage.getPositionY());
         pane.getChildren().add(this.spritePersonnage);
-        direction = new SimpleStringProperty();
-        direction.bind(clavier.getDirectionProperty());
 
         spritePersonnage.translateXProperty().bind(personnage.getPositionXProperty());
         spritePersonnage.translateYProperty().bind(personnage.getPositionYProperty());
     }
+
+
 
     public void animationPersonnage() {
         switch (getDirection()){
@@ -94,6 +107,7 @@ public class VueLink {
     public void setNumeroImagePersonnage(int numeroImagePersonnage) {
         this.numeroImagePersonnage = numeroImagePersonnage;
     }
+
 
     public Personnage getPersonnage() {
         return personnage;

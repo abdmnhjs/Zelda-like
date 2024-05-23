@@ -22,7 +22,6 @@ public class Controleur implements Initializable {
     private Personnage personnage;
     private VueLink vueLink;
     private Ennemi1 ennemi1;
-
     private VueEnnemi1 vueEnnemi1;
     private Map map;
     private VueMap vueMap;
@@ -42,7 +41,7 @@ public class Controleur implements Initializable {
         this.environnement = new Environnement(map);
         this.personnage = new Link(environnement, 32, 32);
         this.vueLink=new VueLink(pane,personnage);
-        this.ennemi1=new Ennemi1(environnement,600,650);
+        this.ennemi1=new Ennemi1(environnement,130,220);
         this.vueEnnemi1 = new VueEnnemi1(pane,ennemi1);
         vueMap = new VueMap(tilePane,map);
         initAnimation();
@@ -82,6 +81,5 @@ public class Controleur implements Initializable {
         );
         gameLoop.getKeyFrames().add(kf);
     }
-
 
 }
