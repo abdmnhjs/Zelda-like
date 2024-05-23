@@ -41,9 +41,9 @@ public class Map {
         for(int y = 0 ; y < this.map.length ; y++){
             for(int x = 0 ; x < this.map[y].length ; x++){
                 if(this.map[y][x] != 54){
-                    this.coordonnéesTuilesTraversables.add(new int[]{(y) * 32, (x) * 32});
+                    this.coordonnéesTuilesTraversables.add(new int[]{y * 32, x * 32});
                 } else {
-                    this.coordonnéesTuilesNonTraversables.add(new int[]{(y) * 32, (x) * 32});
+                    this.coordonnéesTuilesNonTraversables.add(new int[]{y * 32, x * 32});
                 }
             }
         }
