@@ -32,25 +32,34 @@
                 case Z -> {
                     int newY = this.personnage.getPositionY() - vitesseDeplacement;
                     if (!this.personnage.getEnvironnement().estDevantObstacle(this.personnage.getPositionX(), newY)) {
-                        this.personnage.setPositionYProperty(newY);
+                        if(!this.personnage.getEnvironnement().estDansLimiteTerrain(personnage.getPositionX(), newY)){
+                            this.personnage.setPositionYProperty(newY);
+                        }
                     }
                 }
                 case S -> {
                     int newY = this.personnage.getPositionY() + vitesseDeplacement;
                     if (!this.personnage.getEnvironnement().estDevantObstacle(this.personnage.getPositionX(), newY)) {
-                        this.personnage.setPositionYProperty(newY);
+                        if(!this.personnage.getEnvironnement().estDansLimiteTerrain(personnage.getPositionX(), newY)){
+                            this.personnage.setPositionYProperty(newY);
+                        }
                     }
                 }
                 case D -> {
                     int newX = this.personnage.getPositionX() + vitesseDeplacement;
                     if (!this.personnage.getEnvironnement().estDevantObstacle(newX, this.personnage.getPositionY())) {
-                        this.personnage.setPositionXProperty(newX);
+                        if(!this.personnage.getEnvironnement().estDansLimiteTerrain(newX, this.personnage.getPositionY())){
+                            this.personnage.setPositionXProperty(newX);
+                        }
+
                     }
                 }
                 case Q -> {
                     int newX = this.personnage.getPositionX() - vitesseDeplacement;
                     if (!this.personnage.getEnvironnement().estDevantObstacle(newX, this.personnage.getPositionY())) {
-                        this.personnage.setPositionXProperty(newX);
+                        if(!this.personnage.getEnvironnement().estDansLimiteTerrain(newX, this.personnage.getPositionY())){
+                            this.personnage.setPositionXProperty(newX);
+                        }
                     }
                 }
             }

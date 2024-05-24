@@ -57,6 +57,15 @@ public class Map {
     public int[][] getMap() {
         return map;
     }
+
+    public ArrayList<int[]> getCoordonnéesToutesTuiles() {
+        return this.coordonnéesToutesTuiles;
+    }
+
+    public ArrayList<int[]> getCoordonnéesTuilesTraversables() {
+        return this.coordonnéesTuilesTraversables;
+    }
+
     public ArrayList<int[]> getCoordonnéesTuilesNonTraversables() {
         return this.coordonnéesTuilesNonTraversables;
     }
