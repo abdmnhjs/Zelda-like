@@ -10,7 +10,7 @@ public abstract class Personnage {
 
     private String id;
     private static int compteurPersonnage=0;
-    private IntegerProperty pointVie;
+    private IntegerProperty pointVieProperty;
     private IntegerProperty pointAttaque;
     private IntegerProperty positionX;
     private IntegerProperty positionY;
@@ -21,7 +21,7 @@ public abstract class Personnage {
     public Personnage( int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDeplacement) {
         this.id = "P"+compteurPersonnage;
         compteurPersonnage++;
-        this.pointVie = new SimpleIntegerProperty(pointVie);
+        this.pointVieProperty = new SimpleIntegerProperty(pointVie);
         this.pointAttaque = new SimpleIntegerProperty(pointAttaque);
         this.positionX = new SimpleIntegerProperty(positionX);
         this.positionY = new SimpleIntegerProperty(positionY);
@@ -73,11 +73,11 @@ public abstract class Personnage {
     public void setVitesseDeplacementProperty(int v){ vitesseDeplacement.setValue(v);}
 
     public int getPointVie() {
-        return pointVie.getValue();
+        return pointVieProperty.getValue();
     }
-    public IntegerProperty getPointVieProperty() { return pointVie;}
+    public IntegerProperty getPointVieProperty() { return pointVieProperty;}
     public void setPointVieProperty(int degats){
-        pointVie.setValue(getPointVie()-degats);
+        pointVieProperty.setValue(getPointVie()-degats);
     }
 
     public Environnement getEnvironnement() {
@@ -90,6 +90,10 @@ public abstract class Personnage {
     public IntegerProperty getPointAttaqueProperty(){ return pointAttaque;}
     public void setPointAttaqueProperty(int attaque) { pointAttaque.setValue(attaque);}
 
+    public void setPointDeVie(int nb){
+        this.pointVieProperty.set(getPointVie()-nb);
+    }
+
     public String getId() {
         return id;
     }
@@ -99,7 +103,7 @@ public abstract class Personnage {
     public String toString() {
         return "Personnage{" +
                 "id='" + id + '\'' +
-                ", pointVie=" + pointVie +
+                ", pointVie=" + pointVieProperty +
                 ", pointAttaque=" + pointAttaque +
                 ", positionX=" + positionX +
                 ", positionY=" + positionY +

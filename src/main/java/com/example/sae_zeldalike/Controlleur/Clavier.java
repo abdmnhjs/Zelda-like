@@ -64,5 +64,6 @@
                 }
             }
             System.out.println("Position X : " + personnage.getPositionX() + " Position Y : " + personnage.getPositionY());
+            System.out.println(personnage.getEnvironnement().getMap().getMap().length);
         }
     }

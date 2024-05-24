@@ -33,7 +33,8 @@ public class Environnement {
     }
 
     public boolean estDansLimiteTerrain(int x,int y){
-        return (x < 0 || x > this.map.getColonne()*32 || y < 0 || y > this.map.getLigne()*32);
+        return (x < 0 || x > this.map.getColonne()*32 || y < 0 || y > this.map.getLigne()*32 || x+32 > this.map.getColonne()*32 ||
+                y+32 > this.map.getLigne()*32);
 
     }
 
@@ -53,8 +54,8 @@ public class Environnement {
         for (int i = 0; i < this.map.getCoordonnéesTuilesNonTraversables().size(); i++) {
             if (x < this.map.getCoordonnéesTuilesNonTraversables().get(i)[1] + 32 &&
                     x + 32 > this.map.getCoordonnéesTuilesNonTraversables().get(i)[1] &&
-                    y < this.map.getCoordonnéesTuilesNonTraversables().get(i)[0] + 32 &&
-                    y + 32 > this.map.getCoordonnéesTuilesNonTraversables().get(i)[0]) {
+                    y < this.map.getCoordonnéesTuilesNonTraversables().get(i)[0] + 25 &&
+                    y + 25 > this.map.getCoordonnéesTuilesNonTraversables().get(i)[0]) {
                 return true;
             }
         }
