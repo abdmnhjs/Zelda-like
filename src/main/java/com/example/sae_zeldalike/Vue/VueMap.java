@@ -28,12 +28,14 @@ public class VueMap {
 
 
     public void genererMap(){
-        for (int i = 0; i < map.getMap().length;i++){
-            for(int j = 0 ; j < map.getMap()[i].length ; j++){
+
+        for (int ligne = 0; ligne < map.getMap().length;ligne++){
+
+            for (int colonne = 0;colonne<map.getMap()[ligne].length;colonne++){
                 imageView = new ImageView();
-                switch (map.getMap()[i][j]){
-                    case 54 -> imageView.setImage(mur);
-                    case 11 -> imageView.setImage(sol);
+                switch (map.getMap()[ligne][colonne]){
+                    case 11 -> imageView.setImage(mur);
+                    case 54 -> imageView.setImage(sol);
                     case 55 -> imageView.setImage(piece);
                 }
                 this.tilePane.getChildren().add(imageView);

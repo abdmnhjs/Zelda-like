@@ -1,6 +1,7 @@
 package com.example.sae_zeldalike.modele.Personnage;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
+import com.example.sae_zeldalike.modele.Hitbox;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -10,24 +11,28 @@ public abstract class Personnage {
 
     private String id;
     private static int compteurPersonnage=0;
-    private IntegerProperty pointVieProperty;
+    private IntegerProperty pointVie;
     private IntegerProperty pointAttaque;
     private IntegerProperty positionX;
     private IntegerProperty positionY;
     private IntegerProperty vitesseDeplacement;
     protected Environnement environnement;
     private StringProperty direction;
+    private final int largeur;
+    private final int longueur;
 
     public Personnage( int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDeplacement) {
         this.id = "P"+compteurPersonnage;
         compteurPersonnage++;
-        this.pointVieProperty = new SimpleIntegerProperty(pointVie);
+        this.pointVie = new SimpleIntegerProperty(pointVie);
         this.pointAttaque = new SimpleIntegerProperty(pointAttaque);
         this.positionX = new SimpleIntegerProperty(positionX);
         this.positionY = new SimpleIntegerProperty(positionY);
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
         this.environnement = environnement;
         this.direction = new SimpleStringProperty("DOWN");
+        this.longueur=32;
+        this.largeur=32;
     }
 
    /* public Personnage( int pointVie, int pointAttaque, Environnement environnement, int vitesseDeplacement) {
@@ -41,6 +46,18 @@ public abstract class Personnage {
         this.positionY = new SimpleIntegerProperty(random.nextInt(environnement.getMap().getLigne() - 1));
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
     }**/
+
+    private int getLargeur(){return largeur;}
+    private int getLongueur(){return longueur;}
+    public StringProperty getDirectionProperty() {
+        return direction;
+    }
+    public String getDirection() {
+        return direction.getValue();
+    }
+    public void setDirection(String direction){
+        this.direction.setValue(direction);
+    }
 
     public int getPositionX() {
         return positionX.getValue();
@@ -62,10 +79,6 @@ public abstract class Personnage {
         positionY.setValue(y);
     }
 
-    public void setDirection(String direction) {
-        this.direction.set(direction);
-    }
-
     public int getVitesseDeplacement() {
         return vitesseDeplacement.getValue();
     }
@@ -73,15 +86,11 @@ public abstract class Personnage {
     public void setVitesseDeplacementProperty(int v){ vitesseDeplacement.setValue(v);}
 
     public int getPointVie() {
-        return pointVieProperty.getValue();
+        return pointVie.getValue();
     }
-    public IntegerProperty getPointVieProperty() { return pointVieProperty;}
+    public IntegerProperty getPointVieProperty() { return pointVie;}
     public void setPointVieProperty(int degats){
-        pointVieProperty.setValue(getPointVie()-degats);
-    }
-
-    public Environnement getEnvironnement() {
-        return this.environnement;
+        pointVie.setValue(getPointVie()-degats);
     }
 
     public int getPointAttaque() {
@@ -90,20 +99,24 @@ public abstract class Personnage {
     public IntegerProperty getPointAttaqueProperty(){ return pointAttaque;}
     public void setPointAttaqueProperty(int attaque) { pointAttaque.setValue(attaque);}
 
-    public void setPointDeVie(int nb){
-        this.pointVieProperty.set(getPointVie()-nb);
-    }
-
     public String getId() {
         return id;
     }
 
+    public Environnement getEnvironnement() {
+        return environnement;
+    }
+
+    public Hitbox hitbox(int x,int y){
+        Hitbox hitbox = new Hitbox(x,y,getLargeur(),getLongueur());
+        return hitbox;
+    }
 
     @Override
     public String toString() {
         return "Personnage{" +
                 "id='" + id + '\'' +
-                ", pointVie=" + pointVieProperty +
+                ", pointVie=" + pointVie +
                 ", pointAttaque=" + pointAttaque +
                 ", positionX=" + positionX +
                 ", positionY=" + positionY +

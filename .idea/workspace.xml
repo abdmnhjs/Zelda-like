@@ -5,10 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="962266dd-f411-42a7-95d2-61d9cfb3b009" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_05_2024_20_37_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_05_2024_20_37__Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18_05_2024_13_21_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18_05_2024_13_21__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Clavier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Clavier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Controleur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Lancement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Lancement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Vue/VueLink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Vue/VueLink.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Vue/VueMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Vue/VueMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Environnement/Environnement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Environnement/Environnement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Environnement/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Environnement/Map.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Hitbox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Hitbox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Item/Arme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Item/Arme.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Personnage/Ennemi1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Personnage/Ennemi1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Personnage/Personnage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Personnage/Personnage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/map1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/map1.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/vue1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/vue1.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,7 +29,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="Class" />
       </list>
     </option>
@@ -26,7 +36,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Personnage" />
+        <entry key="$PROJECT_DIR$" value="environnement" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -40,7 +50,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/abdmnhjs/Zelda-like.git&quot;,
-    &quot;accountId&quot;: &quot;c4ce7e1d-ad4d-431f-a583-71ef2aac4a18&quot;
+    &quot;accountId&quot;: &quot;e2cb2ea7-df17-42a7-8ddc-d6dba0cd8adc&quot;
   }
 }</component>
   <component name="MarkdownSettingsMigration">
@@ -63,9 +73,8 @@
     &quot;Application.Lancement.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;armes&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Merging armes&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -73,7 +82,7 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -109,8 +118,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
       </set>
     </attachedChunks>
   </component>
@@ -125,13 +134,11 @@
       <workItem from="1716031399930" duration="3324000" />
       <workItem from="1716037932134" duration="1577000" />
       <workItem from="1716039963205" duration="7215000" />
-      <workItem from="1716368108161" duration="5148000" />
-      <workItem from="1716383203376" duration="4198000" />
-      <workItem from="1716398687991" duration="216000" />
-      <workItem from="1716399976891" duration="654000" />
-      <workItem from="1716465339108" duration="298000" />
-      <workItem from="1716502413422" duration="2425000" />
-      <workItem from="1716554092649" duration="32000" />
+      <workItem from="1716119654236" duration="6950000" />
+      <workItem from="1716128807048" duration="4605000" />
+      <workItem from="1716220322341" duration="1221000" />
+      <workItem from="1716231618925" duration="2099000" />
+      <workItem from="1716639352008" duration="5385000" />
     </task>
     <servers />
   </component>

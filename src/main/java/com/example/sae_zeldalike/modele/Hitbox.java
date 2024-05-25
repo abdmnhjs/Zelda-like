@@ -10,12 +10,28 @@ public class Hitbox {
     private int largeur;
     private int longueur;
 
+
+
     public Hitbox(int x, int y, int largeur, int longueur) {
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
         this.largeur=largeur;
         this.longueur=longueur;
 
+    }
+
+
+    public int getXGauche(){
+        return (getX()+12)/(getLargeur());
+    }
+    public int getXDroite(){
+        return (getX()+getLargeur()-12)/getLargeur();
+    }
+    public int getYHaut(){
+        return (getY()+7)/(getLongueur());
+    }
+    public int getYBas(){
+        return (getY()+getLongueur()-7)/getLongueur();
     }
 
     public IntegerProperty getXProperty(){
