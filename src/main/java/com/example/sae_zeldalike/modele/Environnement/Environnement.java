@@ -46,10 +46,10 @@ public class Environnement {
         int coinBY = (hitbox.getY()+ hitbox.getLongueur()-1)/ hitbox.getLongueur();
 
         //Connaitre les coordonées
-//        System.out.println("Coin HG: (" + hitbox.getXGauche() + ", " + hitbox.getYHaut() + ")");
-//        System.out.println("Coin HD: (" + hitbox.getXDroite() + ", " + hitbox.getYHaut() + ")");
-//        System.out.println("Coin BG: (" + hitbox.getXGauche() + ", " + hitbox.getYBas() + ")");
-//        System.out.println("Coin BD: (" + hitbox.getXDroite() + ", " + hitbox.getYBas() + ")");
+        System.out.println("Coin HG: (" + hitbox.getXGauche() + ", " + hitbox.getYHaut() + ")");
+        System.out.println("Coin HD: (" + hitbox.getXDroite() + ", " + hitbox.getYHaut() + ")");
+        System.out.println("Coin BG: (" + hitbox.getXGauche() + ", " + hitbox.getYBas() + ")");
+        System.out.println("Coin BD: (" + hitbox.getXDroite() + ", " + hitbox.getYBas() + ")");
 
 
         if ((coinGX>=0 && coinGX< map.getColonne()-1) && (coinHY>=0 && coinHY< map.getLigne()-1)){
@@ -62,10 +62,10 @@ public class Environnement {
             coinBasDroite=true;
         }
         //Connaitre la valeur du boolean
-//      System.out.println("coin HG dans limites: " + coinHautGauche);
-//      System.out.println("coin HD dans limites: " + coinHautDroit);
-//      System.out.println("coin BG dans limites: " + coinBasGauche);
-//      System.out.println("coin BD dans limites: " + coinBasDroite);
+      System.out.println("coin HG dans limites: " + coinHautGauche);
+      System.out.println("coin HD dans limites: " + coinHautDroit);
+      System.out.println("coin BG dans limites: " + coinBasGauche);
+      System.out.println("coin BD dans limites: " + coinBasDroite);
 
         return coinBasDroite && coinBasGauche && coinHautDroit && coinHautGauche;
 
@@ -109,7 +109,10 @@ public class Environnement {
             return coinBasDroite || coinBasGauche || coinHautDroit || coinHautGauche;
 
         }
+
         return true;
+
+
 
     }
 

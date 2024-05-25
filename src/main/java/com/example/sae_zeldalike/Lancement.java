@@ -20,7 +20,7 @@ public class Lancement extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("vue1.fxml"));
         Parent root = loader.load();
-        Scene scene = new Scene(root,1088,544);
+        Scene scene = new Scene(root,1088,576);
         stage.setScene(scene);
         stage.setTitle("Zelda");
         stage.show();

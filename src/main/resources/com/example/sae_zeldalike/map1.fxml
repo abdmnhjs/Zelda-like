@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.TilePane?>
+
+
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="544.0" prefWidth="1088.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae_zeldalike.Controlleur.Controleur">
+   <children>
+      <TilePane fx:id="tilePane" alignment="CENTER" prefColumns="34" prefHeight="576.0" prefRows="18" prefTileHeight="32" prefTileWidth="32" prefWidth="1088.0" />
+   </children>
+</Pane>

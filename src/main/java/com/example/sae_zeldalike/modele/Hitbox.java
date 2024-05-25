@@ -21,6 +21,19 @@ public class Hitbox {
     }
 
 
+    public int getXGauche(){
+        return (getX()+12)/(getLargeur());
+    }
+    public int getXDroite(){
+        return (getX()+getLargeur()-12)/getLargeur();
+    }
+    public int getYHaut(){
+        return (getY()+7)/(getLongueur());
+    }
+    public int getYBas(){
+        return (getY()+getLongueur()-7)/getLongueur();
+    }
+
     public IntegerProperty getXProperty(){
         return x;
     }
