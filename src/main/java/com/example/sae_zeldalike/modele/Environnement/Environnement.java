@@ -39,31 +39,26 @@ public class Environnement {
         boolean coinHautDroit=false;
         boolean coinBasDroite=false;
 
-        int coinHGX = (hitbox.getX())/ hitbox.getLargeur();
-        int coinHGY = (hitbox.getY())/ hitbox.getLongueur();
+        int coinGX = (hitbox.getX())/ hitbox.getLargeur();
+        int coinDX = (hitbox.getX()+ hitbox.getLargeur()-1)/ hitbox.getLargeur();
 
-        int coinHDX = (hitbox.getX()+ hitbox.getLargeur()-1)/ hitbox.getLargeur();
-        int coinHDY = (hitbox.getY())/ hitbox.getLongueur();
-
-        int coinBGX = hitbox.getX()/ hitbox.getLargeur();
-        int coinBGY = (hitbox.getY()+ hitbox.getLongueur()-1)/ hitbox.getLongueur();
-
-        int coinBDX = (hitbox.getX()+ hitbox.getLargeur()-1)/ hitbox.getLargeur();
-        int coinBDY = (hitbox.getY()+ hitbox.getLongueur()-1)/ hitbox.getLongueur();
+        int coinHY = (hitbox.getY())/ hitbox.getLongueur();
+        int coinBY = (hitbox.getY()+ hitbox.getLongueur()-1)/ hitbox.getLongueur();
 
         //Connaitre les coordonées
-//        System.out.println("Coin HG: (" + coinHGX + ", " + coinHGY + ")");
-//        System.out.println("Coin HD: (" + coinHDX + ", " + coinHDY + ")");
-//        System.out.println("Coin BG: (" + coinBGX + ", " + coinBGY + ")");
-//        System.out.println("Coin BD: (" + coinBDX + ", " + coinBDY + ")");
+//        System.out.println("Coin HG: (" + hitbox.getXGauche() + ", " + hitbox.getYHaut() + ")");
+//        System.out.println("Coin HD: (" + hitbox.getXDroite() + ", " + hitbox.getYHaut() + ")");
+//        System.out.println("Coin BG: (" + hitbox.getXGauche() + ", " + hitbox.getYBas() + ")");
+//        System.out.println("Coin BD: (" + hitbox.getXDroite() + ", " + hitbox.getYBas() + ")");
 
-        if ((coinHGX>=0 && coinHGX<map.getColonne()-1) && (coinHGY>=0 && coinHGY<map.getLigne()-1)){
+
+        if ((coinGX>=0 && coinGX< map.getColonne()-1) && (coinHY>=0 && coinHY< map.getLigne()-1)){
             coinHautGauche=true;
-        }if ((coinBGX>=0 && coinBGX<map.getColonne()-1)&&(coinBGY>0 && coinBGY<map.getLigne()-1)){
+        }if ((coinGX>=0 && coinGX< map.getColonne()-1)&&(coinBY>0 && coinBY<=map.getLigne()-1)){
             coinBasGauche=true;
-        }if ((coinHDX>=0 && coinHDX<=map.getColonne()-1)&&(coinHDY>=0 && coinHDY<map.getLigne()-1)){
+        }if ((coinDX>0 && coinDX<=map.getColonne()-1)&&(coinHY>=0 && coinHY< map.getLigne()-1)){
             coinHautDroit=true;
-        }if ((coinBDX>0 && coinBDX<=map.getColonne()-1)&&(coinBDY>0 && coinBDY<=map.getLigne()-1)){
+        }if ((coinDX>0 && coinDX<=map.getColonne()-1)&&(coinBY>0 && coinBY<=map.getLigne()-1)){
             coinBasDroite=true;
         }
         //Connaitre la valeur du boolean
@@ -71,6 +66,7 @@ public class Environnement {
 //      System.out.println("coin HD dans limites: " + coinHautDroit);
 //      System.out.println("coin BG dans limites: " + coinBasGauche);
 //      System.out.println("coin BD dans limites: " + coinBasDroite);
+
         return coinBasDroite && coinBasGauche && coinHautDroit && coinHautGauche;
 
 
@@ -83,45 +79,37 @@ public class Environnement {
         boolean coinHautDroit=false;
         boolean coinBasDroite=false;
 
-        int coinHGX = (hitbox.getX())/ hitbox.getLargeur();
-        int coinHGY = (hitbox.getY())/ hitbox.getLongueur();
+        if (estDansLimiteTerrain(hitbox)){
+//          Connaitre les coordonées
+//        System.out.println("Coin HG: (" + hitbox.getXGauche()+ ", " + hitbox.getYHaut() + ")");
+//        System.out.println(map.getMap()[hitbox.getYHaut()][hitbox.getXGauche()]);
+//        System.out.println("Coin HD: (" + hitbox.getXDroite() + ", " + hitbox.getYHaut() + ")");
+//        System.out.println(map.getMap()[hitbox.getYHaut()][hitbox.getXDroite()]);
+//        System.out.println("Coin BG: (" + hitbox.getXGauche() + ", " + hitbox.getYBas() + ")");
+//        System.out.println(map.getMap()[hitbox.getYBas()][hitbox.getXGauche()]);
+//        System.out.println("Coin BD: (" + hitbox.getXDroite() + ", " + hitbox.getYBas() + ")");
+//        System.out.println(map.getMap()[hitbox.getYBas()][hitbox.getXDroite()]);
 
-        int coinHDX = (hitbox.getX()+ hitbox.getLargeur()-1)/ hitbox.getLargeur();
-        int coinHDY = (hitbox.getY())/ hitbox.getLongueur();
-
-        int coinBGX = hitbox.getX()/ hitbox.getLargeur();
-        int coinBGY = (hitbox.getY()+ hitbox.getLongueur()-1)/ hitbox.getLongueur();
-
-        int coinBDX = (hitbox.getX()+ hitbox.getLargeur()-1)/ hitbox.getLargeur();
-        int coinBDY = (hitbox.getY()+ hitbox.getLongueur()-1)/ hitbox.getLongueur();
-
-//        Connaitre les coordonées
-//        System.out.println("Coin HG: (" + coinHGX + ", " + coinHGY + ")");
-//        System.out.println("Coin HD: (" + coinHDX + ", " + coinHDY + ")");
-//        System.out.println("Coin BG: (" + coinBGX + ", " + coinBGY + ")");
-//        System.out.println("Coin BD: (" + coinBDX + ", " + coinBDY + ")");
-
-        if (!estDansLimiteTerrain(hitbox)){
-            return true;
-        }
-
-        if (this.map.getMap()[(coinHGY * map.getColonne())+coinHGX] == 54) {
-            System.out.println(map.getMap()[(coinHGY* map.getColonne())+coinHGX]);
-            coinHautGauche=true;
-        }if (this.map.getMap()[(coinHDY* map.getColonne())+coinHDX]==54){
-            coinHautDroit=true;
-        }if (this.map.getMap()[(coinBGY* map.getColonne())+coinBGX]==54){
-            coinBasGauche=true;
-        }if (this.map.getMap()[(coinBDY*map.getColonne())+coinBDX]==54){
-            coinBasDroite=true;
-        }
-        //Connaitre valeurs des booleans
+            if (this.map.getMap()[hitbox.getYHaut()][hitbox.getXGauche()] == 54) {
+                coinHautGauche=true;
+            }if (this.map.getMap()[hitbox.getYHaut()][hitbox.getXDroite()]==54){
+                coinHautDroit=true;
+            }
+            if (this.map.getMap()[hitbox.getYBas()][hitbox.getXGauche()]==54){
+                coinBasGauche=true;
+            }if (this.map.getMap()[hitbox.getYBas()][hitbox.getXDroite()]==54){
+                coinBasDroite=true;
+            }
+            //Connaitre valeurs des booleans
 //        System.out.println("coin HG"+ coinHautGauche);
 //        System.out.println("coin HD"+ coinHautDroit);
 //        System.out.println("coin BG"+ coinBasGauche);
 //        System.out.println("coin BD"+ coinBasDroite);
 
-        return coinBasDroite || coinBasGauche || coinHautDroit || coinHautGauche;
+            return coinBasDroite || coinBasGauche || coinHautDroit || coinHautGauche;
+
+        }
+        return true;
 
     }
 
