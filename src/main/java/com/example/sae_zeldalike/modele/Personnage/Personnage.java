@@ -21,7 +21,7 @@ public abstract class Personnage {
     private final int largeur;
     private final int longueur;
 
-    public Personnage( int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDeplacement) {
+    public Personnage( int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDeplacement, int longueur, int largeur) {
         this.id = "P"+compteurPersonnage;
         compteurPersonnage++;
         this.pointVie = new SimpleIntegerProperty(pointVie);
@@ -31,8 +31,8 @@ public abstract class Personnage {
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
         this.environnement = environnement;
         this.direction = new SimpleStringProperty("DOWN");
-        this.longueur=32;
-        this.largeur=32;
+        this.longueur=longueur;
+        this.largeur=largeur;
     }
 
    /* public Personnage( int pointVie, int pointAttaque, Environnement environnement, int vitesseDeplacement) {
@@ -105,6 +105,24 @@ public abstract class Personnage {
 
     public Environnement getEnvironnement() {
         return environnement;
+    }
+
+    public boolean estDevantObstacle(int x, int y) {
+        for (int i = 0; i < this.environnement.getMap().getCoordonnéesTuilesNonTraversables().size(); i++) {
+            if (x < this.environnement.getMap().getCoordonnéesTuilesNonTraversables().get(i)[1] + 32 - 10 &&
+                    x + this.longueur - 10 > this.environnement.getMap().getCoordonnéesTuilesNonTraversables().get(i)[1] &&
+                    y < this.environnement.getMap().getCoordonnéesTuilesNonTraversables().get(i)[0] + 32 - 10 &&
+                    y + this.largeur - 10 > this.environnement.getMap().getCoordonnéesTuilesNonTraversables().get(i)[0]) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean estDansLimiteTerrain(int x,int y){
+        return (x < 0 || x > this.environnement.getMap().getColonne()*32 || y < 0 || y > this.environnement.getMap().getLigne()*32 || x+32 > this.environnement.getMap().getColonne()*32 ||
+                y+32 > this.environnement.getMap().getLigne()*32);
+
     }
 
     public Hitbox hitbox(int x,int y){

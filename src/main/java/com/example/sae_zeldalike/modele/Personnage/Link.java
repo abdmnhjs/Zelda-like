@@ -10,7 +10,7 @@ public class Link extends Personnage {
     private ObservableList<Piece> pieces;
 
     public Link(Environnement environnement, int positionX, int positionY) {
-        super(100, 0, environnement, positionX, positionY, 5);
+        super(100, 0, environnement, positionX, positionY, 5, 32, 32);
 
         this.pieces= FXCollections.observableArrayList();
 
