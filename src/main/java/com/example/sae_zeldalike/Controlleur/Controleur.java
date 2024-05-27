@@ -5,7 +5,10 @@ import com.example.sae_zeldalike.modele.Environnement.*;
 import com.example.sae_zeldalike.modele.Personnage.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
@@ -25,6 +28,8 @@ public class Controleur implements Initializable {
     private VueEnnemi1 vueEnnemi1;
     private Map map;
     private VueMap vueMap;
+    @FXML
+    private ProgressBar barreDeVie;
 
     @FXML
     private Pane pane;
@@ -44,6 +49,7 @@ public class Controleur implements Initializable {
         this.ennemi1=new Ennemi1(environnement,130,220);
         this.vueEnnemi1 = new VueEnnemi1(pane,ennemi1);
         vueMap = new VueMap(tilePane,map);
+        this.barreDeVie.progressProperty().bind(personnage.pointViePercentProperty());
         initAnimation();
         // demarre l'animation
         gameLoop.play();

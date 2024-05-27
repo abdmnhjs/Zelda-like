@@ -2,17 +2,14 @@ package com.example.sae_zeldalike.modele.Personnage;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Hitbox;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 public abstract class Personnage {
 
     private String id;
     private static int compteurPersonnage=0;
-    private IntegerProperty pointVie;
-    private IntegerProperty pointAttaque;
+    private DoubleProperty pointVie;
+    private DoubleProperty pointAttaque;
     private IntegerProperty positionX;
     private IntegerProperty positionY;
     private IntegerProperty vitesseDeplacement;
@@ -20,19 +17,22 @@ public abstract class Personnage {
     private StringProperty direction;
     private final int largeur;
     private final int longueur;
+    private DoubleProperty pointViePercent = new SimpleDoubleProperty();
 
-    public Personnage( int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDeplacement) {
+    public Personnage( double pointVie, double pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDeplacement) {
         this.id = "P"+compteurPersonnage;
         compteurPersonnage++;
-        this.pointVie = new SimpleIntegerProperty(pointVie);
-        this.pointAttaque = new SimpleIntegerProperty(pointAttaque);
+        this.pointVie = new SimpleDoubleProperty(pointVie);
+        this.pointAttaque = new SimpleDoubleProperty(pointAttaque);
         this.positionX = new SimpleIntegerProperty(positionX);
         this.positionY = new SimpleIntegerProperty(positionY);
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
         this.environnement = environnement;
-        this.direction = new SimpleStringProperty("DOWN");
+        this.direction = new SimpleStringProperty("Inactif_DOWN");
         this.longueur=32;
         this.largeur=32;
+        this.pointViePercent.bind(getPointVieProperty().divide(100.0));
+
     }
 
    /* public Personnage( int pointVie, int pointAttaque, Environnement environnement, int vitesseDeplacement) {
@@ -49,6 +49,7 @@ public abstract class Personnage {
 
     private int getLargeur(){return largeur;}
     private int getLongueur(){return longueur;}
+
     public StringProperty getDirectionProperty() {
         return direction;
     }
@@ -85,19 +86,21 @@ public abstract class Personnage {
     public IntegerProperty getVitesseDeplacementProperty(){ return vitesseDeplacement;}
     public void setVitesseDeplacementProperty(int v){ vitesseDeplacement.setValue(v);}
 
-    public int getPointVie() {
+    public double getPointVie() {
         return pointVie.getValue();
     }
-    public IntegerProperty getPointVieProperty() { return pointVie;}
-    public void setPointVieProperty(int degats){
+    public DoubleProperty getPointVieProperty() { return pointVie;}
+    public void setPointVieProperty(double degats){
         pointVie.setValue(getPointVie()-degats);
     }
 
-    public int getPointAttaque() {
+
+
+    public double getPointAttaque() {
         return pointAttaque.getValue();
     }
-    public IntegerProperty getPointAttaqueProperty(){ return pointAttaque;}
-    public void setPointAttaqueProperty(int attaque) { pointAttaque.setValue(attaque);}
+    public DoubleProperty getPointAttaqueProperty(){ return pointAttaque;}
+    public void setPointAttaqueProperty(double attaque) { pointAttaque.setValue(attaque);}
 
     public String getId() {
         return id;
@@ -110,6 +113,18 @@ public abstract class Personnage {
     public Hitbox hitbox(int x,int y){
         Hitbox hitbox = new Hitbox(x,y,getLargeur(),getLongueur());
         return hitbox;
+    }
+
+    public double getPointVieEnPercent() {
+        return (double) pointVie.get() / 100.0; // Supposons que la vie maximale est 100. Ajustez en fonction de votre logique.
+    }
+
+    public DoubleProperty pointViePercentProperty() {
+        return pointViePercent;
+    }
+
+    public double getPointViePercent() {
+        return pointViePercent.get();
     }
 
     @Override

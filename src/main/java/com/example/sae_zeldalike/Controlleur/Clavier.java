@@ -64,6 +64,8 @@ public class Clavier implements EventHandler<KeyEvent> {
                 personnage.setDirection("RIGHT");
             }
         }
+        personnage.setPointVieProperty(1);
+        personnage.setDirection("Inactif_"+personnage.getDirection());
         System.out.println("Position X : " + personnage.getPositionX() + " Position Y : " + personnage.getPositionY());
 
     }

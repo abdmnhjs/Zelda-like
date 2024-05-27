@@ -6,21 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="962266dd-f411-42a7-95d2-61d9cfb3b009" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_05_2024_20_24__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_05_2024_20_24__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_05_2024_20_32__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_05_2024_20_32__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_05_2024_20_37__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_05_2024_20_37__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18_05_2024_13_21__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18_05_2024_13_21__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_05_2024_18_23__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_05_2024_18_23__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zelda-like/src/main/java/com/example/sae_zeldalike/Controlleur/Clavier.java" beforeDir="false" afterPath="$PROJECT_DIR$/Zelda-like/src/main/java/com/example/sae_zeldalike/Controlleur/Clavier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zelda-like/src/main/java/com/example/sae_zeldalike/Controlleur/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/Zelda-like/src/main/java/com/example/sae_zeldalike/Controlleur/Controleur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zelda-like/src/main/java/com/example/sae_zeldalike/Vue/VueMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/Zelda-like/src/main/java/com/example/sae_zeldalike/Vue/VueMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zelda-like/src/main/java/com/example/sae_zeldalike/modele/Environnement/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/Zelda-like/src/main/java/com/example/sae_zeldalike/modele/Environnement/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zelda-like/src/main/java/com/example/sae_zeldalike/modele/Personnage/Ennemi1.java" beforeDir="false" afterPath="$PROJECT_DIR$/Zelda-like/src/main/java/com/example/sae_zeldalike/modele/Personnage/Ennemi1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zelda-like/src/main/java/com/example/sae_zeldalike/modele/Personnage/Link.java" beforeDir="false" afterPath="$PROJECT_DIR$/Zelda-like/src/main/java/com/example/sae_zeldalike/modele/Personnage/Link.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zelda-like/src/main/resources/com/example/sae_zeldalike/map1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Zelda-like/src/main/resources/com/example/sae_zeldalike/map1.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zelda-like/src/main/resources/com/example/sae_zeldalike/vue1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Zelda-like/src/main/resources/com/example/sae_zeldalike/vue1.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Clavier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Clavier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Controleur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Lancement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Lancement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Vue/VueEnnemi1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Vue/VueEnnemi1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Vue/VueLink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Vue/VueLink.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Personnage/Personnage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Personnage/Personnage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/vue1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/vue1.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,10 +31,10 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Controlleur" />
+        <entry key="$PROJECT_DIR$" value="armes" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Zelda-like" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -80,15 +74,14 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;Controlleur&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/BABA/Downloads/A!AZELDASSAEPROJETPLUSPLUS/Zelda-like/lib/org.json-20161124.jar&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.12321307&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.22550832&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -105,7 +98,6 @@
     <configuration name="Lancement" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.sae_zeldalike.Lancement" />
       <module name="SAE_Zelda-like" />
-      <option name="PROGRAM_PARAMETERS" value="--module-path ${java.home}/../lib --add-modules javafx.controls,javafx.fxml " />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.example.sae_zeldalike.Controlleur.*" />
@@ -118,6 +110,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Lancement" />
+        <item itemvalue="Application.Lancement" />
         <item itemvalue="Application.Lancement" />
       </list>
     </recent_temporary>
@@ -146,6 +140,19 @@
       <workItem from="1716220322341" duration="1221000" />
       <workItem from="1716231618925" duration="2099000" />
       <workItem from="1716639352008" duration="5385000" />
+      <workItem from="1716648013521" duration="899000" />
+      <workItem from="1716653792160" duration="668000" />
+      <workItem from="1716657343662" duration="1210000" />
+      <workItem from="1716665470283" duration="353000" />
+      <workItem from="1716666442566" duration="624000" />
+      <workItem from="1716668733425" duration="433000" />
+      <workItem from="1716721388512" duration="911000" />
+      <workItem from="1716730049408" duration="1775000" />
+      <workItem from="1716733818290" duration="661000" />
+      <workItem from="1716759733650" duration="377000" />
+      <workItem from="1716760584320" duration="1250000" />
+      <workItem from="1716763137052" duration="484000" />
+      <workItem from="1716763837412" duration="1824000" />
     </task>
     <servers />
   </component>
@@ -157,7 +164,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/Controlleur" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>

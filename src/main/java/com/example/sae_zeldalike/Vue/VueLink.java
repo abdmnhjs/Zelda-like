@@ -89,6 +89,18 @@ public class VueLink {
                     setNumeroImagePersonnage(1);
                 }
             }
+            case "Inactif_UP"->{
+                this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_UP.png"));
+            }
+            case "Inactif_DOWN"->{
+                this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_DOWN.png"));
+            }
+            case "Inactif_LEFT"->{
+                this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_LEFT.png"));
+            }
+            case "Inactif_RIGHT"->{
+                this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_RIGHT.png"));
+            }
 
         }
     }
