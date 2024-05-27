@@ -125,7 +125,11 @@ public abstract class Personnage {
 
     }
 
-    public Hitbox hitbox(int x,int y){
+    public void setPointVie(int pointVie) {
+        this.pointVie.set(pointVie);
+    }
+
+    public Hitbox hitbox(int x, int y){
         Hitbox hitbox = new Hitbox(x,y,getLargeur(),getLongueur());
         return hitbox;
     }
