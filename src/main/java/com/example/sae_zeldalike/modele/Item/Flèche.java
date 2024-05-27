@@ -49,11 +49,23 @@ public class Flèche extends Arme implements Limitations {
         return this.largeur;
     }
 
+    public int getVitesseProperty() {
+        return vitesseProperty.getValue();
+    }
+
     public IntegerProperty getXProperty() {
         return xProperty;
     }
 
+    public void setxProperty(int xProperty) {
+        this.xProperty.set(xProperty);
+    }
+
     public IntegerProperty getYProperty() {
         return yProperty;
+    }
+
+    public void setyProperty(int yProperty) {
+        this.yProperty.set(yProperty);
     }
 }

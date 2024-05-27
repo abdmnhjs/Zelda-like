@@ -2,11 +2,16 @@ package com.example.sae_zeldalike.modele.Personnage;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Hitbox;
+import com.example.sae_zeldalike.modele.Item.Arc;
+import com.example.sae_zeldalike.modele.Item.Arme;
+import com.example.sae_zeldalike.modele.Item.Flèche;
 import com.example.sae_zeldalike.modele.Limitations;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+
+import java.util.ArrayList;
 
 public abstract class Personnage implements Limitations {
 
@@ -19,6 +24,7 @@ public abstract class Personnage implements Limitations {
     private IntegerProperty vitesseDeplacement;
     protected Environnement environnement;
     private StringProperty direction;
+    private ArrayList<Arme> armes;
     private final int largeur;
     private final int longueur;
 
@@ -34,6 +40,7 @@ public abstract class Personnage implements Limitations {
         this.direction = new SimpleStringProperty("DOWN");
         this.longueur=longueur;
         this.largeur=largeur;
+        this.armes = new ArrayList<>();
     }
 
    /* public Personnage( int pointVie, int pointAttaque, Environnement environnement, int vitesseDeplacement) {
@@ -128,6 +135,22 @@ public abstract class Personnage implements Limitations {
 
     public void setPointDeVie(int pointVie) {
         this.pointVie.set(pointVie);
+    }
+
+    public ArrayList<Arme> getArmes() {
+        return this.armes;
+    }
+
+    public void ajouterArme(Arme arme){
+        this.armes.add(arme);
+    }
+
+    public void ajouterFlèche(Flèche flèche){
+        for(Arme arme : this.armes){
+            if(arme instanceof Arc){
+                ((Arc) arme).getFlèches().add(flèche);
+            }
+        }
     }
 
     public Hitbox hitbox(int x, int y){

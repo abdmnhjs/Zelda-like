@@ -2,6 +2,8 @@ package com.example.sae_zeldalike.Controlleur;
 
 import com.example.sae_zeldalike.Vue.*;
 import com.example.sae_zeldalike.modele.Environnement.*;
+import com.example.sae_zeldalike.modele.Item.Arc;
+import com.example.sae_zeldalike.modele.Item.Flèche;
 import com.example.sae_zeldalike.modele.Personnage.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -38,7 +40,9 @@ public class Controleur implements Initializable {
         this.map= new Map();
         this.environnement = new Environnement(map);
         this.link = new Link(environnement, 32, 32);
-        this.vueLink=new VueLink(pane, link);
+        this.link.ajouterArme(new Arc(15, 1));
+        this.link.ajouterFlèche(new Flèche(this.link.getPositionX(), this.link.getPositionY(), 5, 5, this.environnement));
+        this.vueLink=new VueLink(pane, link, environnement);
         this.ennemi1=new Ennemi1(environnement,130,220);
         this.vueEnnemi1 = new VueEnnemi1(pane,ennemi1);
         vueMap = new VueMap(tilePane,map);

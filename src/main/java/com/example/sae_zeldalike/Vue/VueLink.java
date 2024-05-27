@@ -1,6 +1,7 @@
 package com.example.sae_zeldalike.Vue;
 
 import com.example.sae_zeldalike.Controlleur.Clavier;
+import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Personnage.Link;
 import com.example.sae_zeldalike.modele.Personnage.Personnage;
 import javafx.beans.property.SimpleStringProperty;
@@ -21,9 +22,9 @@ public class VueLink {
     private Clavier clavier;
     private Rectangle rectangle;
 
-    public VueLink(Pane pane, Link link) {
+    public VueLink(Pane pane, Link link, Environnement environnement) {
 
-        this.clavier = new Clavier(link);
+        this.clavier = new Clavier(link, pane, environnement);
         pane.addEventFilter(KeyEvent.KEY_PRESSED,clavier);
 
         this.link=link;

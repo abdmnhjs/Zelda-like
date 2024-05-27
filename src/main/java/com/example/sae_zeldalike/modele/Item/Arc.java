@@ -8,4 +8,8 @@ public class Arc extends Arme{
         super(dégâts, rayonAttaque);
         this.flèches = new ArrayList<>();
     }
+
+    public ArrayList<Flèche> getFlèches() {
+        return this.flèches;
+    }
 }
