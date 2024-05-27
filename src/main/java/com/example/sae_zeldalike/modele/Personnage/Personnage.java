@@ -125,7 +125,7 @@ public abstract class Personnage {
 
     }
 
-    public void setPointVie(int pointVie) {
+    public void setPointDeVie(int pointVie) {
         this.pointVie.set(pointVie);
     }
 
