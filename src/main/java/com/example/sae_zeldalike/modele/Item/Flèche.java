@@ -42,6 +42,14 @@ public class Flèche implements Limitations {
 
     }
 
+    public int getLongueur() {
+        return this.longueur;
+    }
+
+    public int getLargeur() {
+        return this.largeur;
+    }
+
     public IntegerProperty getXProperty() {
         return xProperty;
     }

@@ -1,6 +1,7 @@
 package com.example.sae_zeldalike.Vue;
 
 import com.example.sae_zeldalike.modele.Item.Flèche;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -18,8 +19,9 @@ public class VueFlèche {
     }
 
     public void creerFlèche(Pane pane){
-        Rectangle spriteFlèche = new Rectangle();
-        spriteFlèche.setFill(Color.RED);
+        ImageView spriteFlèche = new ImageView(new Image("C:/Users/chaar/IdeaProjects/SAE_Zelda-like/src/main/resources/com/example/sae_zeldalike/Flèche/flècheARemplacerPlusTard.png"));
+        spriteFlèche.setFitHeight(this.flèche.getLongueur());
+        spriteFlèche.setFitWidth(this.flèche.getLargeur());
         spriteFlèche.translateXProperty().bind(this.flèche.getXProperty());
         spriteFlèche.translateYProperty().bind(this.flèche.getYProperty());
         pane.getChildren().add(spriteFlèche);
