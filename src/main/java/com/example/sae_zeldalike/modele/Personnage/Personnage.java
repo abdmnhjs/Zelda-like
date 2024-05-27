@@ -2,12 +2,13 @@ package com.example.sae_zeldalike.modele.Personnage;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Hitbox;
+import com.example.sae_zeldalike.modele.Limitations;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public abstract class Personnage {
+public abstract class Personnage implements Limitations {
 
     private String id;
     private static int compteurPersonnage=0;
@@ -110,9 +111,9 @@ public abstract class Personnage {
     public boolean estDevantObstacle(int x, int y) {
         for (int i = 0; i < this.environnement.getMap().getCoordonnéesTuilesNonTraversables().size(); i++) {
             if (x < this.environnement.getMap().getCoordonnéesTuilesNonTraversables().get(i)[1] + 32 - 10 &&
-                    x + this.longueur - 10 > this.environnement.getMap().getCoordonnéesTuilesNonTraversables().get(i)[1] &&
+                    x + this.longueur - this.longueur*0.3 > this.environnement.getMap().getCoordonnéesTuilesNonTraversables().get(i)[1] &&
                     y < this.environnement.getMap().getCoordonnéesTuilesNonTraversables().get(i)[0] + 32 - 10 &&
-                    y + this.largeur - 10 > this.environnement.getMap().getCoordonnéesTuilesNonTraversables().get(i)[0]) {
+                    y + this.largeur - this.longueur*0.3 > this.environnement.getMap().getCoordonnéesTuilesNonTraversables().get(i)[0]) {
                 return true;
             }
         }
