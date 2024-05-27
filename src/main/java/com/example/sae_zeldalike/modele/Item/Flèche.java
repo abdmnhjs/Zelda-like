@@ -5,19 +5,18 @@ import com.example.sae_zeldalike.modele.Limitations;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class Flèche implements Limitations {
+public class Flèche extends Arme implements Limitations {
     private IntegerProperty xProperty;
     private IntegerProperty yProperty;
     private Environnement environnement;
-    private int dégâts;
     private IntegerProperty vitesseProperty;
     private int longueur;
     private int largeur;
 
     public Flèche(int x, int y, int dégâts, int vitesse, Environnement environnement){
+        super(dégâts, 1);
         this.xProperty = new SimpleIntegerProperty(x);
         this.yProperty = new SimpleIntegerProperty(y);
-        this.dégâts = dégâts;
         this.vitesseProperty = new SimpleIntegerProperty(vitesse);
         this.environnement = environnement;
         this.longueur = 5;
