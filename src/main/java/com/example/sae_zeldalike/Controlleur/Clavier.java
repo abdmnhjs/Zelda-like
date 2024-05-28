@@ -94,8 +94,8 @@ public class Clavier implements EventHandler<KeyEvent> {
                                 flèche.setxProperty(personnage.getPositionX() + 16);
                                 VueFlèche vueFlèche = new VueFlèche(flèche, this.pane);
                                 ((Arc) arme).getFlèchesEnDéplacement().add(vueFlèche);
-                                ((Arc) arme).getFlèchesEnDéplacement().get(0).creerFlèche(this.pane);
                                 while (flèche.getY() > 0){
+                                    ((Arc) arme).getFlèchesEnDéplacement().get(0).creerFlèche(this.pane);
                                     flèche.setyProperty(flèche.getY() - flèche.getVitesseProperty());
                                     if (flèche.estDevantObstacle(flèche.getX(), flèche.getY()) || flèche.estDansLimiteTerrain(flèche.getX(), flèche.getY())) {
                                         vueFlèche.supprimerFlèche(this.pane);
@@ -103,7 +103,6 @@ public class Clavier implements EventHandler<KeyEvent> {
                                         break;
                                     }
                                 }
-
                             }
                         }
                     }
