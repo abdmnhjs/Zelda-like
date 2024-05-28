@@ -9,6 +9,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
@@ -29,8 +30,11 @@ public class Controleur implements Initializable {
     private VueEnnemi1 vueEnnemi1;
     private Map map;
     private VueMap vueMap;
+
     @FXML
     private ProgressBar barreDeVie;
+    @FXML
+    private ImageView imagePerso;
 
     @FXML
     private Pane pane;
@@ -51,6 +55,9 @@ public class Controleur implements Initializable {
         this.vueEnnemi1 = new VueEnnemi1(pane,ennemi1);
         vueMap = new VueMap(tilePane,map);
         this.barreDeVie.progressProperty().bind(personnage.pointViePercentProperty());
+        imagePerso.setFitHeight(64);
+        imagePerso.setFitWidth(64);
+        imagePerso.imageProperty().bind(vueLink.getSpritePersonnage().imageProperty());
         initAnimation();
         // demarre l'animation
         gameLoop.play();
