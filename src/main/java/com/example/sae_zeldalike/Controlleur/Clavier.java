@@ -20,13 +20,14 @@ public class Clavier implements EventHandler<KeyEvent> {
 
     public Clavier(Personnage p) {
         this.personnage = p;
+        this.touches = new HashSet<>();
     }
 
     @Override
     public void handle(KeyEvent keyEvent)
     {
         if (keyEvent.getEventType() == KeyEvent.KEY_PRESSED) {
-            if (touches.contains(keyEvent.getCode())) {
+            if (!touches.contains(keyEvent.getCode())) {
                 touches.add(keyEvent.getCode());
             }
         } if (keyEvent.getEventType() == KeyEvent.KEY_RELEASED) {
@@ -60,30 +61,24 @@ public class Clavier implements EventHandler<KeyEvent> {
             personnage.setDirection("DOWN");
         }
         if (touches.contains(KeyCode.Q)) {
-            {
-
-                newX = personnage.getPositionX() - personnage.getVitesseDeplacement();
-                newY = personnage.getPositionY();
-                if (!personnage.getEnvironnement().estDevantObstacle(personnage.hitbox(newX, newY))) {
-                    personnage.setPositionXProperty(personnage.getPositionX() - personnage.getVitesseDeplacement());
-                }
-                personnage.setDirection("LEFT");
+            newX = personnage.getPositionX() - personnage.getVitesseDeplacement();
+            newY = personnage.getPositionY();
+            if (!personnage.getEnvironnement().estDevantObstacle(personnage.hitbox(newX, newY))) {
+                personnage.setPositionXProperty(personnage.getPositionX() - personnage.getVitesseDeplacement());
             }
-            if (touches.contains(KeyCode.D)) {
-                {
-                    newX = personnage.getPositionX() + personnage.getVitesseDeplacement();
-                    newY = personnage.getPositionY();
-                    if (!personnage.getEnvironnement().estDevantObstacle(personnage.hitbox(newX, newY))) {
-                        personnage.setPositionXProperty(personnage.getPositionX() + personnage.getVitesseDeplacement());
-                    }
-                    personnage.setDirection("RIGHT");
-                }
-
+            personnage.setDirection("LEFT");
+        }if (touches.contains(KeyCode.D)) {
+            newX = personnage.getPositionX() + personnage.getVitesseDeplacement();
+            newY = personnage.getPositionY();
+            if (!personnage.getEnvironnement().estDevantObstacle(personnage.hitbox(newX, newY))) {
+                personnage.setPositionXProperty(personnage.getPositionX() + personnage.getVitesseDeplacement());
+            }
+            personnage.setDirection("RIGHT");
+        }
                 personnage.setPointVieProperty(1);
                 System.out.println("Position X : " + personnage.getPositionX() + " Position Y : " + personnage.getPositionY());
 
-            }
-
-        }
     }
+
 }
+
