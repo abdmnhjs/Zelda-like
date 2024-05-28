@@ -8,7 +8,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 
@@ -25,6 +24,7 @@ public class VueLink {
 
         this.clavier = new Clavier(personnage);
         pane.addEventFilter(KeyEvent.KEY_PRESSED,clavier);
+        pane.addEventFilter(KeyEvent.KEY_RELEASED, clavier);
 
         this.personnage=personnage;
         direction = new SimpleStringProperty();

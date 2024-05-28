@@ -4,10 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a77a414e-e283-49c5-be10-e764ba1050f5" name="Changes" comment="">
+    <list default="true" id="d68f44cc-42ae-46c4-b79e-09da1a472c7e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Item/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Clavier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Clavier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Controleur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Lancement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Lancement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Vue/VueLink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Vue/VueLink.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Link/DOWN_L.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Link/DOWN_L.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Link/DOWN_R.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Link/DOWN_R.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_DOWN.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_DOWN.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_LEFT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_LEFT.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_RIGHT.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_RIGHT.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_UP.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_UP.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Link/LEFT_L.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Link/LEFT_L.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Link/LEFT_R.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Link/LEFT_R.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Link/RIGHT_L.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Link/RIGHT_L.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Link/RIGHT_R.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Link/RIGHT_R.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Link/UP_L.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Link/UP_L.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/vue1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/vue1.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,79 +37,29 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="armes" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;edetommaso&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/abdmnhjs/Zelda-like.git&quot;,
-    &quot;accountId&quot;: &quot;e2cb2ea7-df17-42a7-8ddc-d6dba0cd8adc&quot;
-  }
-}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 4
-}</component>
-  <component name="ProjectId" id="2gXnhwLdd1T3tue4pT38q6ACd6o" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="2h679FTNRNwspgTNpFVRWr0VWh4" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.Lancement.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Controlleur&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/etudiants/info/edetommaso/Documents/Semestre 2/Zelda-like&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Link" />
-      <recent name="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/" />
-      <recent name="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage" />
-      <recent name="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/" />
-      <recent name="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Link" />
-    </key>
-  </component>
   <component name="RunManager">
     <configuration name="Lancement" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.sae_zeldalike.Lancement" />
       <module name="SAE_Zelda-like" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.sae_zeldalike.Controlleur.*" />
+          <option name="PATTERN" value="com.example.sae_zeldalike.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -106,76 +70,18 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Lancement" />
-        <item itemvalue="Application.Lancement" />
-        <item itemvalue="Application.Lancement" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a77a414e-e283-49c5-be10-e764ba1050f5" name="Changes" comment="" />
-      <created>1715852913072</created>
+      <changelist id="d68f44cc-42ae-46c4-b79e-09da1a472c7e" name="Changes" comment="" />
+      <created>1716901804459</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1715852913072</updated>
-      <workItem from="1716031399930" duration="3324000" />
-      <workItem from="1716037932134" duration="1577000" />
-      <workItem from="1716039963205" duration="7215000" />
-      <workItem from="1716119654236" duration="6950000" />
-      <workItem from="1716128807048" duration="4605000" />
-      <workItem from="1716220322341" duration="1221000" />
-      <workItem from="1716231618925" duration="2099000" />
-      <workItem from="1716639352008" duration="5385000" />
-      <workItem from="1716648013521" duration="899000" />
-      <workItem from="1716653792160" duration="668000" />
-      <workItem from="1716657343662" duration="1210000" />
-      <workItem from="1716665470283" duration="353000" />
-      <workItem from="1716666442566" duration="624000" />
-      <workItem from="1716668733425" duration="433000" />
-      <workItem from="1716721388512" duration="911000" />
-      <workItem from="1716730049408" duration="1775000" />
-      <workItem from="1716733818290" duration="661000" />
-      <workItem from="1716759733650" duration="377000" />
-      <workItem from="1716760584320" duration="1250000" />
-      <workItem from="1716763137052" duration="484000" />
-      <workItem from="1716763837412" duration="1824000" />
-      <workItem from="1716828054754" duration="830000" />
+      <updated>1716901804459</updated>
     </task>
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/Controlleur" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
 </project>

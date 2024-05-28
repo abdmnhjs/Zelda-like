@@ -30,19 +30,15 @@ public class Controleur implements Initializable {
     private VueEnnemi1 vueEnnemi1;
     private Map map;
     private VueMap vueMap;
-
     @FXML
     private ProgressBar barreDeVie;
     @FXML
     private ImageView imagePerso;
-
     @FXML
     private Pane pane;
     @FXML
     private TilePane tilePane;
-
     private Timeline gameLoop;
-
     private int temps;
 
     @Override
