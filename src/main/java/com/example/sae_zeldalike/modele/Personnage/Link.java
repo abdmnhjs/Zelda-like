@@ -13,7 +13,6 @@ public class Link extends Personnage {
         super(100, 0, environnement, positionX, positionY, 5, 32, 32);
 
         this.pieces= FXCollections.observableArrayList();
-
     }
 
     /*public Link(Environnement environnement) {

@@ -3,6 +3,7 @@ package com.example.sae_zeldalike.Controlleur;
 import com.example.sae_zeldalike.Vue.*;
 import com.example.sae_zeldalike.modele.Environnement.*;
 import com.example.sae_zeldalike.modele.Item.Arc;
+import com.example.sae_zeldalike.modele.Item.Arme;
 import com.example.sae_zeldalike.modele.Item.Flèche;
 import com.example.sae_zeldalike.modele.Personnage.*;
 import javafx.animation.KeyFrame;
@@ -41,7 +42,7 @@ public class Controleur implements Initializable {
         this.environnement = new Environnement(map);
         this.link = new Link(environnement, 32, 32);
         this.link.ajouterArme(new Arc(15, 1));
-        this.link.ajouterFlèche(new Flèche(this.link.getPositionX(), this.link.getPositionY(), 5, 5, this.environnement));
+        this.link.ajouterFlèche(new Flèche(this.link.getPositionX(), this.link.getPositionY(), 5, 10, this.environnement));
         this.vueLink=new VueLink(pane, link, environnement);
         this.ennemi1=new Ennemi1(environnement,130,220);
         this.vueEnnemi1 = new VueEnnemi1(pane,ennemi1);
@@ -71,11 +72,8 @@ public class Controleur implements Initializable {
                         vueEnnemi1.changerImage();
                         //ennemi1.seDeplace(link);
                         ennemi1.seDeplace(link.getPositionX(), link.getPositionY());
-
                         vueLink.animationPersonnage();
                     } else if (temps%3==0){
-
-
                         this.pane.requestFocus();
                     }
                     temps++;

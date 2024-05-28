@@ -11,6 +11,7 @@ import javafx.scene.shape.Rectangle;
 public class VueFlèche {
     private Flèche flèche;
     private Pane pane;
+    private ImageView spriteFlèche;
 
     public VueFlèche(Flèche flèche, Pane pane){
         this.flèche = flèche;
@@ -19,11 +20,17 @@ public class VueFlèche {
     }
 
     public void creerFlèche(Pane pane){
-        ImageView spriteFlèche = new ImageView(new Image("C:/Users/chaar/IdeaProjects/SAE_Zelda-like/src/main/resources/com/example/sae_zeldalike/Flèche/flècheARemplacerPlusTard.png"));
-        spriteFlèche.setFitHeight(this.flèche.getLongueur());
-        spriteFlèche.setFitWidth(this.flèche.getLargeur());
-        spriteFlèche.translateXProperty().bind(this.flèche.getXProperty());
-        spriteFlèche.translateYProperty().bind(this.flèche.getYProperty());
-        pane.getChildren().add(spriteFlèche);
+        this.spriteFlèche = new ImageView(new Image("file:src/main/resources/com/example/sae_zeldalike/Flèche/flècheARemplacerPlusTard.png"));
+        this.spriteFlèche.setFitHeight(this.flèche.getLongueur());
+        this.spriteFlèche.setFitWidth(this.flèche.getLargeur());
+        this.spriteFlèche.translateXProperty().bind(this.flèche.getXProperty());
+        this.spriteFlèche.translateYProperty().bind(this.flèche.getYProperty());
+        pane.getChildren().add(this.spriteFlèche);
+    }
+
+    public void supprimerFlèche(Pane pane){
+        if(pane.getChildren().contains(this.spriteFlèche)){
+            pane.getChildren().remove(this.spriteFlèche);
+        }
     }
 }

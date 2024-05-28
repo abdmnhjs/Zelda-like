@@ -81,25 +81,34 @@ public class Clavier implements EventHandler<KeyEvent> {
                 personnage.setDirection("RIGHT");
             }
             case UP -> {
-                if(personnage.getDirection().equals("UP")){
-                    for(Arme arme : personnage.getArmes()){
-                        if(arme instanceof Arc){
-                            Flèche flèche = ((Arc) arme).getFlèches().remove(0);
-                            ((Arc) arme).getFlèches().add(new Flèche(personnage.getPositionX(), personnage.getPositionY(), 5, 5, this.environnement));
-                            flèche.setxProperty((personnage.getPositionX()+32)/2);
-                            int xFlèche = personnage.getPositionX();
-                            int yFlèche = personnage.getPositionY();
-                            VueFlèche vueFlèche = new VueFlèche(flèche, this.pane);
-                            vueFlèche.creerFlèche(this.pane);
-                            while(!flèche.estDansLimiteTerrain(xFlèche, yFlèche) || !flèche.estDevantObstacle(xFlèche, yFlèche)){
-                                newYFlèche = flèche.getYProperty().getValue() - flèche.getVitesseProperty();
-                                flèche.setyProperty(newYFlèche);
+                if (personnage.getDirection().equals("UP")) {
+                    System.out.println("a lancé flèche");
+                    for (Arme arme : personnage.getArmes()) {
+                        if (arme instanceof Arc) {
+                            System.out.println("avant avant : " + ((Arc) arme).getFlèches());
+                            if (!((Arc) arme).getFlèches().isEmpty()) {
+                                Flèche flèche = ((Arc) arme).getFlèches().remove(0);
+                                System.out.println("avant : " + ((Arc) arme).getFlèches());
+                                ((Arc) arme).getFlèches().add(new Flèche(personnage.getPositionX(), personnage.getPositionY(), 5, 5, this.environnement));
+                                System.out.println("après : " + ((Arc) arme).getFlèches());
+                                flèche.setxProperty(personnage.getPositionX() + 16);
+                                VueFlèche vueFlèche = new VueFlèche(flèche, this.pane);
+                                ((Arc) arme).getFlèchesEnDéplacement().add(vueFlèche);
+                                ((Arc) arme).getFlèchesEnDéplacement().get(0).creerFlèche(this.pane);
+                                while (flèche.getY() > 0){
+                                    flèche.setyProperty(flèche.getY() - flèche.getVitesseProperty());
+                                    if (flèche.estDevantObstacle(flèche.getX(), flèche.getY()) || flèche.estDansLimiteTerrain(flèche.getX(), flèche.getY())) {
+                                        vueFlèche.supprimerFlèche(this.pane);
+                                        ((Arc) arme).getFlèchesEnDéplacement().remove(vueFlèche);
+                                        break;
+                                    }
+                                }
+
                             }
                         }
                     }
                 }
             }
-
         }
         System.out.println("Position X : " + personnage.getPositionX() + " Position Y : " + personnage.getPositionY());
 

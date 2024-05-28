@@ -19,8 +19,8 @@ public class Flèche extends Arme implements Limitations {
         this.yProperty = new SimpleIntegerProperty(y);
         this.vitesseProperty = new SimpleIntegerProperty(vitesse);
         this.environnement = environnement;
-        this.longueur = 5;
-        this.largeur = 5;
+        this.longueur = 15;
+        this.largeur = 15;
     }
 
     public boolean estDevantObstacle(int x, int y) {
@@ -57,12 +57,20 @@ public class Flèche extends Arme implements Limitations {
         return xProperty;
     }
 
+    public int getX(){
+        return xProperty.getValue();
+    }
+
     public void setxProperty(int xProperty) {
         this.xProperty.set(xProperty);
     }
 
     public IntegerProperty getYProperty() {
         return yProperty;
+    }
+
+    public int getY(){
+        return yProperty.getValue();
     }
 
     public void setyProperty(int yProperty) {
