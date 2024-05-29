@@ -97,7 +97,7 @@ public class Controleur implements Initializable {
         initAnimation();
 
         this.link.getPositionXProperty().addListener((observable, oldValue, newValue) -> {
-            this.pane.setTranslateX(250 + pane.getPrefWidth() / 2 - link.getPositionX());
+            this.pane.setTranslateX(50 + pane.getPrefWidth() / 2 - link.getPositionX());
 
         });
         this.link.getPositionYProperty().addListener((observable, oldValue, newValue) -> {
