@@ -35,14 +35,16 @@ public class Environnement {
         return items;
     }
 
-    public Item getItem(String id){
-        for (Item item : getItems()){
-            if (id==item.getId()){
-                return item;
-            }
-        }
-        return null;
-    }
+//    public int getIndiceItem(String id){
+//        if (getItems().size()==null) {
+//            for (int i = 0; i < getItems().size() - 1; i++) {
+//                if (id == getItems().get(i).getId()) {
+//                    return i;
+//                }
+//            }
+//        }
+//        return -1;
+//    }
 
     public ObservableList<Personnage> getPersonnages() {
         return personnages;

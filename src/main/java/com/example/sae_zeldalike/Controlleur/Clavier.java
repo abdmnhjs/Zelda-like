@@ -1,14 +1,24 @@
 package com.example.sae_zeldalike.Controlleur;
 
+import com.example.sae_zeldalike.modele.Item.Arme;
+import com.example.sae_zeldalike.modele.Personnage.*;
+
+import com.example.sae_zeldalike.Vue.VueFlèche;
+import com.example.sae_zeldalike.modele.Environnement.Environnement;
+import com.example.sae_zeldalike.modele.Item.Arc;
+import javafx.event.EventHandler;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
+import com.example.sae_zeldalike.modele.Item.Arme;
+import com.example.sae_zeldalike.modele.Item.Flèche;
 import com.example.sae_zeldalike.modele.Personnage.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
-import javafx.event.EventHandler;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
+
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -16,11 +26,16 @@ import java.util.HashSet;
 public class Clavier implements EventHandler<KeyEvent> {
 
     private Link personnage;
+    private Pane pane;
     private HashSet<KeyCode> touches;
+    Environnement environnement;
 
-    public Clavier(Link p) {
+
+    public Clavier(Link p, Pane pane, Environnement environnement) {
         this.personnage = p;
+        this.pane=pane;
         this.touches = new HashSet<>();
+        this.environnement = environnement;
     }
 
     @Override
@@ -80,6 +95,74 @@ public class Clavier implements EventHandler<KeyEvent> {
 //        personnage.setPointVieProperty(1);
 //        System.out.println("Position X : " + personnage.getPositionX() + " Position Y : " + personnage.getPositionY());
 
+        if (touches.contains(KeyCode.UP)){
+            for (Arme arme : personnage.getArmes()) {
+                if (arme instanceof Arc) {
+                    if (!((Arc) arme).getFlèches().isEmpty()) {
+                        Flèche flèche = ((Arc) arme).getFlèches().remove(0);
+                        ((Arc) arme).getFlèches().add(new Flèche(personnage.getPositionX() + (flèche.getLargeur() / 2), personnage.getPositionY(), 30, this.environnement));
+                        VueFlèche vueFlèche = new VueFlèche(flèche, this.pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-haut.png");
+                        ((Arc) arme).getFlèchesEnDéplacement().add(vueFlèche);
+                        ((Arc) arme).getFlèchesEnDéplacement().get(0).creerFlèche(this.pane);
+                        if (flèche.estDevantObstacle(flèche.getX(), flèche.getY()) || flèche.estDansLimiteTerrain(flèche.getX(), flèche.getY())) {
+                            vueFlèche.supprimerFlèche(this.pane);
+                            ((Arc) arme).getFlèchesEnDéplacement().remove(0);
+                        }
+                    }
+                }
+            }
+        }
+        if (touches.contains(KeyCode.DOWN)){
+            for (Arme arme : personnage.getArmes()) {
+                if (arme instanceof Arc) {
+                    if (!((Arc) arme).getFlèches().isEmpty()) {
+                        Flèche flèche = ((Arc) arme).getFlèches().remove(0);
+                        ((Arc) arme).getFlèches().add(new Flèche(personnage.getPositionX() + (flèche.getLargeur() / 2), personnage.getPositionY() + flèche.getLongueur(), 30, this.environnement));
+                        VueFlèche vueFlèche = new VueFlèche(flèche, this.pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-bas.png");
+                        ((Arc) arme).getFlèchesEnDéplacement().add(vueFlèche);
+                        ((Arc) arme).getFlèchesEnDéplacement().get(0).creerFlèche(this.pane);
+                        if (flèche.estDevantObstacle(flèche.getX(), flèche.getY()) || flèche.estDansLimiteTerrain(flèche.getX(), flèche.getY())) {
+                            vueFlèche.supprimerFlèche(this.pane);
+                            ((Arc) arme).getFlèchesEnDéplacement().remove(0);
+                        }
+                    }
+                }
+            }
+        }
+        if (touches.contains(KeyCode.RIGHT)){
+            for (Arme arme : personnage.getArmes()) {
+                if (arme instanceof Arc) {
+                    if (!((Arc) arme).getFlèches().isEmpty()) {
+                        Flèche flèche = ((Arc) arme).getFlèches().remove(0);
+                        ((Arc) arme).getFlèches().add(new Flèche(personnage.getPositionX() + flèche.getLargeur(), personnage.getPositionY() + (flèche.getLongueur() / 2), 30, this.environnement));
+                        VueFlèche vueFlèche = new VueFlèche(flèche, this.pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-droite.png");
+                        ((Arc) arme).getFlèchesEnDéplacement().add(vueFlèche);
+                        ((Arc) arme).getFlèchesEnDéplacement().get(0).creerFlèche(this.pane);
+                        if (flèche.estDevantObstacle(flèche.getX(), flèche.getY()) || flèche.estDansLimiteTerrain(flèche.getX(), flèche.getY())) {
+                            vueFlèche.supprimerFlèche(this.pane);
+                            ((Arc) arme).getFlèchesEnDéplacement().remove(0);
+                        }
+                    }
+                }
+            }
+        }
+        if (touches.contains(KeyCode.LEFT)){
+            for (Arme arme : personnage.getArmes()) {
+                if (arme instanceof Arc) {
+                    if (!((Arc) arme).getFlèches().isEmpty()) {
+                        Flèche flèche = ((Arc) arme).getFlèches().remove(0);
+                        ((Arc) arme).getFlèches().add(new Flèche(personnage.getPositionX(), personnage.getPositionY() + (flèche.getLongueur() / 2), 30, this.environnement));
+                        VueFlèche vueFlèche = new VueFlèche(flèche, this.pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-gauche.png");
+                        ((Arc) arme).getFlèchesEnDéplacement().add(vueFlèche);
+                        ((Arc) arme).getFlèchesEnDéplacement().get(0).creerFlèche(this.pane);
+                        if (flèche.estDevantObstacle(flèche.getX(), flèche.getY()) || flèche.estDansLimiteTerrain(flèche.getX(), flèche.getY())) {
+                            vueFlèche.supprimerFlèche(this.pane);
+                            ((Arc) arme).getFlèchesEnDéplacement().remove(0);
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }

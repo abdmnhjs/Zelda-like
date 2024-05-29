@@ -13,7 +13,7 @@
 <BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae_zeldalike.Controlleur.Controleur">
    <center>
    <Pane fx:id="pane" focusTraversable="true" prefHeight="576.0" prefWidth="1088.0">
-      <TilePane fx:id="tilePane" BorderPane.alignment="CENTER" prefColumns="34" prefHeight="576.0" prefRows="18" prefTileHeight="32" prefTileWidth="32" prefWidth="1088.0" />
+      <TilePane fx:id="tilePane" prefColumns="61" prefRows="40" prefTileHeight="32" prefTileWidth="32" />
    </Pane>
    </center>
    <top>

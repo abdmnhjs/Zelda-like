@@ -2,16 +2,22 @@ package com.example.sae_zeldalike.modele.Personnage;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Hitbox;
+import com.example.sae_zeldalike.modele.Item.Arc;
+import com.example.sae_zeldalike.modele.Item.Arme;
 import com.example.sae_zeldalike.modele.Item.Item;
 import com.example.sae_zeldalike.modele.Item.Piece;
+import com.example.sae_zeldalike.modele.Item.Flèche;
+import com.example.sae_zeldalike.modele.Limitations;
 import javafx.beans.property.*;
+
+import java.util.ArrayList;
 
 public abstract class Personnage {
 
     private String id;
     private static int compteurPersonnage=0;
-    private DoubleProperty pointVie;
-    private DoubleProperty pointAttaque;
+    private IntegerProperty pointVie;
+    private IntegerProperty pointAttaque;
     private IntegerProperty positionX;
     private IntegerProperty positionY;
     private IntegerProperty vitesseDeplacement;
@@ -19,13 +25,14 @@ public abstract class Personnage {
     private StringProperty direction;
     private final int largeur;
     private final int longueur;
+    private ArrayList<Arme> armes;
     private DoubleProperty pointViePercent = new SimpleDoubleProperty();
 
-    public Personnage( double pointVie, double pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDeplacement) {
+    public Personnage( int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDeplacement, int longueur, int largeur) {
         this.id = "P"+compteurPersonnage;
         compteurPersonnage++;
-        this.pointVie = new SimpleDoubleProperty(pointVie);
-        this.pointAttaque = new SimpleDoubleProperty(pointAttaque);
+        this.pointVie = new SimpleIntegerProperty(pointVie);
+        this.pointAttaque = new SimpleIntegerProperty(pointAttaque);
         this.positionX = new SimpleIntegerProperty(positionX);
         this.positionY = new SimpleIntegerProperty(positionY);
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
@@ -35,6 +42,7 @@ public abstract class Personnage {
         this.largeur=32;
         this.pointViePercent.bind(getPointVieProperty().divide(100.0));
         environnement.ajouterPersonnage(this);
+        this.armes = new ArrayList<>();
 
     }
 
@@ -89,20 +97,19 @@ public abstract class Personnage {
     public IntegerProperty getVitesseDeplacementProperty(){ return vitesseDeplacement;}
     public void setVitesseDeplacementProperty(int v){ vitesseDeplacement.setValue(v);}
 
-    public double getPointVie() {
+    public int getPointVie() {
         return pointVie.getValue();
     }
-    public DoubleProperty getPointVieProperty() { return pointVie;}
-    public void setPointVieProperty(double degats){
+    public IntegerProperty getPointVieProperty() { return pointVie;}
+    public void setPointVieProperty(int degats){
         pointVie.setValue(getPointVie()-degats);
     }
 
-
-    public double getPointAttaque() {
+    public int getPointAttaque() {
         return pointAttaque.getValue();
     }
-    public DoubleProperty getPointAttaqueProperty(){ return pointAttaque;}
-    public void setPointAttaqueProperty(double attaque) { pointAttaque.setValue(attaque);}
+    public IntegerProperty getPointAttaqueProperty(){ return pointAttaque;}
+    public void setPointAttaqueProperty(int attaque) { pointAttaque.setValue(attaque);}
 
     public String getId() {
         return id;
@@ -111,8 +118,9 @@ public abstract class Personnage {
     public Environnement getEnvironnement() {
         return environnement;
     }
-
-
+    public void setPointDeVie(int pointVie) {
+        this.pointVie.set(pointVie);
+    }
 
     public Hitbox hitbox(int x,int y){
         Hitbox hitbox = new Hitbox(x,y,getLargeur(),getLongueur());
@@ -121,6 +129,31 @@ public abstract class Personnage {
 
     public double getPointVieEnPercent() {
         return (double) pointVie.get() / 100.0; // Supposons que la vie maximale est 100. Ajustez en fonction de votre logique.
+    }
+
+    public ArrayList<Arme> getArmes() {
+        return this.armes;
+    }
+
+    public void ajouterArme(Arme arme){
+        this.armes.add(arme);
+    }
+
+    public void ajouterFlèche(Flèche flèche){
+        for(Arme arme : this.armes){
+            if(arme instanceof Arc){
+                ((Arc) arme).getFlèches().add(flèche);
+            }
+        }
+    }
+
+    public Arc getArc(){
+        for(Arme arme : this.armes){
+            if(arme instanceof Arc){
+                return (Arc) arme;
+            }
+        }
+        return null;
     }
 
     public DoubleProperty pointViePercentProperty() {

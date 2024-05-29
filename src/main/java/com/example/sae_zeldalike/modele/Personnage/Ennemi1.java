@@ -5,7 +5,7 @@ import com.example.sae_zeldalike.modele.Environnement.Environnement;
 public class Ennemi1 extends Personnage {
 
     public Ennemi1(Environnement environnement, int positionX, int positionY) {
-        super(100, 1, environnement, positionX, positionY, 5);
+        super(100, 1, environnement, 540, positionY, 5, 32,32);
     }
 /*
 

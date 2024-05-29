@@ -8,7 +8,7 @@ public class Arme {
     private int dégâts;
     private int rayonAttaque;
 
-    public Arme(String id, int dégâts, int rayonAttaque) {
+    public Arme(int dégâts, int rayonAttaque) {
         this.id = ""+compteurArme;
         this.dégâts = dégâts;
         this.rayonAttaque = rayonAttaque;
@@ -17,7 +17,7 @@ public class Arme {
 
     public void faireDégâts(Personnage personnage, int dégâts){
         if(dégâts <= personnage.getPointVie() && dégâts > 0){
-            //personnage.setPointDeVie(dégâts);
+            personnage.setPointDeVie(dégâts);
         }
     }
 }
