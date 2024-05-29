@@ -19,24 +19,21 @@ public class Link extends Personnage {
 
     }
 
-    public void essaiRamasserPiece(){
+    public Item essaiRamasserPiece(){
 
-        System.out.println(environnement.getItems());
-
+//        System.out.println(environnement.getItems());
+//        System.out.println("Link X= "+this.getPositionX()+" Y= "+this.getPositionY());
         for(Item item : this.environnement.getItems()){
-
             if(item instanceof Piece){
-
-
-                if((this.getPositionX()-30<= item.getPositionY() && item.getPositionY()<=this.getPositionY()+30) && (this.getPositionX()-30<= item.getPositionX() && item.getPositionX()<=this.getPositionX()+30)){
-
-                    ajouterPiece(((Piece) item).getValeur());
-                    System.out.println("valeur piece "+ ((Piece) item).getValeur());
-                    getEnvironnement().getItems().remove(item);
+//                System.out.println("X= "+item.getPositionX()+" Y= "+item.getPositionY());
+                if((this.getPositionY()-20<= item.getPositionY() && item.getPositionY()<=this.getPositionY()+20) && (this.getPositionX()-20<= item.getPositionX() && item.getPositionX()<=this.getPositionX()+20)){
+//                    System.out.println("Piece récupéré");
+                    return item;
                 }
             }
         }
-        System.out.println("Rammasage à perte");
+//        System.out.println("Rien ramassé");
+        return null;
     }
 
     public int getPortefeuille(){
@@ -49,7 +46,7 @@ public class Link extends Personnage {
     }
 
     public void ajouterPiece(int piece) {
-        portefeuille.add(piece);
+        portefeuille.setValue(portefeuille.getValue()+piece);
     }
 
 }

@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae_zeldalike.Controlleur.Controleur">
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae_zeldalike.Controlleur.Controleur">
    <center>
    <Pane fx:id="pane" focusTraversable="true" prefHeight="576.0" prefWidth="1088.0">
       <TilePane fx:id="tilePane" prefColumns="61" prefRows="40" prefTileHeight="32" prefTileWidth="32" />
    </Pane>
    </center>
    <top>
-      <HBox maxWidth="300.0" prefHeight="78.0" prefWidth="252.0" BorderPane.alignment="TOP_LEFT">
+      <HBox maxWidth="300.0" prefHeight="80.0" BorderPane.alignment="TOP_LEFT">
          <children>
             <VBox alignment="TOP_CENTER" cacheShape="false" centerShape="false" prefHeight="50.0" prefWidth="541.0" scaleShape="false" style="-fx-background-color: none;">
                <children>
-                  <HBox alignment="TOP_CENTER" cacheShape="false" centerShape="false" fillHeight="false" prefWidth="243.0" snapToPixel="false" style="-fx-background-color: none;">
+                  <HBox alignment="TOP_CENTER" cacheShape="false" centerShape="false" fillHeight="false" snapToPixel="false" style="-fx-background-color: none;">
                      <children>
-                        <ImageView id="imagePerso" fx:id="imagePerso" cache="true" fitHeight="64.0" fitWidth="64.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" HBox.hgrow="SOMETIMES">
+                        <ImageView id="imagePerso" fx:id="imagePerso" cache="true" fitHeight="86.0" fitWidth="64.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Personnage/Link/Inactif_DOWN.png" />
                            </image>
@@ -62,7 +70,7 @@
                               </ProgressBar>
                               <HBox prefWidth="199.0" style="-fx-background-color: none;">
                                  <children>
-                                    <Label id="nombrePiece" alignment="CENTER" contentDisplay="CENTER" prefWidth="20.0" text="0" textAlignment="CENTER" textOverrun="CLIP">
+                                    <Label fx:id="nombrePiece" alignment="CENTER" contentDisplay="CENTER" text="0" textAlignment="CENTER" textOverrun="CLIP">
                                        <font>
                                           <Font name="DejaVu Sans Bold" size="15.0" />
                                        </font>

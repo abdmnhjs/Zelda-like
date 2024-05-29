@@ -1,17 +1,15 @@
 package com.example.sae_zeldalike.Controlleur;
 
-import com.example.sae_zeldalike.modele.Item.Arme;
+import com.example.sae_zeldalike.modele.Item.*;
 import com.example.sae_zeldalike.modele.Personnage.*;
 
 import com.example.sae_zeldalike.Vue.VueFlèche;
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
-import com.example.sae_zeldalike.modele.Item.Arc;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import com.example.sae_zeldalike.modele.Item.Arme;
-import com.example.sae_zeldalike.modele.Item.Flèche;
 import com.example.sae_zeldalike.modele.Personnage.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -90,7 +88,16 @@ public class Clavier implements EventHandler<KeyEvent> {
             }
             personnage.setDirection("RIGHT");
         }if (touches.contains(KeyCode.J)){
-            personnage.essaiRamasserPiece();
+            Item item =  personnage.essaiRamasserPiece();
+            if (item!=null){
+                if (item instanceof Piece){
+                    personnage.ajouterPiece(((Piece) item).getValeur());
+                    personnage.getEnvironnement().supprimerItem(item);
+
+                }
+            }
+        }if (touches.contains(KeyCode.A)){
+            System.out.println(personnage.getPortefeuille());
         }
 //        personnage.setPointVieProperty(1);
 //        System.out.println("Position X : " + personnage.getPositionX() + " Position Y : " + personnage.getPositionY());

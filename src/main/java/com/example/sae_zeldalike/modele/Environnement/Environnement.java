@@ -30,6 +30,13 @@ public class Environnement {
     public void ajouterItem(Item item){
         items.add(item);
     }
+    public void supprimerItem (Item item){
+        for(int i=0;i<items.size();i++){
+            if(items.get(i).getId().equals(item.getId())){
+                items.remove(i);
+            }
+        }
+    }
 
     public ObservableList<Item> getItems() {
         return items;

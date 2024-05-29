@@ -37,7 +37,7 @@ public class VueItem {
     private void creerOmbre(Pane pane) {
         ombre = new Circle((item.getLargeur()/4));
         ombre.setFill(Color.DARKSLATEGRAY);
-        ombre.setId("#"+item.getId());
+        ombre.setId(item.getId());
 
         pane.getChildren().add(ombre);
 

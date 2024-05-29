@@ -1,26 +1,27 @@
 package com.example.sae_zeldalike.Controlleur.Observateur;
 
+import com.example.sae_zeldalike.modele.Item.Item;
 import com.example.sae_zeldalike.modele.Item.Piece;
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
 
-public class ObservateurPiece implements ListChangeListener<Piece> {
+public class ObservateurItem implements ListChangeListener<Item> {
 
 
     private Pane environnement;
     @Override
-    public void onChanged(Change<? extends Piece> change) {
+    public void onChanged(Change<? extends Item> change) {
 
         while (change.next()) {
             if (change.wasAdded()){
-                for (Piece piece : change.getAddedSubList()){
+                for (Item item : change.getAddedSubList()){
 
                 }
             }
             else if (change.wasRemoved()){
-                for (Piece piece : change.getRemoved()){
+                for (Item item : change.getRemoved()){
 
-                    this.environnement.getChildren().remove(environnement.lookup("#"+piece.getId()));
+                    this.environnement.getChildren().remove(environnement.lookup("#"+item.getId()));
                 }
             }
         }

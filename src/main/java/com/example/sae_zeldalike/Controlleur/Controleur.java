@@ -82,10 +82,13 @@ public class Controleur implements Initializable {
 
         this.barreDeVie.progressProperty().bind(link.pointViePercentProperty());
 
+//        this.nombrePiece.textProperty().bind(link.getPortefeuilleProperty().asString());
         link.getPortefeuilleProperty().addListener((obs, old, nouv)-> this.nombrePiece.setText(nouv.toString()));
 
         imagePerso.setFitHeight(64);
         imagePerso.setFitWidth(64);
+        imagePerso.maxWidth(64);
+        imagePerso.maxHeight(64);
         imagePerso.imageProperty().bind(vueLink.getSpritePersonnage().imageProperty());
         items = new ArrayList();
         vueItems = new ArrayList();
