@@ -10,11 +10,13 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.fxml.FXML;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -27,11 +29,14 @@ public class Controleur implements Initializable {
     private VueEnnemi1 vueEnnemi1;
     private Map map;
     private VueMap vueMap;
+    private Personnage personnage;
 
     @FXML
     private Pane pane;
     @FXML
     private TilePane tilePane;
+    @FXML
+    private ProgressBar barreDeVie;
 
     private Timeline gameLoop;
 
@@ -39,16 +44,36 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.map= new Map();
-        this.environnement = new Environnement(map);
+        try {
+            // Changez "path/to/your/map.json" par le chemin réel de votre fichier JSON
+            this.map = new Map("src/main/resources/1erTerrain.json");
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gérer l'erreur de manière appropriée, par exemple en affichant un message d'erreur à l'utilisateur
+        }
+         this.environnement = new Environnement(map);
         this.link = new Link(environnement, 32, 32);
+
         this.link.ajouterArme(new Arc(15, 1));
         this.link.ajouterFlèche(new Flèche(this.link.getPositionX(), this.link.getPositionY(),30, this.environnement));
         this.vueLink=new VueLink(pane, link, environnement);
         this.ennemi1=new Ennemi1(environnement,130,220);
         this.vueEnnemi1 = new VueEnnemi1(pane,ennemi1);
         vueMap = new VueMap(tilePane,map);
+//        this.barreDeVie.progressProperty().bind(personnage.pointViePercentProperty());
+
         initAnimation();
+
+        this.link.getPositionXProperty().addListener((observable, oldValue, newValue) -> {
+            this.pane.setTranslateX(700+pane.getPrefWidth()/2-link.getPositionX());
+
+        });
+        this.link.getPositionYProperty().addListener((observable, oldValue, newValue) -> {
+            this.pane.setTranslateY(50+pane.getPrefHeight()/2-link.getPositionY());
+        });
+        this.pane.setTranslateX(pane.getPrefWidth()/2-link.getPositionX());
+        this.pane.setTranslateY(pane.getPrefHeight()/2-link.getPositionY());
+
         // demarre l'animation
         gameLoop.play();
 

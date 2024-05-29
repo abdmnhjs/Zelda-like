@@ -6,10 +6,7 @@ import com.example.sae_zeldalike.modele.Item.Arc;
 import com.example.sae_zeldalike.modele.Item.Arme;
 import com.example.sae_zeldalike.modele.Item.Flèche;
 import com.example.sae_zeldalike.modele.Limitations;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 import java.util.ArrayList;
 
@@ -110,22 +107,23 @@ public abstract class Personnage implements Limitations {
     public String getId() {
         return id;
     }
+    private DoubleProperty pointViePercent = new SimpleDoubleProperty();
 
     public Environnement getEnvironnement() {
         return environnement;
     }
 
-    public boolean estDevantObstacle(int x, int y) {
-        for (int i = 0; i < this.environnement.getMap().getCoordonnéesTuilesNonTraversables().size(); i++) {
-            if (x < this.environnement.getMap().getCoordonnéesTuilesNonTraversables().get(i)[1] + 32 - 10 &&
-                    x + this.longueur - this.longueur*0.3 > this.environnement.getMap().getCoordonnéesTuilesNonTraversables().get(i)[1] &&
-                    y < this.environnement.getMap().getCoordonnéesTuilesNonTraversables().get(i)[0] + 32 - 10 &&
-                    y + this.largeur - this.longueur*0.3 > this.environnement.getMap().getCoordonnéesTuilesNonTraversables().get(i)[0]) {
-                return true;
-            }
-        }
-        return false;
-    }
+//    public boolean estDevantObstacle(int x, int y) {
+//        for (int i = 0; i < this.environnement.getMap().getCoordonnéesTuilesNonTraversables().size(); i++) {
+//            if (x < this.environnement.getMap().getCoordonnéesTuilesNonTraversables().get(i)[1] + 32 - 10 &&
+//                    x + this.longueur - this.longueur*0.3 > this.environnement.getMap().getCoordonnéesTuilesNonTraversables().get(i)[1] &&
+//                    y < this.environnement.getMap().getCoordonnéesTuilesNonTraversables().get(i)[0] + 32 - 10 &&
+//                    y + this.largeur - this.longueur*0.3 > this.environnement.getMap().getCoordonnéesTuilesNonTraversables().get(i)[0]) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     public boolean estDansLimiteTerrain(int x,int y){
         return (x < 0 || x > this.environnement.getMap().getColonne()*32 || y < 0 || y > this.environnement.getMap().getLigne()*32 || x+32 > this.environnement.getMap().getColonne()*32 ||
@@ -153,7 +151,9 @@ public abstract class Personnage implements Limitations {
         }
     }
 
-
+    public DoubleProperty pointViePercentProperty() {
+        return pointViePercent;
+    }
     public Hitbox hitbox(int x, int y){
         Hitbox hitbox = new Hitbox(x,y,getLargeur(),getLongueur());
         return hitbox;
@@ -180,4 +180,6 @@ public abstract class Personnage implements Limitations {
                 ", environnement=" + environnement +
                 '}';
     }
+
+
 }

@@ -67,5 +67,8 @@ public class Ennemi1 extends Personnage {
     }
 
 
-
+    @Override
+    public boolean estDevantObstacle(int x, int y) {
+        return false;
+    }
 }

@@ -30,4 +30,8 @@ public class Link extends Personnage {
         pieces.add(piece);
     }
 
+    @Override
+    public boolean estDevantObstacle(int x, int y) {
+        return false;
+    }
 }

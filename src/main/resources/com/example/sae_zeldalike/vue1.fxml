@@ -1,13 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.TilePane?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae_zeldalike.Controlleur.Controleur">
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae_zeldalike.Controlleur.Controleur">
     <center>
-        <Pane fx:id="pane" focusTraversable="true" prefHeight="544.0" prefWidth="1088.0">
-            <TilePane fx:id="tilePane" alignment="CENTER" prefColumns="34" prefHeight="544.0" prefRows="17" prefTileHeight="32" prefTileWidth="32" prefWidth="1088.0"/>
-        </Pane>
+        <Pane fx:id="pane"   focusTraversable="true" prefWidth="500.0" prefHeight="500.0" BorderPane.alignment="CENTER">
+            <StackPane alignment="CENTER">
+                <TilePane fx:id="tilePane" prefColumns="61" prefRows="40" prefTileHeight="32" prefTileWidth="32" />
+            </StackPane>        </Pane>
     </center>
+    <top>
+        <HBox maxWidth="300.0" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="TOP_LEFT">
+            <children>
+                <VBox alignment="TOP_CENTER" cacheShape="false" centerShape="false" prefHeight="39.0" prefWidth="541.0" scaleShape="false">
+                    <children>
+                        <HBox cacheShape="false" centerShape="false" fillHeight="false" prefHeight="58.0" prefWidth="243.0" snapToPixel="false">
+                            <children>
+                                <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="199.0">
+                                    <children>
+                                        <Label alignment="TOP_LEFT" text="Point de vie" textAlignment="CENTER" textFill="RED">
+                                            <font>
+                                                <Font name="System Bold" size="15.0" />
+                                            </font>
+                                            <VBox.margin>
+                                                <Insets left="5.0" top="5.0" />
+                                            </VBox.margin>
+                                        </Label>
+                                        <ProgressBar id="barreDeVie" fx:id="barreDeVie" blendMode="SRC_ATOP" cache="true" cacheHint="SPEED" cacheShape="false" centerShape="false" depthTest="DISABLE" prefHeight="30.0" prefWidth="150.0" progress="1.0" scaleShape="false" snapToPixel="false" style="-fx-background-radius: 200;">
+                                            <opaqueInsets>
+                                                <Insets />
+                                            </opaqueInsets>
+                                            <VBox.margin>
+                                                <Insets top="5.0" />
+                                            </VBox.margin>
+                                            <effect>
+                                                <InnerShadow choke="0.55" height="23.97" radius="14.45" width="35.83" />
+                                            </effect>
+                                        </ProgressBar>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </top>
+    <bottom>
+        <HBox alignment="TOP_CENTER" maxHeight="100.0" maxWidth="300.0" prefHeight="100.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+            <children>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4b278" height="100.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="100.0">
+                    <HBox.margin>
+                        <Insets left="3.0" right="3.0" />
+                    </HBox.margin>
+                </Rectangle>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4b278" height="100.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="100.0">
+                    <HBox.margin>
+                        <Insets left="3.0" right="3.0" />
+                    </HBox.margin>
+                </Rectangle>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4b278" height="100.0" layoutX="210.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="100.0">
+                    <HBox.margin>
+                        <Insets left="3.0" right="3.0" />
+                    </HBox.margin>
+                </Rectangle>
+            </children>
+        </HBox>
+    </bottom>
 </BorderPane>
