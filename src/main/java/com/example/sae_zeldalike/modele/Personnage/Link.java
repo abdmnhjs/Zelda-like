@@ -13,8 +13,8 @@ public class Link extends Personnage {
     private IntegerProperty portefeuille;
 
     public Link(Environnement environnement, int positionX, int positionY) {
-        super(100, 0, environnement, positionX, positionY, 5, 32,32);
 
+        super(100, 0, environnement, positionX, positionY, 5, 32,32);
         this.portefeuille= new SimpleIntegerProperty();
 
     }
@@ -22,23 +22,21 @@ public class Link extends Personnage {
     public void essaiRamasserPiece(){
 
         System.out.println(environnement.getItems());
+
         for(Item item : this.environnement.getItems()){
+
             if(item instanceof Piece){
-                System.out.println("posItem "+item.getPositionX()+"  "+item.getPositionY());
-                System.out.println("posJ "+getPositionX()+"  "+getPositionY());
-                if((this.getPositionX()-30<= item.getPositionY() && item.getPositionY()<=this.getPositionY()+30)
-                    && (this.getPositionX()-30<= item.getPositionX() && item.getPositionX()<=this.getPositionX()+30)){
 
-                    System.out.println("valeur piece "+ ((Piece) item).getValeur());
+
+                if((this.getPositionX()-30<= item.getPositionY() && item.getPositionY()<=this.getPositionY()+30) && (this.getPositionX()-30<= item.getPositionX() && item.getPositionX()<=this.getPositionX()+30)){
+
                     ajouterPiece(((Piece) item).getValeur());
-                    System.out.println("Piece ajoutée ");
-
-
+                    System.out.println("valeur piece "+ ((Piece) item).getValeur());
+                    getEnvironnement().getItems().remove(item);
                 }
             }
-            System.out.println("Rammasage à perte");
         }
-
+        System.out.println("Rammasage à perte");
     }
 
     public int getPortefeuille(){

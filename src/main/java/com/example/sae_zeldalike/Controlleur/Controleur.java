@@ -81,13 +81,15 @@ public class Controleur implements Initializable {
         this.link.ajouterFlèche(new Flèche(this.link.getPositionX(), this.link.getPositionY(),30, this.environnement));
 
         this.barreDeVie.progressProperty().bind(link.pointViePercentProperty());
-//        this.nombrePiece.textProperty().bind(personnage.getPortefeuilleProperty().asString());
+
+        link.getPortefeuilleProperty().addListener((obs, old, nouv)-> this.nombrePiece.setText(nouv.toString()));
+
         imagePerso.setFitHeight(64);
         imagePerso.setFitWidth(64);
         imagePerso.imageProperty().bind(vueLink.getSpritePersonnage().imageProperty());
         items = new ArrayList();
         vueItems = new ArrayList();
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 10; i++) {
             this.item = new Piece(environnement);
             this.vueItem = new VueItem(pane, item);
             items.add(item);
