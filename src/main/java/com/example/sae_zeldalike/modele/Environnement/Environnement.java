@@ -30,8 +30,18 @@ public class Environnement {
     public void ajouterItem(Item item){
         items.add(item);
     }
+
     public ObservableList<Item> getItems() {
         return items;
+    }
+
+    public Item getItem(String id){
+        for (Item item : getItems()){
+            if (id==item.getId()){
+                return item;
+            }
+        }
+        return null;
     }
 
     public ObservableList<Personnage> getPersonnages() {

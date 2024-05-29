@@ -65,6 +65,7 @@ public class Controleur implements Initializable {
         this.vueEnnemi1 = new VueEnnemi1(pane,ennemi1);
         vueMap = new VueMap(tilePane,map);
         this.barreDeVie.progressProperty().bind(personnage.pointViePercentProperty());
+//        personnage.getPieces().addListener((obs,old,nouv)->new );
 
         imagePerso.setFitHeight(64);
         imagePerso.setFitWidth(64);

@@ -85,7 +85,6 @@ public class VueItem {
             case 9->{
                 numeroImageItem=1;
                 spriteItem.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Item/Piece/goldCoin"+getNumeroImageItem()+".png"));
-
             }
         }
     }
