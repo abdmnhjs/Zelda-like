@@ -1,0 +1,157 @@
+Index: src/main/java/modele/Personnage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package modele;\n\nimport java.util.Random;\npublic abstract class Personnage {\n\n    private String id;\n    private static int compteurPersonnage=0;\n    private int pointVie;\n    private int pointAttaque;\n    private int positionX;\n    private int positionY;\n    private int vitesseDéplacement;\n    protected Environnement environnement;\n\n    public Personnage( int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDéplacement) {\n        this.id = \"P\"+compteurPersonnage;\n        compteurPersonnage++;\n        this.pointVie = pointVie;\n        this.pointAttaque = pointAttaque;\n        this.positionX = positionX;\n        this.positionY = positionY;\n        this.vitesseDéplacement = vitesseDéplacement;\n        this.environnement = environnement;\n    }\n\n    public Personnage( int pointVie, int pointAttaque, Environnement environnement, int vitesseDéplacement) {\n        this.id = \"P\"+compteurPersonnage;\n        compteurPersonnage++;\n        this.pointVie = pointVie;\n        this.pointAttaque = pointAttaque;\n        this.environnement = environnement;\n        Random random = new Random();\n        this.positionX = random.nextInt(environnement.getWidth() - 1);\n        this.positionY = random.nextInt(environnement.getHeight() - 1);\n        this.vitesseDéplacement = vitesseDéplacement;\n\n    }\n\n    public int getPositionX() {\n        return positionX;\n    }\n\n    public void setPositionX(int positionX) {\n        this.positionX = positionX;\n    }\n\n    public int getPositionY() {\n        return positionY;\n    }\n\n    public void setPositionY(int positionY) {\n        this.positionY = positionY;\n    }\n\n    public int getVitesseDéplacement() {\n        return vitesseDéplacement;\n    }\n\n    public int getPointVie() {\n        return pointVie;\n    }\n    public void setPointVie(int dégâts){\n        this.pointVie -= dégâts;\n    }\n\n    public int getPointAttaque() {\n        return pointAttaque;\n    }\n    public void faireDégâts(Personnage personnage){\n        if(this.pointAttaque <= personnage.getPointVie()){\n            personnage.setPointVie(this.pointAttaque);\n        }\n    }\n\n    public String getId() {\n        return id;\n    }\n\n    //public abstract void seDeplace();\n\n\n    @Override\n    public String toString() {\n        return \"Personnage{\" +\n                \"id='\" + id + '\\'' +\n                \", pointVie=\" + pointVie +\n                \", pointAttaque=\" + pointAttaque +\n                \", positionX=\" + positionX +\n                \", positionY=\" + positionY +\n                \", vitesseDéplacement=\" + vitesseDéplacement +\n                \", environnement=\" + environnement +\n                '}';\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/modele/Personnage.java b/src/main/java/modele/Personnage.java
+--- a/src/main/java/modele/Personnage.java	
++++ b/src/main/java/modele/Personnage.java	
+@@ -76,9 +76,11 @@
+         return id;
+     }
+ 
+-    //public abstract void seDeplace();
++    public abstract void agit();
+ 
+-
++    public boolean estVivant() {
++        return this.pointVie>0;
++    }
+     @Override
+     public String toString() {
+         return "Personnage{" +
+Index: src/main/java/modele/Environnement.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package modele;\n\nimport javafx.beans.Observable;\nimport javafx.collections.FXCollections;\nimport javafx.collections.ObservableList;\n\nimport java.util.ArrayList;\n\npublic class Environnement {\n\n    private String id;\n    private static int compteurEnvironnement=0;\n    private ObservableList<Personnage> personnages;\n    private int width;\n    private int height;\n    private int[][] tableau;\n\n    public Environnement(int width,int height){\n\n        this.id = \"E\"+compteurEnvironnement;\n        compteurEnvironnement++;\n        this.width = width;\n        this.height = height;\n        this.tableau = new int[this.width][this.height];\n        this.personnages= FXCollections.observableArrayList();\n    }\n\n    public void ajouterPersonnage(Personnage personnage){\n        personnages.add(personnage);\n    }\n\n    public ObservableList<Personnage> getPersonnages() {\n        return personnages;\n    }\n\n    public int[][] getTableau() {\n        return tableau;\n    }\n\n    public void setTableau() {\n\n        for (int ligne=0;ligne< tableau.length;ligne++){\n            int nbrRandom;\n            for (int colonne=0;colonne<tableau[ligne].length;colonne++){\n                nbrRandom = (int)(Math.random()*3);\n                tableau[ligne][colonne]=nbrRandom;\n            }\n        }\n    }\n\n    public String getId() {\n        return id;\n    }\n    public int getHeight() {\n        return height;\n    }\n\n    public int getWidth() {\n        return width;\n    }\n\n    public boolean estDansTerrain(int x, int y){\n        return (0 <= x && x<this.width && 0<=y && y< this.height);\n    }\n\n    @Override\n    public String toString() {\n        return \"Environnement{\" +\n                \"id='\" + id + '\\'' +\n                \", personnages=\" + personnages +\n                \", width=\" + width +\n                \", height=\" + height +\n                '}';\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/modele/Environnement.java b/src/main/java/modele/Environnement.java
+--- a/src/main/java/modele/Environnement.java	
++++ b/src/main/java/modele/Environnement.java	
+@@ -25,7 +25,7 @@
+         this.personnages= FXCollections.observableArrayList();
+     }
+ 
+-    public void ajouterPersonnage(Personnage personnage){
++    public void ajouter(Personnage personnage){
+         personnages.add(personnage);
+     }
+ 
+@@ -37,12 +37,23 @@
+         return tableau;
+     }
+ 
++    public void afficherTableau() {
++        for (int ligne=0;ligne< this.getWidth();ligne++){
++            for (int colonne=0;colonne<this.getHeight();colonne++){
++                System.out.print(this.getTableau()[ligne][colonne]+"  ");
++                if ((colonne == this.getHeight()-1)) {
++                    System.out.println();
++                }
++
++            }
++        }
++    }
++
+     public void setTableau() {
+-
+         for (int ligne=0;ligne< tableau.length;ligne++){
+             int nbrRandom;
+             for (int colonne=0;colonne<tableau[ligne].length;colonne++){
+-                nbrRandom = (int)(Math.random()*3);
++                nbrRandom = (int)(Math.random()*2);
+                 tableau[ligne][colonne]=nbrRandom;
+             }
+         }
+@@ -54,7 +65,6 @@
+     public int getHeight() {
+         return height;
+     }
+-
+     public int getWidth() {
+         return width;
+     }
+@@ -63,6 +73,21 @@
+         return (0 <= x && x<this.width && 0<=y && y< this.height);
+     }
+ 
++    public void unTour(){
++
++        for(int i=0;i<personnages.size(); i++){
++            Personnage p = personnages.get(i);
++            p.agit();
++        }
++        for(int i=personnages.size()-1; i>=0;i--){
++            Personnage p = personnages.get(i);
++            if(!p.estVivant()){
++                System.out.println("mort de : " + p);
++                //acteurs.remove(i);
++            }
++        }
++    }
++
+     @Override
+     public String toString() {
+         return "Environnement{" +
+@@ -72,4 +97,4 @@
+                 ", height=" + height +
+                 '}';
+     }
+-}
++}
+\ No newline at end of file
+Index: src/main/java/modele/Ennemi1.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package modele;\n\npublic class Ennemi1 extends Personnage {\n\n    public Ennemi1(int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY) {\n        super(100, pointAttaque, environnement, positionX, positionY, 2);\n    }\n\n    public Ennemi1(int pointVie, int pointAttaque, Environnement environnement) {\n        super(100, pointAttaque, environnement, 2);\n    }\n\n\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/modele/Ennemi1.java b/src/main/java/modele/Ennemi1.java
+--- a/src/main/java/modele/Ennemi1.java	
++++ b/src/main/java/modele/Ennemi1.java	
+@@ -2,14 +2,17 @@
+ 
+ public class Ennemi1 extends Personnage {
+ 
+-    public Ennemi1(int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY) {
+-        super(100, pointAttaque, environnement, positionX, positionY, 2);
++    public Ennemi1(Environnement environnement, int positionX, int positionY) {
++        super(100, 10, environnement, positionX, positionY, 2);
+     }
+ 
+-    public Ennemi1(int pointVie, int pointAttaque, Environnement environnement) {
+-        super(100, pointAttaque, environnement, 2);
++    public Ennemi1(Environnement environnement) {
++        super(100, 10, environnement, 2);
+     }
+ 
++    @Override
++    public void agit() {
+ 
++    }
+ }
+ 
+Index: src/main/java/modele/Link.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package modele;\n\npublic class Link extends Personnage {\n\n\n    public Link(int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY) {\n        super(10, pointAttaque, environnement, positionX, positionY, 2);\n    }\n\n    public Link(int pointVie, int pointAttaque, Environnement environnement) {\n        super(10, pointAttaque, environnement, 2);\n    }\n\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/modele/Link.java b/src/main/java/modele/Link.java
+--- a/src/main/java/modele/Link.java	
++++ b/src/main/java/modele/Link.java	
+@@ -12,4 +12,8 @@
+     }
+ 
+ 
++    @Override
++    public void agit() {
++
++    }
+ }

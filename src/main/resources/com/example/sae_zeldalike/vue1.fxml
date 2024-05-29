@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae_zeldalike.Controlleur.Controleur">
+   <center>
+   <Pane fx:id="pane" focusTraversable="true" prefHeight="576.0" prefWidth="1088.0">
+      <TilePane fx:id="tilePane" BorderPane.alignment="CENTER" prefColumns="34" prefHeight="576.0" prefRows="18" prefTileHeight="32" prefTileWidth="32" prefWidth="1088.0" />
+   </Pane>
+   </center>
+   <top>
+      <HBox maxWidth="300.0" prefHeight="78.0" prefWidth="252.0" BorderPane.alignment="TOP_LEFT">
+         <children>
+            <VBox alignment="TOP_CENTER" cacheShape="false" centerShape="false" prefHeight="50.0" prefWidth="541.0" scaleShape="false" style="-fx-background-color: none;">
+               <children>
+                  <HBox alignment="TOP_CENTER" cacheShape="false" centerShape="false" fillHeight="false" prefWidth="243.0" snapToPixel="false" style="-fx-background-color: none;">
+                     <children>
+                        <ImageView id="imagePerso" fx:id="imagePerso" cache="true" fitHeight="64.0" fitWidth="64.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" HBox.hgrow="SOMETIMES">
+                           <image>
+                              <Image url="@Personnage/Link/Inactif_DOWN.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+                        <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="228.0" style="-fx-background-color: none;">
+                           <children>
+                              <Label alignment="TOP_LEFT" text="Point de vie" textAlignment="CENTER" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <ProgressBar id="barreDeVie" fx:id="barreDeVie" blendMode="SRC_ATOP" cache="true" cacheHint="SPEED" depthTest="DISABLE" prefHeight="25.0" prefWidth="150.0" progress="1.0" snapToPixel="false">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                                 <effect>
+                                    <ColorAdjust brightness="-0.17" contrast="0.38" hue="0.86">
+                                       <input>
+                                          <InnerShadow choke="0.14" height="35.82" radius="20.377499999999998" width="47.69">
+                                             <color>
+                                                <Color red="0.22368420660495758" green="0.20504385232925415" blue="0.20504385232925415" />
+                                             </color>
+                                          </InnerShadow>
+                                       </input>
+                                    </ColorAdjust>
+                                 </effect>
+                              </ProgressBar>
+                              <HBox prefWidth="199.0" style="-fx-background-color: none;">
+                                 <children>
+                                    <Label id="nombrePiece" alignment="CENTER" contentDisplay="CENTER" prefWidth="20.0" text="0" textAlignment="CENTER" textOverrun="CLIP">
+                                       <font>
+                                          <Font name="DejaVu Sans Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@Map/55.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets left="-0.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </top>
+   <bottom>
+      <HBox alignment="TOP_CENTER" maxHeight="100.0" maxWidth="300.0" prefHeight="100.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4b278" height="100.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="100.0">
+               <HBox.margin>
+                  <Insets left="3.0" right="3.0" />
+               </HBox.margin>
+            </Rectangle>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4b278" height="100.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="100.0">
+               <HBox.margin>
+                  <Insets left="3.0" right="3.0" />
+               </HBox.margin>
+            </Rectangle>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4b278" height="100.0" layoutX="210.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="100.0">
+               <HBox.margin>
+                  <Insets left="3.0" right="3.0" />
+               </HBox.margin>
+            </Rectangle>
+         </children>
+      </HBox>
+   </bottom>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
+</BorderPane>

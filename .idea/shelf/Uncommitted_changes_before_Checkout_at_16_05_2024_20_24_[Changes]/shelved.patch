@@ -1,0 +1,73 @@
+Index: src/main/java/com/example/sae_zeldalike/Controleur.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.sae_zeldalike;\n\nimport com.example.sae_zeldalike.modele.Environnement;\nimport com.example.sae_zeldalike.modele.Link;\nimport com.example.sae_zeldalike.modele.Personnage;\nimport javafx.fxml.Initializable;\nimport javafx.scene.input.KeyCode;\nimport javafx.scene.input.KeyEvent;\nimport javafx.scene.layout.Pane;\nimport javafx.scene.paint.Color;\nimport javafx.fxml.FXML;\nimport javafx.scene.shape.Circle;\n\nimport java.net.URL;\nimport java.util.ResourceBundle;\n\npublic class Controleur implements Initializable {\n    private Environnement environnement;\n    private Link link;\n\n    @FXML\n    private Pane terrain;\n\n    private Clavier clavier;\n\n    public Clavier getClavier(){\n        return this.clavier;\n    }\n\n    public void creerSprite(Personnage personnage){\n        Circle circle = new Circle(5);\n        circle.setFill(Color.BLACK);\n        circle.setId(personnage.getId());\n        circle.translateXProperty().bind(personnage.getPositionXProperty());\n        circle.translateYProperty().bind(personnage.getPositionYProperty());\n        this.terrain.getChildren().add(circle);\n    }\n\n    @Override\n    public void initialize(URL url, ResourceBundle resourceBundle) {\n        this.environnement = new Environnement();\n        this.link = new Link(environnement, 5, 5);\n        creerSprite(link);\n        this.clavier = new Clavier(link);\n        KeyEvent keyEvent = new KeyEvent(KeyEvent.KEY_PRESSED, \"\", \"\", KeyCode.Z, false, false, false, false);\n        this.clavier.handle(keyEvent);\n        this.terrain.setOnKeyPressed(clavier);\n        this.terrain.requestFocus();\n    }\n\n}\n
+===================================================================
+diff --git a/src/main/java/com/example/sae_zeldalike/Controleur.java b/src/main/java/com/example/sae_zeldalike/Controleur.java
+--- a/src/main/java/com/example/sae_zeldalike/Controleur.java	
++++ b/src/main/java/com/example/sae_zeldalike/Controleur.java	
+@@ -2,6 +2,7 @@
+ 
+ import com.example.sae_zeldalike.modele.Environnement;
+ import com.example.sae_zeldalike.modele.Link;
++import com.example.sae_zeldalike.modele.Map;
+ import com.example.sae_zeldalike.modele.Personnage;
+ import javafx.fxml.Initializable;
+ import javafx.scene.input.KeyCode;
+@@ -17,7 +18,7 @@
+ public class Controleur implements Initializable {
+     private Environnement environnement;
+     private Link link;
+-
++    private Map map;
+     @FXML
+     private Pane terrain;
+ 
+@@ -38,7 +39,8 @@
+ 
+     @Override
+     public void initialize(URL url, ResourceBundle resourceBundle) {
+-        this.environnement = new Environnement();
++        this.map = new Map();
++        this.environnement = new Environnement(map);
+         this.link = new Link(environnement, 5, 5);
+         creerSprite(link);
+         this.clavier = new Clavier(link);
+Index: src/main/java/com/example/sae_zeldalike/Clavier.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.sae_zeldalike;\n\nimport com.example.sae_zeldalike.modele.Personnage;\nimport javafx.event.EventHandler;\nimport javafx.scene.input.KeyCode;\nimport javafx.scene.input.KeyEvent;\n\npublic class Clavier implements EventHandler<KeyEvent> {\n\n    private Personnage personnage;\n\n    public Clavier(Personnage p){\n        this.personnage=p;\n    }\n\n    @Override\n    public void handle(KeyEvent keyEvent) {\n        if(keyEvent.getCode() == KeyCode.Z){\n            personnage.setPositionYProperty(personnage.getPositionY() - personnage.getVitesseDeplacement());\n        }\n        if(keyEvent.getCode() == KeyCode.S){\n            personnage.setPositionYProperty(personnage.getPositionY() + personnage.getVitesseDeplacement());\n        }\n        if(keyEvent.getCode() == KeyCode.Q){\n            personnage.setPositionXProperty(personnage.getPositionX() - personnage.getVitesseDeplacement());\n        }\n        if(keyEvent.getCode() == KeyCode.D){\n            personnage.setPositionXProperty(personnage.getPositionX() + personnage.getVitesseDeplacement());\n        }\n\n        /*switch (keyEvent.getCode()){\n            case Z -> {\n                personnage.setPositionYProperty(personnage.getPositionY() - personnage.getVitesseDeplacement());\n            }\n            case S -> {\n                personnage.setPositionYProperty(personnage.getPositionY() + personnage.getVitesseDeplacement());\n            }\n            case Q -> {\n                personnage.setPositionXProperty(personnage.getPositionX() - personnage.getVitesseDeplacement());\n            }\n            case D -> {\n                personnage.setPositionXProperty(personnage.getPositionX() + personnage.getVitesseDeplacement());\n            }\n        }*/\n    }\n}\n
+===================================================================
+diff --git a/src/main/java/com/example/sae_zeldalike/Clavier.java b/src/main/java/com/example/sae_zeldalike/Clavier.java
+--- a/src/main/java/com/example/sae_zeldalike/Clavier.java	
++++ b/src/main/java/com/example/sae_zeldalike/Clavier.java	
+@@ -15,20 +15,8 @@
+ 
+     @Override
+     public void handle(KeyEvent keyEvent) {
+-        if(keyEvent.getCode() == KeyCode.Z){
+-            personnage.setPositionYProperty(personnage.getPositionY() - personnage.getVitesseDeplacement());
+-        }
+-        if(keyEvent.getCode() == KeyCode.S){
+-            personnage.setPositionYProperty(personnage.getPositionY() + personnage.getVitesseDeplacement());
+-        }
+-        if(keyEvent.getCode() == KeyCode.Q){
+-            personnage.setPositionXProperty(personnage.getPositionX() - personnage.getVitesseDeplacement());
+-        }
+-        if(keyEvent.getCode() == KeyCode.D){
+-            personnage.setPositionXProperty(personnage.getPositionX() + personnage.getVitesseDeplacement());
+-        }
+ 
+-        /*switch (keyEvent.getCode()){
++        switch (keyEvent.getCode()){
+             case Z -> {
+                 personnage.setPositionYProperty(personnage.getPositionY() - personnage.getVitesseDeplacement());
+             }
+@@ -41,6 +29,6 @@
+             case D -> {
+                 personnage.setPositionXProperty(personnage.getPositionX() + personnage.getVitesseDeplacement());
+             }
+-        }*/
++        }
+     }
+ }

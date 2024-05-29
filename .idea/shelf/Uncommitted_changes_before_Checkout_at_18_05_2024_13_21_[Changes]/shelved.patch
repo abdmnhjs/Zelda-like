@@ -1,0 +1,77 @@
+Index: src/main/java/com/example/sae_zeldalike/modele/Map.java
+===================================================================
+diff --git a/src/main/java/com/example/sae_zeldalike/modele/Map.java b/src/main/java/com/example/sae_zeldalike/modele/Environnement/Map.java
+rename from src/main/java/com/example/sae_zeldalike/modele/Map.java
+rename to src/main/java/com/example/sae_zeldalike/modele/Environnement/Map.java
+--- a/src/main/java/com/example/sae_zeldalike/modele/Map.java	
++++ b/src/main/java/com/example/sae_zeldalike/modele/Environnement/Map.java	
+@@ -1,4 +1,4 @@
+-package com.example.sae_zeldalike.modele;
++package com.example.sae_zeldalike.modele.Environnement;
+ 
+ public class Map {
+ 
+Index: src/main/java/com/example/sae_zeldalike/Controleur.java
+===================================================================
+diff --git a/src/main/java/com/example/sae_zeldalike/Controleur.java b/src/main/java/com/example/sae_zeldalike/modele/Controlleur/Controlleur.java
+rename from src/main/java/com/example/sae_zeldalike/Controleur.java
+rename to src/main/java/com/example/sae_zeldalike/modele/Controlleur/Controlleur.java
+--- a/src/main/java/com/example/sae_zeldalike/Controleur.java	
++++ b/src/main/java/com/example/sae_zeldalike/modele/Controlleur/Controlleur.java	
+@@ -1,9 +1,9 @@
+-package com.example.sae_zeldalike;
++package com.example.sae_zeldalike.modele.Controlleur;
+ 
+ import com.example.sae_zeldalike.Vue.VueMap;
+-import com.example.sae_zeldalike.modele.Map;
+-import com.example.sae_zeldalike.modele.Environnement;
+-import com.example.sae_zeldalike.modele.Link;
++import com.example.sae_zeldalike.modele.Environnement.Map;
++import com.example.sae_zeldalike.modele.Environnement.Environnement;
++import com.example.sae_zeldalike.modele.Personnage.Link;
+ import javafx.fxml.Initializable;
+ import javafx.scene.layout.Pane;
+ import javafx.scene.layout.TilePane;
+@@ -14,7 +14,7 @@
+ import java.net.URL;
+ import java.util.ResourceBundle;
+ 
+-public class Controleur implements Initializable {
++public class Controlleur implements Initializable {
+ 
+     private Environnement environnement;
+     private Link link;
+Index: src/main/java/com/example/sae_zeldalike/Vue/VueMap.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.sae_zeldalike.Vue;\n\nimport com.example.sae_zeldalike.modele.Map;\nimport javafx.scene.image.Image;\nimport javafx.scene.image.ImageView;\nimport javafx.scene.layout.TilePane;\n\npublic class VueMap {\n\n    private ImageView imageView;\n    private Image mur;\n    private Image sol;\n    private Image piece;\n    private TilePane tilePane;\n    private Map map;\n\n    public VueMap(TilePane tilePane, Map map) {\n\n        this.tilePane=tilePane;\n        this.map=map;\n        this.mur= new Image(\"file:src/main/resources/com/example/sae_zeldalike/Map/54.png\");\n        this.sol = new Image(\"file:src/main/resources/com/example/sae_zeldalike/Map/11.png\");\n        this.piece = new Image(\"file:src/main/resources/com/example/sae_zeldalike/Map/55.png\");\n\n\n        genererMap();\n    }\n\n\n    public void genererMap(){\n        for (int i = 0; i < map.getMap().length;i++){\n            imageView = new ImageView();\n            switch (map.getMap()[i]){\n                case 11 -> imageView.setImage(mur);\n                case 54 -> imageView.setImage(sol);\n                case 55 -> imageView.setImage(piece);\n            }\n            this.tilePane.getChildren().add(imageView);\n        }\n    }\n}\n
+===================================================================
+diff --git a/src/main/java/com/example/sae_zeldalike/Vue/VueMap.java b/src/main/java/com/example/sae_zeldalike/Vue/VueMap.java
+--- a/src/main/java/com/example/sae_zeldalike/Vue/VueMap.java	
++++ b/src/main/java/com/example/sae_zeldalike/Vue/VueMap.java	
+@@ -1,6 +1,6 @@
+ package com.example.sae_zeldalike.Vue;
+ 
+-import com.example.sae_zeldalike.modele.Map;
++import com.example.sae_zeldalike.modele.Environnement.Map;
+ import javafx.scene.image.Image;
+ import javafx.scene.image.ImageView;
+ import javafx.scene.layout.TilePane;
+Index: src/main/java/com/example/sae_zeldalike/Clavier.java
+===================================================================
+diff --git a/src/main/java/com/example/sae_zeldalike/Clavier.java b/src/main/java/com/example/sae_zeldalike/modele/Controlleur/Clavier.java
+rename from src/main/java/com/example/sae_zeldalike/Clavier.java
+rename to src/main/java/com/example/sae_zeldalike/modele/Controlleur/Clavier.java
+--- a/src/main/java/com/example/sae_zeldalike/Clavier.java	
++++ b/src/main/java/com/example/sae_zeldalike/modele/Controlleur/Clavier.java	
+@@ -1,8 +1,7 @@
+-package com.example.sae_zeldalike;
++package com.example.sae_zeldalike.modele.Controlleur;
+ 
+-import com.example.sae_zeldalike.modele.Personnage;
++import com.example.sae_zeldalike.modele.Personnage.Personnage;
+ import javafx.event.EventHandler;
+-import javafx.fxml.FXML;
+ import javafx.scene.input.KeyEvent;
+ 
+ public class Clavier implements EventHandler<KeyEvent> {
