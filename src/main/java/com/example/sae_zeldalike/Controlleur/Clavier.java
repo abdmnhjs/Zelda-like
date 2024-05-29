@@ -15,10 +15,10 @@ import java.util.HashSet;
 
 public class Clavier implements EventHandler<KeyEvent> {
 
-    private Personnage personnage;
+    private Link personnage;
     private HashSet<KeyCode> touches;
 
-    public Clavier(Personnage p) {
+    public Clavier(Link p) {
         this.personnage = p;
         this.touches = new HashSet<>();
     }
@@ -34,7 +34,7 @@ public class Clavier implements EventHandler<KeyEvent> {
             touches.remove(keyEvent.getCode());
         }
         interactionTouche();
-        if (touches.contains(null)){
+        if (touches.isEmpty()){
             personnage.setDirection("Inactif_"+personnage.getDirection());
         }
     }
@@ -74,9 +74,11 @@ public class Clavier implements EventHandler<KeyEvent> {
                 personnage.setPositionXProperty(personnage.getPositionX() + personnage.getVitesseDeplacement());
             }
             personnage.setDirection("RIGHT");
+        }if (touches.contains(KeyCode.J)){
+            personnage.essaiRamasserPiece();
         }
-                personnage.setPointVieProperty(1);
-                System.out.println("Position X : " + personnage.getPositionX() + " Position Y : " + personnage.getPositionY());
+//        personnage.setPointVieProperty(1);
+//        System.out.println("Position X : " + personnage.getPositionX() + " Position Y : " + personnage.getPositionY());
 
     }
 

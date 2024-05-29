@@ -5,6 +5,7 @@ public class Map {
     private int[][] map;
     private int ligne;
     private int colonne;
+    private final int tailleTuile;
 
     public Map(){
         this.map = new int[][] {
@@ -32,6 +33,7 @@ public class Map {
         this.ligne=18;
 
         this.colonne=34;
+        this.tailleTuile=32;
 
     }
 
@@ -39,7 +41,14 @@ public class Map {
         return map;
     }
 
-    public int getTuile(int posX,int posY) { return map[posY][posX];}
+    public int getValeurTuile(int posX,int posY) { return map[posY][posX];}
+
+    public boolean verifValeurTuile(int val,int x,int y) {
+        return map[y][x]==val;
+    }
+    public int getTailleTuile(){
+        return tailleTuile;
+    }
 
     public int getLigne() {
         return ligne;

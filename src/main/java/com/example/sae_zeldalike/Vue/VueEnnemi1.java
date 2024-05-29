@@ -3,7 +3,9 @@ package com.example.sae_zeldalike.Vue;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi1;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 public class VueEnnemi1 {
 

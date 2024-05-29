@@ -2,6 +2,8 @@ package com.example.sae_zeldalike.modele.Personnage;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Hitbox;
+import com.example.sae_zeldalike.modele.Item.Item;
+import com.example.sae_zeldalike.modele.Item.Piece;
 import javafx.beans.property.*;
 
 public abstract class Personnage {
@@ -32,6 +34,7 @@ public abstract class Personnage {
         this.longueur=32;
         this.largeur=32;
         this.pointViePercent.bind(getPointVieProperty().divide(100.0));
+        environnement.ajouterPersonnage(this);
 
     }
 
@@ -95,7 +98,6 @@ public abstract class Personnage {
     }
 
 
-
     public double getPointAttaque() {
         return pointAttaque.getValue();
     }
@@ -109,6 +111,8 @@ public abstract class Personnage {
     public Environnement getEnvironnement() {
         return environnement;
     }
+
+
 
     public Hitbox hitbox(int x,int y){
         Hitbox hitbox = new Hitbox(x,y,getLargeur(),getLongueur());

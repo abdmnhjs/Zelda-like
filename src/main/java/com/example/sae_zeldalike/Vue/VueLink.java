@@ -1,26 +1,29 @@
 package com.example.sae_zeldalike.Vue;
 
 import com.example.sae_zeldalike.Controlleur.Clavier;
+import com.example.sae_zeldalike.modele.Personnage.Link;
 import com.example.sae_zeldalike.modele.Personnage.Personnage;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 
 
 public class VueLink {
 
-    private Personnage personnage;
+    private Link personnage;
     private ImageView spritePersonnage;
     private int numeroImagePersonnage;
     private StringProperty direction;
     private Clavier clavier;
     private Rectangle rectangle;
 
-    public VueLink(Pane pane, Personnage personnage) {
+    public VueLink(Pane pane, Link personnage) {
 
         this.clavier = new Clavier(personnage);
         pane.addEventFilter(KeyEvent.KEY_PRESSED,clavier);

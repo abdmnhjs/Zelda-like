@@ -5,16 +5,16 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public class Hitbox {
 
-    private IntegerProperty x;
-    private IntegerProperty y;
+    private int x;
+    private int y;
     private int largeur;
     private int longueur;
 
 
 
     public Hitbox(int x, int y, int largeur, int longueur) {
-        this.x = new SimpleIntegerProperty(x);
-        this.y = new SimpleIntegerProperty(y);
+        this.x = x;
+        this.y = y;
         this.largeur=largeur;
         this.longueur=longueur;
 
@@ -34,23 +34,17 @@ public class Hitbox {
         return (getY()+getLongueur()-7)/getLongueur();
     }
 
-    public IntegerProperty getXProperty(){
+    public int getX(){
         return x;
     }
-    public int getX(){
-        return x.getValue();
-    }
     public void setXProperty(int x) {
-        this.x.setValue(x);
-    }
-    public IntegerProperty getYProperty(){
-        return y;
+        this.x=x;
     }
     public int getY(){
-        return y.getValue();
+        return y;
     }
     public void setYProperty(int y) {
-        this.y.setValue(y);
+        this.y=y;
     }
     public int getLargeur() {
         return largeur;

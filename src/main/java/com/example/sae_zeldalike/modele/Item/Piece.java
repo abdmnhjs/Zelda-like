@@ -1,14 +1,17 @@
 package com.example.sae_zeldalike.modele.Item;
 
-public class Piece {
+import com.example.sae_zeldalike.modele.Environnement.Environnement;
 
-    private static int compteurPiece=0;
-    private String id;
+public class Piece extends Item {
 
-    public Piece(){
-        this.id="P"+compteurPiece;
-        compteurPiece++;
+    private final int valeur;
+
+    public Piece(Environnement environnement, int positionX, int positionY) {
+        super(environnement, positionX, positionY);
+        this.valeur = 5;
     }
-
-    public String getId() {return id;}
+    public Piece(Environnement environnement) {
+        super(environnement);
+        this.valeur = 5;
+    }
 }
