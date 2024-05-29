@@ -13,14 +13,14 @@ public class Flèche extends Arme implements Limitations {
     private int longueur;
     private int largeur;
 
-    public Flèche(int x, int y, int dégâts, int vitesse, Environnement environnement){
-        super(dégâts, 1);
+    public Flèche(int x, int y, int dégâts, Environnement environnement){
+        super(dégâts, 0);
         this.xProperty = new SimpleIntegerProperty(x);
         this.yProperty = new SimpleIntegerProperty(y);
-        this.vitesseProperty = new SimpleIntegerProperty(vitesse);
+        this.vitesseProperty = new SimpleIntegerProperty(30);
         this.environnement = environnement;
-        this.longueur = 15;
-        this.largeur = 15;
+        this.longueur = 20;
+        this.largeur = 20;
     }
 
     public boolean estDevantObstacle(int x, int y) {
@@ -40,6 +40,24 @@ public class Flèche extends Arme implements Limitations {
                 y+32 > this.environnement.getMap().getLigne()*32);
 
     }
+
+    public void seDeplacerHaut(){
+        this.yProperty.setValue(this.yProperty.getValue() - this.vitesseProperty.getValue());
+    }
+
+    public void seDeplacerBas(){
+        this.yProperty.setValue(this.yProperty.getValue() + this.vitesseProperty.getValue());
+    }
+
+    public void seDeplacerDroite(){
+        this.xProperty.setValue(this.xProperty.getValue() + this.vitesseProperty.getValue());
+    }
+
+    public void seDeplacerGauche(){
+        this.xProperty.setValue(this.xProperty.getValue() - this.vitesseProperty.getValue());
+    }
+
+
 
     public int getLongueur() {
         return this.longueur;

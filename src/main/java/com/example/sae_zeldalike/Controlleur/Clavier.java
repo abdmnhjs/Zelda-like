@@ -81,28 +81,68 @@ public class Clavier implements EventHandler<KeyEvent> {
                 personnage.setDirection("RIGHT");
             }
             case UP -> {
-                if (personnage.getDirection().equals("UP")) {
-                    System.out.println("a lancé flèche");
-                    for (Arme arme : personnage.getArmes()) {
-                        if (arme instanceof Arc) {
-                            System.out.println("avant avant : " + ((Arc) arme).getFlèches());
-                            if (!((Arc) arme).getFlèches().isEmpty()) {
-                                Flèche flèche = ((Arc) arme).getFlèches().remove(0);
-                                System.out.println("avant : " + ((Arc) arme).getFlèches());
-                                ((Arc) arme).getFlèches().add(new Flèche(personnage.getPositionX(), personnage.getPositionY(), 5, 5, this.environnement));
-                                System.out.println("après : " + ((Arc) arme).getFlèches());
-                                flèche.setxProperty(personnage.getPositionX() + 16);
-                                VueFlèche vueFlèche = new VueFlèche(flèche, this.pane);
-                                ((Arc) arme).getFlèchesEnDéplacement().add(vueFlèche);
-                                while (flèche.getY() > 0){
-                                    ((Arc) arme).getFlèchesEnDéplacement().get(0).creerFlèche(this.pane);
-                                    flèche.setyProperty(flèche.getY() - flèche.getVitesseProperty());
-                                    if (flèche.estDevantObstacle(flèche.getX(), flèche.getY()) || flèche.estDansLimiteTerrain(flèche.getX(), flèche.getY())) {
-                                        vueFlèche.supprimerFlèche(this.pane);
-                                        ((Arc) arme).getFlèchesEnDéplacement().remove(vueFlèche);
-                                        break;
-                                    }
-                                }
+                for (Arme arme : personnage.getArmes()) {
+                    if (arme instanceof Arc) {
+                        if (!((Arc) arme).getFlèches().isEmpty()) {
+                            Flèche flèche = ((Arc) arme).getFlèches().remove(0);
+                            ((Arc) arme).getFlèches().add(new Flèche(personnage.getPositionX() + (flèche.getLargeur() / 2), personnage.getPositionY(), 30, this.environnement));
+                            VueFlèche vueFlèche = new VueFlèche(flèche, this.pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-haut.png");
+                            ((Arc) arme).getFlèchesEnDéplacement().add(vueFlèche);
+                            ((Arc) arme).getFlèchesEnDéplacement().get(0).creerFlèche(this.pane);
+                            if (flèche.estDevantObstacle(flèche.getX(), flèche.getY()) || flèche.estDansLimiteTerrain(flèche.getX(), flèche.getY())) {
+                                vueFlèche.supprimerFlèche(this.pane);
+                                ((Arc) arme).getFlèchesEnDéplacement().remove(0);
+                            }
+                        }
+                    }
+                }
+            }
+            case DOWN -> {
+                for (Arme arme : personnage.getArmes()) {
+                    if (arme instanceof Arc) {
+                        if (!((Arc) arme).getFlèches().isEmpty()) {
+                            Flèche flèche = ((Arc) arme).getFlèches().remove(0);
+                            ((Arc) arme).getFlèches().add(new Flèche(personnage.getPositionX() + (flèche.getLargeur() / 2), personnage.getPositionY() + flèche.getLongueur(), 30, this.environnement));
+                            VueFlèche vueFlèche = new VueFlèche(flèche, this.pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-bas.png");
+                            ((Arc) arme).getFlèchesEnDéplacement().add(vueFlèche);
+                            ((Arc) arme).getFlèchesEnDéplacement().get(0).creerFlèche(this.pane);
+                            if (flèche.estDevantObstacle(flèche.getX(), flèche.getY()) || flèche.estDansLimiteTerrain(flèche.getX(), flèche.getY())) {
+                                vueFlèche.supprimerFlèche(this.pane);
+                                ((Arc) arme).getFlèchesEnDéplacement().remove(0);
+                            }
+                        }
+                    }
+                }
+            }
+            case RIGHT -> {
+                for (Arme arme : personnage.getArmes()) {
+                    if (arme instanceof Arc) {
+                        if (!((Arc) arme).getFlèches().isEmpty()) {
+                            Flèche flèche = ((Arc) arme).getFlèches().remove(0);
+                            ((Arc) arme).getFlèches().add(new Flèche(personnage.getPositionX() + flèche.getLargeur(), personnage.getPositionY() + (flèche.getLongueur() / 2), 30, this.environnement));
+                            VueFlèche vueFlèche = new VueFlèche(flèche, this.pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-droite.png");
+                            ((Arc) arme).getFlèchesEnDéplacement().add(vueFlèche);
+                            ((Arc) arme).getFlèchesEnDéplacement().get(0).creerFlèche(this.pane);
+                            if (flèche.estDevantObstacle(flèche.getX(), flèche.getY()) || flèche.estDansLimiteTerrain(flèche.getX(), flèche.getY())) {
+                                vueFlèche.supprimerFlèche(this.pane);
+                                ((Arc) arme).getFlèchesEnDéplacement().remove(0);
+                            }
+                        }
+                    }
+                }
+            }
+            case LEFT -> {
+                for (Arme arme : personnage.getArmes()) {
+                    if (arme instanceof Arc) {
+                        if (!((Arc) arme).getFlèches().isEmpty()) {
+                            Flèche flèche = ((Arc) arme).getFlèches().remove(0);
+                            ((Arc) arme).getFlèches().add(new Flèche(personnage.getPositionX(), personnage.getPositionY() + (flèche.getLongueur() / 2), 30, this.environnement));
+                            VueFlèche vueFlèche = new VueFlèche(flèche, this.pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-gauche.png");
+                            ((Arc) arme).getFlèchesEnDéplacement().add(vueFlèche);
+                            ((Arc) arme).getFlèchesEnDéplacement().get(0).creerFlèche(this.pane);
+                            if (flèche.estDevantObstacle(flèche.getX(), flèche.getY()) || flèche.estDansLimiteTerrain(flèche.getX(), flèche.getY())) {
+                                vueFlèche.supprimerFlèche(this.pane);
+                                ((Arc) arme).getFlèchesEnDéplacement().remove(0);
                             }
                         }
                     }

@@ -8,6 +8,7 @@ import com.example.sae_zeldalike.modele.Item.Flèche;
 import com.example.sae_zeldalike.modele.Personnage.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
@@ -42,7 +43,7 @@ public class Controleur implements Initializable {
         this.environnement = new Environnement(map);
         this.link = new Link(environnement, 32, 32);
         this.link.ajouterArme(new Arc(15, 1));
-        this.link.ajouterFlèche(new Flèche(this.link.getPositionX(), this.link.getPositionY(), 5, 10, this.environnement));
+        this.link.ajouterFlèche(new Flèche(this.link.getPositionX(), this.link.getPositionY(),30, this.environnement));
         this.vueLink=new VueLink(pane, link, environnement);
         this.ennemi1=new Ennemi1(environnement,130,220);
         this.vueEnnemi1 = new VueEnnemi1(pane,ennemi1);
@@ -56,30 +57,68 @@ public class Controleur implements Initializable {
 
     private void initAnimation() {
         gameLoop = new Timeline();
-        temps=0;
+        temps = 0;
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
-                // on définit le FPS (nbre de frame par seconde)
+                // Set FPS (frames per second)
                 Duration.seconds(0.017),
-                // on définit ce qui se passe à chaque frame
-                // c'est un eventHandler d'ou le lambda
-                (ev ->{
-                    if(temps==1000000){
+                // Define what happens at each frame
+                ev -> {
+                    if (temps == 1000000) {
                         System.out.println("fini");
-                       gameLoop.stop();
-                    } else if (temps%10==0) {
-                        vueEnnemi1.changerImage();
-                        //ennemi1.seDeplace(link);
-                        ennemi1.seDeplace(link.getPositionX(), link.getPositionY());
-                        vueLink.animationPersonnage();
-                    } else if (temps%3==0){
-                        this.pane.requestFocus();
+                        gameLoop.stop();
+                    } else {
+                        if (temps % 10 == 0) {
+                            vueEnnemi1.changerImage();
+                            ennemi1.seDeplace(link.getPositionX(), link.getPositionY());
+                            vueLink.animationPersonnage();
+
+                            // Handle arrow movement
+                            if (this.link.getArc().flècheLancée()) {
+                                VueFlèche vueFleche = this.link.getArc().getFlèchesEnDéplacement().get(0);
+                                Flèche flèche = vueFleche.getFlèche();
+
+                                String direction = this.link.getDirection(); // Obtenir la direction du personnage
+
+// Déplacer la flèche dans la même direction que le personnage
+                                switch (direction) {
+                                    case "UP":
+                                        flèche.seDeplacerHaut();
+                                        break;
+                                    case "DOWN":
+                                        flèche.seDeplacerBas();
+                                        break;
+                                    case "RIGHT":
+                                        flèche.seDeplacerDroite();
+                                        break;
+                                    case "LEFT":
+                                        flèche.seDeplacerGauche();
+                                        break;
+                                    default:
+                                        // Gérer le cas par défaut si nécessaire
+                                        break;
+                                }
+
+                                // Check if the arrow hits an obstacle or goes out of bounds
+                                if (flèche.estDevantObstacle(flèche.getX(), flèche.getY()) || flèche.estDansLimiteTerrain(flèche.getX(), flèche.getY())) {
+                                    Platform.runLater(() -> {
+                                        vueFleche.supprimerFlèche(this.pane);
+                                        this.link.getArc().getFlèchesEnDéplacement().remove(vueFleche);
+                                        System.out.println("Flèche supprimée du pane et de la liste des flèches en déplacement");
+                                    });
+                                }
+                            }
+                        }
+
+                        if (temps % 3 == 0) {
+                            this.pane.requestFocus();
+                        }
+
+                        temps++;
                     }
-                    temps++;
-                })
+                }
         );
         gameLoop.getKeyFrames().add(kf);
-    }
+    }}
 
-}

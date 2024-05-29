@@ -153,6 +153,7 @@ public abstract class Personnage implements Limitations {
         }
     }
 
+
     public Hitbox hitbox(int x, int y){
         Hitbox hitbox = new Hitbox(x,y,getLargeur(),getLongueur());
         return hitbox;

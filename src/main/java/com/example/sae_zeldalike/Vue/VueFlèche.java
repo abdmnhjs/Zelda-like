@@ -4,23 +4,21 @@ import com.example.sae_zeldalike.modele.Item.Flèche;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 
 public class VueFlèche {
     private Flèche flèche;
     private Pane pane;
     private ImageView spriteFlèche;
+    private String sourceImage;
 
-    public VueFlèche(Flèche flèche, Pane pane){
+    public VueFlèche(Flèche flèche, Pane pane, String sourceImage){
         this.flèche = flèche;
         this.pane = pane;
-        creerFlèche(this.pane);
+        this.sourceImage = sourceImage;
     }
 
     public void creerFlèche(Pane pane){
-        this.spriteFlèche = new ImageView(new Image("file:src/main/resources/com/example/sae_zeldalike/Flèche/flècheARemplacerPlusTard.png"));
+        this.spriteFlèche = new ImageView(new Image(this.sourceImage));
         this.spriteFlèche.setFitHeight(this.flèche.getLongueur());
         this.spriteFlèche.setFitWidth(this.flèche.getLargeur());
         this.spriteFlèche.translateXProperty().bind(this.flèche.getXProperty());
@@ -29,8 +27,16 @@ public class VueFlèche {
     }
 
     public void supprimerFlèche(Pane pane){
-        if(pane.getChildren().contains(this.spriteFlèche)){
+        // Ensure we are removing the correct node
+        if (this.spriteFlèche != null) {
             pane.getChildren().remove(this.spriteFlèche);
+            System.out.println("Flèche view removed from pane");
+        } else {
+            System.out.println("No spriteFlèche to remove");
         }
+    }
+
+    public Flèche getFlèche() {
+        return this.flèche;
     }
 }
