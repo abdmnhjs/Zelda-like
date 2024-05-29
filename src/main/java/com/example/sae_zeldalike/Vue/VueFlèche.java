@@ -27,7 +27,6 @@ public class VueFlèche {
     }
 
     public void supprimerFlèche(Pane pane){
-        // Ensure we are removing the correct node
         if (this.spriteFlèche != null) {
             pane.getChildren().remove(this.spriteFlèche);
             System.out.println("Flèche view removed from pane");

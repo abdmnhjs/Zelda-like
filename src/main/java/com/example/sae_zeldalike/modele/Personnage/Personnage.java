@@ -37,9 +37,9 @@ public abstract class Personnage {
         this.positionY = new SimpleIntegerProperty(positionY);
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
         this.environnement = environnement;
-        this.direction = new SimpleStringProperty("Inactif_DOWN");
-        this.longueur=32;
-        this.largeur=32;
+        this.direction = new SimpleStringProperty("DOWN");
+        this.longueur=longueur;
+        this.largeur=largeur;
         this.pointViePercent.bind(getPointVieProperty().divide(100.0));
         environnement.ajouterPersonnage(this);
         this.armes = new ArrayList<>();

@@ -2,6 +2,7 @@ package com.example.sae_zeldalike.Controlleur;
 
 import com.example.sae_zeldalike.Vue.*;
 import com.example.sae_zeldalike.modele.Environnement.*;
+import com.example.sae_zeldalike.modele.Item.Arc;
 import com.example.sae_zeldalike.modele.Item.Flèche;
 import com.example.sae_zeldalike.modele.Item.Item;
 import com.example.sae_zeldalike.modele.Item.Piece;
@@ -44,7 +45,7 @@ public class Controleur implements Initializable {
     private ArrayList<VueItem> vueItems;
     private Piece item;
     private VueItem vueItem;
-
+    private Personnage personnage;
     @FXML
     private Label nombrePiece;
     @FXML
@@ -56,6 +57,7 @@ public class Controleur implements Initializable {
     @FXML
     private TilePane tilePane;
     private Timeline gameLoop;
+
     private int temps;
 
     @Override
@@ -75,6 +77,9 @@ public class Controleur implements Initializable {
         this.ennemi1 = new Ennemi1(environnement, 130, 220);
         this.vueEnnemi1 = new VueEnnemi1(pane, ennemi1);
         vueMap = new VueMap(tilePane, map);
+        this.link.ajouterArme(new Arc(15, 1));
+        this.link.ajouterFlèche(new Flèche(this.link.getPositionX(), this.link.getPositionY(),30, this.environnement));
+
         this.barreDeVie.progressProperty().bind(link.pointViePercentProperty());
 //        this.nombrePiece.textProperty().bind(personnage.getPortefeuilleProperty().asString());
         imagePerso.setFitHeight(64);
