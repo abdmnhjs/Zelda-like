@@ -25,7 +25,7 @@ public class Item {
         compteurItem++;
         this.largeur=16;
         this.longueur=16;
-        environnement.ajouterItem(this);
+
 
     }
     public Item(Environnement environnement){

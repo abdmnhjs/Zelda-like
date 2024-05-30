@@ -25,7 +25,7 @@ public class VueItem {
 
         spriteItem.setTranslateX(item.getPositionX());
         spriteItem.setTranslateY(item.getPositionY());
-//        creerOmbre(pane);
+        creerOmbre(pane);
         pane.getChildren().add(spriteItem);
 
         spriteItem.translateXProperty().bind(item.getPositionXProperty());
@@ -34,16 +34,16 @@ public class VueItem {
 
     }
 
-//    private void creerOmbre(Pane pane) {
-//        ombre = new Circle((item.getLargeur()/4));
-//        ombre.setFill(Color.DARKSLATEGRAY);
-//        ombre.setId(item.getId());
-//
-//        pane.getChildren().add(ombre);
-//
-//        ombre.centerXProperty().bind(spriteItem.translateXProperty().add((item.getLargeur()/2)));
-//        ombre.centerYProperty().bind(spriteItem.translateYProperty().add(15));
-//    }
+    private void creerOmbre(Pane pane) {
+        ombre = new Circle((item.getLargeur()/4));
+        ombre.setFill(Color.DARKSLATEGRAY);
+        ombre.setId("O"+item.getId());
+
+        pane.getChildren().add(ombre);
+
+        ombre.centerXProperty().bind(spriteItem.translateXProperty().add((item.getLargeur()/2)));
+        ombre.centerYProperty().bind(spriteItem.translateYProperty().add(15));
+    }
 
 
     public void animationItem(){

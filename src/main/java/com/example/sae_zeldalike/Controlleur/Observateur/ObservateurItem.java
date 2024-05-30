@@ -29,6 +29,7 @@ public class ObservateurItem implements ListChangeListener<Item> {
                 for (Item item : change.getRemoved()){
 
                     this.environnement.getChildren().remove(environnement.lookup("#"+item.getId()));
+                    this.environnement.getChildren().remove(environnement.lookup("#O"+item.getId()));
                 }
             }
         }

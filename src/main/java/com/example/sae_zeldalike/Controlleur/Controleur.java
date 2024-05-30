@@ -92,26 +92,18 @@ public class Controleur implements Initializable {
         imagePerso.maxHeight(64);
         imagePerso.imageProperty().bind(vueLink.getSpritePersonnage().imageProperty());
         environnement.init();
-//        items = new ArrayList();
-//        vueItems = new ArrayList();
-//        for (int i = 0; i < 10; i++) {
-//            this.item = new Piece(environnement);
-//            this.vueItem = new VueItem(pane, item);
-//            items.add(item);
-//            vueItems.add(vueItem);
-//        }
 
         initAnimation();
 
+        // Scroll Map
         this.link.getPositionXProperty().addListener((observable, oldValue, newValue) -> {
-            this.pane.setTranslateX(50 + pane.getPrefWidth() / 2 - link.getPositionX());
-
+            this.pane.setTranslateX( pane.getPrefWidth() / 2 - link.getPositionX());
         });
         this.link.getPositionYProperty().addListener((observable, oldValue, newValue) -> {
             this.pane.setTranslateY( pane.getPrefHeight() / 2 - link.getPositionY());
         });
         this.pane.setTranslateX(pane.getPrefWidth() / 2 - link.getPositionX());
-        this.pane.setTranslateY(pane.getPrefHeight() / 2 - link.getPositionY());
+        this.pane.setTranslateY(pane.getPrefHeight() /2 - link.getPositionY());
 
         // demarre l'animation
         gameLoop.play();

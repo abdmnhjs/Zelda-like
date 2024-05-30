@@ -14,8 +14,6 @@ public class Map {
     private ArrayList<int[]> coordonnéesTuilesNonTraversables;
 
 
-
-
     public Map(String filePath) throws IOException {
         this.map = JsonToMap.loadMapFromJson(filePath);
         this.ligne = map.length;
