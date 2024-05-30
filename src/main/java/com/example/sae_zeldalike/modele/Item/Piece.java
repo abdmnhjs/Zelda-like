@@ -12,6 +12,7 @@ public class Piece extends Item {
         super(environnement, positionX, positionY);
         this.valeur = new SimpleIntegerProperty(5);
     }
+
     public Piece(Environnement environnement) {
         super(environnement);
         this.valeur = new SimpleIntegerProperty(5);

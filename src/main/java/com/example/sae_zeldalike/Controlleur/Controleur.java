@@ -1,5 +1,6 @@
 package com.example.sae_zeldalike.Controlleur;
 
+import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurItem;
 import com.example.sae_zeldalike.Vue.*;
 import com.example.sae_zeldalike.modele.Environnement.*;
 import com.example.sae_zeldalike.modele.Item.Arc;
@@ -84,20 +85,21 @@ public class Controleur implements Initializable {
 
 //        this.nombrePiece.textProperty().bind(link.getPortefeuilleProperty().asString());
         link.getPortefeuilleProperty().addListener((obs, old, nouv)-> this.nombrePiece.setText(nouv.toString()));
-
+        this.environnement.getItems().addListener(new ObservateurItem(pane));
         imagePerso.setFitHeight(64);
         imagePerso.setFitWidth(64);
         imagePerso.maxWidth(64);
         imagePerso.maxHeight(64);
         imagePerso.imageProperty().bind(vueLink.getSpritePersonnage().imageProperty());
-        items = new ArrayList();
-        vueItems = new ArrayList();
-        for (int i = 0; i < 10; i++) {
-            this.item = new Piece(environnement);
-            this.vueItem = new VueItem(pane, item);
-            items.add(item);
-            vueItems.add(vueItem);
-        }
+        environnement.init();
+//        items = new ArrayList();
+//        vueItems = new ArrayList();
+//        for (int i = 0; i < 10; i++) {
+//            this.item = new Piece(environnement);
+//            this.vueItem = new VueItem(pane, item);
+//            items.add(item);
+//            vueItems.add(vueItem);
+//        }
 
         initAnimation();
 
@@ -160,13 +162,11 @@ public class Controleur implements Initializable {
                                 });
                             }
                         }
-                        for (int i = 0; i < items.size(); i++) {
-                            vueItems.get(i).animationItem();
-                        }
+
                         vueLink.animationPersonnage();
                     }
                     if (temps % 3 == 0) {
-                        this.pane.requestFocus();
+//                        this.pane.requestFocus();
                     }
 
                     temps++;

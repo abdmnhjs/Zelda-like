@@ -2,6 +2,7 @@ package com.example.sae_zeldalike.modele.Environnement;
 
 import com.example.sae_zeldalike.modele.Hitbox;
 import com.example.sae_zeldalike.modele.Item.Item;
+import com.example.sae_zeldalike.modele.Item.Piece;
 import com.example.sae_zeldalike.modele.Personnage.Personnage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -172,10 +173,17 @@ public class Environnement {
         return coinBasDroite && coinBasGauche && coinHautDroit && coinHautGauche;
     }
 
-
     public String getId() {
         return id;
     }
+
+
+    public void init() {
+        for (int i = 0; i < 20; i++) {
+            ajouterItem(new Piece(this));
+        }
+    }
+
 
 
 }

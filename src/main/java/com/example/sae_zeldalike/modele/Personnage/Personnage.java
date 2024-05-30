@@ -41,7 +41,7 @@ public abstract class Personnage {
         this.longueur=longueur;
         this.largeur=largeur;
         this.pointViePercent.bind(getPointVieProperty().divide(100.0));
-        environnement.ajouterPersonnage(this);
+
         this.armes = new ArrayList<>();
 
     }

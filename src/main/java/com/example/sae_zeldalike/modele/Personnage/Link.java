@@ -25,7 +25,7 @@ public class Link extends Personnage {
 //        System.out.println("Link X= "+this.getPositionX()+" Y= "+this.getPositionY());
         for(Item item : this.environnement.getItems()){
             if(item instanceof Piece){
-//                System.out.println("X= "+item.getPositionX()+" Y= "+item.getPositionY());
+                System.out.println("X= "+item.getPositionX()+" Y= "+item.getPositionY());
                 if((this.getPositionY()-20<= item.getPositionY() && item.getPositionY()<=this.getPositionY()+20) && (this.getPositionX()-20<= item.getPositionX() && item.getPositionX()<=this.getPositionX()+20)){
 //                    System.out.println("Piece récupéré");
                     return item;

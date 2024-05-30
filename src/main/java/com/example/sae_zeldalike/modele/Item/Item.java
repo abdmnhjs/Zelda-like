@@ -37,7 +37,7 @@ public class Item {
         this.positionX=new SimpleIntegerProperty();
         this.positionY=new SimpleIntegerProperty();
         genererPositionAleatoires();
-        environnement.ajouterItem(this);
+
 
     }
     public Hitbox hitbox(int x, int y){

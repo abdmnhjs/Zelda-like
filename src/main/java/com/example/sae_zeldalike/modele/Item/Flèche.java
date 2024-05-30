@@ -41,6 +41,7 @@ public class Flèche extends Arme implements Limitations {
     }
 
     public boolean estDansLimiteTerrain(int x, int y){
+
         return (x < 0 || x > this.environnement.getMap().getColonne()*32 || y < 0 || y > this.environnement.getMap().getLigne()*32 || x+32 > this.environnement.getMap().getColonne()*32 ||
                 y+32 > this.environnement.getMap().getLigne()*32);
 
