@@ -42,11 +42,10 @@ public class Controleur implements Initializable {
     private VueEnnemi1 vueEnnemi1;
     private Map map;
     private VueMap vueMap;
-    private ArrayList<Item> items;
     private ArrayList<VueItem> vueItems;
-    private Piece item;
-    private VueItem vueItem;
-    private Personnage personnage;
+
+
+
     @FXML
     private Label nombrePiece;
     @FXML
@@ -82,10 +81,10 @@ public class Controleur implements Initializable {
         this.link.ajouterFlèche(new Flèche(this.link.getPositionX(), this.link.getPositionY(),30, this.environnement));
 
         this.barreDeVie.progressProperty().bind(link.pointViePercentProperty());
-
+        vueItems = new ArrayList<>();
 //        this.nombrePiece.textProperty().bind(link.getPortefeuilleProperty().asString());
         link.getPortefeuilleProperty().addListener((obs, old, nouv)-> this.nombrePiece.setText(nouv.toString()));
-        this.environnement.getItems().addListener(new ObservateurItem(pane));
+        this.environnement.getItems().addListener(new ObservateurItem(pane,vueItems));
         imagePerso.setFitHeight(64);
         imagePerso.setFitWidth(64);
         imagePerso.maxWidth(64);
@@ -159,7 +158,11 @@ public class Controleur implements Initializable {
                     }
                     if (temps % 3 == 0) {
 //                        this.pane.requestFocus();
+                        for (VueItem monItem : vueItems){
+                            monItem.animationItem();
+                        }
                     }
+
 
                     temps++;
                 }

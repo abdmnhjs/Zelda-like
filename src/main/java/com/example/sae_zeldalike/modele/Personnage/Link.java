@@ -11,13 +11,21 @@ import javafx.collections.ObservableList;
 public class Link extends Personnage {
 
     private IntegerProperty portefeuille;
+    private Item[] inventaire;
 
     public Link(Environnement environnement, int positionX, int positionY) {
 
         super(100, 0, environnement, positionX, positionY, 5, 32,32);
         this.portefeuille= new SimpleIntegerProperty();
+        inventaire = new Item[3];
 
     }
+
+    public Item[] getInventaire() {
+        return inventaire;
+
+    }
+
 
     public Item essaiRamasserPiece(){
 
