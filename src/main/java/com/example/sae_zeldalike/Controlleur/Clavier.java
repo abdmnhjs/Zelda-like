@@ -96,9 +96,6 @@ public class Clavier implements EventHandler<KeyEvent> {
                 }
             }
         }
-        if (touches.contains(KeyCode.A)) {
-            System.out.println(personnage.getPortefeuille());
-        }
 
         // Gestion des flèches
         if (touches.contains(KeyCode.UP)) {
@@ -113,6 +110,7 @@ public class Clavier implements EventHandler<KeyEvent> {
         if (touches.contains(KeyCode.LEFT)) {
             lancerFleche(KeyCode.LEFT);
         }
+
     }
 
     private void lancerFleche(KeyCode code) {

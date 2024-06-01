@@ -16,11 +16,11 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
     public void onChanged(Change<? extends Personnage> change) {
 
         while (change.next()) {
-//            if (change.wasAdded()){
-//                for (Personnage personnage : change.getAddedSubList()){
-//                    creerSprite(acteur);
-//                }
-//            }
+            if (change.wasAdded()){
+                for (Personnage personnage : change.getAddedSubList()){
+
+                }
+            }
             if (change.wasRemoved()){
                 for (Personnage personnage : change.getRemoved()){
 
