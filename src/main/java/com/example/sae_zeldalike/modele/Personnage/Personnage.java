@@ -37,7 +37,7 @@ public abstract class Personnage {
         this.positionY = new SimpleIntegerProperty(positionY);
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
         this.environnement = environnement;
-        this.direction = new SimpleStringProperty("DOWN");
+        this.direction = new SimpleStringProperty("Inactif_DOWN");
         this.longueur=longueur;
         this.largeur=largeur;
         this.pointViePercent.bind(getPointVieProperty().divide(100.0));
@@ -58,8 +58,8 @@ public abstract class Personnage {
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
     }**/
 
-    private int getLargeur(){return largeur;}
-    private int getLongueur(){return longueur;}
+    public int getLargeur(){return largeur;}
+    public int getLongueur(){return longueur;}
 
     public StringProperty getDirectionProperty() {
         return direction;

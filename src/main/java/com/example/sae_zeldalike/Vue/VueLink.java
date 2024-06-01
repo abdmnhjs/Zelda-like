@@ -12,6 +12,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 
@@ -22,7 +24,7 @@ public class VueLink {
     private int numeroImagePersonnage;
     private StringProperty direction;
     private Clavier clavier;
-    private Rectangle rectangle;
+    private Circle ombre;
 
     public VueLink(Pane pane, Link personnage ) {
 
@@ -37,9 +39,10 @@ public class VueLink {
         creerPerso(pane);
 
 
+
     }
 
-    public void creerPerso(Pane pane){
+    private void creerPerso(Pane pane){
         this.numeroImagePersonnage=1;
         this.spritePersonnage = new ImageView("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/DOWN_R.png");
         this.spritePersonnage.setId("#"+personnage.getId());
@@ -47,10 +50,27 @@ public class VueLink {
         this.spritePersonnage.setFitWidth(32);
         this.spritePersonnage.setTranslateX(personnage.getPositionX());
         this.spritePersonnage.setTranslateY(personnage.getPositionY());
-        pane.getChildren().add(this.spritePersonnage);
+
 
         spritePersonnage.translateXProperty().bind(personnage.getPositionXProperty());
         spritePersonnage.translateYProperty().bind(personnage.getPositionYProperty());
+
+        creerOmbre(pane);
+        pane.getChildren().add(this.spritePersonnage);
+
+
+    }
+    private void creerOmbre(Pane pane) {
+        ombre = new Circle((personnage.getLargeur()/2.5));
+        ombre.setFill(Color.GREY);
+        ombre.setId("O"+personnage.getId());
+
+
+
+        pane.getChildren().add(this.ombre);
+
+        ombre.centerXProperty().bind(spritePersonnage.translateXProperty().add(personnage.getLargeur()/2));
+        ombre.centerYProperty().bind(spritePersonnage.translateYProperty().add(personnage.getLongueur()));
     }
 
 
@@ -58,7 +78,7 @@ public class VueLink {
     public void animationPersonnage() {
         switch (getDirection()){
             case "UP"-> {
-                if (numeroImagePersonnage==1){
+                if (numeroImagePersonnage==1 || numeroImagePersonnage!=2){
                     this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/UP_R.png"));
                     setNumeroImagePersonnage(2);
                 } else if (numeroImagePersonnage==2) {
@@ -67,7 +87,7 @@ public class VueLink {
                 }
             }
             case "DOWN"-> {
-                if (numeroImagePersonnage==1) {
+                if (numeroImagePersonnage==1|| numeroImagePersonnage!=2) {
                     this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/DOWN_R.png"));
                     setNumeroImagePersonnage(2);
                 } else if (numeroImagePersonnage==2) {
@@ -77,19 +97,61 @@ public class VueLink {
             }
             case "LEFT"->{
                 if (numeroImagePersonnage==1) {
-                    this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/LEFT_R.png"));
+                    this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/LEFT_1.png"));
                     setNumeroImagePersonnage(2);
-                } else if (numeroImagePersonnage==2) {
-                    this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/LEFT_L.png"));
+                }else if (numeroImagePersonnage==2) {
+                    this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/LEFT_2.png"));
+                    setNumeroImagePersonnage(3);
+                }else if (numeroImagePersonnage==3) {
+                    this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/LEFT_3.png"));
+                    setNumeroImagePersonnage(4);
+                }else if (numeroImagePersonnage==4) {
+                    this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/LEFT_4.png"));
+                    setNumeroImagePersonnage(5);
+                }else if (numeroImagePersonnage==5) {
+                    this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/LEFT_5.png"));
+                    setNumeroImagePersonnage(6);
+                }else if (numeroImagePersonnage==6) {
+                    this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/LEFT_6.png"));
+                    setNumeroImagePersonnage(7);
+                }else if (numeroImagePersonnage==7) {
+                    this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/LEFT_7.png"));
+                    setNumeroImagePersonnage(8);
+                }else if (numeroImagePersonnage==8) {
+                    this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/LEFT_8.png"));
+                    setNumeroImagePersonnage(9);
+                }else if (numeroImagePersonnage==9) {
+                    this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/LEFT_9.png"));
                     setNumeroImagePersonnage(1);
                 }
             }
             case "RIGHT"->{
                 if (numeroImagePersonnage==1) {
-                    this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/RIGHT_R.png"));
+                    this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/RIGHT_1.png"));
                     setNumeroImagePersonnage(2);
-                } else if (numeroImagePersonnage==2) {
-                    spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/RIGHT_L.png"));
+                }else if (numeroImagePersonnage==2) {
+                    this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/RIGHT_2.png"));
+                    setNumeroImagePersonnage(3);
+                }else if (numeroImagePersonnage==3) {
+                    this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/RIGHT_3.png"));
+                    setNumeroImagePersonnage(4);
+                }else if (numeroImagePersonnage==4) {
+                    this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/RIGHT_4.png"));
+                    setNumeroImagePersonnage(5);
+                }else if (numeroImagePersonnage==5) {
+                    this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/RIGHT_5.png"));
+                    setNumeroImagePersonnage(6);
+                }else if (numeroImagePersonnage==6) {
+                    this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/RIGHT_6.png"));
+                    setNumeroImagePersonnage(7);
+                }else if (numeroImagePersonnage==7) {
+                    this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/RIGHT_7.png"));
+                    setNumeroImagePersonnage(8);
+                }else if (numeroImagePersonnage==8) {
+                    this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/RIGHT_8.png"));
+                    setNumeroImagePersonnage(9);
+                }else if (numeroImagePersonnage==9) {
+                    this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/RIGHT_9.png"));
                     setNumeroImagePersonnage(1);
                 }
             }
@@ -105,7 +167,6 @@ public class VueLink {
             case "Inactif_RIGHT"->{
                 this.spritePersonnage.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_RIGHT.png"));
             }
-
         }
     }
 

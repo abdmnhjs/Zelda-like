@@ -157,7 +157,7 @@ public class Controleur implements Initializable {
                         vueLink.animationPersonnage();
                     }
                     if (temps % 3 == 0) {
-//                        this.pane.requestFocus();
+                        this.pane.requestFocus();
                         for (VueItem monItem : vueItems){
                             monItem.animationItem();
                         }
