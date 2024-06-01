@@ -42,9 +42,10 @@ public class Controleur implements Initializable {
     private VueEnnemi1 vueEnnemi1;
     private Map map;
     private VueMap vueMap;
-    private Piece item;
-    private VueItem vueItem;
-    private Personnage personnage;
+    private ArrayList<VueItem> vueItems;
+
+
+
     @FXML
     private Label nombrePiece;
     @FXML
@@ -76,27 +77,20 @@ public class Controleur implements Initializable {
         this.ennemi1 = new Ennemi1(environnement, 130, 220);
         this.vueEnnemi1 = new VueEnnemi1(pane, ennemi1);
         vueMap = new VueMap(tilePane, map);
-
-
-
         this.link.ajouterArme(new Arc(15, 1));
         this.link.ajouterFlèche(new Flèche(this.link.getPositionX(), this.link.getPositionY(),30, this.environnement));
 
-
-
-
+        this.barreDeVie.progressProperty().bind(link.pointViePercentProperty());
+        vueItems = new ArrayList<>();
+//        this.nombrePiece.textProperty().bind(link.getPortefeuilleProperty().asString());
+        link.getPortefeuilleProperty().addListener((obs, old, nouv)-> this.nombrePiece.setText(nouv.toString()));
+        this.environnement.getItems().addListener(new ObservateurItem(pane,vueItems));
         imagePerso.setFitHeight(64);
         imagePerso.setFitWidth(64);
-//        imagePerso.maxWidth(64);
-//        imagePerso.maxHeight(64);
-
-        environnement.init();
-
-        //Binding & Observateur
-        this.barreDeVie.progressProperty().bind(link.pointViePercentProperty());
-        link.getPortefeuilleProperty().addListener((obs, old, nouv)-> this.nombrePiece.setText(nouv.toString()));
-        this.environnement.getItems().addListener(new ObservateurItem(pane));
+        imagePerso.maxWidth(64);
+        imagePerso.maxHeight(64);
         imagePerso.imageProperty().bind(vueLink.getSpritePersonnage().imageProperty());
+        environnement.init();
 
         initAnimation();
 
@@ -132,8 +126,7 @@ public class Controleur implements Initializable {
                         gameLoop.stop();
                     } else if (temps % 10 == 0) {
                         vueEnnemi1.changerImage();
-//                        ennemi1.seDeplace(link);
-//                        vueItem.animationItem();
+                        //ennemi1.seDeplace(link);
                         ennemi1.seDeplace(link.getPositionX(), link.getPositionY());
                         if (this.link.getArc().flècheLancée()) {
                             VueFlèche vueFleche = this.link.getArc().getFlèchesEnDéplacement().get(0);
@@ -165,7 +158,11 @@ public class Controleur implements Initializable {
                     }
                     if (temps % 3 == 0) {
 //                        this.pane.requestFocus();
+                        for (VueItem monItem : vueItems){
+                            monItem.animationItem();
+                        }
                     }
+
 
                     temps++;
                 }
