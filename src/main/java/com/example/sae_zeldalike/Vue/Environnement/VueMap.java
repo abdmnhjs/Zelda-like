@@ -1,4 +1,4 @@
-package com.example.sae_zeldalike.Vue;
+package com.example.sae_zeldalike.Vue.Environnement;
 
 import com.example.sae_zeldalike.modele.Environnement.Map;
 import javafx.scene.image.Image;

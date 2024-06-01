@@ -1,7 +1,6 @@
-package com.example.sae_zeldalike.Vue;
+package com.example.sae_zeldalike.Vue.Personnage;
 
 import com.example.sae_zeldalike.Controlleur.Clavier;
-import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Personnage.Link;
 import com.example.sae_zeldalike.modele.Personnage.Personnage;
 import javafx.beans.property.SimpleStringProperty;
@@ -9,12 +8,9 @@ import javafx.beans.property.StringProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 
 
 public class VueLink {
@@ -70,7 +66,7 @@ public class VueLink {
         pane.getChildren().add(this.ombre);
 
         ombre.centerXProperty().bind(spritePersonnage.translateXProperty().add(personnage.getLargeur()/2));
-        ombre.centerYProperty().bind(spritePersonnage.translateYProperty().add(personnage.getLongueur()));
+        ombre.centerYProperty().bind(spritePersonnage.translateYProperty().add(personnage.getLongueur()-5));
     }
 
 
@@ -194,16 +190,4 @@ public class VueLink {
         return spritePersonnage;
     }
 
-    //    public VueLink(Pane pane, Personnage personnage){
-//        Circle circle = new Circle(16);
-//        circle.setFill(Color.BLACK);
-//        circle.setId(personnage.getId());
-//        circle.setTranslateX(personnage.getPositionX());
-//        circle.setTranslateY(personnage.getPositionY());
-//        pane.getChildren().add(circle);
-//        Clavier clavier = new Clavier(personnage);
-//        pane.addEventFilter(KeyEvent.KEY_PRESSED,clavier);
-//        circle.translateXProperty().bind(personnage.getPositionXProperty());
-//        circle.translateYProperty().bind(personnage.getPositionYProperty());
-//    }
 }

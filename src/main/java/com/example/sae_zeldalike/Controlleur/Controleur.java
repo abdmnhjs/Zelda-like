@@ -2,30 +2,26 @@ package com.example.sae_zeldalike.Controlleur;
 
 import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurItem;
 import com.example.sae_zeldalike.Vue.*;
+import com.example.sae_zeldalike.Vue.Environnement.VueMap;
+import com.example.sae_zeldalike.Vue.Item.VueBombe;
+import com.example.sae_zeldalike.Vue.Item.VueItem;
+import com.example.sae_zeldalike.Vue.Item.VuePiece;
+import com.example.sae_zeldalike.Vue.Personnage.VueEnnemi1;
+import com.example.sae_zeldalike.Vue.Personnage.VueLink;
 import com.example.sae_zeldalike.modele.Environnement.*;
 import com.example.sae_zeldalike.modele.Item.Arc;
 import com.example.sae_zeldalike.modele.Item.Flèche;
-import com.example.sae_zeldalike.modele.Item.Item;
-import com.example.sae_zeldalike.modele.Item.Piece;
 import com.example.sae_zeldalike.modele.Personnage.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -156,10 +152,15 @@ public class Controleur implements Initializable {
 
                         vueLink.animationPersonnage();
                     }
-                    if (temps % 3 == 0) {
+                    if (temps % 5 == 0) {
                         this.pane.requestFocus();
                         for (VueItem monItem : vueItems){
-                            monItem.animationItem();
+                            if (monItem instanceof VuePiece){
+                                monItem.animationItem();
+                            }else if (monItem instanceof VueBombe){
+                                monItem.animationItem();
+                            }
+
                         }
                     }
 

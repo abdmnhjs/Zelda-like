@@ -17,23 +17,22 @@ public class Item {
     private final int largeur;
     private final int longueur;
 
-    public Item(Environnement environnement, int positionX,int positionY ){
+    public Item(Environnement environnement, int positionX,int positionY,int largeur,int longueur ){
         this.environnement=environnement;
         this.positionX=new SimpleIntegerProperty(positionX);
         this.positionY=new SimpleIntegerProperty(positionY);
         this.id="I"+compteurItem;
         compteurItem++;
-        this.largeur=16;
-        this.longueur=16;
-
+        this.largeur=largeur;
+        this.longueur=longueur;
 
     }
-    public Item(Environnement environnement){
+    public Item(Environnement environnement,int largeur,int longueur){
         this.environnement=environnement;
         this.id="I"+compteurItem;
         compteurItem++;
-        this.largeur=16;
-        this.longueur=16;
+        this.largeur=largeur;
+        this.longueur=longueur;
         this.positionX=new SimpleIntegerProperty();
         this.positionY=new SimpleIntegerProperty();
         genererPositionAleatoires();

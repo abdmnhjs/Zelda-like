@@ -88,7 +88,7 @@ public class Clavier implements EventHandler<KeyEvent> {
             personnage.setDirection("RIGHT");
         }
         if (touches.contains(KeyCode.J)) {
-            Item item = personnage.essaiRamasserPiece();
+            Item item = personnage.essaiRamasserItem();
             if (item != null) {
                 if (item instanceof Piece) {
                     personnage.ajouterPiece(((Piece) item).getValeur());

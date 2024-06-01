@@ -1,6 +1,7 @@
 package com.example.sae_zeldalike.modele.Environnement;
 
 import com.example.sae_zeldalike.modele.Hitbox;
+import com.example.sae_zeldalike.modele.Item.Bombe;
 import com.example.sae_zeldalike.modele.Item.Item;
 import com.example.sae_zeldalike.modele.Item.Piece;
 import com.example.sae_zeldalike.modele.Personnage.Personnage;
@@ -181,6 +182,9 @@ public class Environnement {
     public void init() {
         for (int i = 0; i < 20; i++) {
             ajouterItem(new Piece(this));
+        }
+        for (int i =0;i<10;i++){
+            ajouterItem(new Bombe(this));
         }
     }
 

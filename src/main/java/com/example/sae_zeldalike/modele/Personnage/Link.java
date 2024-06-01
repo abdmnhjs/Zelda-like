@@ -3,6 +3,7 @@ package com.example.sae_zeldalike.modele.Personnage;
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Item.Item;
 import com.example.sae_zeldalike.modele.Item.Piece;
+import com.example.sae_zeldalike.modele.Item.Stockable;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
@@ -11,26 +12,24 @@ import javafx.collections.ObservableList;
 public class Link extends Personnage {
 
     private IntegerProperty portefeuille;
-    private Item[] inventaire;
+    private Stockable[] inventaire;
 
     public Link(Environnement environnement, int positionX, int positionY) {
 
         super(100, 0, environnement, positionX, positionY, 5, 32,32);
         this.portefeuille= new SimpleIntegerProperty();
-        inventaire = new Item[3];
+        inventaire = new Stockable[3];
 
     }
 
-    public Item[] getInventaire() {
+    public Stockable[] getInventaire() {
         return inventaire;
-
     }
 
 
-    public Item essaiRamasserPiece(){
 
-//        System.out.println(environnement.getItems());
-//        System.out.println("Link X= "+this.getPositionX()+" Y= "+this.getPositionY());
+    public Item essaiRamasserItem(){
+
         for(Item item : this.environnement.getItems()){
             if(item instanceof Piece){
 //                System.out.println("X= "+item.getPositionX()+" Y= "+item.getPositionY());
@@ -40,6 +39,7 @@ public class Link extends Personnage {
                     return item;
                 }
             }
+
         }
 //        System.out.println("Rien ramassé");
         return null;
