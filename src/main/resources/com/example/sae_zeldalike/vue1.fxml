@@ -79,7 +79,7 @@
                                     </Label>
                                     <ImageView nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@Map/55.png" />
+                                          <Image url="@ATH/Piece.png" />
                                        </image>
                                        <HBox.margin>
                                           <Insets left="-0.0" />
@@ -117,7 +117,7 @@
                <children>
                   <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
                      <image>
-                        <Image url="@Personnage/Ennemi/1.png" />
+                        <Image url="@Item/Bombe/Bombe_1.png" />
                      </image>
                   </ImageView>
                </children>
@@ -129,7 +129,7 @@
                <children>
                   <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
                      <image>
-                        <Image url="@Personnage/Ennemi/2.png" />
+                        <Image url="@Item/Bombe/Bombe_2.png" />
                      </image>
                   </ImageView>
                </children>
@@ -139,7 +139,10 @@
             </StackPane>
             <StackPane maxHeight="100.0" maxWidth="100.0" style="-fx-border-color: black;" GridPane.columnIndex="2">
                <children>
-                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" />
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@Item/Bombe/Bombe_3.png" />
+                     </image></ImageView>
                </children>
                <GridPane.margin>
                   <Insets />
