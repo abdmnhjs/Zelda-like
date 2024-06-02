@@ -1,6 +1,7 @@
 package com.example.sae_zeldalike.modele.Environnement;
 
 import com.example.sae_zeldalike.modele.Hitbox;
+import com.example.sae_zeldalike.modele.Item.Flèche;
 import com.example.sae_zeldalike.modele.Item.Item;
 import com.example.sae_zeldalike.modele.Item.Piece;
 import com.example.sae_zeldalike.modele.Personnage.Personnage;
@@ -13,6 +14,7 @@ public class Environnement {
     private static int compteurEnvironnement=0;
     private ObservableList<Personnage> personnages;
     private ObservableList<Item> items;
+    private ObservableList<Flèche> flèchesEnDéplacement;
     private Map map;
 
     public Environnement(Map map){
@@ -20,6 +22,7 @@ public class Environnement {
         this.id = "E"+compteurEnvironnement;
         compteurEnvironnement++;
         this.map=map;
+        this.flèchesEnDéplacement = FXCollections.observableArrayList();
         this.personnages= FXCollections.observableArrayList();
         this.items= FXCollections.observableArrayList();
     }
@@ -37,6 +40,27 @@ public class Environnement {
                 items.remove(i);
             }
         }
+    }
+
+    public ObservableList<Flèche> getFlèchesEnDéplacement() {
+        return this.flèchesEnDéplacement;
+    }
+
+    public void faireDeplacerFlecheHaut(){
+        Flèche flèche = this.flèchesEnDéplacement.remove(0);
+        flèche.seDeplacerHaut();
+    }
+    public void faireDeplacerFlecheBas(){
+        Flèche flèche = this.flèchesEnDéplacement.remove(0);
+        flèche.seDeplacerBas();
+    }
+    public void faireDeplacerFlecheDroite(){
+        Flèche flèche = this.flèchesEnDéplacement.remove(0);
+        flèche.seDeplacerDroite();
+    }
+    public void faireDeplacerFlecheGauche(){
+        Flèche flèche = this.flèchesEnDéplacement.remove(0);
+        flèche.seDeplacerGauche();
     }
 
     public ObservableList<Item> getItems() {
@@ -133,6 +157,13 @@ public class Environnement {
         return true;
 
 
+
+    }
+
+    public boolean estDansLimiteTerrain(int x, int y, int longueur, int largeur){
+
+        return (x < 0 || x > this.map.getColonne()*32 || y < 0 || y > this.map.getLigne()*32 || x+largeur > this.map.getColonne()*32 ||
+                y+longueur > this.map.getLigne()*32);
 
     }
 

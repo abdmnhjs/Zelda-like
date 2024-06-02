@@ -99,56 +99,29 @@ public class Clavier implements EventHandler<KeyEvent> {
         if (touches.contains(KeyCode.A)) {
             System.out.println(personnage.getPortefeuille());
         }
+        if(touches.contains(KeyCode.UP)){
+            Flèche flèche = new Flèche(personnage.getPositionX()+16, personnage.getPositionY()+16, 15, this.environnement);
+            flèche.setDirection("UP");
+            personnage.getEnvironnement().getFlèchesEnDéplacement().add(flèche);
+        }
+        if(touches.contains(KeyCode.DOWN)){
+            Flèche flèche = new Flèche(personnage.getPositionX()+16, personnage.getPositionY()+16, 15, this.environnement);
+            flèche.setDirection("DOWN");
+            personnage.getEnvironnement().getFlèchesEnDéplacement().add(flèche);
 
-        // Gestion des flèches
-        if (touches.contains(KeyCode.UP)) {
-            lancerFleche(KeyCode.UP);
         }
-        if (touches.contains(KeyCode.DOWN)) {
-            lancerFleche(KeyCode.DOWN);
+        if(touches.contains(KeyCode.RIGHT)){
+            Flèche flèche = new Flèche(personnage.getPositionX()+16, personnage.getPositionY()+16, 15, this.environnement);
+            flèche.setDirection("RIGHT");
+            personnage.getEnvironnement().getFlèchesEnDéplacement().add(flèche);
+
         }
-        if (touches.contains(KeyCode.RIGHT)) {
-            lancerFleche(KeyCode.RIGHT);
-        }
-        if (touches.contains(KeyCode.LEFT)) {
-            lancerFleche(KeyCode.LEFT);
+        if(touches.contains(KeyCode.LEFT)){
+            Flèche flèche = new Flèche(personnage.getPositionX()+16, personnage.getPositionY()+16, 15, this.environnement);
+            flèche.setDirection("LEFT");
+            personnage.getEnvironnement().getFlèchesEnDéplacement().add(flèche);
+
         }
     }
 
-    private void lancerFleche(KeyCode code) {
-        for (Arme arme : personnage.getArmes()) {
-            if (arme instanceof Arc) {
-                if (!((Arc) arme).getFlèches().isEmpty()) {
-                    Flèche flèche = ((Arc) arme).getFlèches().remove(0);
-                    VueFlèche vueFlèche;
-                    switch (code) {
-                        case UP:
-                            ((Arc) arme).getFlèches().add(new Flèche(personnage.getPositionX() + (flèche.getLargeur() / 2), personnage.getPositionY(), 30, environnement));
-                            vueFlèche = new VueFlèche(flèche, pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-haut.png");
-                            break;
-                        case DOWN:
-                            ((Arc) arme).getFlèches().add(new Flèche(personnage.getPositionX() + (flèche.getLargeur() / 2), personnage.getPositionY() + flèche.getLongueur(), 30, environnement));
-                            vueFlèche = new VueFlèche(flèche, pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-bas.png");
-                            break;
-                        case RIGHT:
-                            ((Arc) arme).getFlèches().add(new Flèche(personnage.getPositionX() + flèche.getLargeur(), personnage.getPositionY() + (flèche.getLongueur() / 2), 30, environnement));
-                            vueFlèche = new VueFlèche(flèche, pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-droite.png");
-                            break;
-                        case LEFT:
-                            ((Arc) arme).getFlèches().add(new Flèche(personnage.getPositionX(), personnage.getPositionY() + (flèche.getLongueur() / 2), 30, environnement));
-                            vueFlèche = new VueFlèche(flèche, pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-gauche.png");
-                            break;
-                        default:
-                            return;
-                    }
-                    ((Arc) arme).getFlèchesEnDéplacement().add(vueFlèche);
-                    vueFlèche.creerFlèche(pane);
-                    if (flèche.estDevantObstacle(flèche.getX(), flèche.getY()) || flèche.estDansLimiteTerrain(flèche.getX(), flèche.getY())) {
-                        vueFlèche.supprimerFlèche(pane);
-                        ((Arc) arme).getFlèchesEnDéplacement().remove(vueFlèche);
-                    }
-                }
-            }
-        }
-    }
 }

@@ -78,8 +78,7 @@ public class Controleur implements Initializable {
         this.ennemi1 = new Ennemi1(environnement, 130, 220);
         this.vueEnnemi1 = new VueEnnemi1(pane, ennemi1);
         vueMap = new VueMap(tilePane, map);
-        this.link.ajouterArme(new Arc(15, 1));
-        this.link.ajouterFlèche(new Flèche(this.link.getPositionX(), this.link.getPositionY(),30, this.environnement));
+        this.link.ajouterArc(new Arc(15, 1, this.environnement));
 
         this.barreDeVie.progressProperty().bind(link.pointViePercentProperty());
 
@@ -137,33 +136,27 @@ public class Controleur implements Initializable {
                         vueEnnemi1.changerImage();
                         //ennemi1.seDeplace(link);
                         ennemi1.seDeplace(link.getPositionX(), link.getPositionY());
-                        if (this.link.getArc().flècheLancée()) {
-                            VueFlèche vueFleche = this.link.getArc().getFlèchesEnDéplacement().get(0);
-                            Flèche flèche = vueFleche.getFlèche();
-
-                            switch (link.getDirection()) {
-                                case "UP":
+                        vueLink.animationPersonnage();
+                        for(Flèche flèche : this.environnement.getFlèchesEnDéplacement()){
+                            if(!flèche.getEnvironnement().estDevantObstacle(flèche.hitbox(flèche.getX(), flèche.getY())) ||
+                            !flèche.getEnvironnement().estDansLimiteTerrain(flèche.getX(), flèche.getY(), flèche.getLongueur(), flèche.getLargeur())){
+                                if(flèche.getDirection().equals("UP")){
                                     flèche.seDeplacerHaut();
-                                case "DOWN":
+                                }
+                                if(flèche.getDirection().equals("DOWN")){
                                     flèche.seDeplacerBas();
-                                case "RIGHT":
+                                }
+                                if(flèche.getDirection().equals("RIGHT")){
                                     flèche.seDeplacerDroite();
-                                case "LEFT":
+                                }
+                                if(flèche.getDirection().equals("LEFT")){
                                     flèche.seDeplacerGauche();
-                                default:
-
-                            }
-
-                            if (flèche.estDevantObstacle(flèche.getX(), flèche.getY()) || flèche.estDansLimiteTerrain(flèche.getX(), flèche.getY())) {
-                                Platform.runLater(() -> {
-                                    vueFleche.supprimerFlèche(this.pane);
-                                    this.link.getArc().getFlèchesEnDéplacement().remove(vueFleche);
-                                    System.out.println("Flèche supprimée du pane et de la liste des flèches en déplacement");
-                                });
+                                }
+                                else if (flèche.getEnvironnement().estDevantObstacle(flèche.hitbox(flèche.getX(), flèche.getY())) ||
+                                        flèche.getEnvironnement().estDansLimiteTerrain(flèche.getX(), flèche.getY(), flèche.getLongueur(), flèche.getLargeur()))
+                                    this.environnement.getFlèchesEnDéplacement().remove(flèche);
                             }
                         }
-
-                        vueLink.animationPersonnage();
                     }
                     if (temps % 3 == 0) {
 //                        this.pane.requestFocus();
