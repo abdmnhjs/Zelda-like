@@ -66,7 +66,7 @@ public class Link extends Personnage {
                 };
 
                 // Planification de la tâche pour qu'elle s'exécute après 3000 millisecondes (3 secondes)
-                timer.schedule(task, 2000);
+                timer.schedule(task, 1800);
 
 
             }

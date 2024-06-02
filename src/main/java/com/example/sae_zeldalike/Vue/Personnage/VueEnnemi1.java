@@ -11,7 +11,8 @@ import javafx.scene.shape.Circle;
 public class VueEnnemi1 extends VuePersonnage{
 
 
-    private Image spritePerso1,spritePerso2;
+    private Image spritePerso1,spritePerso2,spritePerso3;
+    private boolean degresif = true;
 
 
     public VueEnnemi1 (Pane pane, Personnage personnage) {
@@ -26,8 +27,9 @@ public class VueEnnemi1 extends VuePersonnage{
     }
 
     private void initialiser(){
-        spritePerso1 = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Ennemi/1.png");
-        spritePerso2 = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Ennemi/2.png");
+        spritePerso1 = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Chauve-souris/1.png");
+        spritePerso2 = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Chauve-souris/2.png");
+        spritePerso3 = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Chauve-souris/3.png");
     }
 
     @Override
@@ -42,15 +44,32 @@ public class VueEnnemi1 extends VuePersonnage{
         ombre.centerYProperty().bind(spritePersonnage.translateYProperty().add(personnage.getLongueur()-5));
     }
 
-    public void animation(){
-        if (numeroImagePersonnage==1){
-            setNumeroImagePersonnage(2);
-            spritePersonnage.setImage(spritePerso1);
+    public void animation() {
+        if (numeroImagePersonnage == 1) {
+            if (degresif) {
+                setNumeroImagePersonnage(2);
+                spritePersonnage.setImage(spritePerso1);
+            } else {
+                setNumeroImagePersonnage(2);
+                spritePersonnage.setImage(spritePerso1);
+                degresif = true;
+            }
+        } else if (numeroImagePersonnage == 2) {
+            if (degresif) {
+                setNumeroImagePersonnage(3);
+                spritePersonnage.setImage(spritePerso2);
+            } else {
+                setNumeroImagePersonnage(1);
+                spritePersonnage.setImage(spritePerso2);
+            }
+        } else if (numeroImagePersonnage == 3) {
+            if (degresif) {
+                setNumeroImagePersonnage(2);
+                spritePersonnage.setImage(spritePerso3);
+                degresif = false;
+            }
         }
-        else if (numeroImagePersonnage==2){
-            setNumeroImagePersonnage(1);
-            spritePersonnage.setImage(spritePerso2);
-        }
+
     }
 
 
