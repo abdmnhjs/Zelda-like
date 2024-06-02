@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d68f44cc-42ae-46c4-b79e-09da1a472c7e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Vue/Personnage/VueEnnemi1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Vue/Personnage/VueEnnemi1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Personnage/Ennemi1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Personnage/Ennemi1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Ennemi/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Ennemi/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Ennemi/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Personnage/Ennemi/2.png" afterDir="false" />
-    </list>
+    <list default="true" id="d68f44cc-42ae-46c4-b79e-09da1a472c7e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -140,7 +134,7 @@
       <workItem from="1717342687793" duration="7100000" />
       <workItem from="1717351646994" duration="6057000" />
       <workItem from="1717360022349" duration="3440000" />
-      <workItem from="1717364895434" duration="2712000" />
+      <workItem from="1717364895434" duration="3037000" />
     </task>
     <servers />
   </component>
