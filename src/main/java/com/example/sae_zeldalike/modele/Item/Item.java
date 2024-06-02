@@ -27,6 +27,7 @@ public class Item {
         this.longueur=longueur;
 
     }
+
     public Item(Environnement environnement,int largeur,int longueur){
         this.environnement=environnement;
         this.id="I"+compteurItem;
@@ -36,7 +37,6 @@ public class Item {
         this.positionX=new SimpleIntegerProperty();
         this.positionY=new SimpleIntegerProperty();
         genererPositionAleatoires();
-
 
     }
     public Hitbox hitbox(int x, int y){
@@ -49,14 +49,15 @@ public class Item {
         Random random = new Random();
         int posX,posY;
         do{
-            posX = (random.nextInt((getEnvironnement().getMap().getColonne()-1)*getEnvironnement().getMap().getTailleTuile()));
-            posY = (random.nextInt((getEnvironnement().getMap().getLigne()-1)*getEnvironnement().getMap().getTailleTuile()));
+            posX = (random.nextInt((getEnvironnement().getMap().getColonne()-2)*getEnvironnement().getMap().getTailleTuile()));
+            posY = (random.nextInt((getEnvironnement().getMap().getLigne()-2)*getEnvironnement().getMap().getTailleTuile()));
 
-//            System.out.println("posX="+posX+",posY="+posY);
         }while (!getEnvironnement().estDansTuile(11,hitbox(posX,posY)));
         setPositionX(posX);
         setPositionY(posY);
     }
+
+
     public Environnement getEnvironnement() {
         return environnement;
     }

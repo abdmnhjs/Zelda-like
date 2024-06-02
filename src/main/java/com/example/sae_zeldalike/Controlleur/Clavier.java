@@ -13,20 +13,19 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import com.example.sae_zeldalike.modele.Item.Arme;
-import com.example.sae_zeldalike.modele.Personnage.*;
 
 import java.util.HashSet;
 
 public class Clavier implements EventHandler<KeyEvent> {
 
-    private Link personnage;
+    private Link link;
     private Pane pane;
     private HashSet<KeyCode> touches;
     private Environnement environnement;
     private Timeline mouvementContinu;
 
-    public Clavier(Link personnage, Pane pane, Environnement environnement) {
-        this.personnage = personnage;
+    public Clavier(Link link, Pane pane, Environnement environnement) {
+        this.link = link;
         this.pane = pane;
         this.touches = new HashSet<>();
         this.environnement = environnement;
@@ -40,7 +39,7 @@ public class Clavier implements EventHandler<KeyEvent> {
         } else if (keyEvent.getEventType() == KeyEvent.KEY_RELEASED) {
             touches.remove(keyEvent.getCode());
             if (touches.isEmpty()) {
-                personnage.setDirection("Inactif_" + personnage.getDirection());
+                link.setDirection("Inactif_" + link.getDirection());
             }
         }
     }
@@ -56,46 +55,80 @@ public class Clavier implements EventHandler<KeyEvent> {
         int newY;
 
         if (touches.contains(KeyCode.Z)) {
-            newX = personnage.getPositionX();
-            newY = personnage.getPositionY() - personnage.getVitesseDeplacement();
-            if (!personnage.getEnvironnement().estDevantObstacle(personnage.hitbox(newX, newY))) {
-                personnage.setPositionYProperty(newY);
+            newX = link.getPositionX();
+            newY = link.getPositionY() - link.getVitesseDeplacement();
+            if (!link.getEnvironnement().estDevantObstacle(link.hitbox(newX, newY))) {
+                link.setPositionYProperty(newY);
             }
-            personnage.setDirection("UP");
+            link.setDirection("UP");
         }
         if (touches.contains(KeyCode.S)) {
-            newX = personnage.getPositionX();
-            newY = personnage.getPositionY() + personnage.getVitesseDeplacement();
-            if (!personnage.getEnvironnement().estDevantObstacle(personnage.hitbox(newX, newY))) {
-                personnage.setPositionYProperty(newY);
+            newX = link.getPositionX();
+            newY = link.getPositionY() + link.getVitesseDeplacement();
+            if (!link.getEnvironnement().estDevantObstacle(link.hitbox(newX, newY))) {
+                link.setPositionYProperty(newY);
             }
-            personnage.setDirection("DOWN");
+            link.setDirection("DOWN");
         }
         if (touches.contains(KeyCode.Q)) {
-            newX = personnage.getPositionX() - personnage.getVitesseDeplacement();
-            newY = personnage.getPositionY();
-            if (!personnage.getEnvironnement().estDevantObstacle(personnage.hitbox(newX, newY))) {
-                personnage.setPositionXProperty(newX);
+            newX = link.getPositionX() - link.getVitesseDeplacement();
+            newY = link.getPositionY();
+            if (!link.getEnvironnement().estDevantObstacle(link.hitbox(newX, newY))) {
+                link.setPositionXProperty(newX);
             }
-            personnage.setDirection("LEFT");
+            link.setDirection("LEFT");
         }
         if (touches.contains(KeyCode.D)) {
-            newX = personnage.getPositionX() + personnage.getVitesseDeplacement();
-            newY = personnage.getPositionY();
-            if (!personnage.getEnvironnement().estDevantObstacle(personnage.hitbox(newX, newY))) {
-                personnage.setPositionXProperty(newX);
+            newX = link.getPositionX() + link.getVitesseDeplacement();
+            newY = link.getPositionY();
+            if (!link.getEnvironnement().estDevantObstacle(link.hitbox(newX, newY))) {
+                link.setPositionXProperty(newX);
             }
-            personnage.setDirection("RIGHT");
+            link.setDirection("RIGHT");
         }
         if (touches.contains(KeyCode.J)) {
-            Item item = personnage.essaiRamasserItem();
+            Item item = link.essaiRamasserItem();
             if (item != null) {
                 if (item instanceof Piece) {
-                    personnage.ajouterPiece(((Piece) item).getValeur());
-                    personnage.getEnvironnement().supprimerItem(item);
+                    link.ajouterPiece(((Piece) item).getValeur());
+                    link.getEnvironnement().supprimerItem(item);
+                }if (item instanceof Stockable){
+
+                    if (link.emplacementInventaireLibre()){
+
+                        link.ajouteItemDansInventaire((Stockable) item);
+                        link.getEnvironnement().supprimerItem(item);
+                    }else {
+                        System.out.println("Inventaire plein");
+                    }
+
                 }
             }
         }
+        if (touches.contains(KeyCode.A)) {
+            System.out.println(link.getInventaire());
+            System.out.println(link.getEnvironnement().getPersonnages());
+        }
+        if (touches.contains(KeyCode.I)){
+
+            link.utiliserItemDansInventaire();
+        }
+        if (touches.contains(KeyCode.U)){
+
+        }
+        if (touches.contains(KeyCode.Y)){
+
+        }
+        if (touches.contains(KeyCode.AMPERSAND)){
+            System.out.println("Case de l'inventaire 1");
+        }
+        if (touches.contains(KeyCode.E)){
+            System.out.println("Case de l'inventaire 2");
+        }
+        if (touches.contains(KeyCode.QUOTEDBL)){
+            System.out.println("Case de l'inventaire 3");
+        }
+
 
         // Gestion des flèches
         if (touches.contains(KeyCode.UP)) {
@@ -111,29 +144,30 @@ public class Clavier implements EventHandler<KeyEvent> {
             lancerFleche(KeyCode.LEFT);
         }
 
+
     }
 
     private void lancerFleche(KeyCode code) {
-        for (Arme arme : personnage.getArmes()) {
+        for (Arme arme : link.getArmes()) {
             if (arme instanceof Arc) {
                 if (!((Arc) arme).getFlèches().isEmpty()) {
                     Flèche flèche = ((Arc) arme).getFlèches().remove(0);
                     VueFlèche vueFlèche;
                     switch (code) {
                         case UP:
-                            ((Arc) arme).getFlèches().add(new Flèche(personnage.getPositionX() + (flèche.getLargeur() / 2), personnage.getPositionY(), 30, environnement));
+                            ((Arc) arme).getFlèches().add(new Flèche(link.getPositionX() + (flèche.getLargeur() / 2), link.getPositionY(), 30, environnement));
                             vueFlèche = new VueFlèche(flèche, pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-haut.png");
                             break;
                         case DOWN:
-                            ((Arc) arme).getFlèches().add(new Flèche(personnage.getPositionX() + (flèche.getLargeur() / 2), personnage.getPositionY() + flèche.getLongueur(), 30, environnement));
+                            ((Arc) arme).getFlèches().add(new Flèche(link.getPositionX() + (flèche.getLargeur() / 2), link.getPositionY() + flèche.getLongueur(), 30, environnement));
                             vueFlèche = new VueFlèche(flèche, pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-bas.png");
                             break;
                         case RIGHT:
-                            ((Arc) arme).getFlèches().add(new Flèche(personnage.getPositionX() + flèche.getLargeur(), personnage.getPositionY() + (flèche.getLongueur() / 2), 30, environnement));
+                            ((Arc) arme).getFlèches().add(new Flèche(link.getPositionX() + flèche.getLargeur(), link.getPositionY() + (flèche.getLongueur() / 2), 30, environnement));
                             vueFlèche = new VueFlèche(flèche, pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-droite.png");
                             break;
                         case LEFT:
-                            ((Arc) arme).getFlèches().add(new Flèche(personnage.getPositionX(), personnage.getPositionY() + (flèche.getLongueur() / 2), 30, environnement));
+                            ((Arc) arme).getFlèches().add(new Flèche(link.getPositionX(), link.getPositionY() + (flèche.getLongueur() / 2), 30, environnement));
                             vueFlèche = new VueFlèche(flèche, pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-gauche.png");
                             break;
                         default:

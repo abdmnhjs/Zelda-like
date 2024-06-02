@@ -11,6 +11,7 @@ import com.example.sae_zeldalike.modele.Limitations;
 import javafx.beans.property.*;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public abstract class Personnage {
 
@@ -41,22 +42,50 @@ public abstract class Personnage {
         this.longueur=longueur;
         this.largeur=largeur;
         this.pointViePercent.bind(getPointVieProperty().divide(100.0));
-
         this.armes = new ArrayList<>();
 
     }
 
-   /* public Personnage( int pointVie, int pointAttaque, Environnement environnement, int vitesseDeplacement) {
+    public Personnage( int pointVie, int pointAttaque, Environnement environnement, int vitesseDeplacement, int longueur, int largeur) {
         this.id = "P"+compteurPersonnage;
         compteurPersonnage++;
         this.pointVie = new SimpleIntegerProperty(pointVie);
         this.pointAttaque = new SimpleIntegerProperty(pointAttaque);
-        this.environnement = environnement;
-        Random random = new Random();
-        this.positionX = new SimpleIntegerProperty(random.nextInt(environnement.getMap().getColonne() - 1));
-        this.positionY = new SimpleIntegerProperty(random.nextInt(environnement.getMap().getLigne() - 1));
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
-    }**/
+        this.environnement = environnement;
+        this.direction = new SimpleStringProperty("Inactif_DOWN");
+        this.longueur=longueur;
+        this.largeur=largeur;
+        this.pointViePercent.bind(getPointVieProperty().divide(100.0));
+        this.armes = new ArrayList<>();
+        this.positionX = new SimpleIntegerProperty();
+        this.positionY = new SimpleIntegerProperty();
+        genererPositionAleatoires();
+
+    }
+
+    public void genererPositionAleatoires(){
+        Random random = new Random();
+        int posX,posY;
+        do{
+            posX = (random.nextInt((getEnvironnement().getMap().getColonne()-2)*getEnvironnement().getMap().getTailleTuile()));
+            posY = (random.nextInt((getEnvironnement().getMap().getLigne()-2)*getEnvironnement().getMap().getTailleTuile()));
+
+//            System.out.println("posX="+posX+",posY="+posY);
+        }while (!getEnvironnement().estDansTuile(11,hitbox(posX,posY)));
+        setPositionXProperty(posX);
+        setPositionYProperty(posY);
+    }
+
+
+
+    public void tue(){
+        setPointDeVie(0);
+    }
+
+    public boolean estVivant(){
+        return getPointVie()>0;
+    }
 
     public int getLargeur(){return largeur;}
     public int getLongueur(){return longueur;}

@@ -41,7 +41,6 @@ public class ObservateurItem implements ListChangeListener<Item> {
                         vueItems.add(newItem);
                     }
 
-
                 }
             }
             else if (change.wasRemoved()){

@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.effect.ColorAdjust?>
@@ -10,26 +9,29 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae_zeldalike.Controlleur.Controleur">
    <center>
-   <Pane fx:id="pane" focusTraversable="true" prefHeight="576.0" prefWidth="1088.0">
-      <TilePane fx:id="tilePane" prefColumns="61" prefRows="40" prefTileHeight="32" prefTileWidth="32" />
-   </Pane>
+      <Pane fx:id="pane" prefHeight="576.0" prefWidth="1088.0" BorderPane.alignment="CENTER">
+         <TilePane fx:id="tilePane" prefColumns="61" prefRows="40" prefTileHeight="32" prefTileWidth="32" />
+      </Pane>
    </center>
    <top>
-      <HBox maxWidth="300.0" prefHeight="80.0" BorderPane.alignment="TOP_LEFT">
+      <HBox focusTraversable="true" maxHeight="80.0" maxWidth="300.0" BorderPane.alignment="TOP_LEFT">
          <children>
-            <VBox alignment="TOP_CENTER" cacheShape="false" centerShape="false" prefHeight="50.0" prefWidth="541.0" scaleShape="false" style="-fx-background-color: none;">
+            <VBox alignment="TOP_CENTER" cacheShape="false" centerShape="false" prefHeight="50.0" prefWidth="541.0" scaleShape="false">
                <children>
-                  <HBox alignment="TOP_CENTER" cacheShape="false" centerShape="false" fillHeight="false" snapToPixel="false" style="-fx-background-color: none;">
+                  <HBox alignment="TOP_CENTER" cacheShape="false" centerShape="false" fillHeight="false" snapToPixel="false">
                      <children>
                         <ImageView id="imagePerso" fx:id="imagePerso" cache="true" fitHeight="86.0" fitWidth="64.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -49,7 +51,7 @@
                                     <Insets left="5.0" top="5.0" />
                                  </VBox.margin>
                               </Label>
-                              <ProgressBar id="barreDeVie" fx:id="barreDeVie" blendMode="SRC_ATOP" cache="true" cacheHint="SPEED" depthTest="DISABLE" prefHeight="25.0" prefWidth="150.0" progress="1.0" snapToPixel="false">
+                              <ProgressBar id="barreDeVie" fx:id="barreDeVie" blendMode="SRC_ATOP" cache="true" cacheHint="SPEED" depthTest="DISABLE" prefHeight="20.0" prefWidth="150.0" progress="1.0" snapToPixel="false">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -68,7 +70,7 @@
                                     </ColorAdjust>
                                  </effect>
                               </ProgressBar>
-                              <HBox prefWidth="199.0" style="-fx-background-color: none;">
+                              <HBox>
                                  <children>
                                     <Label fx:id="nombrePiece" alignment="CENTER" contentDisplay="CENTER" text="0" textAlignment="CENTER" textOverrun="CLIP">
                                        <font>
@@ -98,27 +100,56 @@
       </HBox>
    </top>
    <bottom>
-      <HBox alignment="TOP_CENTER" maxHeight="100.0" maxWidth="300.0" prefHeight="100.0" prefWidth="300.0" BorderPane.alignment="CENTER">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4b278" height="100.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="100.0">
-               <HBox.margin>
-                  <Insets left="3.0" right="3.0" />
-               </HBox.margin>
-            </Rectangle>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4b278" height="100.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="100.0">
-               <HBox.margin>
-                  <Insets left="3.0" right="3.0" />
-               </HBox.margin>
-            </Rectangle>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4b278" height="100.0" layoutX="210.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="100.0">
-               <HBox.margin>
-                  <Insets left="3.0" right="3.0" />
-               </HBox.margin>
-            </Rectangle>
-         </children>
-      </HBox>
+      
    </bottom>
-   <cursor>
-      <Cursor fx:constant="DEFAULT" />
-   </cursor>
+   <bottom>
+      <GridPane alignment="BOTTOM_CENTER" hgap="10.0" maxHeight="150.0" maxWidth="320.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="150.0" BorderPane.alignment="BOTTOM_CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <StackPane maxHeight="100.0" maxWidth="100.0" style="-fx-border-color: black;">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@Personnage/Ennemi/1.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </StackPane>
+            <StackPane maxHeight="100.0" maxWidth="100.0" style="-fx-border-color: black;" GridPane.columnIndex="1">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@Personnage/Ennemi/2.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </StackPane>
+            <StackPane maxHeight="100.0" maxWidth="100.0" style="-fx-border-color: black;" GridPane.columnIndex="2">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" />
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </StackPane>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </GridPane>
+   </bottom>
+
 </BorderPane>

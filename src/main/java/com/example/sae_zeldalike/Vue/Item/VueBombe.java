@@ -12,7 +12,7 @@ public class VueBombe extends VueItem {
             bombe8, bombe9, bombe10, bombe11, bombe12,bombe13,bombe14;
 
     public VueBombe(Pane pane, Item item) {
-        super(pane, item, 1);
+        super(pane, item);
         initialiserItem();
 
         spriteItem.setImage(bombe1);

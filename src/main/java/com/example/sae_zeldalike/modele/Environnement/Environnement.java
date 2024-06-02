@@ -4,6 +4,7 @@ import com.example.sae_zeldalike.modele.Hitbox;
 import com.example.sae_zeldalike.modele.Item.Bombe;
 import com.example.sae_zeldalike.modele.Item.Item;
 import com.example.sae_zeldalike.modele.Item.Piece;
+import com.example.sae_zeldalike.modele.Personnage.Ennemi1;
 import com.example.sae_zeldalike.modele.Personnage.Personnage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,10 +33,18 @@ public class Environnement {
     public void ajouterItem(Item item){
         items.add(item);
     }
+
     public void supprimerItem (Item item){
         for(int i=0;i<items.size();i++){
             if(items.get(i).getId().equals(item.getId())){
                 items.remove(i);
+            }
+        }
+    }
+    public void supprimerPersonnage (Personnage personnage){
+        for(int i=0;i<personnages.size();i++){
+            if(personnages.get(i).getId().equals(personnage.getId())){
+                personnages.remove(i);
             }
         }
     }
@@ -185,6 +194,9 @@ public class Environnement {
         }
         for (int i =0;i<10;i++){
             ajouterItem(new Bombe(this));
+        }
+        for (int i =0;i<10;i++){
+            ajouterPersonnage(new Ennemi1(this));
         }
     }
 

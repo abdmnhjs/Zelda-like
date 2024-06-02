@@ -1,6 +1,9 @@
 package com.example.sae_zeldalike.modele.Item;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
+import com.example.sae_zeldalike.modele.Personnage.Personnage;
+
+import java.util.ArrayList;
 
 public class Bombe extends Item implements Stockable {
 
@@ -10,13 +13,38 @@ public class Bombe extends Item implements Stockable {
     public Bombe(Environnement environnement, int positionX, int positionY) {
         super(environnement, positionX, positionY,48,48);
         this.degat = 0;
-        this.rayonAttaque = getLargeur()/2;
+        this.rayonAttaque = getLargeur();
     }
 
     public Bombe(Environnement environnement) {
         super(environnement,48,48);
         this.degat = 0;
-        this.rayonAttaque = getLargeur()/2;
+        this.rayonAttaque = getLargeur();
+    }
+
+    public void explose(){
+
+
+        ArrayList<Personnage>dead = new ArrayList<>();
+        System.out.println("Bombe va exploser");
+        System.out.println("Bombe X= "+this.getPositionX()+" Y= "+this.getPositionY());
+        for (Personnage personnage : this.getEnvironnement().getPersonnages()) {
+            System.out.println("Perso X= "+personnage.getPositionX()+" Y= "+personnage.getPositionY());
+            if ((this.getPositionY() - getRayonAttaque() <= personnage.getPositionY() && personnage.getPositionY() <= this.getPositionY() + getRayonAttaque())
+                    && (this.getPositionX() - getRayonAttaque() <= personnage.getPositionX() && personnage.getPositionX() <= this.getPositionX() + getRayonAttaque())) {
+
+                System.out.println(personnage.getClass()+ "est mort");
+
+                personnage.tue();
+                dead.add(personnage);
+
+
+            }
+        }
+
+        for (Personnage personnage : dead) {
+            personnage.getEnvironnement().supprimerPersonnage(personnage);
+        }
     }
 
     public int getRayonAttaque() {

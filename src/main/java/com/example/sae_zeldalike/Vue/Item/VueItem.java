@@ -16,9 +16,9 @@ public abstract class VueItem {
     private int numeroImageItem;
     protected Circle ombre;
 
-    public VueItem(Pane pane, Item item, int numeroImageItem){
+    public VueItem(Pane pane, Item item){
         this.item = item;
-        this.numeroImageItem=numeroImageItem;
+        this.numeroImageItem=1;
         this.spriteItem=new ImageView();
         spriteItem.setFitWidth(item.getLargeur());
         spriteItem.setFitHeight(item.getLongueur());

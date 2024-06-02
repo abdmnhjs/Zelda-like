@@ -1,56 +1,57 @@
 package com.example.sae_zeldalike.Vue.Personnage;
 
 import com.example.sae_zeldalike.modele.Personnage.Ennemi1;
+import com.example.sae_zeldalike.modele.Personnage.Personnage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
-public class VueEnnemi1 {
+public class VueEnnemi1 extends VuePersonnage{
 
-    private Ennemi1 perso;
-    private ImageView spritePerso;
-    private int numImagePerso;
 
-    public VueEnnemi1 (Pane pane, Ennemi1 ennemi1) {
-        this.perso = ennemi1;
-        this.numImagePerso=1;
-        this.spritePerso = new ImageView("file:src/main/resources/com/example/sae_zeldalike/Personnage/Ennemi/testEnnemi1.png");
-        this.spritePerso.setId("#" + ennemi1.getId());
-        spritePerso.setFitWidth(32);
-        spritePerso.setFitHeight(32);
-        spritePerso.setTranslateX(ennemi1.getPositionX());
-        spritePerso.setTranslateY(ennemi1.getPositionY());
-        pane.getChildren().add(spritePerso);
-        spritePerso.translateXProperty().bind(ennemi1.getPositionXProperty());
-        spritePerso.translateYProperty().bind(ennemi1.getPositionYProperty());
+    private Image spritePerso1,spritePerso2;
+
+
+    public VueEnnemi1 (Pane pane, Personnage personnage) {
+        super(pane, personnage);
+        initialiser();
+        this.spritePersonnage.setImage(spritePerso1);
+
+        creerOmbre(pane);
+        pane.getChildren().add(spritePersonnage);
+        spritePersonnage.translateXProperty().bind(personnage.getPositionXProperty());
+        spritePersonnage.translateYProperty().bind(personnage.getPositionYProperty());
     }
 
-    public void changerImage(){
-        if (numImagePerso==1){
-            setNumImagePerso(2);
-            spritePerso.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Ennemi/testEnnemi1.png"));
+    private void initialiser(){
+        spritePerso1 = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Ennemi/1.png");
+        spritePerso2 = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Ennemi/2.png");
+    }
+
+    @Override
+    protected void creerOmbre(Pane pane) {
+        ombre = new Circle((personnage.getLargeur()/2.5));
+        ombre.setFill(Color.RED);
+        ombre.setId("O"+personnage.getId());
+
+        pane.getChildren().add(this.ombre);
+
+        ombre.centerXProperty().bind(spritePersonnage.translateXProperty().add(personnage.getLargeur()/2));
+        ombre.centerYProperty().bind(spritePersonnage.translateYProperty().add(personnage.getLongueur()-5));
+    }
+
+    public void animation(){
+        if (numeroImagePersonnage==1){
+            setNumeroImagePersonnage(2);
+            spritePersonnage.setImage(spritePerso1);
         }
-        else if (getNumImagePerso()==2){
-            setNumImagePerso(1);
-            spritePerso.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Ennemi/zombie_spritesheet(2).png"));
+        else if (numeroImagePersonnage==2){
+            setNumeroImagePersonnage(1);
+            spritePersonnage.setImage(spritePerso2);
         }
     }
 
 
-
-    public int getNumImagePerso() {
-        return numImagePerso;
-    }
-
-    public void setNumImagePerso(int numImagePerso) {
-        this.numImagePerso = numImagePerso;
-    }
-
-    public Ennemi1 getPerso() {
-        return perso;
-    }
-
-    public ImageView getSpritePerso() {
-        return spritePerso;
-    }
 }

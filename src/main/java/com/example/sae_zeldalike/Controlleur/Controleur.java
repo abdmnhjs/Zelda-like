@@ -1,6 +1,7 @@
 package com.example.sae_zeldalike.Controlleur;
 
 import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurItem;
+import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurPersonnage;
 import com.example.sae_zeldalike.Vue.*;
 import com.example.sae_zeldalike.Vue.Environnement.VueMap;
 import com.example.sae_zeldalike.Vue.Item.VueBombe;
@@ -8,9 +9,9 @@ import com.example.sae_zeldalike.Vue.Item.VueItem;
 import com.example.sae_zeldalike.Vue.Item.VuePiece;
 import com.example.sae_zeldalike.Vue.Personnage.VueEnnemi1;
 import com.example.sae_zeldalike.Vue.Personnage.VueLink;
+import com.example.sae_zeldalike.Vue.Personnage.VuePersonnage;
 import com.example.sae_zeldalike.modele.Environnement.*;
-import com.example.sae_zeldalike.modele.Item.Arc;
-import com.example.sae_zeldalike.modele.Item.Flèche;
+import com.example.sae_zeldalike.modele.Item.*;
 import com.example.sae_zeldalike.modele.Personnage.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -38,7 +39,10 @@ public class Controleur implements Initializable {
     private VueEnnemi1 vueEnnemi1;
     private Map map;
     private VueMap vueMap;
+
+
     private ArrayList<VueItem> vueItems;
+    private ArrayList<VuePersonnage> vuePersos;
 
 
 
@@ -68,19 +72,27 @@ public class Controleur implements Initializable {
         }
 
         this.environnement = new Environnement(map);
+        vueMap = new VueMap(tilePane, map);
         this.link = new Link(environnement, 32, 32);
         this.vueLink = new VueLink(pane, link);
-        this.ennemi1 = new Ennemi1(environnement, 130, 220);
-        this.vueEnnemi1 = new VueEnnemi1(pane, ennemi1);
-        vueMap = new VueMap(tilePane, map);
+        this.ennemi1 =new Ennemi1(environnement);
+        environnement.ajouterPersonnage(ennemi1);
+        this.vueEnnemi1 =new VueEnnemi1(pane,ennemi1);
+
+
         this.link.ajouterArme(new Arc(15, 1));
         this.link.ajouterFlèche(new Flèche(this.link.getPositionX(), this.link.getPositionY(),30, this.environnement));
 
         this.barreDeVie.progressProperty().bind(link.pointViePercentProperty());
-        vueItems = new ArrayList<>();
-//        this.nombrePiece.textProperty().bind(link.getPortefeuilleProperty().asString());
+
         link.getPortefeuilleProperty().addListener((obs, old, nouv)-> this.nombrePiece.setText(nouv.toString()));
+
+        vueItems = new ArrayList<>();
         this.environnement.getItems().addListener(new ObservateurItem(pane,vueItems));
+
+        vuePersos = new ArrayList<>();
+        this.environnement.getPersonnages().addListener(new ObservateurPersonnage(pane,vuePersos));
+
         imagePerso.setFitHeight(64);
         imagePerso.setFitWidth(64);
         imagePerso.maxWidth(64);
@@ -92,13 +104,13 @@ public class Controleur implements Initializable {
 
         // Scroll Map
         this.link.getPositionXProperty().addListener((observable, oldValue, newValue) -> {
-            this.pane.setTranslateX( pane.getPrefWidth() / 2 - link.getPositionX());
+            this.pane.setTranslateX( pane.getPrefWidth() / 2 - link.getPositionX()-(link.getLargeur()/2));
         });
         this.link.getPositionYProperty().addListener((observable, oldValue, newValue) -> {
-            this.pane.setTranslateY( pane.getPrefHeight() / 2 - link.getPositionY());
+            this.pane.setTranslateY( pane.getPrefHeight() / 2 - link.getPositionY()-(link.getLongueur()/2));
         });
-        this.pane.setTranslateX(pane.getPrefWidth() / 2 - link.getPositionX());
-        this.pane.setTranslateY(pane.getPrefHeight() /2 - link.getPositionY());
+        this.pane.setTranslateX(pane.getPrefWidth() / 2 - link.getPositionX()-(link.getLargeur()/2));
+        this.pane.setTranslateY(pane.getPrefHeight() /2 - link.getPositionY()-(link.getLongueur()/2));
 
         // demarre l'animation
         gameLoop.play();
@@ -121,9 +133,17 @@ public class Controleur implements Initializable {
                         System.out.println("fini");
                         gameLoop.stop();
                     } else if (temps % 10 == 0) {
-                        vueEnnemi1.changerImage();
-                        //ennemi1.seDeplace(link);
-                        ennemi1.seDeplace(link.getPositionX(), link.getPositionY());
+
+                        for (VuePersonnage monPerso : vuePersos){
+                            if (monPerso instanceof VueEnnemi1){
+                                monPerso.animation();
+
+                                Ennemi1 e1 = (Ennemi1) monPerso.getPersonnage();
+                                e1.seDeplace(link.getPositionX()+ link.getLargeur()/2, link.getPositionY()+ link.getLongueur()/2);
+                            }
+                        }
+                        vueLink.animation();
+
                         if (this.link.getArc().flècheLancée()) {
                             VueFlèche vueFleche = this.link.getArc().getFlèchesEnDéplacement().get(0);
                             Flèche flèche = vueFleche.getFlèche();
@@ -150,9 +170,12 @@ public class Controleur implements Initializable {
                             }
                         }
 
-                        vueLink.animationPersonnage();
+
                     }
-                    if (temps % 5 == 0) {
+                    if (temps % 9 == 0) {
+
+                        vueEnnemi1.animation();
+                        ennemi1.seDeplace(link.getPositionX()+ link.getLargeur()/2, link.getPositionY()+ link.getLongueur()/2);
                         this.pane.requestFocus();
                         for (VueItem monItem : vueItems){
                             if (monItem instanceof VuePiece){
@@ -163,7 +186,6 @@ public class Controleur implements Initializable {
 
                         }
                     }
-
 
                     temps++;
                 }

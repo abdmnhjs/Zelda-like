@@ -13,9 +13,8 @@ public class VuePiece extends VueItem{
     private Image pieceImage1, pieceImage2, pieceImage3, pieceImage4, pieceImage5, pieceImage6, pieceImage7, pieceImage8, pieceImage9;
 
     public VuePiece(Pane pane, Item item) {
-        super(pane, item,1);
+        super(pane, item);
         initialiserImage();
-
 
         spriteItem.setImage(pieceImage1);
 
