@@ -178,11 +178,7 @@ public class Controleur implements Initializable {
                         ennemi1.seDeplace(link.getPositionX()+ link.getLargeur()/2, link.getPositionY()+ link.getLongueur()/2);
                         this.pane.requestFocus();
                         for (VueItem monItem : vueItems){
-                            if (monItem instanceof VuePiece){
-                                monItem.animationItem();
-                            }else if (monItem instanceof VueBombe){
-                                monItem.animationItem();
-                            }
+                            monItem.animationItem();
 
                         }
                     }

@@ -24,7 +24,6 @@ public class Bombe extends Item implements Stockable {
 
     public void explose(){
 
-
         ArrayList<Personnage>dead = new ArrayList<>();
         System.out.println("Bombe va exploser");
         System.out.println("Bombe X= "+this.getPositionX()+" Y= "+this.getPositionY());
@@ -32,12 +31,11 @@ public class Bombe extends Item implements Stockable {
             System.out.println("Perso X= "+personnage.getPositionX()+" Y= "+personnage.getPositionY());
             if ((this.getPositionY() - getRayonAttaque() <= personnage.getPositionY() && personnage.getPositionY() <= this.getPositionY() + getRayonAttaque())
                     && (this.getPositionX() - getRayonAttaque() <= personnage.getPositionX() && personnage.getPositionX() <= this.getPositionX() + getRayonAttaque())) {
-
                 System.out.println(personnage.getClass()+ "est mort");
-
                 personnage.tue();
-                dead.add(personnage);
-
+                if (!personnage.estVivant()){
+                    dead.add(personnage);
+                }
 
             }
         }

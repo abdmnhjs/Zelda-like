@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 public class ObservateurPersonnage implements ListChangeListener<Personnage> {
 
-
     private Pane environnement;
     private ArrayList<VuePersonnage> vuePersonnages;
 
@@ -20,7 +19,6 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
         this.environnement=pane;
         this.vuePersonnages=vuePersonnages;
     }
-
 
     @Override
     public void onChanged(Change<? extends Personnage> change) {
