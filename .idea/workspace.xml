@@ -5,17 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d68f44cc-42ae-46c4-b79e-09da1a472c7e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Observateur/ObservateurFlechesEnDeplacement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Personnage/Ennemi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Clavier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Clavier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Controleur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Observateur/ObservateurPersonnage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Observateur/ObservateurPersonnage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Vue/VueEnnemi1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Vue/VueEnnemi1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Vue/VueFlèche.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Vue/VueFlèche.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Environnement/Environnement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Environnement/Environnement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Hitbox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Hitbox.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Item/Arc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Item/Arc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Item/Arme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Item/Arme.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Item/Flèche.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Item/Flèche.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Limitations.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Personnage/Ennemi1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Personnage/Ennemi1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Personnage/Personnage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Personnage/Personnage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,12 +45,12 @@
     &quot;assignee&quot;: &quot;edetommaso&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/abdmnhjs/Zelda-like.git",
-    "accountId": "c4ce7e1d-ad4d-431f-a583-71ef2aac4a18"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/abdmnhjs/Zelda-like.git&quot;,
+    &quot;accountId&quot;: &quot;c4ce7e1d-ad4d-431f-a583-71ef2aac4a18&quot;
   }
-}]]></component>
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -131,6 +132,7 @@
       <workItem from="1717025427088" duration="750000" />
       <workItem from="1717137434161" duration="4395000" />
       <workItem from="1717287780575" duration="4437000" />
+      <workItem from="1717399917004" duration="4804000" />
     </task>
     <servers />
   </component>

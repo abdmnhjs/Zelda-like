@@ -20,4 +20,8 @@ public class Arc extends Arme{
         this.environnement.getFlèchesEnDéplacement().add(this.fleches.get(0));
         this.fleches.remove(0);
     }
+
+    public ArrayList<Flèche> getFleches() {
+        return this.fleches;
+    }
 }

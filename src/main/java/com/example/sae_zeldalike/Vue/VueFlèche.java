@@ -13,6 +13,7 @@ public class VueFlèche {
     public VueFlèche(Flèche flèche, Pane pane){
         this.flèche = flèche;
         this.pane = pane;
+        creerFlèche(this.pane);
     }
 
     public void creerFlèche(Pane pane){

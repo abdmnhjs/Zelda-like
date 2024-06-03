@@ -24,6 +24,7 @@ public class Clavier implements EventHandler<KeyEvent> {
     private HashSet<KeyCode> touches;
     private Environnement environnement;
     private Timeline mouvementContinu;
+    private Timeline tirTimeline;
 
     public Clavier(Link personnage, Pane pane, Environnement environnement) {
         this.personnage = personnage;
@@ -31,6 +32,7 @@ public class Clavier implements EventHandler<KeyEvent> {
         this.touches = new HashSet<>();
         this.environnement = environnement;
         initTimeline();
+        this.tirTimeline = new Timeline();
     }
 
     @Override
@@ -99,27 +101,32 @@ public class Clavier implements EventHandler<KeyEvent> {
         if (touches.contains(KeyCode.A)) {
             System.out.println(personnage.getPortefeuille());
         }
+
         if(touches.contains(KeyCode.UP)){
-            Flèche flèche = new Flèche(personnage.getPositionX()+16, personnage.getPositionY()+16, 15, this.environnement);
+            Flèche flèche = new Flèche(personnage.getPositionX()+16, personnage.getPositionY()+16, this.environnement);
             flèche.setDirection("UP");
-            personnage.getEnvironnement().getFlèchesEnDéplacement().add(flèche);
+            personnage.getArc().getFleches().add(flèche);
+            personnage.tirerFleche();
         }
         if(touches.contains(KeyCode.DOWN)){
-            Flèche flèche = new Flèche(personnage.getPositionX()+16, personnage.getPositionY()+16, 15, this.environnement);
+            Flèche flèche = new Flèche(personnage.getPositionX()+16, personnage.getPositionY()+16, this.environnement);
             flèche.setDirection("DOWN");
-            personnage.getEnvironnement().getFlèchesEnDéplacement().add(flèche);
+            personnage.getArc().getFleches().add(flèche);
+            personnage.tirerFleche();
 
         }
         if(touches.contains(KeyCode.RIGHT)){
-            Flèche flèche = new Flèche(personnage.getPositionX()+16, personnage.getPositionY()+16, 15, this.environnement);
+            Flèche flèche = new Flèche(personnage.getPositionX()+16, personnage.getPositionY()+16, this.environnement);
             flèche.setDirection("RIGHT");
-            personnage.getEnvironnement().getFlèchesEnDéplacement().add(flèche);
+            personnage.getArc().getFleches().add(flèche);
+            personnage.tirerFleche();
 
         }
         if(touches.contains(KeyCode.LEFT)){
-            Flèche flèche = new Flèche(personnage.getPositionX()+16, personnage.getPositionY()+16, 15, this.environnement);
+            Flèche flèche = new Flèche(personnage.getPositionX()+16, personnage.getPositionY()+16, this.environnement);
             flèche.setDirection("LEFT");
-            personnage.getEnvironnement().getFlèchesEnDéplacement().add(flèche);
+            personnage.getArc().getFleches().add(flèche);
+            personnage.tirerFleche();
 
         }
     }

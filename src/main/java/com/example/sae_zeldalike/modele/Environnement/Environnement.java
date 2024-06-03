@@ -67,7 +67,6 @@ public class Environnement {
         return items;
     }
 
-
     public ObservableList<Personnage> getPersonnages() {
         return personnages;
     }

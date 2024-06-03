@@ -18,8 +18,8 @@ public class VueEnnemi1 {
         this.numImagePerso=1;
         this.spritePerso = new ImageView("file:src/main/resources/com/example/sae_zeldalike/Personnage/Ennemi/testEnnemi1.png");
         this.spritePerso.setId("#" + ennemi1.getId());
-        spritePerso.setFitWidth(32);
-        spritePerso.setFitHeight(32);
+        spritePerso.setFitWidth(ennemi1.getLargeur());
+        spritePerso.setFitHeight(ennemi1.getLongueur());
         spritePerso.setTranslateX(ennemi1.getPositionX());
         spritePerso.setTranslateY(ennemi1.getPositionY());
         pane.getChildren().add(spritePerso);

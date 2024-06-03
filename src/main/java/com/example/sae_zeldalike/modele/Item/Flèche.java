@@ -2,6 +2,7 @@ package com.example.sae_zeldalike.modele.Item;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Hitbox;
+import com.example.sae_zeldalike.modele.Personnage.Ennemi;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -16,8 +17,8 @@ public class Flèche extends Arme {
     private static int compteurFleche = 0;
     private String id;
 
-    public Flèche(int x, int y, int dégâts, Environnement environnement){
-        super(dégâts, 0);
+    public Flèche(int x, int y,  Environnement environnement){
+        super(50, 0);
         this.xProperty = new SimpleIntegerProperty(x);
         this.yProperty = new SimpleIntegerProperty(y);
         this.vitesseProperty = new SimpleIntegerProperty(30);
@@ -80,6 +81,16 @@ public class Flèche extends Arme {
         return this.environnement;
     }
 
+    public boolean estSurEnnemi(Ennemi ennemi){
+        if(this.getX() < ennemi.getPositionX() + ennemi.getLargeur() &&
+                this.getX() + this.getLargeur() > ennemi.getPositionX() &&
+                this.getY() < ennemi.getPositionY() + ennemi.getLongueur() &&
+                this.getY() + this.getLongueur() > ennemi.getPositionY()){
+            return true;
+        }
+        return false;
+    }
+
     public int getLongueur() {
         return this.longueur;
     }
@@ -88,7 +99,7 @@ public class Flèche extends Arme {
         return this.largeur;
     }
 
-    public int getVitesseProperty() {
+    public int getVitesse() {
         return vitesseProperty.getValue();
     }
 

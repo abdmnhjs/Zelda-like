@@ -51,8 +51,8 @@ public abstract class Personnage {
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
     }**/
 
-    private int getLargeur(){return largeur;}
-    private int getLongueur(){return longueur;}
+    public int getLargeur(){return largeur;}
+    public int getLongueur(){return longueur;}
 
     public StringProperty getDirectionProperty() {
         return direction;

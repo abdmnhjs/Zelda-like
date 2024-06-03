@@ -1,6 +1,8 @@
 package com.example.sae_zeldalike.Controlleur;
 
+import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurFlechesEnDeplacement;
 import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurItem;
+import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurPersonnage;
 import com.example.sae_zeldalike.Vue.*;
 import com.example.sae_zeldalike.modele.Environnement.*;
 import com.example.sae_zeldalike.modele.Item.Arc;
@@ -64,6 +66,7 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+
         try {
             // Changez "path/to/your/map.json" par le chemin réel de votre fichier JSON
             this.map = new Map("src/main/resources/1erTerrain.json");
@@ -72,12 +75,12 @@ public class Controleur implements Initializable {
             // Gérer l'erreur de manière appropriée, par exemple en affichant un message d'erreur à l'utilisateur
         }
 
-        this.environnement = new Environnement(map);
+        this.environnement = new Environnement(this.map);
         this.link = new Link(environnement, 32, 32);
         this.vueLink = new VueLink(pane, link);
         this.ennemi1 = new Ennemi1(environnement, 130, 220);
         this.vueEnnemi1 = new VueEnnemi1(pane, ennemi1);
-        vueMap = new VueMap(tilePane, map);
+        vueMap = new VueMap(tilePane, this.map);
         this.link.ajouterArc(new Arc(15, 1, this.environnement));
 
         this.barreDeVie.progressProperty().bind(link.pointViePercentProperty());
@@ -85,6 +88,8 @@ public class Controleur implements Initializable {
 //        this.nombrePiece.textProperty().bind(link.getPortefeuilleProperty().asString());
         link.getPortefeuilleProperty().addListener((obs, old, nouv)-> this.nombrePiece.setText(nouv.toString()));
         this.environnement.getItems().addListener(new ObservateurItem(pane));
+        this.environnement.getFlèchesEnDéplacement().addListener(new ObservateurFlechesEnDeplacement(pane));
+        this.environnement.getPersonnages().addListener(new ObservateurPersonnage(pane));
         imagePerso.setFitHeight(64);
         imagePerso.setFitWidth(64);
         imagePerso.maxWidth(64);
@@ -137,26 +142,60 @@ public class Controleur implements Initializable {
                         //ennemi1.seDeplace(link);
                         ennemi1.seDeplace(link.getPositionX(), link.getPositionY());
                         vueLink.animationPersonnage();
-                        for(Flèche flèche : this.environnement.getFlèchesEnDéplacement()){
-                            if(!flèche.getEnvironnement().estDevantObstacle(flèche.hitbox(flèche.getX(), flèche.getY())) ||
-                            !flèche.getEnvironnement().estDansLimiteTerrain(flèche.getX(), flèche.getY(), flèche.getLongueur(), flèche.getLargeur())){
-                                if(flèche.getDirection().equals("UP")){
-                                    flèche.seDeplacerHaut();
+
+                        for (Flèche flèche : this.environnement.getFlèchesEnDéplacement()) {
+                            int newX;
+                            int newY;
+
+                            switch (flèche.getDirection()) {
+                                    case "UP":
+                                        newX = flèche.getX();
+                                        newY = flèche.getY() - flèche.getVitesse();
+                                        if (!flèche.getEnvironnement().estDevantObstacle(flèche.hitbox(newX, newY)) ||
+                                                !flèche.getEnvironnement().estDansLimiteTerrain(newX, newY, flèche.getLongueur(), flèche.getLargeur())) {
+                                            flèche.setyProperty(newY);
+                                            if(flèche.estSurEnnemi(this.ennemi1)){
+                                                flèche.faireDégâts(this.ennemi1, flèche.getDégâts());
+                                            }
+                                        }
+                                        break;
+                                    case "DOWN":
+                                        newX = flèche.getX();
+                                        newY = flèche.getY() + flèche.getVitesse();
+                                        if (!flèche.getEnvironnement().estDevantObstacle(flèche.hitbox(newX, newY)) ||
+                                                !flèche.getEnvironnement().estDansLimiteTerrain(newX, newY, flèche.getLongueur(), flèche.getLargeur())) {
+                                            flèche.setyProperty(newY);
+                                            if(flèche.estSurEnnemi(this.ennemi1)){
+                                                flèche.faireDégâts(this.ennemi1, flèche.getDégâts());
+                                            }
+                                        }
+                                        break;
+                                    case "RIGHT":
+                                        newX = flèche.getX() + flèche.getVitesse();
+                                        newY = flèche.getY();
+                                        if (!flèche.getEnvironnement().estDevantObstacle(flèche.hitbox(newX, newY)) ||
+                                                !flèche.getEnvironnement().estDansLimiteTerrain(newX, newY, flèche.getLongueur(), flèche.getLargeur())) {
+                                            flèche.setxProperty(newX);
+                                            if(flèche.estSurEnnemi(this.ennemi1)){
+                                                flèche.faireDégâts(this.ennemi1, flèche.getDégâts());
+                                            }
+                                        }
+                                        break;
+                                    case "LEFT":
+                                        newX = flèche.getX() - flèche.getVitesse();
+                                        newY = flèche.getY();
+                                        if (!flèche.getEnvironnement().estDevantObstacle(flèche.hitbox(newX, newY)) ||
+                                                !flèche.getEnvironnement().estDansLimiteTerrain(newX, newY, flèche.getLongueur(), flèche.getLargeur())) {
+                                            flèche.setxProperty(newX);
+                                            if(flèche.estSurEnnemi(this.ennemi1)){
+                                                flèche.faireDégâts(this.ennemi1, flèche.getDégâts());
+                                            }
+                                        }
+                                        break;
                                 }
-                                if(flèche.getDirection().equals("DOWN")){
-                                    flèche.seDeplacerBas();
-                                }
-                                if(flèche.getDirection().equals("RIGHT")){
-                                    flèche.seDeplacerDroite();
-                                }
-                                if(flèche.getDirection().equals("LEFT")){
-                                    flèche.seDeplacerGauche();
-                                }
-                                else if (flèche.getEnvironnement().estDevantObstacle(flèche.hitbox(flèche.getX(), flèche.getY())) ||
-                                        flèche.getEnvironnement().estDansLimiteTerrain(flèche.getX(), flèche.getY(), flèche.getLongueur(), flèche.getLargeur()))
-                                    this.environnement.getFlèchesEnDéplacement().remove(flèche);
-                            }
                         }
+                        System.out.println(this.ennemi1.getPointVie());
+
                     }
                     if (temps % 3 == 0) {
 //                        this.pane.requestFocus();
