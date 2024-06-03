@@ -77,16 +77,12 @@ public abstract class Personnage {
         setPositionYProperty(posY);
     }
 
-
-
     public void tue(){
         setPointDeVie(0);
     }
-
     public boolean estVivant(){
         return getPointVie()>0;
     }
-
     public int getLargeur(){return largeur;}
     public int getLongueur(){return longueur;}
 

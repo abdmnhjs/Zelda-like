@@ -79,7 +79,6 @@ public class Controleur implements Initializable {
         environnement.ajouterPersonnage(ennemi1);
         this.vueEnnemi1 =new VueEnnemi1(pane,ennemi1);
 
-
         this.link.ajouterArme(new Arc(15, 1));
         this.link.ajouterFlèche(new Flèche(this.link.getPositionX(), this.link.getPositionY(),30, this.environnement));
 
@@ -97,6 +96,7 @@ public class Controleur implements Initializable {
         imagePerso.setFitWidth(64);
         imagePerso.maxWidth(64);
         imagePerso.maxHeight(64);
+
         imagePerso.imageProperty().bind(vueLink.getSpritePersonnage().imageProperty());
         environnement.init();
 
@@ -134,14 +134,7 @@ public class Controleur implements Initializable {
                         gameLoop.stop();
                     } else if (temps % 10 == 0) {
 
-                        for (VuePersonnage monPerso : vuePersos){
-                            if (monPerso instanceof VueEnnemi1){
-                                monPerso.animation();
 
-                                Ennemi1 e1 = (Ennemi1) monPerso.getPersonnage();
-                                e1.seDeplace(link.getPositionX()+ link.getLargeur()/2, link.getPositionY()+ link.getLongueur()/2);
-                            }
-                        }
                         vueLink.animation();
 
                         if (this.link.getArc().flècheLancée()) {
@@ -171,6 +164,16 @@ public class Controleur implements Initializable {
                         }
 
 
+                    }
+                    else if (temps%4 ==0){
+                        for (VuePersonnage monPerso : vuePersos){
+                            if (monPerso instanceof VueEnnemi1){
+                                monPerso.animation();
+
+                                Ennemi1 e1 = (Ennemi1) monPerso.getPersonnage();
+                                e1.seDeplace(link.getPositionX()+ link.getLargeur()/2, link.getPositionY()+ link.getLongueur()/2);
+                            }
+                        }
                     }
                     if (temps % 9 == 0) {
 
