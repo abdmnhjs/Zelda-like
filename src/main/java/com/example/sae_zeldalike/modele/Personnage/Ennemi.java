@@ -5,7 +5,6 @@ import com.example.sae_zeldalike.modele.Environnement.Environnement;
 public class Ennemi extends Personnage {
     public Ennemi(int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDeplacement, int longueur, int largeur) {
         super(pointVie, pointAttaque, environnement, positionX, positionY, vitesseDeplacement, longueur, largeur);
-        this.environnement.getPersonnages().add(this);
     }
 
     /*

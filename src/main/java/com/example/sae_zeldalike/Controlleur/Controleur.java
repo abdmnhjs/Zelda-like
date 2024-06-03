@@ -76,9 +76,9 @@ public class Controleur implements Initializable {
         }
 
         this.environnement = new Environnement(this.map);
-        this.link = new Link(environnement, 32, 32);
+        this.link = new Link(this.environnement, 32, 32);
         this.vueLink = new VueLink(pane, link);
-        this.ennemi1 = new Ennemi1(environnement, 130, 220);
+        this.ennemi1 = new Ennemi1(this.environnement, 130, 220);
         this.vueEnnemi1 = new VueEnnemi1(pane, ennemi1);
         vueMap = new VueMap(tilePane, this.map);
         this.link.ajouterArc(new Arc(15, 1, this.environnement));

@@ -23,10 +23,7 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
 //            }
             if (change.wasRemoved()){
                 for (Personnage personnage : change.getRemoved()){
-                    if(personnage.getPointVie() == 0){
                         this.environnement.getChildren().remove(environnement.lookup("#"+personnage.getId()));
-                    }
-
                 }
             }
         }
