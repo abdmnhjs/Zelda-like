@@ -100,9 +100,6 @@
       </HBox>
    </top>
    <bottom>
-      
-   </bottom>
-   <bottom>
       <GridPane alignment="BOTTOM_CENTER" hgap="10.0" maxHeight="150.0" maxWidth="320.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="150.0" BorderPane.alignment="BOTTOM_CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />

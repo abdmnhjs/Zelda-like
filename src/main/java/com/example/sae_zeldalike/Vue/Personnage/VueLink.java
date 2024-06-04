@@ -86,7 +86,6 @@ public class VueLink extends VuePersonnage {
     }
 
 
-
     public void animation() {
         switch (getDirection()){
             case "UP"-> {

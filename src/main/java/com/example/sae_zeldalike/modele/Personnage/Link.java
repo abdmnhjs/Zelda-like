@@ -44,29 +44,23 @@ public class Link extends Personnage {
     public void utiliserItemDansInventaire(){
         if (!inventaire.isEmpty()){
             Stockable item = inventaire.get(0);
-            item.getItem().setPositionX(getPositionX());
-            item.getItem().setPositionY(getPositionY());
+            item.getItem().setPositionX(getPositionX()-(getLargeur()/4));
+            item.getItem().setPositionY(getPositionY()-(getLongueur()/4));
             inventaire.remove(item);
             getEnvironnement().ajouterItem(item.getItem());
             if (item instanceof Bombe){
                 Timer timer = new Timer();
 
-                // Création d'une tâche à exécuter après 3 secondes
                 TimerTask task = new TimerTask() {
                     @Override
                     public void run() {
-                        // Utilisation de Platform.runLater pour exécuter le code sur le thread JavaFX
                         Platform.runLater(() -> {
                             ((Bombe) item).explose();
-                            getEnvironnement().supprimerItem((Bombe)item);
-                            // Arrêt du timer après l'exécution de la tâche
                             timer.cancel();
                         });
                     }
                 };
-
-                // Planification de la tâche pour qu'elle s'exécute après 3000 millisecondes (3 secondes)
-                timer.schedule(task, 1800);
+                timer.schedule(task, 1900);
 
 
             }

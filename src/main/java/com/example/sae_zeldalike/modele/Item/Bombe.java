@@ -10,10 +10,12 @@ public class Bombe extends Item implements Stockable {
     private int degat;
     private int rayonAttaque;
 
+
     public Bombe(Environnement environnement, int positionX, int positionY) {
         super(environnement, positionX, positionY,48,48);
         this.degat = 0;
         this.rayonAttaque = getLargeur();
+
     }
 
     public Bombe(Environnement environnement) {
@@ -21,6 +23,8 @@ public class Bombe extends Item implements Stockable {
         this.degat = 0;
         this.rayonAttaque = getLargeur();
     }
+
+
 
     public void explose(){
 
@@ -43,6 +47,7 @@ public class Bombe extends Item implements Stockable {
         for (Personnage personnage : dead) {
             personnage.getEnvironnement().supprimerPersonnage(personnage);
         }
+        getEnvironnement().supprimerItem(this);
     }
 
     public int getRayonAttaque() {
