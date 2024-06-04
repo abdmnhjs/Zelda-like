@@ -168,7 +168,7 @@ public abstract class Personnage {
         return null;
     }
 
-    public void tirerFleche(){
+    public void tirerFleche() {
         this.arc.tirerFleche();
     }
 

@@ -93,7 +93,7 @@ public class Controleur implements Initializable {
         this.ennemi1 = new Ennemi1(this.environnement, 130, 220);
         this.vueEnnemi1 = new VueEnnemi1(pane, ennemi1);
         vueMap = new VueMap(tilePane, this.map);
-        this.link.ajouterArc(new Arc(15, 1, this.environnement));
+        this.link.ajouterArc(new Arc(15, 500, this.environnement));
 
         this.barreDeVie.progressProperty().bind(link.pointViePercentProperty());
 
@@ -164,16 +164,13 @@ public class Controleur implements Initializable {
                             int newX;
                             int newY;
 
-                            switch (flèche.getDirection()) {
+                                switch (flèche.getDirection()) {
                                     case "UP":
                                         newX = flèche.getX();
                                         newY = flèche.getY() - flèche.getVitesse();
                                         if (!flèche.getEnvironnement().estDevantObstacle(flèche.hitbox(newX, newY)) ||
                                                 !flèche.getEnvironnement().estDansLimiteTerrain(newX, newY, flèche.getLongueur(), flèche.getLargeur())) {
                                             flèche.setyProperty(newY);
-                                            if(flèche.estSurEnnemi(this.ennemi1)){
-                                                flèche.faireDégâts(this.ennemi1, flèche.getDégâts());
-                                            }
                                         }
                                         break;
                                     case "DOWN":
@@ -182,9 +179,6 @@ public class Controleur implements Initializable {
                                         if (!flèche.getEnvironnement().estDevantObstacle(flèche.hitbox(newX, newY)) ||
                                                 !flèche.getEnvironnement().estDansLimiteTerrain(newX, newY, flèche.getLongueur(), flèche.getLargeur())) {
                                             flèche.setyProperty(newY);
-                                            if(flèche.estSurEnnemi(this.ennemi1)){
-                                                flèche.faireDégâts(this.ennemi1, flèche.getDégâts());
-                                            }
                                         }
                                         break;
                                     case "RIGHT":
@@ -193,9 +187,6 @@ public class Controleur implements Initializable {
                                         if (!flèche.getEnvironnement().estDevantObstacle(flèche.hitbox(newX, newY)) ||
                                                 !flèche.getEnvironnement().estDansLimiteTerrain(newX, newY, flèche.getLongueur(), flèche.getLargeur())) {
                                             flèche.setxProperty(newX);
-                                            if(flèche.estSurEnnemi(this.ennemi1)){
-                                                flèche.faireDégâts(this.ennemi1, flèche.getDégâts());
-                                            }
                                         }
                                         break;
                                     case "LEFT":
@@ -204,14 +195,19 @@ public class Controleur implements Initializable {
                                         if (!flèche.getEnvironnement().estDevantObstacle(flèche.hitbox(newX, newY)) ||
                                                 !flèche.getEnvironnement().estDansLimiteTerrain(newX, newY, flèche.getLongueur(), flèche.getLargeur())) {
                                             flèche.setxProperty(newX);
-                                            if(flèche.estSurEnnemi(this.ennemi1)){
-                                                flèche.faireDégâts(this.ennemi1, flèche.getDégâts());
-                                            }
                                         }
                                         break;
                                 }
+
+
+
+                            for(Personnage ennemi : this.environnement.getPersonnages()) {
+                                if(flèche.estSurEnnemi(ennemi)){
+                                    flèche.faireDégâts(ennemi, flèche.getDégâts());
+                                    flèche.getEnvironnement().supprimerFleche(flèche);
+                                }
+                            }
                         }
-                        System.out.println(this.ennemi1.getPointVie());
 
 
                     }

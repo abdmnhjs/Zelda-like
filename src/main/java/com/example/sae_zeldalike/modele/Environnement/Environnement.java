@@ -43,6 +43,15 @@ public class Environnement {
             }
         }
     }
+
+    public void supprimerFleche(Flèche flèche){
+        for(int i=0;i<flèchesEnDéplacement.size();i++){
+            if(flèchesEnDéplacement.get(i).getId().equals(flèche.getId())){
+                flèchesEnDéplacement.remove(i);
+            }
+        }
+    }
+
     public void supprimerPersonnage (Personnage personnage){
         for(int i=0;i<personnages.size();i++){
             if(personnages.get(i).getId().equals(personnage.getId())){

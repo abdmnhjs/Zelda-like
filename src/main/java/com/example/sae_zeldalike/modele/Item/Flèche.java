@@ -4,8 +4,11 @@ import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Hitbox;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi1;
+import com.example.sae_zeldalike.modele.Personnage.Personnage;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+
+import java.util.ArrayList;
 
 public class Flèche extends Arme {
     private IntegerProperty xProperty;
@@ -17,8 +20,9 @@ public class Flèche extends Arme {
     private String direction;
     private static int compteurFleche = 0;
     private String id;
+    private Arc arc;
 
-    public Flèche(int x, int y,  Environnement environnement){
+    public Flèche(int x, int y,  Environnement environnement, Arc arc){
         super(50, 0);
         this.xProperty = new SimpleIntegerProperty(x);
         this.yProperty = new SimpleIntegerProperty(y);
@@ -28,6 +32,7 @@ public class Flèche extends Arme {
         this.largeur = 20;
         this.direction = "N";
         this.id = "F"+compteurFleche;
+        this.arc = arc;
         compteurFleche++;
     }
 
@@ -65,6 +70,16 @@ public class Flèche extends Arme {
         this.yProperty.setValue(this.yProperty.getValue() + this.vitesseProperty.getValue());
     }
 
+    public boolean depasseRayon(){
+        int rayonAttaque = this.arc.getRayonAttaque();
+        if(this.getX() < this.getX() - rayonAttaque || this.getX() > this.getX() + rayonAttaque ||
+                this.getY() < this.getY() - rayonAttaque || this.getY() > this.getY() + rayonAttaque){
+            return true;
+        }
+        return false;
+    }
+
+
     public Hitbox hitbox(int x, int y){
         Hitbox hitbox = new Hitbox(x,y,getLargeur(),getLongueur());
         return hitbox;
@@ -82,7 +97,7 @@ public class Flèche extends Arme {
         return this.environnement;
     }
 
-    public boolean estSurEnnemi(Ennemi1 ennemi){
+    public boolean estSurEnnemi(Personnage ennemi){
         if(this.getX() < ennemi.getPositionX() + ennemi.getLargeur() &&
                 this.getX() + this.getLargeur() > ennemi.getPositionX() &&
                 this.getY() < ennemi.getPositionY() + ennemi.getLongueur() &&

@@ -2,10 +2,13 @@ package com.example.sae_zeldalike.modele.Item;
 
 import com.example.sae_zeldalike.Vue.VueFlèche;
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Arc extends Arme{
     private ArrayList<Flèche> fleches;
