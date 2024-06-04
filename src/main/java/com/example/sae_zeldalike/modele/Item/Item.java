@@ -4,6 +4,7 @@ import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Hitbox;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.image.Image;
 
 import java.util.Random;
 
@@ -92,6 +93,11 @@ public class Item {
 
     public String getId() {
         return id;
+    }
+
+    public Image getImage(){
+        Image image = new Image("file:src/main/resources/com/example/sae_zeldalike/ATH/CoeurBleu_Plein.png");
+        return image;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.sae_zeldalike.Controlleur;
 
+import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurInventaire;
 import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurItem;
 import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurPersonnage;
 import com.example.sae_zeldalike.Vue.*;
@@ -19,6 +20,7 @@ import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
@@ -56,6 +58,13 @@ public class Controleur implements Initializable {
     private Pane pane;
     @FXML
     private TilePane tilePane;
+
+    @FXML
+    private ImageView case1;
+    @FXML
+    private ImageView case2;
+    @FXML
+    private ImageView case3;
     private Timeline gameLoop;
 
     private int temps;
@@ -84,7 +93,7 @@ public class Controleur implements Initializable {
 
         this.barreDeVie.progressProperty().bind(link.pointViePercentProperty());
 
-        link.getPortefeuilleProperty().addListener((obs, old, nouv)-> this.nombrePiece.setText(nouv.toString()));
+
 
         vueItems = new ArrayList<>();
         this.environnement.getItems().addListener(new ObservateurItem(pane,vueItems));
@@ -98,6 +107,7 @@ public class Controleur implements Initializable {
         imagePerso.maxHeight(64);
 
         imagePerso.imageProperty().bind(vueLink.getSpritePersonnage().imageProperty());
+
         environnement.init();
 
         initAnimation();
@@ -115,7 +125,12 @@ public class Controleur implements Initializable {
         // demarre l'animation
         gameLoop.play();
 
+//        case1.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/ATH/CoeurBleu_Plein.png"));
 
+
+//        case1.setImage(null );
+        link.getPortefeuilleProperty().addListener((obs, old, nouv)-> this.nombrePiece.setText(nouv.toString()));
+        link.getInventaire().addListener(new ObservateurInventaire(case1, case2, case3));
     }
 
     private void initAnimation() {
@@ -133,7 +148,6 @@ public class Controleur implements Initializable {
                         System.out.println("fini");
                         gameLoop.stop();
                     } else if (temps % 10 == 0) {
-
 
                         vueLink.animation();
 

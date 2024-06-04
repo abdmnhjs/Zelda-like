@@ -20,12 +20,14 @@ public class Link extends Personnage {
 
     private IntegerProperty portefeuille;
     private ObservableList<Stockable> inventaire;
+    private int numeroCaseActuel;
 
     public Link(Environnement environnement, int positionX, int positionY) {
 
         super(100, 0, environnement, positionX, positionY, 5, 32,32);
         this.portefeuille= new SimpleIntegerProperty();
-        this.inventaire = FXCollections.observableArrayList();
+        this.inventaire = FXCollections.observableArrayList(new Bombe(environnement),new Bombe(environnement),null);
+        this.numeroCaseActuel=0;
 
     }
 
@@ -34,6 +36,7 @@ public class Link extends Personnage {
         super(100, 0, environnement, 5, 32,32);
         this.portefeuille= new SimpleIntegerProperty();
         this.inventaire = FXCollections.observableArrayList();
+        this.numeroCaseActuel=0;
 
     }
 
@@ -69,16 +72,24 @@ public class Link extends Personnage {
 
     public boolean emplacementInventaireLibre(){
 
-        return inventaire.size()<3;
+        return inventaire.size()<8;
     }
 
     public void ajouteItemDansInventaire(Stockable item) {
 
-        if (emplacementInventaireLibre()) {
-            inventaire.add(item);
+        if (emplacementInventaireLibre()&& numeroCaseActuel<3) {
+            inventaire.set(numeroCaseActuel,item);
+            setNumeroCaseActuel(getNumeroCaseActuel()+1);
         }
     }
 
+    public int getNumeroCaseActuel() {
+        return numeroCaseActuel;
+    }
+
+    public void setNumeroCaseActuel(int numeroCaseActuel) {
+        this.numeroCaseActuel = numeroCaseActuel;
+    }
 
     public Item essaiRamasserItem() {
 
