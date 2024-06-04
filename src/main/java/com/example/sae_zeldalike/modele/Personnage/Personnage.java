@@ -7,7 +7,6 @@ import com.example.sae_zeldalike.modele.Item.Arme;
 import com.example.sae_zeldalike.modele.Item.Item;
 import com.example.sae_zeldalike.modele.Item.Piece;
 import com.example.sae_zeldalike.modele.Item.Flèche;
-import com.example.sae_zeldalike.modele.Limitations;
 import javafx.beans.property.*;
 
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ public abstract class Personnage {
     private StringProperty direction;
     private final int largeur;
     private final int longueur;
-    private ArrayList<Arme> armes;
+    private Arc arc;
     private DoubleProperty pointViePercent = new SimpleDoubleProperty();
 
     public Personnage( int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDeplacement, int longueur, int largeur) {
@@ -42,7 +41,8 @@ public abstract class Personnage {
         this.longueur=longueur;
         this.largeur=largeur;
         this.pointViePercent.bind(getPointVieProperty().divide(100.0));
-        this.armes = new ArrayList<>();
+
+        this.arc = null;
 
     }
 
@@ -57,7 +57,6 @@ public abstract class Personnage {
         this.longueur=longueur;
         this.largeur=largeur;
         this.pointViePercent.bind(getPointVieProperty().divide(100.0));
-        this.armes = new ArrayList<>();
         this.positionX = new SimpleIntegerProperty();
         this.positionY = new SimpleIntegerProperty();
         genererPositionAleatoires();
@@ -156,29 +155,21 @@ public abstract class Personnage {
         return (double) pointVie.get() / 100.0; // Supposons que la vie maximale est 100. Ajustez en fonction de votre logique.
     }
 
-    public ArrayList<Arme> getArmes() {
-        return this.armes;
-    }
-
-    public void ajouterArme(Arme arme){
-        this.armes.add(arme);
-    }
-
-    public void ajouterFlèche(Flèche flèche){
-        for(Arme arme : this.armes){
-            if(arme instanceof Arc){
-                ((Arc) arme).getFlèches().add(flèche);
-            }
+    public void ajouterArc(Arc arc){
+        if(this.arc == null){
+            this.arc = arc;
         }
     }
 
     public Arc getArc(){
-        for(Arme arme : this.armes){
-            if(arme instanceof Arc){
-                return (Arc) arme;
-            }
+        if(this.arc != null){
+            return this.arc;
         }
         return null;
+    }
+
+    public void tirerFleche(){
+        this.arc.tirerFleche();
     }
 
     public DoubleProperty pointViePercentProperty() {

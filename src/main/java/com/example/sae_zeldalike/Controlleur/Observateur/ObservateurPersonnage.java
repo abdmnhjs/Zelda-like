@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class ObservateurPersonnage implements ListChangeListener<Personnage> {
 
+
     private Pane environnement;
     private ArrayList<VuePersonnage> vuePersonnages;
 

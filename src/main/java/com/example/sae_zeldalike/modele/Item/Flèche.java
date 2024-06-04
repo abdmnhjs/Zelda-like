@@ -1,26 +1,34 @@
 package com.example.sae_zeldalike.modele.Item;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
-import com.example.sae_zeldalike.modele.Limitations;
+import com.example.sae_zeldalike.modele.Hitbox;
+import com.example.sae_zeldalike.modele.Personnage.Ennemi;
+import com.example.sae_zeldalike.modele.Personnage.Ennemi1;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class Flèche extends Arme implements Limitations {
+public class Flèche extends Arme {
     private IntegerProperty xProperty;
     private IntegerProperty yProperty;
     private Environnement environnement;
     private IntegerProperty vitesseProperty;
     private int longueur;
     private int largeur;
+    private String direction;
+    private static int compteurFleche = 0;
+    private String id;
 
-    public Flèche(int x, int y, int dégâts, Environnement environnement){
-        super(dégâts, 0);
+    public Flèche(int x, int y,  Environnement environnement){
+        super(50, 0);
         this.xProperty = new SimpleIntegerProperty(x);
         this.yProperty = new SimpleIntegerProperty(y);
         this.vitesseProperty = new SimpleIntegerProperty(30);
         this.environnement = environnement;
         this.longueur = 20;
         this.largeur = 20;
+        this.direction = "N";
+        this.id = "F"+compteurFleche;
+        compteurFleche++;
     }
 
 //    public boolean estDevantObstacle(int x, int y) {
@@ -35,16 +43,18 @@ public class Flèche extends Arme implements Limitations {
 //        return false;
 //    }
 
-    @Override
-    public boolean estDevantObstacle(int x, int y) {
-        return false;
+
+
+    public String getId() {
+        return this.id;
     }
 
-    public boolean estDansLimiteTerrain(int x, int y){
+    public String getDirection() {
+        return this.direction;
+    }
 
-        return (x < 0 || x > this.environnement.getMap().getColonne()*32 || y < 0 || y > this.environnement.getMap().getLigne()*32 || x+32 > this.environnement.getMap().getColonne()*32 ||
-                y+32 > this.environnement.getMap().getLigne()*32);
-
+    public void setDirection(String direction) {
+        this.direction = direction;
     }
 
     public void seDeplacerHaut(){
@@ -55,6 +65,11 @@ public class Flèche extends Arme implements Limitations {
         this.yProperty.setValue(this.yProperty.getValue() + this.vitesseProperty.getValue());
     }
 
+    public Hitbox hitbox(int x, int y){
+        Hitbox hitbox = new Hitbox(x,y,getLargeur(),getLongueur());
+        return hitbox;
+    }
+
     public void seDeplacerDroite(){
         this.xProperty.setValue(this.xProperty.getValue() + this.vitesseProperty.getValue());
     }
@@ -63,7 +78,19 @@ public class Flèche extends Arme implements Limitations {
         this.xProperty.setValue(this.xProperty.getValue() - this.vitesseProperty.getValue());
     }
 
+    public Environnement getEnvironnement() {
+        return this.environnement;
+    }
 
+    public boolean estSurEnnemi(Ennemi1 ennemi){
+        if(this.getX() < ennemi.getPositionX() + ennemi.getLargeur() &&
+                this.getX() + this.getLargeur() > ennemi.getPositionX() &&
+                this.getY() < ennemi.getPositionY() + ennemi.getLongueur() &&
+                this.getY() + this.getLongueur() > ennemi.getPositionY()){
+            return true;
+        }
+        return false;
+    }
 
     public int getLongueur() {
         return this.longueur;
@@ -73,7 +100,7 @@ public class Flèche extends Arme implements Limitations {
         return this.largeur;
     }
 
-    public int getVitesseProperty() {
+    public int getVitesse() {
         return vitesseProperty.getValue();
     }
 

@@ -2,6 +2,7 @@ package com.example.sae_zeldalike.modele.Environnement;
 
 import com.example.sae_zeldalike.modele.Hitbox;
 import com.example.sae_zeldalike.modele.Item.Bombe;
+import com.example.sae_zeldalike.modele.Item.Flèche;
 import com.example.sae_zeldalike.modele.Item.Item;
 import com.example.sae_zeldalike.modele.Item.Piece;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi1;
@@ -15,6 +16,7 @@ public class Environnement {
     private static int compteurEnvironnement=0;
     private ObservableList<Personnage> personnages;
     private ObservableList<Item> items;
+    private ObservableList<Flèche> flèchesEnDéplacement;
     private Map map;
 
     public Environnement(Map map){
@@ -22,6 +24,7 @@ public class Environnement {
         this.id = "E"+compteurEnvironnement;
         compteurEnvironnement++;
         this.map=map;
+        this.flèchesEnDéplacement = FXCollections.observableArrayList();
         this.personnages= FXCollections.observableArrayList();
         this.items= FXCollections.observableArrayList();
     }
@@ -33,7 +36,6 @@ public class Environnement {
     public void ajouterItem(Item item){
         items.add(item);
     }
-
     public void supprimerItem (Item item){
         for(int i=0;i<items.size();i++){
             if(items.get(i).getId().equals(item.getId())){
@@ -48,6 +50,11 @@ public class Environnement {
             }
         }
     }
+
+    public ObservableList<Flèche> getFlèchesEnDéplacement() {
+        return this.flèchesEnDéplacement;
+    }
+
 
     public ObservableList<Item> getItems() {
         return items;
@@ -146,6 +153,13 @@ public class Environnement {
 
     }
 
+    public boolean estDansLimiteTerrain(int x, int y, int longueur, int largeur){
+
+        return (x < 0 || x > this.map.getColonne()*32 || y < 0 || y > this.map.getLigne()*32 || x+largeur > this.map.getColonne()*32 ||
+                y+longueur > this.map.getLigne()*32);
+
+    }
+
     public boolean estDansTuile(int valeurTuile,Hitbox hitbox){
 
         boolean coinHautGauche=false;
@@ -189,7 +203,6 @@ public class Environnement {
 
 
     public void init() {
-
         for (int i = 0; i < 20; i++) {
             ajouterItem(new Piece(this));
         }

@@ -13,6 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import com.example.sae_zeldalike.modele.Item.Arme;
+import com.example.sae_zeldalike.modele.Personnage.*;
 
 import java.util.HashSet;
 
@@ -23,6 +24,7 @@ public class Clavier implements EventHandler<KeyEvent> {
     private HashSet<KeyCode> touches;
     private Environnement environnement;
     private Timeline mouvementContinu;
+    private Timeline tirTimeline;
 
     public Clavier(Link link, Pane pane, Environnement environnement) {
         this.link = link;
@@ -30,6 +32,7 @@ public class Clavier implements EventHandler<KeyEvent> {
         this.touches = new HashSet<>();
         this.environnement = environnement;
         initTimeline();
+        this.tirTimeline = new Timeline();
     }
 
     @Override
@@ -130,57 +133,31 @@ public class Clavier implements EventHandler<KeyEvent> {
         }
 
 
-        // Gestion des flèches
-        if (touches.contains(KeyCode.UP)) {
-            lancerFleche(KeyCode.UP);
+        if(touches.contains(KeyCode.UP)){
+            Flèche flèche = new Flèche(link.getPositionX()+16, link.getPositionY()+16, this.environnement);
+            flèche.setDirection("UP");
+            link.getArc().getFleches().add(flèche);
+            link.tirerFleche();
         }
-        if (touches.contains(KeyCode.DOWN)) {
-            lancerFleche(KeyCode.DOWN);
-        }
-        if (touches.contains(KeyCode.RIGHT)) {
-            lancerFleche(KeyCode.RIGHT);
-        }
-        if (touches.contains(KeyCode.LEFT)) {
-            lancerFleche(KeyCode.LEFT);
-        }
+        if(touches.contains(KeyCode.DOWN)){
+            Flèche flèche = new Flèche(link.getPositionX()+16, link.getPositionY()+16, this.environnement);
+            flèche.setDirection("DOWN");
+            link.getArc().getFleches().add(flèche);
+            link.tirerFleche();
 
-
-    }
-
-    private void lancerFleche(KeyCode code) {
-        for (Arme arme : link.getArmes()) {
-            if (arme instanceof Arc) {
-                if (!((Arc) arme).getFlèches().isEmpty()) {
-                    Flèche flèche = ((Arc) arme).getFlèches().remove(0);
-                    VueFlèche vueFlèche;
-                    switch (code) {
-                        case UP:
-                            ((Arc) arme).getFlèches().add(new Flèche(link.getPositionX() + (flèche.getLargeur() / 2), link.getPositionY(), 30, environnement));
-                            vueFlèche = new VueFlèche(flèche, pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-haut.png");
-                            break;
-                        case DOWN:
-                            ((Arc) arme).getFlèches().add(new Flèche(link.getPositionX() + (flèche.getLargeur() / 2), link.getPositionY() + flèche.getLongueur(), 30, environnement));
-                            vueFlèche = new VueFlèche(flèche, pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-bas.png");
-                            break;
-                        case RIGHT:
-                            ((Arc) arme).getFlèches().add(new Flèche(link.getPositionX() + flèche.getLargeur(), link.getPositionY() + (flèche.getLongueur() / 2), 30, environnement));
-                            vueFlèche = new VueFlèche(flèche, pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-droite.png");
-                            break;
-                        case LEFT:
-                            ((Arc) arme).getFlèches().add(new Flèche(link.getPositionX(), link.getPositionY() + (flèche.getLongueur() / 2), 30, environnement));
-                            vueFlèche = new VueFlèche(flèche, pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-gauche.png");
-                            break;
-                        default:
-                            return;
-                    }
-                    ((Arc) arme).getFlèchesEnDéplacement().add(vueFlèche);
-                    vueFlèche.creerFlèche(pane);
-                    if (flèche.estDevantObstacle(flèche.getX(), flèche.getY()) || flèche.estDansLimiteTerrain(flèche.getX(), flèche.getY())) {
-                        vueFlèche.supprimerFlèche(pane);
-                        ((Arc) arme).getFlèchesEnDéplacement().remove(vueFlèche);
-                    }
-                }
-            }
         }
-    }
+        if(touches.contains(KeyCode.RIGHT)){
+            Flèche flèche = new Flèche(link.getPositionX()+16, link.getPositionY()+16, this.environnement);
+            flèche.setDirection("RIGHT");
+            link.getArc().getFleches().add(flèche);
+            link.tirerFleche();
+
+        }
+        if(touches.contains(KeyCode.LEFT)){
+            Flèche flèche = new Flèche(link.getPositionX()+16, link.getPositionY()+16, this.environnement);
+            flèche.setDirection("LEFT");
+            link.getArc().getFleches().add(flèche);
+            link.tirerFleche();
+
+    }}
 }

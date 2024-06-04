@@ -1,31 +1,27 @@
 package com.example.sae_zeldalike.modele.Item;
 
 import com.example.sae_zeldalike.Vue.VueFlèche;
+import com.example.sae_zeldalike.modele.Environnement.Environnement;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 
 public class Arc extends Arme{
-    private ArrayList<Flèche> flèches;
-    private ArrayList<VueFlèche> flèchesEnDéplacement;
-    private boolean flècheLancée;
-    public Arc(int dégâts, int rayonAttaque) {
+    private ArrayList<Flèche> fleches;
+    private Environnement environnement;
+    public Arc(int dégâts, int rayonAttaque, Environnement environnement) {
         super(dégâts, rayonAttaque);
-        this.flèches = new ArrayList<>();
-        this.flèchesEnDéplacement = new ArrayList<>();
+        this.fleches = new ArrayList<>();
+        this.environnement = environnement;
     }
 
-    public ArrayList<Flèche> getFlèches() {
-        return this.flèches;
+    public void tirerFleche(){
+        this.environnement.getFlèchesEnDéplacement().add(this.fleches.get(0));
+        this.fleches.remove(0);
     }
 
-    public ArrayList<VueFlèche> getFlèchesEnDéplacement() {
-        return this.flèchesEnDéplacement;
-    }
-
-    public boolean flècheLancée(){
-        if(!this.flèchesEnDéplacement.isEmpty()){
-            return true;
-        }
-        return false;
+    public ArrayList<Flèche> getFleches() {
+        return this.fleches;
     }
 }
