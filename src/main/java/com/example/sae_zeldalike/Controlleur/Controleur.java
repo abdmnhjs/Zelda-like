@@ -32,6 +32,7 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
@@ -131,9 +132,7 @@ public class Controleur implements Initializable {
         // demarre l'animation
         gameLoop.play();
 
-        link.getInventaire().addListener(new ObservateurInventaire(case1,case2,case3));
         link.getNumeroCaseActuelProperty().addListener(new ObservateurCaseInventaire(emplacement1,emplacement2,emplacement3));
-
 
         link.getPortefeuilleProperty().addListener((obs, old, nouv)-> this.nombrePiece.setText(nouv.toString()));
 

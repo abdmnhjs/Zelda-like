@@ -118,7 +118,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <StackPane fx:id="emplacement1" maxHeight="100.0" maxWidth="100.0" style="-fx-border-color: black;" GridPane.columnIndex="0" styleClass="caseInventaireActuel">
+            <StackPane fx:id="emplacement1" maxHeight="100.0" maxWidth="100.0" style="-fx-border-color: black;" GridPane.columnIndex="0">
                <children>
                   <ImageView fx:id="case1" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
                      <image>

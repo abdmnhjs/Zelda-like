@@ -18,15 +18,16 @@ public class ObservateurCaseInventaire implements ChangeListener<Number> {
         this.emplacement1 = emplacement1;
         this.emplacement2 = emplacement2;
         this.emplacement3 = emplacement3;
+        changementCaseActuel(0);
     }
 
     @Override
     public void changed(ObservableValue<? extends Number> obs, Number old, Number nouv) {
 
-        mettreAJourApparenceCases(nouv.intValue());
+        changementCaseActuel(nouv.intValue());
     }
 
-    private void mettreAJourApparenceCases(int numeroCaseActuel) {
+    private void changementCaseActuel(int numeroCaseActuel) {
         emplacement1.getStyleClass().remove("caseInventaireActuel");
         emplacement2.getStyleClass().remove("caseInventaireActuel");
         emplacement3.getStyleClass().remove("caseInventaireActuel");

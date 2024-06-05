@@ -48,13 +48,8 @@ public class Link extends Personnage {
         return inventaire.length;
     }
 
-    public ObservableList<Stockable> getInventaire() {
-        ObservableList<Stockable> liste = FXCollections.observableArrayList();
-        for (int i=0;i<inventaire.length;i++) {
-            liste.add(inventaire[i].getValue());
-        }
-
-        return liste;
+    public ObjectProperty<Stockable>[] getInventaire() {
+        return inventaire;
     }
 
     public void utiliserItemDansInventaire(){

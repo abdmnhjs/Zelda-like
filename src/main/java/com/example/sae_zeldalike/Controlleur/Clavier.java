@@ -126,17 +126,17 @@ public class Clavier implements EventHandler<KeyEvent> {
         if (touches.contains(KeyCode.AMPERSAND)){
             link.setNumeroCaseActuel(0);
 
-            System.out.println("Case de l'inventaire 0");
+//            System.out.println("Case de l'inventaire 0");
         }
         if (touches.contains(KeyCode.UNDEFINED)){
             link.setNumeroCaseActuel(1);
 
-            System.out.println("Case de l'inventaire 1");
+//            System.out.println("Case de l'inventaire 1");
         }
         if (touches.contains(KeyCode.QUOTEDBL)){
             link.setNumeroCaseActuel(2);
 
-            System.out.println("Case de l'inventaire 2");
+//            System.out.println("Case de l'inventaire 2");
         }
 
 
