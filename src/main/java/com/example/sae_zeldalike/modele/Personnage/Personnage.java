@@ -2,11 +2,7 @@ package com.example.sae_zeldalike.modele.Personnage;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Hitbox;
-import com.example.sae_zeldalike.modele.Item.Arc;
-import com.example.sae_zeldalike.modele.Item.Arme;
-import com.example.sae_zeldalike.modele.Item.Item;
-import com.example.sae_zeldalike.modele.Item.Piece;
-import com.example.sae_zeldalike.modele.Item.Flèche;
+import com.example.sae_zeldalike.modele.Item.*;
 import javafx.beans.property.*;
 
 import java.util.ArrayList;
@@ -25,7 +21,9 @@ public abstract class Personnage {
     private StringProperty direction;
     private final int largeur;
     private final int longueur;
+    private Arme armeCourante;
     private Arc arc;
+    private Epée epée;
     private DoubleProperty pointViePercent = new SimpleDoubleProperty();
 
     public Personnage( int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDeplacement, int longueur, int largeur) {
@@ -42,7 +40,9 @@ public abstract class Personnage {
         this.largeur=largeur;
         this.pointViePercent.bind(getPointVieProperty().divide(100.0));
 
+        this.armeCourante = null;
         this.arc = null;
+        this.epée = null;
 
     }
 
@@ -155,6 +155,19 @@ public abstract class Personnage {
         return (double) pointVie.get() / 100.0; // Supposons que la vie maximale est 100. Ajustez en fonction de votre logique.
     }
 
+    public void ajouterEpee(Epée epée){
+        if(this.epée == null){
+            this.epée = epée;
+        }
+    }
+
+    public Epée getEpee(){
+        if(this.epée != null){
+            return this.epée;
+        }
+        return null;
+    }
+
     public void ajouterArc(Arc arc){
         if(this.arc == null){
             this.arc = arc;
@@ -166,6 +179,28 @@ public abstract class Personnage {
             return this.arc;
         }
         return null;
+    }
+
+    public void equiperEpee(){
+        this.armeCourante = this.epée;
+    }
+
+    public void equiperArc(){
+        this.armeCourante = this.arc;
+    }
+
+    public boolean epeeEquipee(){
+        if(this.armeCourante == this.epée){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean arcEquipe(){
+        if(this.armeCourante == this.arc){
+            return true;
+        }
+        return false;
     }
 
     public void tirerFleche() {

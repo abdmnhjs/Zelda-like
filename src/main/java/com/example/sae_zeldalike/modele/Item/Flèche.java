@@ -11,16 +11,15 @@ import javafx.beans.property.SimpleIntegerProperty;
 import java.util.ArrayList;
 
 public class Flèche extends Arme {
-    private IntegerProperty xProperty;
-    private IntegerProperty yProperty;
     private Environnement environnement;
     private IntegerProperty vitesseProperty;
-    private int longueur;
-    private int largeur;
     private String direction;
     private static int compteurFleche = 0;
     private String id;
     private Arc arc;
+    private final int initialX;
+    private final int initialY;
+
 
     public Flèche(int x, int y,  Environnement environnement, Arc arc){
         super(50, 0);
@@ -33,6 +32,8 @@ public class Flèche extends Arme {
         this.direction = "N";
         this.id = "F"+compteurFleche;
         this.arc = arc;
+        this.initialX = x;
+        this.initialY = y;
         compteurFleche++;
     }
 
@@ -60,6 +61,14 @@ public class Flèche extends Arme {
 
     public void setDirection(String direction) {
         this.direction = direction;
+    }
+
+    public int getInitialX() {
+        return this.initialX;
+    }
+
+    public int getInitialY() {
+        return this.initialY;
     }
 
     public void seDeplacerHaut(){
@@ -97,49 +106,11 @@ public class Flèche extends Arme {
         return this.environnement;
     }
 
-    public boolean estSurEnnemi(Personnage ennemi){
-        if(this.getX() < ennemi.getPositionX() + ennemi.getLargeur() &&
-                this.getX() + this.getLargeur() > ennemi.getPositionX() &&
-                this.getY() < ennemi.getPositionY() + ennemi.getLongueur() &&
-                this.getY() + this.getLongueur() > ennemi.getPositionY()){
-            return true;
-        }
-        return false;
-    }
-
-    public int getLongueur() {
-        return this.longueur;
-    }
-
-    public int getLargeur() {
-        return this.largeur;
-    }
-
     public int getVitesse() {
         return vitesseProperty.getValue();
     }
 
     public IntegerProperty getXProperty() {
         return xProperty;
-    }
-
-    public int getX(){
-        return xProperty.getValue();
-    }
-
-    public void setxProperty(int xProperty) {
-        this.xProperty.set(xProperty);
-    }
-
-    public IntegerProperty getYProperty() {
-        return yProperty;
-    }
-
-    public int getY(){
-        return yProperty.getValue();
-    }
-
-    public void setyProperty(int yProperty) {
-        this.yProperty.set(yProperty);
     }
 }
