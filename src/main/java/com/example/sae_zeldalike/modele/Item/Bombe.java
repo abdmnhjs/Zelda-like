@@ -5,6 +5,10 @@ import com.example.sae_zeldalike.modele.Personnage.Personnage;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javafx.application.Platform;
 import javafx.scene.image.Image;
 
 public class Bombe extends Item implements Stockable {
@@ -12,8 +16,8 @@ public class Bombe extends Item implements Stockable {
     private int degat;
     private int rayonAttaque;
 
-
     public Bombe(Environnement environnement, int positionX, int positionY) {
+
         super(environnement, positionX, positionY,48,48);
         this.degat = 0;
         this.rayonAttaque = getLargeur();
@@ -26,9 +30,7 @@ public class Bombe extends Item implements Stockable {
         this.rayonAttaque = getLargeur();
     }
 
-
-
-    public void explose(){
+    public void utiliserCapacite(){
 
         ArrayList<Personnage>dead = new ArrayList<>();
         System.out.println("Bombe va exploser");
@@ -71,6 +73,12 @@ public class Bombe extends Item implements Stockable {
     @Override
     public Item getItem() {
         return this;
+    }
+
+    @Override
+    public Image getImage() {
+        Image imageBombe = new Image("file:src/main/resources/com/example/sae_zeldalike/Item/Bombe/Bombe_1.png");
+        return imageBombe;
     }
 
 

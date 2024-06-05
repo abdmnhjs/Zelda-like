@@ -1,5 +1,6 @@
 package com.example.sae_zeldalike.Controlleur;
 
+import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurCaseInventaire;
 import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurInventaire;
 import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurItem;
 import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurPersonnage;
@@ -23,6 +24,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.fxml.FXML;
 import javafx.util.Duration;
@@ -42,11 +44,8 @@ public class Controleur implements Initializable {
     private Map map;
     private VueMap vueMap;
 
-
     private ArrayList<VueItem> vueItems;
     private ArrayList<VuePersonnage> vuePersos;
-
-
 
     @FXML
     private Label nombrePiece;
@@ -65,6 +64,15 @@ public class Controleur implements Initializable {
     private ImageView case2;
     @FXML
     private ImageView case3;
+
+    @FXML
+    private StackPane emplacement1;
+    @FXML
+    private StackPane emplacement2;
+    @FXML
+    private StackPane emplacement3;
+
+
     private Timeline gameLoop;
 
     private int temps;
@@ -92,8 +100,6 @@ public class Controleur implements Initializable {
         this.link.ajouterFlèche(new Flèche(this.link.getPositionX(), this.link.getPositionY(),30, this.environnement));
 
         this.barreDeVie.progressProperty().bind(link.pointViePercentProperty());
-
-
 
         vueItems = new ArrayList<>();
         this.environnement.getItems().addListener(new ObservateurItem(pane,vueItems));
@@ -125,13 +131,15 @@ public class Controleur implements Initializable {
         // demarre l'animation
         gameLoop.play();
 
-//        case1.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/ATH/CoeurBleu_Plein.png"));
+        link.getInventaire().addListener(new ObservateurInventaire(case1,case2,case3));
+        link.getNumeroCaseActuelProperty().addListener(new ObservateurCaseInventaire(emplacement1,emplacement2,emplacement3));
 
 
-//        case1.setImage(null );
         link.getPortefeuilleProperty().addListener((obs, old, nouv)-> this.nombrePiece.setText(nouv.toString()));
-        link.getInventaire().addListener(new ObservateurInventaire(case1, case2, case3));
+
     }
+
+
 
     private void initAnimation() {
         gameLoop = new Timeline();
@@ -185,14 +193,14 @@ public class Controleur implements Initializable {
                                 monPerso.animation();
 
                                 Ennemi1 e1 = (Ennemi1) monPerso.getPersonnage();
-                                e1.seDeplace(link.getPositionX()+ link.getLargeur()/2, link.getPositionY()+ link.getLongueur()/2);
+                                e1.seDeplace(link.getPositionX()+ link.getLargeur()/4, link.getPositionY()+ link.getLongueur()/4);
                             }
                         }
                     }
                     if (temps % 9 == 0) {
 
                         vueEnnemi1.animation();
-                        ennemi1.seDeplace(link.getPositionX()+ link.getLargeur()/2, link.getPositionY()+ link.getLongueur()/2);
+                        ennemi1.seDeplace(link.getPositionX()+ link.getLargeur()/4, link.getPositionY()+ link.getLongueur()/4);
                         this.pane.requestFocus();
                         for (VueItem monItem : vueItems){
                             monItem.animationItem();

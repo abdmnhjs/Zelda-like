@@ -59,6 +59,8 @@ public class Item {
     }
 
 
+
+
     public Environnement getEnvironnement() {
         return environnement;
     }
@@ -95,9 +97,6 @@ public class Item {
         return id;
     }
 
-    public Image getImage(){
-        Image image = new Image("file:src/main/resources/com/example/sae_zeldalike/ATH/CoeurBleu_Plein.png");
-        return image;
-    }
+
 
 }

@@ -1,64 +1,76 @@
 package com.example.sae_zeldalike.modele.Personnage;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
-import com.example.sae_zeldalike.modele.Item.Bombe;
 import com.example.sae_zeldalike.modele.Item.Item;
 import com.example.sae_zeldalike.modele.Item.Piece;
 import com.example.sae_zeldalike.modele.Item.Stockable;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class Link extends Personnage {
 
     private IntegerProperty portefeuille;
-    private ObservableList<Stockable> inventaire;
-    private int numeroCaseActuel;
+    private ObjectProperty<Stockable>[] inventaire;
+    private IntegerProperty numeroCaseActuel;
 
     public Link(Environnement environnement, int positionX, int positionY) {
 
-        super(100, 0, environnement, positionX, positionY, 5, 32,32);
+        super(100, 0, environnement, positionX, positionY, 7, 32,32);
         this.portefeuille= new SimpleIntegerProperty();
-        this.inventaire = FXCollections.observableArrayList(new Bombe(environnement),new Bombe(environnement),null);
-        this.numeroCaseActuel=0;
+        this.inventaire=new SimpleObjectProperty[3];
+        for (int i=0;i<inventaire.length;i++) {
+            inventaire[i] = new SimpleObjectProperty();
+        }
+        this.numeroCaseActuel=new SimpleIntegerProperty(0);
 
     }
 
     public Link(Environnement environnement) {
 
-        super(100, 0, environnement, 5, 32,32);
+        super(100, 0, environnement, 7, 32,32);
         this.portefeuille= new SimpleIntegerProperty();
-        this.inventaire = FXCollections.observableArrayList();
-        this.numeroCaseActuel=0;
+        this.inventaire=new SimpleObjectProperty[3];
+        for (int i=0;i<inventaire.length;i++) {
+            inventaire[i] = new SimpleObjectProperty();
+        }
+        this.numeroCaseActuel=new SimpleIntegerProperty(0);
 
+    }
+
+    public int longueurTableau(){
+        return inventaire.length;
     }
 
     public ObservableList<Stockable> getInventaire() {
-        return inventaire;
+        ObservableList<Stockable> liste = FXCollections.observableArrayList();
+        for (int i=0;i<inventaire.length;i++) {
+            liste.add(inventaire[i].getValue());
+        }
+
+        return liste;
     }
 
     public void utiliserItemDansInventaire(){
-        if (!inventaire.isEmpty()){
-            Stockable item = inventaire.get(0);
+        if (inventaire[getNumeroCaseActuel()].getValue()!=null) {
+            Stockable item = inventaire[getNumeroCaseActuel()].getValue();
             item.getItem().setPositionX(getPositionX()-(getLargeur()/4));
             item.getItem().setPositionY(getPositionY()-(getLongueur()/4));
-            inventaire.remove(item);
+            inventaire[getNumeroCaseActuel()].setValue(null);
             getEnvironnement().ajouterItem(item.getItem());
-            if (item instanceof Bombe){
                 Timer timer = new Timer();
 
                 TimerTask task = new TimerTask() {
                     @Override
                     public void run() {
                         Platform.runLater(() -> {
-                            ((Bombe) item).explose();
+                            item.utiliserCapacite();
                             timer.cancel();
                         });
                     }
@@ -66,29 +78,59 @@ public class Link extends Personnage {
                 timer.schedule(task, 1900);
 
 
-            }
         }
+
     }
 
     public boolean emplacementInventaireLibre(){
 
-        return inventaire.size()<8;
+        for (ObjectProperty<Stockable>emplacement : inventaire) {
+            if (emplacement.get() == null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public ArrayList<Integer> connaitreIndiceCaseVide(){
+
+        ArrayList<Integer>indice = new ArrayList<>();
+        for (int i=0;i<inventaire.length;i++) {
+            if (inventaire[i].get() == null) {
+                indice.add(i);
+            }
+        }
+        return indice;
     }
 
     public void ajouteItemDansInventaire(Stockable item) {
 
-        if (emplacementInventaireLibre()&& numeroCaseActuel<3) {
-            inventaire.set(numeroCaseActuel,item);
-            setNumeroCaseActuel(getNumeroCaseActuel()+1);
+        if (emplacementInventaireLibre()) {
+            modifieCaseInventaire(item);
         }
     }
 
-    public int getNumeroCaseActuel() {
+    public void modifieCaseInventaire(Stockable item) {
+        if (inventaire[getNumeroCaseActuel()].getValue()==null){
+            inventaire[getNumeroCaseActuel()].setValue(item);
+        }else{
+            ArrayList<Integer> indice = connaitreIndiceCaseVide();
+            inventaire[indice.getFirst().intValue()].setValue(item);
+        }
+    }
+
+    public IntegerProperty getNumeroCaseActuelProperty(){
         return numeroCaseActuel;
     }
 
-    public void setNumeroCaseActuel(int numeroCaseActuel) {
-        this.numeroCaseActuel = numeroCaseActuel;
+    public int getNumeroCaseActuel() {
+        return numeroCaseActuel.getValue();
+    }
+
+    public void setNumeroCaseActuel(int numero) {
+        if (numero>=0 && numero< inventaire.length) {
+            this.numeroCaseActuel.setValue(numero);
+        }
     }
 
     public Item essaiRamasserItem() {

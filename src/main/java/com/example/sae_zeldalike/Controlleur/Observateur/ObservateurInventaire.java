@@ -34,10 +34,11 @@ public class ObservateurInventaire implements ListChangeListener<Stockable> {
 
     @Override
     public void onChanged(Change<? extends Stockable> change) {
-        System.out.println("hhhhhhhhhhhhhhh" + change.getList().get(0));
-        case1.setImage(change.getList().get(0).getItem().getImage());
-//        case1.setImage(new Image("file:src/main/resources/com/example/sae_zeldalike/ATH/CoeurBleu_Plein.png"));
-
+        while (change.next()) {
+            if (change.wasAdded()) {
+                System.out.println("changement grr pas");
+            }
+        }
     }
 
 }

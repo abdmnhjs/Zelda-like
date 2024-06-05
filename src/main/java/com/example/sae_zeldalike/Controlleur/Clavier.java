@@ -8,15 +8,19 @@ import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import com.example.sae_zeldalike.modele.Item.Arme;
 
 import java.util.HashSet;
 
 public class Clavier implements EventHandler<KeyEvent> {
+
+
 
     private Link link;
     private Pane pane;
@@ -45,7 +49,7 @@ public class Clavier implements EventHandler<KeyEvent> {
     }
 
     private void initTimeline() {
-        mouvementContinu = new Timeline(new KeyFrame(Duration.seconds(0.017), ev -> interactionTouche()));
+        mouvementContinu = new Timeline(new KeyFrame(Duration.seconds(0.040), ev -> interactionTouche()));
         mouvementContinu.setCycleCount(Timeline.INDEFINITE);
         mouvementContinu.play();
     }
@@ -106,27 +110,33 @@ public class Clavier implements EventHandler<KeyEvent> {
             }
         }
         if (touches.contains(KeyCode.A)) {
-            System.out.println(link.getInventaire());
-            System.out.println(link.getEnvironnement().getPersonnages());
+            System.out.println(link.getNumeroCaseActuel());
+            System.out.println(link.connaitreIndiceCaseVide());
+//            System.out.println(link.longueurTableau());
         }
         if (touches.contains(KeyCode.I)){
-
             link.utiliserItemDansInventaire();
         }
         if (touches.contains(KeyCode.U)){
-
+            link.setNumeroCaseActuel(link.getNumeroCaseActuel()+1);
         }
         if (touches.contains(KeyCode.Y)){
-
+            link.setNumeroCaseActuel(link.getNumeroCaseActuel()-1);
         }
         if (touches.contains(KeyCode.AMPERSAND)){
+            link.setNumeroCaseActuel(0);
+
+            System.out.println("Case de l'inventaire 0");
+        }
+        if (touches.contains(KeyCode.UNDEFINED)){
+            link.setNumeroCaseActuel(1);
+
             System.out.println("Case de l'inventaire 1");
         }
-        if (touches.contains(KeyCode.E)){
-            System.out.println("Case de l'inventaire 2");
-        }
         if (touches.contains(KeyCode.QUOTEDBL)){
-            System.out.println("Case de l'inventaire 3");
+            link.setNumeroCaseActuel(2);
+
+            System.out.println("Case de l'inventaire 2");
         }
 
 
@@ -183,4 +193,7 @@ public class Clavier implements EventHandler<KeyEvent> {
             }
         }
     }
+
+
+
 }

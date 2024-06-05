@@ -28,7 +28,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae_zeldalike.Controlleur.Controleur">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae_zeldalike.Controlleur.Controleur" stylesheets="vue1.css">
    <center>
       <Pane fx:id="pane" prefHeight="576.0" prefWidth="1088.0" BorderPane.alignment="CENTER">
          <TilePane fx:id="tilePane" prefColumns="61" prefRows="40" prefTileHeight="32" prefTileWidth="32" />
@@ -118,11 +118,11 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <StackPane fx:id="emplacement1" maxHeight="100.0" maxWidth="100.0" style="-fx-border-color: black;">
+            <StackPane fx:id="emplacement1" maxHeight="100.0" maxWidth="100.0" style="-fx-border-color: black;" GridPane.columnIndex="0" styleClass="caseInventaireActuel">
                <children>
                   <ImageView fx:id="case1" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
                      <image>
-                        <Image url="@Item/Bombe/Bombe_1.png" />
+
                      </image>
                   </ImageView>
                </children>
@@ -130,24 +130,20 @@
                   <Insets />
                </GridPane.margin>
             </StackPane>
-            <StackPane fx:id="emplacement1" maxHeight="100.0" maxWidth="100.0" style="-fx-border-color: black;" GridPane.columnIndex="1">
+            <StackPane fx:id="emplacement2" maxHeight="100.0" maxWidth="100.0" style="-fx-border-color: black;" GridPane.columnIndex="1" >
                <children>
                   <ImageView fx:id="case2" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
-                     <image>
-                        <Image url="@Item/Bombe/Bombe_2.png" />
-                     </image>
+
                   </ImageView>
                </children>
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </StackPane>
-            <StackPane maxHeight="100.0" maxWidth="100.0" style="-fx-border-color: black;" GridPane.columnIndex="2">
+            <StackPane fx:id="emplacement3" maxHeight="100.0" maxWidth="100.0" style="-fx-border-color: black;" GridPane.columnIndex="2" >
                <children>
                   <ImageView fx:id="case3" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
-                     <image>
-                        <Image url="@Item/Bombe/Bombe_3.png" />
-                     </image></ImageView>
+                  </ImageView>
                </children>
                <GridPane.margin>
                   <Insets />

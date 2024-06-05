@@ -20,6 +20,7 @@ public class Lancement extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("vue1.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root,1088,800);
+        scene.getStylesheets().add(getClass().getResource("vue1.css").toExternalForm());
         stage.setScene(scene);
         stage.setTitle("Zelda");
         stage.show();

@@ -3,6 +3,7 @@ package com.example.sae_zeldalike.modele.Item;
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.image.Image;
 
 public class Piece extends Item {
 
@@ -12,6 +13,8 @@ public class Piece extends Item {
         super(environnement, positionX, positionY,16,16);
         this.valeur = new SimpleIntegerProperty(5);
     }
+
+
 
     public Piece(Environnement environnement) {
         super(environnement,16,16);
