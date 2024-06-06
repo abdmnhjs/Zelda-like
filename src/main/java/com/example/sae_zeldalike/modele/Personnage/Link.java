@@ -1,6 +1,7 @@
 package com.example.sae_zeldalike.modele.Personnage;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
+import com.example.sae_zeldalike.modele.Inventaire;
 import com.example.sae_zeldalike.modele.Item.Item;
 import com.example.sae_zeldalike.modele.Item.Piece;
 import com.example.sae_zeldalike.modele.Item.Stockable;
@@ -17,17 +18,14 @@ import java.util.*;
 public class Link extends Personnage {
 
     private IntegerProperty portefeuille;
-    private ObjectProperty<Stockable>[] inventaire;
+    private Inventaire inventaire;
     private IntegerProperty numeroCaseActuel;
 
     public Link(Environnement environnement, int positionX, int positionY) {
 
         super(100, 0, environnement, positionX, positionY, 7, 32,32);
         this.portefeuille= new SimpleIntegerProperty();
-        this.inventaire=new SimpleObjectProperty[3];
-        for (int i=0;i<inventaire.length;i++) {
-            inventaire[i] = new SimpleObjectProperty();
-        }
+        this.inventaire=new Inventaire();
         this.numeroCaseActuel=new SimpleIntegerProperty(0);
 
     }
@@ -36,36 +34,42 @@ public class Link extends Personnage {
 
         super(100, 0, environnement, 7, 32,32);
         this.portefeuille= new SimpleIntegerProperty();
-        this.inventaire=new SimpleObjectProperty[3];
-        for (int i=0;i<inventaire.length;i++) {
-            inventaire[i] = new SimpleObjectProperty();
-        }
+        this.inventaire=new Inventaire();
         this.numeroCaseActuel=new SimpleIntegerProperty(0);
 
     }
 
-    public int longueurTableau(){
-        return inventaire.length;
-    }
 
-    public ObjectProperty<Stockable>[] getInventaire() {
+    public Inventaire getInventaire(){
         return inventaire;
     }
-
     public void utiliserItemDansInventaire(){
-        if (inventaire[getNumeroCaseActuel()].getValue()!=null) {
-            Stockable item = inventaire[getNumeroCaseActuel()].getValue();
+
+        if (getInventaire().getInventaireCaseActuel()!=null) {
+
+//            getInventaire().setIndiceChangement(1);
+            Stockable item = getInventaire().getInventaireCaseActuel();
             item.getItem().setPositionX(getPositionX()-(getLargeur()/4));
             item.getItem().setPositionY(getPositionY()-(getLongueur()/4));
-            inventaire[getNumeroCaseActuel()].setValue(null);
+
+            modifieCaseInventaire(null);
             getEnvironnement().ajouterItem(item.getItem());
+
+
+//            item.utiliserCapacite();
+//            getInventaire().setIndiceChangement(-1);
+
+
                 Timer timer = new Timer();
 
                 TimerTask task = new TimerTask() {
                     @Override
                     public void run() {
                         Platform.runLater(() -> {
+
                             item.utiliserCapacite();
+                            getInventaire().setIndiceChangement(-1);
+
                             timer.cancel();
                         });
                     }
@@ -79,54 +83,39 @@ public class Link extends Personnage {
 
     public boolean emplacementInventaireLibre(){
 
-        for (ObjectProperty<Stockable>emplacement : inventaire) {
-            if (emplacement.get() == null) {
+        for (Stockable emplacement : getInventaire().getInventaire()) {
+            if (emplacement == null) {
                 return true;
             }
         }
         return false;
     }
 
-    public ArrayList<Integer> connaitreIndiceCaseVide(){
-
-        ArrayList<Integer>indice = new ArrayList<>();
-        for (int i=0;i<inventaire.length;i++) {
-            if (inventaire[i].get() == null) {
-                indice.add(i);
-            }
-        }
-        return indice;
-    }
-
     public void ajouteItemDansInventaire(Stockable item) {
 
         if (emplacementInventaireLibre()) {
+
             modifieCaseInventaire(item);
+            getInventaire().setIndiceChangement(1);
         }
     }
 
     public void modifieCaseInventaire(Stockable item) {
-        if (inventaire[getNumeroCaseActuel()].getValue()==null){
-            inventaire[getNumeroCaseActuel()].setValue(item);
-        }else{
-            ArrayList<Integer> indice = connaitreIndiceCaseVide();
-            inventaire[indice.getFirst().intValue()].setValue(item);
+
+        if (getInventaire().getInventaireCaseActuel()==null){
+            getInventaire().modifieStockableInventaire(item);
         }
-    }
 
-    public IntegerProperty getNumeroCaseActuelProperty(){
-        return numeroCaseActuel;
-    }
-
-    public int getNumeroCaseActuel() {
-        return numeroCaseActuel.getValue();
-    }
-
-    public void setNumeroCaseActuel(int numero) {
-        if (numero>=0 && numero< inventaire.length) {
-            this.numeroCaseActuel.setValue(numero);
+        else{
+            ArrayList<Integer> indice = getInventaire().connaitreIndiceCaseVide();
+            if (indice.size()!=0){
+                getInventaire().modifieCaseInventaireAvecIndiceDonnee(indice.get(0),item);
+            }
         }
+
     }
+
+
 
     public Item essaiRamasserItem() {
 

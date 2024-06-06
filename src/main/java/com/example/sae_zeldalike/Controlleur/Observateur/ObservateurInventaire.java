@@ -16,7 +16,6 @@ import javafx.scene.layout.TilePane;
 public class ObservateurInventaire implements ListChangeListener<Stockable> {
 
 
-
     private Pane pane;
     private ImageView case1; ;
 

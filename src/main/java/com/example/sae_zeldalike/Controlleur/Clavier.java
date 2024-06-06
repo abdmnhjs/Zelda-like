@@ -20,8 +20,6 @@ import java.util.HashSet;
 
 public class Clavier implements EventHandler<KeyEvent> {
 
-
-
     private Link link;
     private Pane pane;
     private HashSet<KeyCode> touches;
@@ -110,31 +108,31 @@ public class Clavier implements EventHandler<KeyEvent> {
             }
         }
         if (touches.contains(KeyCode.A)) {
-            System.out.println(link.getNumeroCaseActuel());
-            System.out.println(link.connaitreIndiceCaseVide());
-//            System.out.println(link.longueurTableau());
+//            System.out.println(link.getInventaire().getCaseActuel());
+            System.out.println(link.getInventaire().connaitreIndiceCaseVide());
+            System.out.println(link.getInventaire().getInventaire());
         }
         if (touches.contains(KeyCode.I)){
             link.utiliserItemDansInventaire();
         }
         if (touches.contains(KeyCode.U)){
-            link.setNumeroCaseActuel(link.getNumeroCaseActuel()+1);
+            link.getInventaire().setCaseActuel(link.getInventaire().getCaseActuel()+1);
         }
         if (touches.contains(KeyCode.Y)){
-            link.setNumeroCaseActuel(link.getNumeroCaseActuel()-1);
+            link.getInventaire().setCaseActuel(link.getInventaire().getCaseActuel()-1);
         }
         if (touches.contains(KeyCode.AMPERSAND)){
-            link.setNumeroCaseActuel(0);
+            link.getInventaire().setCaseActuel(0);
 
 //            System.out.println("Case de l'inventaire 0");
         }
         if (touches.contains(KeyCode.UNDEFINED)){
-            link.setNumeroCaseActuel(1);
+            link.getInventaire().setCaseActuel(1);
 
 //            System.out.println("Case de l'inventaire 1");
         }
         if (touches.contains(KeyCode.QUOTEDBL)){
-            link.setNumeroCaseActuel(2);
+            link.getInventaire().setCaseActuel(2);
 
 //            System.out.println("Case de l'inventaire 2");
         }

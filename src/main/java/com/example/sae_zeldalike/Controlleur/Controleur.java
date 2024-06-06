@@ -47,18 +47,17 @@ public class Controleur implements Initializable {
 
     private ArrayList<VueItem> vueItems;
     private ArrayList<VuePersonnage> vuePersos;
-
     @FXML
     private Label nombrePiece;
     @FXML
     private ProgressBar barreDeVie;
     @FXML
     private ImageView imagePerso;
+
     @FXML
     private Pane pane;
     @FXML
     private TilePane tilePane;
-
     @FXML
     private ImageView case1;
     @FXML
@@ -96,23 +95,25 @@ public class Controleur implements Initializable {
         this.ennemi1 =new Ennemi1(environnement);
         environnement.ajouterPersonnage(ennemi1);
         this.vueEnnemi1 =new VueEnnemi1(pane,ennemi1);
-
         this.link.ajouterArme(new Arc(15, 1));
         this.link.ajouterFlèche(new Flèche(this.link.getPositionX(), this.link.getPositionY(),30, this.environnement));
 
+        //Barre de vie Binder en fonction de la vie du personnage
         this.barreDeVie.progressProperty().bind(link.pointViePercentProperty());
 
+        //Observateur des vuesDesItems
         vueItems = new ArrayList<>();
         this.environnement.getItems().addListener(new ObservateurItem(pane,vueItems));
 
+        //Observateur des vuesPersonnages
         vuePersos = new ArrayList<>();
         this.environnement.getPersonnages().addListener(new ObservateurPersonnage(pane,vuePersos));
 
+        //Initialiser la taille de l'image du perso du coin gauche
         imagePerso.setFitHeight(64);
         imagePerso.setFitWidth(64);
         imagePerso.maxWidth(64);
         imagePerso.maxHeight(64);
-
         imagePerso.imageProperty().bind(vueLink.getSpritePersonnage().imageProperty());
 
         environnement.init();
@@ -132,13 +133,34 @@ public class Controleur implements Initializable {
         // demarre l'animation
         gameLoop.play();
 
-        link.getNumeroCaseActuelProperty().addListener(new ObservateurCaseInventaire(emplacement1,emplacement2,emplacement3));
+        //Observateur sur l'indice de la case de l'inventaire selectionné
+        link.getInventaire().getCaseActuelProperty().addListener(new ObservateurCaseInventaire(emplacement1,emplacement2,emplacement3));
 
+        //Observateur sur l'inventaire de Link
+        link.getInventaire().getIndiceChangementProperty().addListener((obs,old,nouv)-> mettreAjourInventaire(nouv.intValue()));
+
+        //Observateur sur la monnaie de Link
         link.getPortefeuilleProperty().addListener((obs, old, nouv)-> this.nombrePiece.setText(nouv.toString()));
 
     }
 
+    private void mettreAjourInventaire(int changement){
+        System.out.println(changement);
+        if (changement!=-1) {
+            System.out.println("changement");
+            if (link.getInventaire().getInventaireCase1() != null) {
+                System.out.println("changement case1");
+                case1.setImage(link.getInventaire().getInventaireCase1().getImage());
 
+            }
+            if (link.getInventaire().getInventaireCase2() != null) {
+                case2.setImage(link.getInventaire().getInventaireCase2().getImage());
+            }
+            if (link.getInventaire().getInventaireCase3() != null) {
+                case3.setImage(link.getInventaire().getInventaireCase3().getImage());
+            }
+        }
+    }
 
     private void initAnimation() {
         gameLoop = new Timeline();
