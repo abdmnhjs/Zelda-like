@@ -16,8 +16,6 @@ public class Flèche extends Arme {
     private static int compteurFleche = 0;
     private String id;
     private Arc arc;
-    private final int initialX;
-    private final int initialY;
 
 
     public Flèche(int x, int y,  Environnement environnement, Arc arc){
@@ -54,21 +52,7 @@ public class Flèche extends Arme {
         return this.id;
     }
 
-    public String getDirection() {
-        return this.direction;
-    }
 
-    public void setDirection(String direction) {
-        this.direction = direction;
-    }
-
-    public int getInitialX() {
-        return this.initialX;
-    }
-
-    public int getInitialY() {
-        return this.initialY;
-    }
 
     public void seDeplacerHaut(){
         this.yProperty.setValue(this.yProperty.getValue() - this.vitesseProperty.getValue());

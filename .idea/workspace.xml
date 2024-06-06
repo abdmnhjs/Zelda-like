@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d68f44cc-42ae-46c4-b79e-09da1a472c7e" name="Changes" comment="" />
+    <list default="true" id="d68f44cc-42ae-46c4-b79e-09da1a472c7e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Vue/VueEpee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Clavier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Clavier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Controleur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Item/Arme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Item/Arme.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Item/Flèche.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Item/Flèche.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Epee/Sword-basdroite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Epee/Sword-basgauche.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Epee/Sword-hautdroite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike/Epee/Sword-hautgauche.png" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,23 +62,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Lancement.executor&quot;: &quot;Run&quot;,
-    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;reworkArc&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/etudiants/info/edetommaso/Documents/Semestre 2/DOO/LoupMouton24&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Lancement.executor": "Run",
+    "Git.Branch.Popup.ShowAllRemotes": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Armes",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/etudiants/info/edetommaso/Documents/Semestre 2/DOO/LoupMouton24",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Lancement" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.sae_zeldalike.Lancement" />
@@ -119,6 +130,7 @@
       <workItem from="1717501522669" duration="7996000" />
       <workItem from="1717602854456" duration="569000" />
       <workItem from="1717605319771" duration="10224000" />
+      <workItem from="1717658727485" duration="8947000" />
     </task>
     <servers />
   </component>

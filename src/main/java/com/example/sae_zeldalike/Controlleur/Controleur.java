@@ -69,6 +69,7 @@ public class Controleur implements Initializable {
     @FXML
     private TilePane tilePane;
     private Timeline gameLoop;
+    private Clavier clavier;
 
     private int temps;
 
@@ -116,6 +117,7 @@ public class Controleur implements Initializable {
         imagePerso.maxWidth(64);
         imagePerso.maxHeight(64);
         imagePerso.imageProperty().bind(vueLink.getSpritePersonnage().imageProperty());
+        this.clavier = new Clavier(this.link, this.pane, this.environnement);
         environnement.init();
 //        items = new ArrayList();
 //        vueItems = new ArrayList();
@@ -155,6 +157,7 @@ public class Controleur implements Initializable {
                 // on définit ce qui se passe à chaque frame
                 // c'est un eventHandler d'ou le lambda
                 ev -> {
+
                     if (temps == 1000000) {
                         System.out.println("fini");
                         gameLoop.stop();
@@ -162,12 +165,14 @@ public class Controleur implements Initializable {
 
 
                         vueLink.animation();
+                        this.clavier.interactionTouche();
 
                             ArrayList<Flèche> flechesASupprimer = new ArrayList<>();
 
-                            for (Flèche flèche : this.environnement.getFlèchesEnDéplacement()) {
+                            for (int i = 0 ; i < this.environnement.getFlèchesEnDéplacement().size() ; i++) {
                                 int newX;
                                 int newY;
+                                Flèche flèche = this.environnement.getFlèchesEnDéplacement().get(i);
 
 
                                 if(flèche.getDirection().equals("UP")){
@@ -216,16 +221,16 @@ public class Controleur implements Initializable {
                                     }
                                 }
 
-                                for (Personnage ennemi : this.environnement.getPersonnages()) {
-                                    if (flèche.estSurEnnemi(ennemi)) {
-                                        flèche.faireDégâts(ennemi, flèche.getDégâts());
+                                for (int j = 0 ; j < this.environnement.getPersonnages().size() ; j++) {
+                                    if (flèche.estSurEnnemi(this.environnement.getPersonnages().get(j))) {
+                                        flèche.faireDégâts(this.environnement.getPersonnages().get(j), flèche.getDégâts());
                                         flechesASupprimer.add(flèche);
                                     }
                                 }
                             }
 
-                            for (Flèche fleche : flechesASupprimer) {
-                                this.environnement.supprimerFleche(fleche);
+                            for (int i = 0 ; i < this.environnement.getFlèchesEnDéplacement().size() ; i++) {
+                                this.environnement.supprimerFleche(this.environnement.getFlèchesEnDéplacement().get(i));
                             }
                         }
 

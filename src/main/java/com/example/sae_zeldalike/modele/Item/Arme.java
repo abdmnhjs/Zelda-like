@@ -15,6 +15,8 @@ public class Arme {
     protected int longueur;
     protected int largeur;
     protected String direction;
+    protected int initialX;
+    protected int initialY;
 
     public Arme(int dégâts, int rayonAttaque) {
         this.id = ""+compteurArme;
@@ -45,6 +47,22 @@ public class Arme {
             return true;
         }
         return false;
+    }
+
+    public String getDirection() {
+        return this.direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
+    public int getInitialX() {
+        return this.initialX;
+    }
+
+    public int getInitialY() {
+        return this.initialY;
     }
 
     public int getDégâts() {

@@ -22,6 +22,7 @@ public class Clavier implements EventHandler<KeyEvent> {
     private Link link;
     private Pane pane;
     private HashSet<KeyCode> touches;
+    private String directionAttaque;
     private Environnement environnement;
     private Timeline mouvementContinu;
 
@@ -31,6 +32,7 @@ public class Clavier implements EventHandler<KeyEvent> {
         this.pane = pane;
         this.touches = new HashSet<>();
         this.environnement = environnement;
+        this.directionAttaque = "";
         initTimeline();
     }
 
@@ -44,62 +46,63 @@ public class Clavier implements EventHandler<KeyEvent> {
                 link.setDirection("Inactif_" + link.getDirection());
             }
         }
+        System.out.println(touches);
     }
 
-    private void initTimeline() {
+    public void initTimeline() {
         mouvementContinu = new Timeline(new KeyFrame(Duration.seconds(0.017), ev -> interactionTouche()));
         mouvementContinu.setCycleCount(Timeline.INDEFINITE);
         mouvementContinu.play();
     }
 
-    private void interactionTouche() {
+    public void interactionTouche() {
         int newX;
         int newY;
 
-        if (touches.contains(KeyCode.Z)) {
-            newX = link.getPositionX();
-            newY = link.getPositionY() - link.getVitesseDeplacement();
-            if (!link.getEnvironnement().estDevantObstacle(link.hitbox(newX, newY))) {
-                link.setPositionYProperty(newY);
+        if (this.touches.contains(KeyCode.Z)) {
+            newX = this.link.getPositionX();
+            newY = this.link.getPositionY() - this.link.getVitesseDeplacement();
+            if (!this.link.getEnvironnement().estDevantObstacle(this.link.hitbox(newX, newY))) {
+                this.link.setPositionYProperty(newY);
             }
-            link.setDirection("UP");
+            this.link.setDirection("UP");
         }
-        if (touches.contains(KeyCode.S)) {
-            newX = link.getPositionX();
-            newY = link.getPositionY() + link.getVitesseDeplacement();
-            if (!link.getEnvironnement().estDevantObstacle(link.hitbox(newX, newY))) {
-                link.setPositionYProperty(newY);
+        if (this.touches.contains(KeyCode.S)) {
+            newX = this.link.getPositionX();
+            newY = this.link.getPositionY() + this.link.getVitesseDeplacement();
+            if (!this.link.getEnvironnement().estDevantObstacle(this.link.hitbox(newX, newY))) {
+                this.link.setPositionYProperty(newY);
             }
-            link.setDirection("DOWN");
+            this.link.setDirection("DOWN");
         }
-        if (touches.contains(KeyCode.Q)) {
-            newX = link.getPositionX() - link.getVitesseDeplacement();
-            newY = link.getPositionY();
-            if (!link.getEnvironnement().estDevantObstacle(link.hitbox(newX, newY))) {
-                link.setPositionXProperty(newX);
+        if (this.touches.contains(KeyCode.Q)) {
+            newX = this.link.getPositionX() - this.link.getVitesseDeplacement();
+            newY = this.link.getPositionY();
+            if (!this.link.getEnvironnement().estDevantObstacle(this.link.hitbox(newX, newY))) {
+                this.link.setPositionXProperty(newX);
             }
             link.setDirection("LEFT");
         }
-        if (touches.contains(KeyCode.D)) {
-            newX = link.getPositionX() + link.getVitesseDeplacement();
-            newY = link.getPositionY();
-            if (!link.getEnvironnement().estDevantObstacle(link.hitbox(newX, newY))) {
-                link.setPositionXProperty(newX);
+        if (this.touches.contains(KeyCode.D)) {
+            newX = this.link.getPositionX() + this.link.getVitesseDeplacement();
+            newY = this.link.getPositionY();
+            if (!this.link.getEnvironnement().estDevantObstacle(this.link.hitbox(newX, newY))) {
+                this.link.setPositionXProperty(newX);
             }
-            link.setDirection("RIGHT");
+            this.link.setDirection("RIGHT");
         }
-        if (touches.contains(KeyCode.J)) {
-            Item item = link.essaiRamasserItem();
+        if (this.touches.contains(KeyCode.J)) {
+            Item item = this.link.essaiRamasserItem();
             if (item != null) {
                 if (item instanceof Piece) {
-                    link.ajouterPiece(((Piece) item).getValeur());
-                    link.getEnvironnement().supprimerItem(item);
+                    this.link.ajouterPiece(((Piece) item).getValeur());
+                    this.link.getEnvironnement().supprimerItem(item);
                 }if (item instanceof Stockable){
 
-                    if (link.emplacementInventaireLibre()){
+                    if (this.link.emplacementInventaireLibre()){
 
-                        link.ajouteItemDansInventaire((Stockable) item);
-                        link.getEnvironnement().supprimerItem(item);
+                        this.link.ajouteItemDansInventaire((Stockable) item);
+                        this.link.getEnvironnement().supprimerItem(item);
                     }else {
                         System.out.println("Inventaire plein");
                     }
@@ -107,72 +110,80 @@ public class Clavier implements EventHandler<KeyEvent> {
                 }
             }
         }
-        if (touches.contains(KeyCode.A)) {
-            System.out.println(link.getInventaire());
-            System.out.println(link.getEnvironnement().getPersonnages());
-            System.out.println(link.getEnvironnement().getFlèchesEnDéplacement());
+        if (this.touches.contains(KeyCode.A)) {
+            System.out.println(this.link.getInventaire());
+            System.out.println(this.link.getEnvironnement().getPersonnages());
+            System.out.println(this.link.getEnvironnement().getFlèchesEnDéplacement());
         }
-        if (touches.contains(KeyCode.I)){
+        if (this.touches.contains(KeyCode.I)){
 
-            link.utiliserItemDansInventaire();
+            this.link.utiliserItemDansInventaire();
         }
-        if (touches.contains(KeyCode.U)){
-
-        }
-        if (touches.contains(KeyCode.Y)){
+        if (this.touches.contains(KeyCode.U)){
 
         }
-        if (touches.contains(KeyCode.AMPERSAND)){
+        if (this.touches.contains(KeyCode.Y)){
+
+        }
+        if (this.touches.contains(KeyCode.AMPERSAND)){
             System.out.println("Case de l'inventaire 1");
         }
-        if (touches.contains(KeyCode.E)){
+        if (this.touches.contains(KeyCode.E)){
             System.out.println("Case de l'inventaire 2");
         }
-        if (touches.contains(KeyCode.QUOTEDBL)){
+        if (this.touches.contains(KeyCode.QUOTEDBL)){
             System.out.println("Case de l'inventaire 3");
         }
 
-        if(link.arcEquipe()){
-            if(touches.contains(KeyCode.UP)
-                    && !touches.contains(KeyCode.LEFT)
-                    && !touches.contains(KeyCode.DOWN)
-                    && !touches.contains(KeyCode.RIGHT)){
-                Flèche flèche = new Flèche(link.getPositionX()+16, link.getPositionY()+16, this.environnement, link.getArc());
-                flèche.setDirection("UP");
-                link.getArc().getFleches().add(flèche);
-                link.tirerFleche();
-            }
-            if(touches.contains(KeyCode.DOWN)
-                    && !touches.contains(KeyCode.UP)
-                    && !touches.contains(KeyCode.LEFT)
-                    && !touches.contains(KeyCode.RIGHT)){
-                Flèche flèche = new Flèche(link.getPositionX()+16, link.getPositionY()+16, this.environnement, link.getArc());
-                flèche.setDirection("DOWN");
-                link.getArc().getFleches().add(flèche);
-                link.tirerFleche();
+
+            if(this.touches.contains(KeyCode.UP)){
+                if(!this.touches.contains(KeyCode.LEFT)
+                        && !this.touches.contains(KeyCode.DOWN)
+                        && !this.touches.contains(KeyCode.RIGHT)){
+                    //System.out.println("attaqque arc direction up");
+                    Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
+                    flèche.setDirection("UP");
+                    this.link.getArc().getFleches().add(flèche);
+                    this.link.tirerFleche();
+                }
 
             }
-            if(touches.contains(KeyCode.RIGHT)
-                    && !touches.contains(KeyCode.UP)
-                    && !touches.contains(KeyCode.DOWN)
-                    && !touches.contains(KeyCode.LEFT)){
-                Flèche flèche = new Flèche(link.getPositionX()+16, link.getPositionY()+16, this.environnement, link.getArc());
-                flèche.setDirection("RIGHT");
-                link.getArc().getFleches().add(flèche);
-                link.tirerFleche();
-            }
-            if(touches.contains(KeyCode.LEFT)
-                    && !touches.contains(KeyCode.UP)
-                    && !touches.contains(KeyCode.DOWN)
-                    && !touches.contains(KeyCode.RIGHT)){
-                Flèche flèche = new Flèche(link.getPositionX()+16, link.getPositionY()+16, this.environnement, link.getArc());
-                flèche.setDirection("LEFT");
-                link.getArc().getFleches().add(flèche);
-                link.tirerFleche();
+            if(this.touches.contains(KeyCode.DOWN)){
+                if(!this.touches.contains(KeyCode.UP)
+                        && !this.touches.contains(KeyCode.LEFT)
+                        && !this.touches.contains(KeyCode.RIGHT)){
+                    //System.out.println("attaqque arc direction bas");
+                    Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
+                    flèche.setDirection("DOWN");
+                    this.link.getArc().getFleches().add(flèche);
+                    this.link.tirerFleche();
+                }
 
+
+            }
+            if(this.touches.contains(KeyCode.RIGHT)){
+                if(!this.touches.contains(KeyCode.UP)
+                        && !this.touches.contains(KeyCode.DOWN)
+                        && !this.touches.contains(KeyCode.LEFT)){
+                    //System.out.println("attaqque arc direction droite");
+                    Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
+                    flèche.setDirection("RIGHT");
+                    this.link.getArc().getFleches().add(flèche);
+                    this.link.tirerFleche();
+                }
+
+            }
+            if(this.touches.contains(KeyCode.LEFT)){
+                if(!this.touches.contains(KeyCode.UP)
+                        && !this.touches.contains(KeyCode.DOWN)
+                        && !this.touches.contains(KeyCode.RIGHT)){
+                    //System.out.println("attaqque arc direction gauche");
+                    Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
+                    flèche.setDirection("LEFT");
+                    this.link.getArc().getFleches().add(flèche);
+                    this.link.tirerFleche();
+                }
             }
         }
-
-
     }
-}
+
