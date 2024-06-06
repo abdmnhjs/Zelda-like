@@ -46,11 +46,14 @@ public class Clavier implements EventHandler<KeyEvent> {
                 link.setDirection("Inactif_" + link.getDirection());
             }
         }
+        interactionToucheCombat(keyEvent);
         System.out.println(touches);
     }
 
     public void initTimeline() {
-        mouvementContinu = new Timeline(new KeyFrame(Duration.seconds(0.017), ev -> interactionTouche()));
+        mouvementContinu = new Timeline(new KeyFrame(Duration.seconds(0.017), ev -> {
+            interactionTouche();
+        }));
         mouvementContinu.setCycleCount(Timeline.INDEFINITE);
         mouvementContinu.play();
     }
@@ -134,56 +137,35 @@ public class Clavier implements EventHandler<KeyEvent> {
         if (this.touches.contains(KeyCode.QUOTEDBL)){
             System.out.println("Case de l'inventaire 3");
         }
+        }
 
-
-            if(this.touches.contains(KeyCode.UP)){
-                if(!this.touches.contains(KeyCode.LEFT)
-                        && !this.touches.contains(KeyCode.DOWN)
-                        && !this.touches.contains(KeyCode.RIGHT)){
-                    //System.out.println("attaqque arc direction up");
-                    Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
-                    flèche.setDirection("UP");
-                    this.link.getArc().getFleches().add(flèche);
-                    this.link.tirerFleche();
-                }
-
+        public void interactionToucheCombat(KeyEvent keyEvent){
+        switch (keyEvent.getCode()){
+            case UP -> {
+                Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
+                flèche.setDirection("UP");
+                this.link.getArc().getFleches().add(flèche);
+                this.link.tirerFleche();
             }
-            if(this.touches.contains(KeyCode.DOWN)){
-                if(!this.touches.contains(KeyCode.UP)
-                        && !this.touches.contains(KeyCode.LEFT)
-                        && !this.touches.contains(KeyCode.RIGHT)){
-                    //System.out.println("attaqque arc direction bas");
-                    Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
-                    flèche.setDirection("DOWN");
-                    this.link.getArc().getFleches().add(flèche);
-                    this.link.tirerFleche();
-                }
-
-
+            case DOWN -> {
+                Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
+                flèche.setDirection("DOWN");
+                this.link.getArc().getFleches().add(flèche);
+                this.link.tirerFleche();
             }
-            if(this.touches.contains(KeyCode.RIGHT)){
-                if(!this.touches.contains(KeyCode.UP)
-                        && !this.touches.contains(KeyCode.DOWN)
-                        && !this.touches.contains(KeyCode.LEFT)){
-                    //System.out.println("attaqque arc direction droite");
-                    Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
-                    flèche.setDirection("RIGHT");
-                    this.link.getArc().getFleches().add(flèche);
-                    this.link.tirerFleche();
-                }
-
+            case RIGHT -> {
+                Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
+                flèche.setDirection("RIGHT");
+                this.link.getArc().getFleches().add(flèche);
+                this.link.tirerFleche();
             }
-            if(this.touches.contains(KeyCode.LEFT)){
-                if(!this.touches.contains(KeyCode.UP)
-                        && !this.touches.contains(KeyCode.DOWN)
-                        && !this.touches.contains(KeyCode.RIGHT)){
-                    //System.out.println("attaqque arc direction gauche");
-                    Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
-                    flèche.setDirection("LEFT");
-                    this.link.getArc().getFleches().add(flèche);
-                    this.link.tirerFleche();
-                }
+            case LEFT -> {
+                Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
+                flèche.setDirection("LEFT");
+                this.link.getArc().getFleches().add(flèche);
+                this.link.tirerFleche();
             }
+        }
         }
     }
 
