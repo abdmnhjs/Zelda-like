@@ -72,6 +72,7 @@ public class Controleur implements Initializable {
     private Clavier clavier;
 
     private int temps;
+    private int tempsRechargeFleche;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -95,7 +96,7 @@ public class Controleur implements Initializable {
         this.vueEnnemi1 = new VueEnnemi1(pane, ennemi1);
         vueMap = new VueMap(tilePane, this.map);
         this.link.ajouterEpee(new Epée(link.getPositionX()+link.getLargeur(), link.getPositionY()+16, 15, 5));
-        this.link.ajouterArc(new Arc(15, 80, this.environnement));
+        this.link.ajouterArc(new Arc(15, 100, this.environnement));
         this.link.equiperArc();
 
         this.barreDeVie.progressProperty().bind(link.pointViePercentProperty());
@@ -149,6 +150,7 @@ public class Controleur implements Initializable {
     private void initAnimation() {
         gameLoop = new Timeline();
         temps = 0;
+        tempsRechargeFleche = 0;
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
@@ -181,10 +183,12 @@ public class Controleur implements Initializable {
                                     if (!flèche.getEnvironnement().estDevantObstacle(flèche.hitbox(newX, newY)) ||
                                             !flèche.getEnvironnement().estDansLimiteTerrain(newX, newY, flèche.getLongueur(), flèche.getLargeur())) {
                                         if (flèche.getY() > flèche.getInitialY() - link.getArc().getRayonAttaque()) {
+                                            tempsRechargeFleche = 3000;
                                             flèche.setyProperty(newY);
                                         } else {
                                             flechesASupprimer.add(flèche);
                                         }
+
                                     }}
                                 if(flèche.getDirection().equals("DOWN")){
                                     newX = flèche.getX();
@@ -192,10 +196,12 @@ public class Controleur implements Initializable {
                                     if (!flèche.getEnvironnement().estDevantObstacle(flèche.hitbox(newX, newY)) ||
                                             !flèche.getEnvironnement().estDansLimiteTerrain(newX, newY, flèche.getLongueur(), flèche.getLargeur())) {
                                         if (flèche.getY() < flèche.getInitialY() + link.getArc().getRayonAttaque()) {
+                                            tempsRechargeFleche = 3000;
                                             flèche.setyProperty(newY);
                                         } else {
                                             flechesASupprimer.add(flèche);
                                         }
+
                                     }}
                                 if(flèche.getDirection().equals("RIGHT")){
                                     newX = flèche.getX() + flèche.getVitesse();
@@ -203,10 +209,12 @@ public class Controleur implements Initializable {
                                     if (!flèche.getEnvironnement().estDevantObstacle(flèche.hitbox(newX, newY)) ||
                                             !flèche.getEnvironnement().estDansLimiteTerrain(newX, newY, flèche.getLongueur(), flèche.getLargeur())) {
                                         if (flèche.getX() < flèche.getInitialX() + link.getArc().getRayonAttaque()) {
+                                            tempsRechargeFleche = 3000;
                                             flèche.setxProperty(newX);
                                         } else {
                                             flechesASupprimer.add(flèche);
                                         }
+
                                     }}
                                 if(flèche.getDirection().equals("LEFT")){
                                     newX = flèche.getX() - flèche.getVitesse();
@@ -214,10 +222,12 @@ public class Controleur implements Initializable {
                                     if (!flèche.getEnvironnement().estDevantObstacle(flèche.hitbox(newX, newY)) ||
                                             !flèche.getEnvironnement().estDansLimiteTerrain(newX, newY, flèche.getLongueur(), flèche.getLargeur())) {
                                         if (flèche.getX() > flèche.getInitialX() - link.getArc().getRayonAttaque()) {
+                                            tempsRechargeFleche = 3000;
                                             flèche.setxProperty(newX);
                                         } else {
                                             flechesASupprimer.add(flèche);
                                         }
+
                                     }
                                 }
 
@@ -229,8 +239,8 @@ public class Controleur implements Initializable {
                                 }
                             }
 
-                            for (int i = 0 ; i < this.environnement.getFlèchesEnDéplacement().size() ; i++) {
-                                this.environnement.supprimerFleche(this.environnement.getFlèchesEnDéplacement().get(i));
+                            for (int i = 0 ; i < flechesASupprimer.size() ; i++) {
+                                this.environnement.supprimerFleche(flechesASupprimer.get(i));
                             }
                         }
 
@@ -255,6 +265,8 @@ public class Controleur implements Initializable {
                         }
                     }
 
+
+                    tempsRechargeFleche--;
                     temps++;
                 }
         );
