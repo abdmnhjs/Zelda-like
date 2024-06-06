@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class Flèche extends Arme {
     private Environnement environnement;
     private IntegerProperty vitesseProperty;
-    private String direction;
     private static int compteurFleche = 0;
     private String id;
     private Arc arc;

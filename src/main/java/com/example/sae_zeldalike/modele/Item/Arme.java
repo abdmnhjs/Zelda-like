@@ -14,6 +14,7 @@ public class Arme {
     protected IntegerProperty yProperty;
     protected int longueur;
     protected int largeur;
+    protected String direction;
 
     public Arme(int dégâts, int rayonAttaque) {
         this.id = ""+compteurArme;

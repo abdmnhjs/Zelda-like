@@ -95,7 +95,7 @@ public class Controleur implements Initializable {
         vueMap = new VueMap(tilePane, this.map);
         this.link.ajouterEpee(new Epée(link.getPositionX()+link.getLargeur(), link.getPositionY()+16, 15, 5));
         this.link.ajouterArc(new Arc(15, 80, this.environnement));
-        this.link.equiperEpee();
+        this.link.equiperArc();
 
         this.barreDeVie.progressProperty().bind(link.pointViePercentProperty());
 
