@@ -20,6 +20,9 @@ public class ObservateurFlechesEnDeplacement implements ListChangeListener<Flèc
                 }
             } else if (change.wasRemoved()){
                 for(Flèche fleche : change.getRemoved()){
+                    System.out.println(this.environnement.lookup("#"+fleche.getId()));
+                    System.out.println(change.getRemoved());
+                    System.out.println(fleche.getId());
                     this.environnement.getChildren().remove(this.environnement.lookup("#"+fleche.getId()));
                 }
             }

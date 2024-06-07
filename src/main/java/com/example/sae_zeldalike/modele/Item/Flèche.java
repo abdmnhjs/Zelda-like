@@ -14,6 +14,7 @@ public class Flèche extends Arme {
     private IntegerProperty vitesseProperty;
     private static int compteurFleche = 0;
     private Arc arc;
+    private String id;
 
 
     public Flèche(int x, int y,  Environnement environnement, Arc arc){
@@ -87,4 +88,16 @@ public class Flèche extends Arme {
         return vitesseProperty.getValue();
     }
 
+    public String getId() {
+        return this.id;
+    }
+
+    @Override
+    public String toString() {
+        return "Flèche{" +
+                "vitesseProperty=" + vitesseProperty +
+                ", arc=" + arc +
+                ", id='" + id + '\'' +
+                '}';
+    }
 }

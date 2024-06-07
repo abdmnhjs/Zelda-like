@@ -37,7 +37,6 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
             }
             if (change.wasRemoved()){
                 for (Personnage personnage : change.getRemoved()){
-
                     this.environnement.getChildren().remove(environnement.lookup("#"+personnage.getId()));
                     this.environnement.getChildren().remove(environnement.lookup("#O"+personnage.getId()));
                 }

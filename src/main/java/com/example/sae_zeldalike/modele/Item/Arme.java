@@ -7,7 +7,6 @@ import javafx.beans.property.IntegerProperty;
 import java.util.ArrayList;
 
 public class Arme {
-    static int compteurArme = 0;
     private int dégâts;
     private int rayonAttaque;
     protected IntegerProperty xProperty;
@@ -17,7 +16,6 @@ public class Arme {
     protected String direction;
     protected int initialX;
     protected int initialY;
-    protected String id;
     protected Environnement environnement;
 
     public Arme(int dégâts, int rayonAttaque, Environnement environnement) {
@@ -80,10 +78,6 @@ public class Arme {
 
     public int getLargeur() {
         return this.largeur;
-    }
-
-    public String getId() {
-        return this.id;
     }
 
     public IntegerProperty getXProperty() {

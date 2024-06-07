@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 
 public class Epée extends Arme{
     private static int compteurEpee = 0;
+    private String id;
     public Epée(int x, int y, int degats, int rayonAttaque, Environnement environnement){
         super(degats, rayonAttaque, environnement);
         this.xProperty = new SimpleIntegerProperty(x);
@@ -20,5 +21,9 @@ public class Epée extends Arme{
     @Override
     public int getRayonAttaque() {
         return super.getRayonAttaque();
+    }
+
+    public String getId() {
+        return this.id;
     }
 }

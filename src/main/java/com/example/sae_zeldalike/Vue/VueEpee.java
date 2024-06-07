@@ -19,6 +19,7 @@ public class VueEpee {
         this.epee = epee;
         this.pane = pane;
         this.personnage = personnage;
+        this.spriteEpee = new ImageView();
         creerEpee(this.pane);
     }
 
@@ -28,24 +29,28 @@ public class VueEpee {
             this.spriteEpee = new ImageView(new Image("file:src/main/resources/com/example/sae_zeldalike/Epee/epee-haut.png"));
             this.spriteEpee.translateXProperty().bind(this.personnage.getPositionXProperty().add(16));
             this.spriteEpee.translateYProperty().bind(this.personnage.getPositionYProperty());
+            this.spriteEpee.setId(this.epee.getId());
         }
         if(this.epee.getDirection().equals("DOWN")) {
             this.supprimerEpee(this.pane);
             this.spriteEpee = new ImageView(new Image("file:src/main/resources/com/example/sae_zeldalike/Epee/epee-bas.png"));
             this.spriteEpee.translateXProperty().bind(this.personnage.getPositionXProperty().add(16));
             this.spriteEpee.translateYProperty().bind(this.personnage.getPositionYProperty().add(32));
+            this.spriteEpee.setId(this.epee.getId());
         }
         if(this.epee.getDirection().equals("RIGHT")) {
             this.supprimerEpee(this.pane);
             this.spriteEpee = new ImageView(new Image("file:src/main/resources/com/example/sae_zeldalike/Epee/epee-droite.png"));
             this.spriteEpee.translateXProperty().bind(this.personnage.getPositionXProperty().add(32));
             this.spriteEpee.translateYProperty().bind(this.personnage.getPositionYProperty().add(16));
+            this.spriteEpee.setId(this.epee.getId());
         }
         if(this.epee.getDirection().equals("LEFT")) {
             this.supprimerEpee(this.pane);
             this.spriteEpee = new ImageView(new Image("file:src/main/resources/com/example/sae_zeldalike/Epee/epee-gauche.png"));
             this.spriteEpee.translateXProperty().bind(this.personnage.getPositionXProperty());
             this.spriteEpee.translateYProperty().bind(this.personnage.getPositionYProperty().add(16));
+            this.spriteEpee.setId(this.epee.getId());
         }
         this.spriteEpee.setFitHeight(this.epee.getLongueur());
         this.spriteEpee.setFitWidth(this.epee.getLargeur());
