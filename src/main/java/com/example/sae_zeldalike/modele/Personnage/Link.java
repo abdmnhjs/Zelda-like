@@ -2,10 +2,7 @@ package com.example.sae_zeldalike.modele.Personnage;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Inventaire;
-import com.example.sae_zeldalike.modele.Item.Bombe;
-import com.example.sae_zeldalike.modele.Item.Item;
-import com.example.sae_zeldalike.modele.Item.Piece;
-import com.example.sae_zeldalike.modele.Item.Stockable;
+import com.example.sae_zeldalike.modele.Item.*;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -21,6 +18,7 @@ public class Link extends Personnage {
     private IntegerProperty portefeuille;
     private Inventaire inventaire;
     private IntegerProperty numeroCaseActuel;
+    private IntegerProperty pointDeVieMax;
 
     public Link(Environnement environnement, int positionX, int positionY) {
 
@@ -28,6 +26,7 @@ public class Link extends Personnage {
         this.portefeuille= new SimpleIntegerProperty();
         this.inventaire=new Inventaire();
         this.numeroCaseActuel=new SimpleIntegerProperty(0);
+        this.pointDeVieMax = new SimpleIntegerProperty(getPointVie());
 
     }
 
@@ -37,9 +36,21 @@ public class Link extends Personnage {
         this.portefeuille= new SimpleIntegerProperty();
         this.inventaire=new Inventaire();
         this.numeroCaseActuel=new SimpleIntegerProperty(0);
+        this.pointDeVieMax = new SimpleIntegerProperty(getPointVie());
 
     }
 
+    public int getPointDeVieMax() {
+        return pointDeVieMax.get();
+    }
+
+    public IntegerProperty pointDeVieMaxProperty() {
+        return pointDeVieMax;
+    }
+
+    public void setPointDeVieMax(int pointDeVieMax) {
+        this.pointDeVieMax.set(pointDeVieMax);
+    }
 
     public Inventaire getInventaire(){
         return inventaire;
@@ -69,7 +80,7 @@ public class Link extends Personnage {
                         Platform.runLater(() -> {
 
                             item.utiliserCapacite();
-                            getInventaire().setIndiceChangement(-1);
+
 
                             timer.cancel();
                         });
@@ -77,6 +88,7 @@ public class Link extends Personnage {
                 };
                 timer.schedule(task, 1900);
 
+            getInventaire().setIndiceChangement(-1);
 
         }
 
@@ -125,6 +137,8 @@ public class Link extends Personnage {
             if ((this.getPositionY() - 20 <= item.getPositionY() && item.getPositionY() <= this.getPositionY() + 20)
                     && (this.getPositionX() - 20 <= item.getPositionX() && item.getPositionX() <= this.getPositionX() + 20)) {
                 if (item instanceof Piece) {
+                    return item;
+                }if (item instanceof CoeurRouge){
                     return item;
                 }
                 if (item instanceof Stockable) {

@@ -6,7 +6,6 @@ public interface Stockable {
 
     Item getItem();
 
-    Image getImage();
 
     public void utiliserCapacite();
 }

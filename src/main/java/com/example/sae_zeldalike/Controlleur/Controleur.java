@@ -104,14 +104,26 @@ public class Controleur implements Initializable {
         //Barre de vie Binder en fonction de la vie du personnage
         link.getPointVieProperty().addListener(new ObservateurCoeurs(emplacementCoeurs,link.getPointVie()));
 
-
         //Observateur des vuesDesItems
         vueItems = new ArrayList<>();
-        this.environnement.getItems().addListener(new ObservateurItem(pane,vueItems));
+        ObservateurItem observateurItem = new ObservateurItem(pane,vueItems);
+        this.environnement.getItems().addListener(observateurItem);
 
         //Observateur des vuesPersonnages
         vuePersos = new ArrayList<>();
         this.environnement.getPersonnages().addListener(new ObservateurPersonnage(pane,vuePersos));
+
+
+        //Observateur sur l'inventaire de Link
+        link.getInventaire().getIndiceChangementProperty().addListener((obs,old,nouv)-> mettreAjourInventaire(nouv.intValue(),observateurItem));
+
+        //Observateur sur l'indice de la case de l'inventaire selectionné
+
+        link.getInventaire().getCaseActuelProperty().addListener(new ObservateurCaseInventaire(emplacement1,emplacement2,emplacement3));
+
+
+        //Observateur sur la monnaie de Link
+        link.getPortefeuilleProperty().addListener((obs, old, nouv)-> this.nombrePiece.setText(nouv.toString()));
 
         //Initialiser la taille de l'image du perso du coin gauche
         imagePerso.setFitHeight(64);
@@ -137,46 +149,47 @@ public class Controleur implements Initializable {
         // demarre l'animation
         gameLoop.play();
 
-        //Observateur sur l'indice de la case de l'inventaire selectionné
-        link.getInventaire().getCaseActuelProperty().addListener(new ObservateurCaseInventaire(emplacement1,emplacement2,emplacement3));
 
-        //Observateur sur l'inventaire de Link
-        link.getInventaire().getIndiceChangementProperty().addListener((obs,old,nouv)-> mettreAjourInventaire(nouv.intValue()));
-
-        //Observateur sur la monnaie de Link
-        link.getPortefeuilleProperty().addListener((obs, old, nouv)-> this.nombrePiece.setText(nouv.toString()));
 
     }
 
 
 
-    private void mettreAjourInventaire(int changement){
-        System.out.println(changement);
+    private void mettreAjourInventaire(int changement, ObservateurItem observateurItem){
         if (changement!=-1) {
-            System.out.println("changement");
             if (link.getInventaire().getInventaireCase1() != null) {
-                System.out.println("changement case1");
-                case1.setImage(link.getInventaire().getInventaireCase1().getImage());
+                for (int i=0;i<observateurItem.getVueItems().size();i++){
+                    if (link.getInventaire().getInventaireCase1().getItem().getId().equals(observateurItem.getVueItems().get(i).getSpriteId())){
+                        case1.setImage(observateurItem.getVueItems().get(i).getImagePrincipale());
+                    }
+                }
             }else{
-                System.out.println("case1 vide");
                 case1.setImage(null);
             }
             if (link.getInventaire().getInventaireCase2() != null) {
-                System.out.println("changement case2");
-                case2.setImage(link.getInventaire().getInventaireCase2().getImage());
+                for (int i=0;i<observateurItem.getVueItems().size();i++){
+                    if (link.getInventaire().getInventaireCase2().getItem().getId().equals(observateurItem.getVueItems().get(i).getSpriteId())){
+                        case2.setImage(observateurItem.getVueItems().get(i).getImagePrincipale());
+                    }
+                }
             }else {
-                System.out.println("case2 vide");
+
                 case2.setImage(null);
             }
             if (link.getInventaire().getInventaireCase3() != null) {
-                System.out.println("changement case3");
-                case3.setImage(link.getInventaire().getInventaireCase3().getImage());
+
+                for (int i=0;i<observateurItem.getVueItems().size();i++){
+                    if (link.getInventaire().getInventaireCase3().getItem().getId().equals(observateurItem.getVueItems().get(i).getSpriteId())){
+                        case3.setImage(observateurItem.getVueItems().get(i).getImagePrincipale());
+                    }
+                }
             }else {
                 System.out.println("case3 vide");
                 case3.setImage(null);
             }
         }
     }
+
 
     private void initAnimation() {
         gameLoop = new Timeline();

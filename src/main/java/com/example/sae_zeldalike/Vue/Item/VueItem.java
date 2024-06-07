@@ -29,6 +29,7 @@ public abstract class VueItem {
     }
 
     protected abstract void creerOmbre(Pane pane);
+    protected abstract void initialiserItem();
 
     public ImageView getSpriteItem() {
         return spriteItem;
@@ -46,6 +47,12 @@ public abstract class VueItem {
     }
 
     public abstract void animationItem();
+
+    public abstract Image getImagePrincipale();
+
+     public String getSpriteId(){
+         return spriteItem.getId();
+     }
 
 
 }

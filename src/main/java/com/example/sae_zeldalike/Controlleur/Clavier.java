@@ -104,6 +104,11 @@ public class Clavier implements EventHandler<KeyEvent> {
                         System.out.println("Inventaire plein");
                     }
 
+                }if (item instanceof CoeurRouge){
+                    if (link.getPointDeVieMax()>= link.getPointVie()+((CoeurRouge) item).getPointDeVie()){
+                        link.setPointDeVie(link.getPointVie()+((CoeurRouge) item).getPointDeVie());
+                        link.getEnvironnement().supprimerItem(item);
+                    }
                 }
             }
         }

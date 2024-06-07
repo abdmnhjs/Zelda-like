@@ -2,6 +2,7 @@ package com.example.sae_zeldalike.modele.Environnement;
 
 import com.example.sae_zeldalike.modele.Hitbox;
 import com.example.sae_zeldalike.modele.Item.Bombe;
+import com.example.sae_zeldalike.modele.Item.CoeurRouge;
 import com.example.sae_zeldalike.modele.Item.Item;
 import com.example.sae_zeldalike.modele.Item.Piece;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi1;
@@ -198,6 +199,14 @@ public class Environnement {
         }
         for (int i =0;i<10;i++){
             ajouterPersonnage(new Ennemi1(this));
+        }
+        for (int i =0;i<10;i++){
+            if (i<5){
+                ajouterItem(new CoeurRouge(this,10));
+            }else {
+                ajouterItem(new CoeurRouge(this,5));
+            }
+
         }
     }
 

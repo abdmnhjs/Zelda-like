@@ -14,7 +14,7 @@ public class VuePiece extends VueItem{
 
     public VuePiece(Pane pane, Item item) {
         super(pane, item);
-        initialiserImage();
+        initialiserItem();
 
         spriteItem.setImage(pieceImage1);
 
@@ -35,7 +35,7 @@ public class VuePiece extends VueItem{
         ombre.centerYProperty().bind(item.getPositionYProperty().add(15));
     }
 
-    private void initialiserImage(){
+    protected void initialiserItem(){
 
         pieceImage1= new Image("file:src/main/resources/com/example/sae_zeldalike/Item/Piece/goldCoin1.png");
         pieceImage2= new Image("file:src/main/resources/com/example/sae_zeldalike/Item/Piece/goldCoin2.png");
@@ -97,6 +97,11 @@ public class VuePiece extends VueItem{
                 setNumeroImageItem(1);
             }
         }
+    }
+
+    @Override
+    public Image getImagePrincipale() {
+        return pieceImage1;
     }
 
 }

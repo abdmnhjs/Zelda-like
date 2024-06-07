@@ -86,11 +86,6 @@ public class Bombe extends Item implements Stockable {
         return this;
     }
 
-    @Override
-    public Image getImage() {
-        Image imageBombe = new Image("file:src/main/resources/com/example/sae_zeldalike/Item/Bombe/Bombe_1.png");
-        return imageBombe;
-    }
 
 
 }

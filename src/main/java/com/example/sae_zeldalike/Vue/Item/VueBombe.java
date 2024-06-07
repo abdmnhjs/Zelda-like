@@ -34,7 +34,7 @@ public class VueBombe extends VueItem {
         ombre.centerYProperty().bind(item.getPositionYProperty().add((item.getLongueur()/2)));
     }
 
-    private void initialiserItem(){
+    protected void initialiserItem(){
         bombe1 = new Image("file:src/main/resources/com/example/sae_zeldalike/Item/Bombe/Bombe_1.png");
         bombe2 = new Image("file:src/main/resources/com/example/sae_zeldalike/Item/Bombe/Bombe_2.png");
         bombe3 = new Image("file:src/main/resources/com/example/sae_zeldalike/Item/Bombe/Bombe_3.png");
@@ -126,5 +126,10 @@ public class VueBombe extends VueItem {
                     }
                 }
             }
+    }
+
+    @Override
+    public Image getImagePrincipale() {
+        return bombe1;
     }
 }
