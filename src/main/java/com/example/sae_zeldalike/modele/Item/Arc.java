@@ -15,11 +15,9 @@ import java.util.concurrent.TimeUnit;
 
 public class Arc extends Arme{
     private ArrayList<Flèche> fleches;
-    private Environnement environnement;
     public Arc(int dégâts, int rayonAttaque, Environnement environnement) {
-        super(dégâts, rayonAttaque);
+        super(dégâts, rayonAttaque, environnement);
         this.fleches = new ArrayList<>();
-        this.environnement = environnement;
     }
 
     public void tirerFleche(){

@@ -11,19 +11,16 @@ import javafx.beans.property.SimpleIntegerProperty;
 import java.util.ArrayList;
 
 public class Flèche extends Arme {
-    private Environnement environnement;
     private IntegerProperty vitesseProperty;
     private static int compteurFleche = 0;
-    private String id;
     private Arc arc;
 
 
     public Flèche(int x, int y,  Environnement environnement, Arc arc){
-        super(50, 0);
+        super(50, 0, environnement);
         this.xProperty = new SimpleIntegerProperty(x);
         this.yProperty = new SimpleIntegerProperty(y);
         this.vitesseProperty = new SimpleIntegerProperty(30);
-        this.environnement = environnement;
         this.longueur = 20;
         this.largeur = 20;
         this.direction = "N";
@@ -48,9 +45,6 @@ public class Flèche extends Arme {
 
 
 
-    public String getId() {
-        return this.id;
-    }
 
 
 
@@ -93,7 +87,4 @@ public class Flèche extends Arme {
         return vitesseProperty.getValue();
     }
 
-    public IntegerProperty getXProperty() {
-        return xProperty;
-    }
 }

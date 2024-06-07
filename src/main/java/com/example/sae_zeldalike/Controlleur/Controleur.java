@@ -1,5 +1,6 @@
 package com.example.sae_zeldalike.Controlleur;
 
+import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurEpee;
 import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurFlechesEnDeplacement;
 import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurItem;
 import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurPersonnage;
@@ -51,6 +52,7 @@ public class Controleur implements Initializable {
     private VueEnnemi1 vueEnnemi1;
     private Map map;
     private VueMap vueMap;
+    private VueEpee vueEpee;
 
 
     private ArrayList<VueItem> vueItems;
@@ -95,9 +97,9 @@ public class Controleur implements Initializable {
         this.ennemi1 = new Ennemi1(this.environnement, 130, 220);
         this.vueEnnemi1 = new VueEnnemi1(pane, ennemi1);
         vueMap = new VueMap(tilePane, this.map);
-        this.link.ajouterEpee(new Epée(link.getPositionX()+link.getLargeur(), link.getPositionY()+16, 15, 5));
+        this.link.ajouterEpee(new Epée(link.getPositionX()+link.getLargeur(), link.getPositionY()+16, 50, 5, this.environnement));
         this.link.ajouterArc(new Arc(15, 100, this.environnement));
-        this.link.equiperArc();
+        this.link.equiperEpee();
 
         this.barreDeVie.progressProperty().bind(link.pointViePercentProperty());
 
@@ -108,11 +110,10 @@ public class Controleur implements Initializable {
         this.environnement.getItems().addListener(new ObservateurItem(pane,vueItems));
 
         vuePersos = new ArrayList<>();
-        this.environnement.getPersonnages().addListener(new ObservateurPersonnage(pane,vuePersos));
-
         this.environnement.getItems().addListener(new ObservateurItem(pane, vueItems));
         this.environnement.getFlèchesEnDéplacement().addListener(new ObservateurFlechesEnDeplacement(pane));
         this.environnement.getPersonnages().addListener(new ObservateurPersonnage(pane, vuePersos));
+        this.environnement.getEpeeEnMain().addListener(new ObservateurEpee(pane, this.link));
         imagePerso.setFitHeight(64);
         imagePerso.setFitWidth(64);
         imagePerso.maxWidth(64);
@@ -169,6 +170,21 @@ public class Controleur implements Initializable {
                         vueLink.animation();
                         this.clavier.interactionTouche();
 
+                        if(this.link.epeeEquipee()){
+                            for(int i = 0 ; i < this.environnement.getEpeeEnMain().size() ; i++){
+                                for(int j = 0 ; j < this.environnement.getPersonnages().size() ; j++){
+                                    if(this.environnement.getEpeeEnMain().get(i).estSurEnnemi(this.environnement.getPersonnages().get(j))){
+                                        this.environnement.getEpeeEnMain().get(i).faireDégâts(this.environnement.getPersonnages().get(j), this.environnement.getEpeeEnMain().get(i).getDégâts());
+                                        this.environnement.getEpeeEnMain().remove(this.environnement.getEpeeEnMain().get(i));
+                                    }
+                            }
+
+                            }
+
+
+                        }
+
+                        if(this.link.arcEquipe()){
                             ArrayList<Flèche> flechesASupprimer = new ArrayList<>();
 
                             for (int i = 0 ; i < this.environnement.getFlèchesEnDéplacement().size() ; i++) {
@@ -238,10 +254,12 @@ public class Controleur implements Initializable {
                                     }
                                 }
                             }
-
                             for (int i = 0 ; i < flechesASupprimer.size() ; i++) {
                                 this.environnement.supprimerFleche(flechesASupprimer.get(i));
                             }
+                        }
+
+
                         }
 
                     else if (temps%4 ==0){

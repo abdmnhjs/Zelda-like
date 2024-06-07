@@ -1,12 +1,12 @@
 package com.example.sae_zeldalike.modele.Item;
 
+import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Personnage.Personnage;
 import javafx.beans.property.IntegerProperty;
 
 import java.util.ArrayList;
 
 public class Arme {
-    private String id;
     static int compteurArme = 0;
     private int dégâts;
     private int rayonAttaque;
@@ -17,12 +17,13 @@ public class Arme {
     protected String direction;
     protected int initialX;
     protected int initialY;
+    protected String id;
+    protected Environnement environnement;
 
-    public Arme(int dégâts, int rayonAttaque) {
-        this.id = ""+compteurArme;
+    public Arme(int dégâts, int rayonAttaque, Environnement environnement) {
         this.dégâts = dégâts;
         this.rayonAttaque = rayonAttaque;
-        compteurArme++;
+        this.environnement = environnement;
     }
 
     public void faireDégâts(Personnage personnage, int dégâts){
@@ -79,6 +80,14 @@ public class Arme {
 
     public int getLargeur() {
         return this.largeur;
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public IntegerProperty getXProperty() {
+        return xProperty;
     }
 
     public int getX(){

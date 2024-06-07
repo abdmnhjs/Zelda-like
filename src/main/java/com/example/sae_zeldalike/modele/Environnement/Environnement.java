@@ -1,10 +1,7 @@
 package com.example.sae_zeldalike.modele.Environnement;
 
 import com.example.sae_zeldalike.modele.Hitbox;
-import com.example.sae_zeldalike.modele.Item.Bombe;
-import com.example.sae_zeldalike.modele.Item.Flèche;
-import com.example.sae_zeldalike.modele.Item.Item;
-import com.example.sae_zeldalike.modele.Item.Piece;
+import com.example.sae_zeldalike.modele.Item.*;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi1;
 import com.example.sae_zeldalike.modele.Personnage.Personnage;
 import javafx.collections.FXCollections;
@@ -17,6 +14,7 @@ public class Environnement {
     private ObservableList<Personnage> personnages;
     private ObservableList<Item> items;
     private ObservableList<Flèche> flèchesEnDéplacement;
+    private ObservableList<Epée> epeeEnMain;
     private Map map;
 
     public Environnement(Map map){
@@ -27,6 +25,7 @@ public class Environnement {
         this.flèchesEnDéplacement = FXCollections.observableArrayList();
         this.personnages= FXCollections.observableArrayList();
         this.items= FXCollections.observableArrayList();
+        this.epeeEnMain = FXCollections.observableArrayList();
     }
 
     public void ajouterPersonnage(Personnage personnage){
@@ -69,6 +68,9 @@ public class Environnement {
         return items;
     }
 
+    public ObservableList<Epée> getEpeeEnMain() {
+        return epeeEnMain;
+    }
 
     public ObservableList<Personnage> getPersonnages() {
         return personnages;

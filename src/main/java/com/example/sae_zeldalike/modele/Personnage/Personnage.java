@@ -207,6 +207,10 @@ public abstract class Personnage {
         this.arc.tirerFleche();
     }
 
+    public void utiliserEpee(Epée epée){
+        this.environnement.getEpeeEnMain().add(epée);
+    }
+
     public DoubleProperty pointViePercentProperty() {
         return pointViePercent;
     }
