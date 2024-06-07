@@ -111,6 +111,7 @@ public class Clavier implements EventHandler<KeyEvent> {
 //            System.out.println(link.getInventaire().getCaseActuel());
             System.out.println(link.getInventaire().connaitreIndiceCaseVide());
             System.out.println(link.getInventaire().getInventaire());
+            link.setPointDeVie(link.getPointVie()-1);
         }
         if (touches.contains(KeyCode.I)){
             link.utiliserItemDansInventaire();

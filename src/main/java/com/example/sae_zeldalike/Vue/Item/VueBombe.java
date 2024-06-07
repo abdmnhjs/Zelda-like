@@ -55,71 +55,75 @@ public class VueBombe extends VueItem {
 
     @Override
     public void animationItem(){
-            switch (getNumeroItem()) {
-                case 1 -> {
 
-                    spriteItem.setImage(bombe1);
-                    setNumeroImageItem(getNumeroItem() + 1);
-                }
-                case 2 -> {
-                    spriteItem.setImage(bombe2);
-                    setNumeroImageItem(getNumeroItem() + 1);
+            if (((Bombe) item).isEffetUtiliser()) {
+
+                switch (getNumeroItem()) {
+                    case 1 -> {
+
+                        spriteItem.setImage(bombe1);
+                        setNumeroImageItem(getNumeroItem() + 1);
+                    }
+                    case 2 -> {
+                        spriteItem.setImage(bombe2);
+                        setNumeroImageItem(getNumeroItem() + 1);
 
 
-                }
-                case 3 -> {
-                    spriteItem.setImage(bombe3);
-                    setNumeroImageItem(getNumeroItem() + 1);
+                    }
+                    case 3 -> {
+                        spriteItem.setImage(bombe3);
+                        setNumeroImageItem(getNumeroItem() + 1);
 
-                }
-                case 4 -> {
-                    spriteItem.setImage(bombe4);
-                    setNumeroImageItem(getNumeroItem() + 1);
+                    }
+                    case 4 -> {
+                        spriteItem.setImage(bombe4);
+                        setNumeroImageItem(getNumeroItem() + 1);
 
-                }
-                case 5 -> {
-                    spriteItem.setImage(bombe5);
-                    setNumeroImageItem(getNumeroItem() + 1);
+                    }
+                    case 5 -> {
+                        spriteItem.setImage(bombe5);
+                        setNumeroImageItem(getNumeroItem() + 1);
 
-                }
-                case 6 -> {
-                    spriteItem.setImage(bombe6);
-                    setNumeroImageItem(getNumeroItem() + 1);
+                    }
+                    case 6 -> {
+                        spriteItem.setImage(bombe6);
+                        setNumeroImageItem(getNumeroItem() + 1);
 
-                }
-                case 7 -> {
-                    spriteItem.setImage(bombe7);
-                    setNumeroImageItem(getNumeroItem() + 1);
-                }
-                case 8 -> {
-                    spriteItem.setImage(bombe8);
-                    setNumeroImageItem(getNumeroItem() + 1);
-                }
-                case 9 -> {
-                    spriteItem.setImage(bombe9);
-                    setNumeroImageItem(10);
-                }
-                case 10 -> {
-                    spriteItem.setImage(bombe10);
-                    setNumeroImageItem(11);
-                }
-                case 11 -> {
-                    spriteItem.setImage(bombe11);
-                    setNumeroImageItem(12);
+                    }
+                    case 7 -> {
+                        spriteItem.setImage(bombe7);
+                        setNumeroImageItem(getNumeroItem() + 1);
+                    }
+                    case 8 -> {
+                        spriteItem.setImage(bombe8);
+                        setNumeroImageItem(getNumeroItem() + 1);
+                    }
+                    case 9 -> {
+                        spriteItem.setImage(bombe9);
+                        setNumeroImageItem(10);
+                    }
+                    case 10 -> {
+                        spriteItem.setImage(bombe10);
+                        setNumeroImageItem(11);
+                    }
+                    case 11 -> {
+                        spriteItem.setImage(bombe11);
+                        setNumeroImageItem(12);
 
-                }
-                case 12 -> {
-                    spriteItem.setImage(bombe12);
-                    setNumeroImageItem(13);
+                    }
+                    case 12 -> {
+                        spriteItem.setImage(bombe12);
+                        setNumeroImageItem(13);
 
-                }
-                case 13 -> {
-                    spriteItem.setImage(bombe13);
-                    setNumeroImageItem(14);
-                }
-                case 14 -> {
-                    spriteItem.setImage(bombe14);
-                    setNumeroImageItem(1);
+                    }
+                    case 13 -> {
+                        spriteItem.setImage(bombe13);
+                        setNumeroImageItem(14);
+                    }
+                    case 14 -> {
+                        spriteItem.setImage(bombe14);
+                        setNumeroImageItem(1);
+                    }
                 }
             }
     }

@@ -27,7 +27,6 @@ public abstract class Personnage {
     private final int largeur;
     private final int longueur;
     private ArrayList<Arme> armes;
-    private DoubleProperty pointViePercent = new SimpleDoubleProperty();
 
     public Personnage( int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDeplacement, int longueur, int largeur) {
         this.id = "P"+compteurPersonnage;
@@ -41,7 +40,6 @@ public abstract class Personnage {
         this.direction = new SimpleStringProperty("Inactif_DOWN");
         this.longueur=longueur;
         this.largeur=largeur;
-        this.pointViePercent.bind(getPointVieProperty().divide(100.0));
         this.armes = new ArrayList<>();
 
     }
@@ -56,7 +54,6 @@ public abstract class Personnage {
         this.direction = new SimpleStringProperty("Inactif_DOWN");
         this.longueur=longueur;
         this.largeur=largeur;
-        this.pointViePercent.bind(getPointVieProperty().divide(100.0));
         this.armes = new ArrayList<>();
         this.positionX = new SimpleIntegerProperty();
         this.positionY = new SimpleIntegerProperty();
@@ -152,9 +149,6 @@ public abstract class Personnage {
         return hitbox;
     }
 
-    public double getPointVieEnPercent() {
-        return (double) pointVie.get() / 100.0; // Supposons que la vie maximale est 100. Ajustez en fonction de votre logique.
-    }
 
     public ArrayList<Arme> getArmes() {
         return this.armes;
@@ -181,13 +175,6 @@ public abstract class Personnage {
         return null;
     }
 
-    public DoubleProperty pointViePercentProperty() {
-        return pointViePercent;
-    }
-
-    public double getPointViePercent() {
-        return pointViePercent.get();
-    }
 
     @Override
     public String toString() {

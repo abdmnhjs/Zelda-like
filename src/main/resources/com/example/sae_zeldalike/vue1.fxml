@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.effect.ColorAdjust?>
-<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -25,10 +14,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae_zeldalike.Controlleur.Controleur" stylesheets="vue1.css">
+<BorderPane stylesheets="vue1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae_zeldalike.Controlleur.Controleur">
    <center>
       <Pane fx:id="pane" prefHeight="576.0" prefWidth="1088.0" BorderPane.alignment="CENTER">
          <TilePane fx:id="tilePane" prefColumns="61" prefRows="40" prefTileHeight="32" prefTileWidth="32" />
@@ -59,33 +47,15 @@
                                     <Insets left="5.0" top="5.0" />
                                  </VBox.margin>
                               </Label>
-                              <ProgressBar id="barreDeVie" fx:id="barreDeVie" blendMode="SRC_ATOP" cache="true" cacheHint="SPEED" depthTest="DISABLE" prefHeight="20.0" prefWidth="150.0" progress="1.0" snapToPixel="false">
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                                 <effect>
-                                    <ColorAdjust brightness="-0.17" contrast="0.38" hue="0.86">
-                                       <input>
-                                          <InnerShadow choke="0.14" height="35.82" radius="20.377499999999998" width="47.69">
-                                             <color>
-                                                <Color blue="0.20504385232925415" green="0.20504385232925415" red="0.22368420660495758" />
-                                             </color>
-                                          </InnerShadow>
-                                       </input>
-                                    </ColorAdjust>
-                                 </effect>
-                              </ProgressBar>
+                              <HBox fx:id="emplacementCoeurs" maxHeight="25.0" prefHeight="25.0" />
                               <HBox>
                                  <children>
-                                    <Label fx:id="nombrePiece" alignment="CENTER" contentDisplay="CENTER" text="0" textAlignment="CENTER" textOverrun="CLIP">
+                                    <Label fx:id="nombrePiece" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" text="0" textAlignment="CENTER" textOverrun="CLIP">
                                        <font>
                                           <Font name="DejaVu Sans Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <ImageView nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@ATH/Piece.png" />
                                        </image>
@@ -130,7 +100,7 @@
                   <Insets />
                </GridPane.margin>
             </StackPane>
-            <StackPane fx:id="emplacement2" maxHeight="100.0" maxWidth="100.0" style="-fx-border-color: black;" GridPane.columnIndex="1" >
+            <StackPane fx:id="emplacement2" maxHeight="100.0" maxWidth="100.0" style="-fx-border-color: black;" GridPane.columnIndex="1">
                <children>
                   <ImageView fx:id="case2" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
 
@@ -140,7 +110,7 @@
                   <Insets />
                </GridPane.margin>
             </StackPane>
-            <StackPane fx:id="emplacement3" maxHeight="100.0" maxWidth="100.0" style="-fx-border-color: black;" GridPane.columnIndex="2" >
+            <StackPane fx:id="emplacement3" maxHeight="100.0" maxWidth="100.0" style="-fx-border-color: black;" GridPane.columnIndex="2">
                <children>
                   <ImageView fx:id="case3" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
                   </ImageView>

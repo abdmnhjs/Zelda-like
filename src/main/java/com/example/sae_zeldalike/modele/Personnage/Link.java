@@ -2,6 +2,7 @@ package com.example.sae_zeldalike.modele.Personnage;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Inventaire;
+import com.example.sae_zeldalike.modele.Item.Bombe;
 import com.example.sae_zeldalike.modele.Item.Item;
 import com.example.sae_zeldalike.modele.Item.Piece;
 import com.example.sae_zeldalike.modele.Item.Stockable;
@@ -47,18 +48,18 @@ public class Link extends Personnage {
 
         if (getInventaire().getInventaireCaseActuel()!=null) {
 
-//            getInventaire().setIndiceChangement(1);
             Stockable item = getInventaire().getInventaireCaseActuel();
             item.getItem().setPositionX(getPositionX()-(getLargeur()/4));
             item.getItem().setPositionY(getPositionY()-(getLongueur()/4));
 
-            modifieCaseInventaire(null);
+            getInventaire().modifieStockableInventaire(null);
             getEnvironnement().ajouterItem(item.getItem());
+            getInventaire().setIndiceChangement(1);
 
 
 //            item.utiliserCapacite();
 //            getInventaire().setIndiceChangement(-1);
-
+            ((Bombe) item).setEffetUtiliser(true);
 
                 Timer timer = new Timer();
 
@@ -92,12 +93,12 @@ public class Link extends Personnage {
     }
 
     public void ajouteItemDansInventaire(Stockable item) {
-
         if (emplacementInventaireLibre()) {
 
             modifieCaseInventaire(item);
             getInventaire().setIndiceChangement(1);
         }
+        getInventaire().setIndiceChangement(-1);
     }
 
     public void modifieCaseInventaire(Stockable item) {

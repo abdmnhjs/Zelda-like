@@ -1,7 +1,7 @@
 package com.example.sae_zeldalike.Controlleur;
 
 import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurCaseInventaire;
-import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurInventaire;
+import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurCoeurs;
 import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurItem;
 import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurPersonnage;
 import com.example.sae_zeldalike.Vue.*;
@@ -18,11 +18,14 @@ import com.example.sae_zeldalike.modele.Personnage.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
@@ -50,9 +53,9 @@ public class Controleur implements Initializable {
     @FXML
     private Label nombrePiece;
     @FXML
-    private ProgressBar barreDeVie;
-    @FXML
     private ImageView imagePerso;
+    @FXML
+    private HBox emplacementCoeurs;
 
     @FXML
     private Pane pane;
@@ -99,7 +102,8 @@ public class Controleur implements Initializable {
         this.link.ajouterFlèche(new Flèche(this.link.getPositionX(), this.link.getPositionY(),30, this.environnement));
 
         //Barre de vie Binder en fonction de la vie du personnage
-        this.barreDeVie.progressProperty().bind(link.pointViePercentProperty());
+        link.getPointVieProperty().addListener(new ObservateurCoeurs(emplacementCoeurs,link.getPointVie()));
+
 
         //Observateur des vuesDesItems
         vueItems = new ArrayList<>();
@@ -144,6 +148,8 @@ public class Controleur implements Initializable {
 
     }
 
+
+
     private void mettreAjourInventaire(int changement){
         System.out.println(changement);
         if (changement!=-1) {
@@ -151,13 +157,23 @@ public class Controleur implements Initializable {
             if (link.getInventaire().getInventaireCase1() != null) {
                 System.out.println("changement case1");
                 case1.setImage(link.getInventaire().getInventaireCase1().getImage());
-
+            }else{
+                System.out.println("case1 vide");
+                case1.setImage(null);
             }
             if (link.getInventaire().getInventaireCase2() != null) {
+                System.out.println("changement case2");
                 case2.setImage(link.getInventaire().getInventaireCase2().getImage());
+            }else {
+                System.out.println("case2 vide");
+                case2.setImage(null);
             }
             if (link.getInventaire().getInventaireCase3() != null) {
+                System.out.println("changement case3");
                 case3.setImage(link.getInventaire().getInventaireCase3().getImage());
+            }else {
+                System.out.println("case3 vide");
+                case3.setImage(null);
             }
         }
     }
