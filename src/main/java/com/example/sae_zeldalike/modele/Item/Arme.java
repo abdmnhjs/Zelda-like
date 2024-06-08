@@ -24,6 +24,10 @@ public class Arme {
         this.environnement = environnement;
     }
 
+    public Environnement getEnvironnement() {
+        return this.environnement;
+    }
+
     public void faireDégâts(Personnage personnage, int dégâts){
         ArrayList<Personnage> dead = new ArrayList<>();
         if(dégâts <= personnage.getPointVie() && dégâts > 0){

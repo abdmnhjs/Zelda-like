@@ -100,7 +100,7 @@ public class Controleur implements Initializable {
         vueMap = new VueMap(tilePane, this.map);
         this.link.ajouterEpee(new Epée(link.getPositionX()+link.getLargeur(), link.getPositionY()+16, 50, 5, this.environnement));
         this.link.ajouterArc(new Arc(15, 100, this.environnement));
-        this.link.equiperArc();
+        this.link.equiperEpee();
 
         this.barreDeVie.progressProperty().bind(link.pointViePercentProperty());
 
@@ -174,10 +174,16 @@ public class Controleur implements Initializable {
 
                         if(this.link.epeeEquipee()){
                             for(int i = 0 ; i < this.environnement.getEpeeEnMain().size() ; i++){
+                                Epée epée = environnement.getEpeeEnMain().get(i);
                                 for(int j = 0 ; j < this.environnement.getPersonnages().size() ; j++){
-                                    if(this.environnement.getEpeeEnMain().get(i).estSurEnnemi(this.environnement.getPersonnages().get(j))){
-                                        this.environnement.getEpeeEnMain().get(i).faireDégâts(this.environnement.getPersonnages().get(j), this.environnement.getEpeeEnMain().get(i).getDégâts());
-                                        this.environnement.getEpeeEnMain().remove(this.environnement.getEpeeEnMain().get(i));
+
+                                    Personnage ennemi = this.environnement.getPersonnages().get(j);
+
+                                    if(epée.estSurEnnemi(ennemi)){
+                                        epée.faireDégâts(ennemi, epée.getDégâts());
+                                        epée.getEnvironnement().supprimerEpee(epée);
+                                    } else {
+                                        epée.getEnvironnement().supprimerEpee(epée);
                                     }
                             }
 
@@ -198,14 +204,15 @@ public class Controleur implements Initializable {
                                 if(flèche.getDirection().equals("UP")){
                                     newX = flèche.getX();
                                     newY = flèche.getY() - flèche.getVitesse();
+
                                         if (flèche.getY() > flèche.getInitialY() - link.getArc().getRayonAttaque()) {
                                             tempsRechargeFleche = 3000;
-                                            flèche.setyProperty(newY);
-                                        } else {
-                                            flèche.getEnvironnement().supprimerFleche(flèche);
-                                        }
-
+                                                flèche.setyProperty(newY);
+                                            } else {
+                                                flèche.getEnvironnement().supprimerFleche(flèche);
+                                            }
                                     }
+
                                 if(flèche.getDirection().equals("DOWN")){
                                     newX = flèche.getX();
                                     newY = flèche.getY() + flèche.getVitesse();

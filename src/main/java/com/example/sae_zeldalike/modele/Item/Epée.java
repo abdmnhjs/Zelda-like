@@ -13,8 +13,8 @@ public class Epée extends Arme{
         this.yProperty = new SimpleIntegerProperty(y);
         this.direction = "N";
         this.id = "E"+compteurEpee;
-        this.longueur = 16;
-        this.largeur = 16;
+        this.longueur = 32;
+        this.largeur = 32;
         compteurEpee++;
     }
 
