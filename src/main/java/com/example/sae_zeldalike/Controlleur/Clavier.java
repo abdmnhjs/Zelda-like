@@ -107,22 +107,26 @@ public class Clavier implements EventHandler<KeyEvent> {
                     }
                     if (item instanceof Stockable) {
 
-                    if (this.link.emplacementInventaireLibre()){
                         if (link.emplacementInventaireLibre()) {
 
-                        this.link.ajouteItemDansInventaire((Stockable) item);
-                        this.link.getEnvironnement().supprimerItem(item);
-                    }else {
-                        System.out.println("Inventaire plein");
-                    }
                             link.ajouteItemDansInventaire((Stockable) item);
                             link.getEnvironnement().supprimerItem(item);
                         } else {
                             System.out.println("Inventaire plein");
                         }
 
+                    }
+                    if (item instanceof CoeurRouge) {
+                        if (link.getPointDeVieMax() >= link.getPointVie() + ((CoeurRouge) item).getPointDeVie()) {
+                            link.setPointVie(link.getPointVie() + ((CoeurRouge) item).getPointDeVie());
+                            link.getEnvironnement().supprimerItem(item);
+                        }
+                    }
+                    if (item instanceof CoeurBleu) {
+                        link.ajouterBouclier(((CoeurBleu) item).getVieAdditionelle());
+                        link.getEnvironnement().supprimerItem(item);
+                    }
                 }
-            }
             }
 
         if (this.touches.contains(KeyCode.A)) {
