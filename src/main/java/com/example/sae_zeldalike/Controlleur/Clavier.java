@@ -98,47 +98,8 @@ public class Clavier implements EventHandler<KeyEvent> {
             }
             this.link.setDirection("RIGHT");
         }
-        if (this.touches.contains(KeyCode.J)) {
-            Item item = this.link.essaiRamasserItem();
-            if (item != null) {
-                if (item instanceof Piece) {
-                    this.link.ajouterPiece(((Piece) item).getValeur());
-                    this.link.getEnvironnement().supprimerItem(item);
-                }if (item instanceof Stockable){
-            if (touches.contains(KeyCode.Z)) {
-                newX = link.getPositionX();
-                newY = link.getPositionY() - link.getVitesseDeplacement();
-                if (!link.getEnvironnement().estDevantObstacle(link.hitbox(newX, newY))) {
-                    link.setPositionYProperty(newY);
-                }
-                link.setDirection("UP");
-            }
-            if (touches.contains(KeyCode.S)) {
-                newX = link.getPositionX();
-                newY = link.getPositionY() + link.getVitesseDeplacement();
-                if (!link.getEnvironnement().estDevantObstacle(link.hitbox(newX, newY))) {
-                    link.setPositionYProperty(newY);
-                }
-                link.setDirection("DOWN");
-            }
-            if (touches.contains(KeyCode.Q)) {
-                newX = link.getPositionX() - link.getVitesseDeplacement();
-                newY = link.getPositionY();
-                if (!link.getEnvironnement().estDevantObstacle(link.hitbox(newX, newY))) {
-                    link.setPositionXProperty(newX);
-                }
-                link.setDirection("LEFT");
-            }
-            if (touches.contains(KeyCode.D)) {
-                newX = link.getPositionX() + link.getVitesseDeplacement();
-                newY = link.getPositionY();
-                if (!link.getEnvironnement().estDevantObstacle(link.hitbox(newX, newY))) {
-                    link.setPositionXProperty(newX);
-                }
-                link.setDirection("RIGHT");
-            }
             if (touches.contains(KeyCode.J)) {
-                item = link.essaiRamasserItem();
+                Item item = link.essaiRamasserItem();
                 if (item != null) {
                     if (item instanceof Piece) {
                         link.ajouterPiece(((Piece) item).getValeur());
@@ -162,7 +123,8 @@ public class Clavier implements EventHandler<KeyEvent> {
 
                 }
             }
-        }
+            }
+
         if (this.touches.contains(KeyCode.A)) {
             System.out.println(this.link.getInventaire());
             System.out.println(this.link.getEnvironnement().getPersonnages());
@@ -188,19 +150,8 @@ public class Clavier implements EventHandler<KeyEvent> {
             System.out.println("Case de l'inventaire 3");
         }
         }
-                    }
-                    if (item instanceof CoeurRouge) {
-                        if (link.getPointDeVieMax() >= link.getPointVie() + ((CoeurRouge) item).getPointDeVie()) {
-                            link.setPointVie(link.getPointVie() + ((CoeurRouge) item).getPointDeVie());
-                            link.getEnvironnement().supprimerItem(item);
-                        }
-                    }
-                    if (item instanceof CoeurBleu) {
-                        link.ajouterBouclier(((CoeurBleu) item).getVieAdditionelle());
-                        link.getEnvironnement().supprimerItem(item);
-                    }
-                }
-            }
+
+
             if (touches.contains(KeyCode.A)) {
 //            System.out.println(link.getInventaire().getCaseActuel());
                 System.out.println(link.getInventaire().connaitreIndiceCaseVide());
@@ -233,59 +184,64 @@ public class Clavier implements EventHandler<KeyEvent> {
 
 //            System.out.println("Case de l'inventaire 2");
             }
+                    }
 
 
-    }public void interactionToucheCombat(KeyEvent keyEvent){
-        if(this.link.arcEquipe()){
-            switch (keyEvent.getCode()){
-                case UP -> {
-                    Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
-                    flèche.setDirection("UP");
-                    this.link.getArc().getFleches().add(flèche);
-                    this.link.tirerFleche();
-                }
-                case DOWN -> {
-                    Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
-                    flèche.setDirection("DOWN");
-                    this.link.getArc().getFleches().add(flèche);
-                    this.link.tirerFleche();
-                }
-                case RIGHT -> {
-                    Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
-                    flèche.setDirection("RIGHT");
-                    this.link.getArc().getFleches().add(flèche);
-                    this.link.tirerFleche();
-                }
-                case LEFT -> {
-                    Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
-                    flèche.setDirection("LEFT");
-                    this.link.getArc().getFleches().add(flèche);
-                    this.link.tirerFleche();
-                }
+
+
+    public void interactionToucheCombat(KeyEvent keyEvent){
+    if(this.link.arcEquipe()){
+        switch (keyEvent.getCode()){
+            case UP -> {
+                Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
+                flèche.setDirection("UP");
+                this.link.getArc().getFleches().add(flèche);
+                this.link.tirerFleche();
+            }
+            case DOWN -> {
+                Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
+                flèche.setDirection("DOWN");
+                this.link.getArc().getFleches().add(flèche);
+                this.link.tirerFleche();
+            }
+            case RIGHT -> {
+                Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
+                flèche.setDirection("RIGHT");
+                this.link.getArc().getFleches().add(flèche);
+                this.link.tirerFleche();
+            }
+            case LEFT -> {
+                Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
+                flèche.setDirection("LEFT");
+                this.link.getArc().getFleches().add(flèche);
+                this.link.tirerFleche();
             }
         }
-        if(this.link.epeeEquipee()){
-            Epée epée = new Epée(this.link.getPositionX()+16, this.link.getPositionY()+16, 50, 15, this.environnement);
-            switch (keyEvent.getCode()){
-                case UP -> {
-                    epée.setDirection("UP");
-                    this.link.utiliserEpee(epée);
-                }
-                case DOWN -> {
-                    epée.setDirection("DOWN");
-                    this.link.utiliserEpee(epée);
-                }
-                case RIGHT -> {
-                    epée.setDirection("RIGHT");
-                    this.link.utiliserEpee(epée);
-                }
-                case LEFT -> {
-                    epée.setDirection("LEFT");
-                    this.link.utiliserEpee(epée);
-                }
+    }
+    if(this.link.epeeEquipee()){
+        Epée epée = new Epée(this.link.getPositionX()+16, this.link.getPositionY()+16, 50, 15, this.environnement);
+        switch (keyEvent.getCode()){
+            case UP -> {
+                epée.setDirection("UP");
+                this.link.utiliserEpee(epée);
+            }
+            case DOWN -> {
+                epée.setDirection("DOWN");
+                this.link.utiliserEpee(epée);
+            }
+            case RIGHT -> {
+                epée.setDirection("RIGHT");
+                this.link.utiliserEpee(epée);
+            }
+            case LEFT -> {
+                epée.setDirection("LEFT");
+                this.link.utiliserEpee(epée);
             }
         }
-
+    }
     }
 }
+
+
+
 
