@@ -2,12 +2,7 @@ package com.example.sae_zeldalike.modele.Personnage;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Hitbox;
-import com.example.sae_zeldalike.modele.Item.Arc;
-import com.example.sae_zeldalike.modele.Item.Arme;
-import com.example.sae_zeldalike.modele.Item.Item;
-import com.example.sae_zeldalike.modele.Item.Piece;
-import com.example.sae_zeldalike.modele.Item.Flèche;
-import com.example.sae_zeldalike.modele.Limitations;
+import com.example.sae_zeldalike.modele.Item.*;
 import javafx.beans.property.*;
 
 import java.util.ArrayList;
@@ -26,7 +21,10 @@ public abstract class Personnage {
     private StringProperty direction;
     private final int largeur;
     private final int longueur;
-    private ArrayList<Arme> armes;
+    private Arme armeCourante;
+    private Arc arc;
+    private Epée epée;
+    private DoubleProperty pointViePercent = new SimpleDoubleProperty();
 
     public Personnage( int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDeplacement, int longueur, int largeur) {
         this.id = "P"+compteurPersonnage;
@@ -40,7 +38,11 @@ public abstract class Personnage {
         this.direction = new SimpleStringProperty("Inactif_DOWN");
         this.longueur=longueur;
         this.largeur=largeur;
-        this.armes = new ArrayList<>();
+        this.pointViePercent.bind(getPointVieProperty().divide(100.0));
+
+        this.armeCourante = null;
+        this.arc = null;
+        this.epée = null;
 
     }
 
@@ -54,7 +56,7 @@ public abstract class Personnage {
         this.direction = new SimpleStringProperty("Inactif_DOWN");
         this.longueur=longueur;
         this.largeur=largeur;
-        this.armes = new ArrayList<>();
+        this.pointViePercent.bind(getPointVieProperty().divide(100.0));
         this.positionX = new SimpleIntegerProperty();
         this.positionY = new SimpleIntegerProperty();
         genererPositionAleatoires();
@@ -147,32 +149,73 @@ public abstract class Personnage {
         return hitbox;
     }
 
-
-    public ArrayList<Arme> getArmes() {
-        return this.armes;
+    public double getPointVieEnPercent() {
+        return (double) pointVie.get() / 100.0; // Supposons que la vie maximale est 100. Ajustez en fonction de votre logique.
     }
 
-    public void ajouterArme(Arme arme){
-        this.armes.add(arme);
-    }
-
-    public void ajouterFlèche(Flèche flèche){
-        for(Arme arme : this.armes){
-            if(arme instanceof Arc){
-                ((Arc) arme).getFlèches().add(flèche);
-            }
+    public void ajouterEpee(Epée epée){
+        if(this.epée == null){
+            this.epée = epée;
         }
     }
 
-    public Arc getArc(){
-        for(Arme arme : this.armes){
-            if(arme instanceof Arc){
-                return (Arc) arme;
-            }
+    public Epée getEpee(){
+        if(this.epée != null){
+            return this.epée;
         }
         return null;
     }
 
+    public void ajouterArc(Arc arc){
+        if(this.arc == null){
+            this.arc = arc;
+        }
+    }
+
+    public Arc getArc(){
+        if(this.arc != null){
+            return this.arc;
+        }
+        return null;
+    }
+
+    public void equiperEpee(){
+        this.armeCourante = this.epée;
+    }
+
+    public void equiperArc(){
+        this.armeCourante = this.arc;
+    }
+
+    public boolean epeeEquipee(){
+        if(this.armeCourante == this.epée){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean arcEquipe(){
+        if(this.armeCourante == this.arc){
+            return true;
+        }
+        return false;
+    }
+
+    public void tirerFleche() {
+        this.arc.tirerFleche();
+    }
+
+    public void utiliserEpee(Epée epée){
+        this.environnement.getEpeeEnMain().add(epée);
+    }
+
+    public DoubleProperty pointViePercentProperty() {
+        return pointViePercent;
+    }
+
+    public double getPointViePercent() {
+        return pointViePercent.get();
+    }
 
     @Override
     public String toString() {

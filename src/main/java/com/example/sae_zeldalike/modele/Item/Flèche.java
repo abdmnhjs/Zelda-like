@@ -1,26 +1,35 @@
 package com.example.sae_zeldalike.modele.Item;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
-import com.example.sae_zeldalike.modele.Limitations;
+import com.example.sae_zeldalike.modele.Hitbox;
+import com.example.sae_zeldalike.modele.Personnage.Ennemi;
+import com.example.sae_zeldalike.modele.Personnage.Ennemi1;
+import com.example.sae_zeldalike.modele.Personnage.Personnage;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class Flèche extends Arme implements Limitations {
-    private IntegerProperty xProperty;
-    private IntegerProperty yProperty;
-    private Environnement environnement;
-    private IntegerProperty vitesseProperty;
-    private int longueur;
-    private int largeur;
+import java.util.ArrayList;
 
-    public Flèche(int x, int y, int dégâts, Environnement environnement){
-        super(dégâts, 0);
+public class Flèche extends Arme {
+    private IntegerProperty vitesseProperty;
+    private static int compteurFleche = 0;
+    private Arc arc;
+    private String id;
+
+
+    public Flèche(int x, int y,  Environnement environnement, Arc arc){
+        super(50, 0, environnement);
         this.xProperty = new SimpleIntegerProperty(x);
         this.yProperty = new SimpleIntegerProperty(y);
         this.vitesseProperty = new SimpleIntegerProperty(30);
-        this.environnement = environnement;
         this.longueur = 20;
         this.largeur = 20;
+        this.direction = "N";
+        this.id = "F"+compteurFleche;
+        this.arc = arc;
+        this.initialX = x;
+        this.initialY = y;
+        compteurFleche++;
     }
 
 //    public boolean estDevantObstacle(int x, int y) {
@@ -35,17 +44,10 @@ public class Flèche extends Arme implements Limitations {
 //        return false;
 //    }
 
-    @Override
-    public boolean estDevantObstacle(int x, int y) {
-        return false;
-    }
 
-    public boolean estDansLimiteTerrain(int x, int y){
 
-        return (x < 0 || x > this.environnement.getMap().getColonne()*32 || y < 0 || y > this.environnement.getMap().getLigne()*32 || x+32 > this.environnement.getMap().getColonne()*32 ||
-                y+32 > this.environnement.getMap().getLigne()*32);
 
-    }
+
 
     public void seDeplacerHaut(){
         this.yProperty.setValue(this.yProperty.getValue() - this.vitesseProperty.getValue());
@@ -53,6 +55,21 @@ public class Flèche extends Arme implements Limitations {
 
     public void seDeplacerBas(){
         this.yProperty.setValue(this.yProperty.getValue() + this.vitesseProperty.getValue());
+    }
+
+    public boolean depasseRayon(){
+        int rayonAttaque = this.arc.getRayonAttaque();
+        if(this.getX() < this.getX() - rayonAttaque || this.getX() > this.getX() + rayonAttaque ||
+                this.getY() < this.getY() - rayonAttaque || this.getY() > this.getY() + rayonAttaque){
+            return true;
+        }
+        return false;
+    }
+
+
+    public Hitbox hitbox(int x, int y){
+        Hitbox hitbox = new Hitbox(x,y,getLargeur(),getLongueur());
+        return hitbox;
     }
 
     public void seDeplacerDroite(){
@@ -63,41 +80,24 @@ public class Flèche extends Arme implements Limitations {
         this.xProperty.setValue(this.xProperty.getValue() - this.vitesseProperty.getValue());
     }
 
-
-
-    public int getLongueur() {
-        return this.longueur;
+    public Environnement getEnvironnement() {
+        return this.environnement;
     }
 
-    public int getLargeur() {
-        return this.largeur;
-    }
-
-    public int getVitesseProperty() {
+    public int getVitesse() {
         return vitesseProperty.getValue();
     }
 
-    public IntegerProperty getXProperty() {
-        return xProperty;
+    public String getId() {
+        return this.id;
     }
 
-    public int getX(){
-        return xProperty.getValue();
-    }
-
-    public void setxProperty(int xProperty) {
-        this.xProperty.set(xProperty);
-    }
-
-    public IntegerProperty getYProperty() {
-        return yProperty;
-    }
-
-    public int getY(){
-        return yProperty.getValue();
-    }
-
-    public void setyProperty(int yProperty) {
-        this.yProperty.set(yProperty);
+    @Override
+    public String toString() {
+        return "Flèche{" +
+                "vitesseProperty=" + vitesseProperty +
+                ", arc=" + arc +
+                ", id='" + id + '\'' +
+                '}';
     }
 }

@@ -1,32 +1,32 @@
 package com.example.sae_zeldalike.modele.Item;
 
 import com.example.sae_zeldalike.Vue.VueFlèche;
+import com.example.sae_zeldalike.modele.Environnement.Environnement;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Arc extends Arme{
-    private ArrayList<Flèche> flèches;
-    private ArrayList<VueFlèche> flèchesEnDéplacement;
-    private boolean flècheLancée;
-    public Arc(int dégâts, int rayonAttaque) {
-        super(dégâts, rayonAttaque);
-        this.flèches = new ArrayList<>();
-        this.flèchesEnDéplacement = new ArrayList<>();
+    private ArrayList<Flèche> fleches;
+    public Arc(int dégâts, int rayonAttaque, Environnement environnement) {
+        super(dégâts, rayonAttaque, environnement);
+        this.fleches = new ArrayList<>();
     }
 
-    public ArrayList<Flèche> getFlèches() {
-        return this.flèches;
+    public void tirerFleche(){
+        this.environnement.getFlèchesEnDéplacement().add(this.fleches.get(0));
+        this.fleches.remove(0);
     }
 
-    public ArrayList<VueFlèche> getFlèchesEnDéplacement() {
-        return this.flèchesEnDéplacement;
-    }
-
-    public boolean flècheLancée(){
-        if(!this.flèchesEnDéplacement.isEmpty()){
-            return true;
-        }
-        return false;
+    public ArrayList<Flèche> getFleches() {
+        return this.fleches;
     }
 
 }

@@ -13,6 +13,8 @@ public class Environnement {
     private static int compteurEnvironnement=0;
     private ObservableList<Personnage> personnages;
     private ObservableList<Item> items;
+    private ObservableList<Flèche> flèchesEnDéplacement;
+    private ObservableList<Epée> epeeEnMain;
     private Map map;
 
     public Environnement(Map map){
@@ -20,8 +22,10 @@ public class Environnement {
         this.id = "E"+compteurEnvironnement;
         compteurEnvironnement++;
         this.map=map;
+        this.flèchesEnDéplacement = FXCollections.observableArrayList();
         this.personnages= FXCollections.observableArrayList();
         this.items= FXCollections.observableArrayList();
+        this.epeeEnMain = FXCollections.observableArrayList();
     }
 
     public void ajouterPersonnage(Personnage personnage){
@@ -31,7 +35,6 @@ public class Environnement {
     public void ajouterItem(Item item){
         items.add(item);
     }
-
     public void supprimerItem (Item item){
         for(int i=0;i<items.size();i++){
             if(items.get(i).getId().equals(item.getId())){
@@ -39,6 +42,23 @@ public class Environnement {
             }
         }
     }
+
+    public void supprimerEpee(Epée epée){
+        for(int i=0;i<epeeEnMain.size();i++){
+            if(epeeEnMain.get(i).getId().equals(epée.getId())){
+                epeeEnMain.remove(i);
+            }
+        }
+    }
+
+    public void supprimerFleche(Flèche flèche){
+        for(int i=0;i<flèchesEnDéplacement.size();i++){
+            if(flèchesEnDéplacement.get(i).getId().equals(flèche.getId())){
+                flèchesEnDéplacement.remove(i);
+            }
+        }
+    }
+
     public void supprimerPersonnage (Personnage personnage){
         for(int i=0;i<personnages.size();i++){
             if(personnages.get(i).getId().equals(personnage.getId())){
@@ -47,10 +67,18 @@ public class Environnement {
         }
     }
 
+    public ObservableList<Flèche> getFlèchesEnDéplacement() {
+        return this.flèchesEnDéplacement;
+    }
+
+
     public ObservableList<Item> getItems() {
         return items;
     }
 
+    public ObservableList<Epée> getEpeeEnMain() {
+        return epeeEnMain;
+    }
 
     public ObservableList<Personnage> getPersonnages() {
         return personnages;
@@ -144,6 +172,13 @@ public class Environnement {
 
     }
 
+    public boolean estDansLimiteTerrain(int x, int y, int longueur, int largeur){
+
+        return (x < 0 || x > this.map.getColonne()*32 || y < 0 || y > this.map.getLigne()*32 || x+largeur > this.map.getColonne()*32 ||
+                y+longueur > this.map.getLigne()*32);
+
+    }
+
     public boolean estDansTuile(int valeurTuile,Hitbox hitbox){
 
         boolean coinHautGauche=false;
@@ -187,7 +222,6 @@ public class Environnement {
 
 
     public void init() {
-
         for (int i = 0; i < 20; i++) {
             ajouterItem(new Piece(this));
         }

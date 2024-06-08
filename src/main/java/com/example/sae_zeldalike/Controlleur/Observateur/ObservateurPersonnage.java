@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class ObservateurPersonnage implements ListChangeListener<Personnage> {
 
+
     private Pane environnement;
     private ArrayList<VuePersonnage> vuePersonnages;
 
@@ -36,7 +37,6 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
             }
             if (change.wasRemoved()){
                 for (Personnage personnage : change.getRemoved()){
-
                     this.environnement.getChildren().remove(environnement.lookup("#"+personnage.getId()));
                     this.environnement.getChildren().remove(environnement.lookup("#O"+personnage.getId()));
                     this.environnement.getChildren().remove(environnement.lookup("#L"+personnage.getId()));

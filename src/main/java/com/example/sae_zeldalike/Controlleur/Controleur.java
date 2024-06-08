@@ -1,5 +1,7 @@
 package com.example.sae_zeldalike.Controlleur;
 
+import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurEpee;
+import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurFlechesEnDeplacement;
 import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurCaseInventaire;
 import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurCoeurs;
 import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurItem;
@@ -20,16 +22,23 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -37,6 +46,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Controleur implements Initializable {
 
@@ -47,9 +59,15 @@ public class Controleur implements Initializable {
     private VueEnnemi1 vueEnnemi1;
     private Map map;
     private VueMap vueMap;
+    private VueEpee vueEpee;
+
 
     private ArrayList<VueItem> vueItems;
     private ArrayList<VuePersonnage> vuePersos;
+    private ArrayList<VueFlèche> vueFlèches;
+
+
+
     @FXML
     private Label nombrePiece;
     @FXML
@@ -77,8 +95,10 @@ public class Controleur implements Initializable {
 
 
     private Timeline gameLoop;
+    private Clavier clavier;
 
     private int temps;
+    private int tempsRechargeFleche;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -95,16 +115,23 @@ public class Controleur implements Initializable {
         vueMap = new VueMap(tilePane, map);
         this.link = new Link(environnement, 32, 32);
         this.vueLink = new VueLink(pane, link);
-        this.ennemi1 =new Ennemi1(environnement);
+        this.ennemi1 =new Ennemi1(this.environnement);
         environnement.ajouterPersonnage(ennemi1);
         this.vueEnnemi1 =new VueEnnemi1(pane,ennemi1);
-        this.link.ajouterArme(new Arc(15, 1));
-        this.link.ajouterFlèche(new Flèche(this.link.getPositionX(), this.link.getPositionY(),30, this.environnement));
+        this.ennemi1 = new Ennemi1(this.environnement, 130, 220);
+        this.vueEnnemi1 = new VueEnnemi1(pane, ennemi1);
+        vueMap = new VueMap(tilePane, this.map);
+        this.link.ajouterEpee(new Epée(link.getPositionX()+link.getLargeur(), link.getPositionY()+16, 50, 5, this.environnement));
+        this.link.ajouterArc(new Arc(15, 100, this.environnement));
+        this.link.equiperEpee();
 
         //Barre de vie Binder en fonction de la vie du personnage
         ObservateurCoeurs observateurCoeurs = new ObservateurCoeurs(emplacementCoeurs, link);
         link.getPointVieProperty().addListener(observateurCoeurs);
         link.getPointDeVieAdditionelleProperty().addListener(observateurCoeurs);
+
+//        this.nombrePiece.textProperty().bind(link.getPortefeuilleProperty().asString());
+        link.getPortefeuilleProperty().addListener((obs, old, nouv)-> this.nombrePiece.setText(nouv.toString()));
 
         //Observateur des vuesDesItems
         vueItems = new ArrayList<>();
@@ -113,6 +140,11 @@ public class Controleur implements Initializable {
 
         //Observateur des vuesPersonnages
         vuePersos = new ArrayList<>();
+        vueFlèches = new ArrayList<>();
+        this.environnement.getItems().addListener(new ObservateurItem(pane, vueItems));
+        this.environnement.getFlèchesEnDéplacement().addListener(new ObservateurFlechesEnDeplacement(pane));
+        this.environnement.getPersonnages().addListener(new ObservateurPersonnage(pane, vuePersos));
+        this.environnement.getEpeeEnMain().addListener(new ObservateurEpee(pane, this.link));
         this.environnement.getPersonnages().addListener(new ObservateurPersonnage(pane,vuePersos));
 
 
@@ -133,12 +165,20 @@ public class Controleur implements Initializable {
         imagePerso.maxWidth(64);
         imagePerso.maxHeight(64);
         imagePerso.imageProperty().bind(vueLink.getSpritePersonnage().imageProperty());
+        this.clavier = new Clavier(this.link, this.pane, this.environnement);
 
         environnement.init();
+//        items = new ArrayList();
+//        vueItems = new ArrayList();
+//        for (int i = 0; i < 10; i++) {
+//            this.item = new Piece(environnement);
+//            this.vueItem = new VueItem(pane, item);
+//            items.add(item);
+//            vueItems.add(vueItem);
+//        }
 
         initAnimation();
 
-        // Scroll Map
         this.link.getPositionXProperty().addListener((observable, oldValue, newValue) -> {
             this.pane.setTranslateX( pane.getPrefWidth() / 2 - link.getPositionX()-(link.getLargeur()/2));
         });
@@ -147,6 +187,7 @@ public class Controleur implements Initializable {
         });
         this.pane.setTranslateX(pane.getPrefWidth() / 2 - link.getPositionX()-(link.getLargeur()/2));
         this.pane.setTranslateY(pane.getPrefHeight() /2 - link.getPositionY()-(link.getLongueur()/2));
+
 
         // demarre l'animation
         gameLoop.play();
@@ -196,6 +237,7 @@ public class Controleur implements Initializable {
     private void initAnimation() {
         gameLoop = new Timeline();
         temps = 0;
+        tempsRechargeFleche = 0;
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
@@ -204,41 +246,108 @@ public class Controleur implements Initializable {
                 // on définit ce qui se passe à chaque frame
                 // c'est un eventHandler d'ou le lambda
                 ev -> {
+
                     if (temps == 1000000) {
                         System.out.println("fini");
                         gameLoop.stop();
                     } else if (temps % 10 == 0) {
 
                         vueLink.animation();
+                        this.clavier.interactionTouche();
 
-                        if (this.link.getArc().flècheLancée()) {
-                            VueFlèche vueFleche = this.link.getArc().getFlèchesEnDéplacement().get(0);
-                            Flèche flèche = vueFleche.getFlèche();
+                        if(this.link.epeeEquipee()){
+                            for(int i = 0 ; i < this.environnement.getEpeeEnMain().size() ; i++){
+                                Epée epée = environnement.getEpeeEnMain().get(i);
+                                for(int j = 0 ; j < this.environnement.getPersonnages().size() ; j++){
 
-                            switch (link.getDirection()) {
-                                case "UP":
-                                    flèche.seDeplacerHaut();
-                                case "DOWN":
-                                    flèche.seDeplacerBas();
-                                case "RIGHT":
-                                    flèche.seDeplacerDroite();
-                                case "LEFT":
-                                    flèche.seDeplacerGauche();
-                                default:
+                                    Personnage ennemi = this.environnement.getPersonnages().get(j);
+
+                                    if(epée.estSurEnnemi(ennemi)){
+                                        epée.faireDégâts(ennemi, epée.getDégâts());
+                                        epée.getEnvironnement().supprimerEpee(epée);
+                                    } else {
+                                        epée.getEnvironnement().supprimerEpee(epée);
+                                    }
+                            }
 
                             }
 
-                            if (flèche.estDevantObstacle(flèche.getX(), flèche.getY()) || flèche.estDansLimiteTerrain(flèche.getX(), flèche.getY())) {
-                                Platform.runLater(() -> {
-                                    vueFleche.supprimerFlèche(this.pane);
-                                    this.link.getArc().getFlèchesEnDéplacement().remove(vueFleche);
-                                    System.out.println("Flèche supprimée du pane et de la liste des flèches en déplacement");
-                                });
+
+                        }
+
+                        if(this.link.arcEquipe()){
+                            ArrayList<Flèche> flechesASupprimer = new ArrayList<>();
+
+                            for (int i = 0 ; i < this.environnement.getFlèchesEnDéplacement().size() ; i++) {
+                                int newX;
+                                int newY;
+                                Flèche flèche = this.environnement.getFlèchesEnDéplacement().get(i);
+
+
+                                if(flèche.getDirection().equals("UP")){
+                                    newX = flèche.getX();
+                                    newY = flèche.getY() - flèche.getVitesse();
+
+                                        if (flèche.getY() > flèche.getInitialY() - link.getArc().getRayonAttaque()) {
+                                            tempsRechargeFleche = 3000;
+                                                flèche.setyProperty(newY);
+                                            } else {
+                                                flèche.getEnvironnement().supprimerFleche(flèche);
+                                            }
+                                    }
+
+                                if(flèche.getDirection().equals("DOWN")){
+                                    newX = flèche.getX();
+                                    newY = flèche.getY() + flèche.getVitesse();
+                                        if (flèche.getY() < flèche.getInitialY() + link.getArc().getRayonAttaque()) {
+                                            tempsRechargeFleche = 3000;
+                                            flèche.setyProperty(newY);
+                                        } else {
+                                            flechesASupprimer.add(flèche);
+                                        }
+
+                                    }
+                                if(flèche.getDirection().equals("RIGHT")){
+                                    newX = flèche.getX() + flèche.getVitesse();
+                                    newY = flèche.getY();
+                                        if (flèche.getX() < flèche.getInitialX() + link.getArc().getRayonAttaque()) {
+                                            tempsRechargeFleche = 3000;
+                                            flèche.setxProperty(newX);
+                                        } else {
+                                            flechesASupprimer.add(flèche);
+                                        }
+
+                                    }
+                                if(flèche.getDirection().equals("LEFT")){
+                                    newX = flèche.getX() - flèche.getVitesse();
+                                    newY = flèche.getY();
+                                        if (flèche.getX() > flèche.getInitialX() - link.getArc().getRayonAttaque()) {
+                                            tempsRechargeFleche = 3000;
+                                            flèche.setxProperty(newX);
+                                        } else {
+                                            flechesASupprimer.add(flèche);
+                                        }
+
+
+                                }
+
+                                for (int j = 0 ; j < this.environnement.getPersonnages().size() ; j++) {
+                                    if (flèche.estSurEnnemi(this.environnement.getPersonnages().get(j))) {
+                                        flèche.faireDégâts(this.environnement.getPersonnages().get(j), flèche.getDégâts());
+                                        flèche.getEnvironnement().supprimerFleche(flèche);
+                                        flechesASupprimer.add(flèche);
+                                    }
+                                }
                             }
+                            for (int i = 0 ; i < flechesASupprimer.size() ; i++) {
+                                this.environnement.supprimerFleche(flechesASupprimer.get(i));
+                            }
+
                         }
 
 
-                    }
+                        }
+
                     else if (temps%4 ==0){
                         for (VuePersonnage monPerso : vuePersos){
                             if (monPerso instanceof VueEnnemi1){
@@ -260,6 +369,9 @@ public class Controleur implements Initializable {
                         }
                     }
 
+
+
+                    tempsRechargeFleche--;
                     temps++;
                 }
         );
