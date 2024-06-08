@@ -19,7 +19,7 @@ public class Bombe extends Item implements Stockable {
     public Bombe(Environnement environnement, int positionX, int positionY) {
 
         super(environnement, positionX, positionY,48,48);
-        this.degat = 0;
+        this.degat = 25;
         this.rayonAttaque = getLargeur();
         this.effetUtiliser=false;
 
@@ -27,7 +27,7 @@ public class Bombe extends Item implements Stockable {
 
     public Bombe(Environnement environnement) {
         super(environnement,48,48);
-        this.degat = 0;
+        this.degat = 25;
         this.rayonAttaque = getLargeur();
         this.effetUtiliser=false;
     }
@@ -51,7 +51,7 @@ public class Bombe extends Item implements Stockable {
             if ((this.getPositionY() - getRayonAttaque() <= personnage.getPositionY() && personnage.getPositionY() <= this.getPositionY() + getRayonAttaque())
                     && (this.getPositionX() - getRayonAttaque() <= personnage.getPositionX() && personnage.getPositionX() <= this.getPositionX() + getRayonAttaque())) {
 //                System.out.println(personnage.getClass()+ "est mort");
-                personnage.tue();
+                personnage.setPointVie(personnage.getPointVie()-getDegat());
                 if (!personnage.estVivant()){
                     dead.add(personnage);
                 }

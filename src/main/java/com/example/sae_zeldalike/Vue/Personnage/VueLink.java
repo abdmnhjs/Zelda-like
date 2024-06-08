@@ -17,7 +17,8 @@ public class VueLink extends VuePersonnage {
 
 
     private Image up1,up2,down1,down2,left1,left2,left3,left4,left5,left6,left7,left8,left9,
-    right1,right2,right3,right4,right5,right6,right7,right8,right9,inactifUp,inactifDown,inactifLeft,inactifRight;
+    right1,right2,right3,right4,right5,right6,right7,right8,right9,inactifUp1,inactifDown1,inactifDown2,inactifDown3,
+            inactifLeft1,inactifLeft2,inactifLeft3,inactifRight1,inactifRight2,inactifRight3;
     private StringProperty direction;
     private Clavier clavier;
 
@@ -66,10 +67,17 @@ public class VueLink extends VuePersonnage {
         this.right7 = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/RIGHT_7.png");
         this.right8 = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/RIGHT_8.png");
         this.right9 = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/RIGHT_9.png");
-        this.inactifDown = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_DOWN.png");
-        this.inactifUp = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_UP.png");
-        this.inactifLeft = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_LEFT.png");
-        this.inactifRight = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_RIGHT.png");
+        this.inactifDown1 = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_DOWN.png");
+        this.inactifDown2 = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_DOWN_2.png");
+        this.inactifDown3 = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_DOWN_3.png");
+        this.inactifUp1 = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_UP.png");
+        this.inactifLeft1 = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_LEFT.png");
+        this.inactifLeft2 = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_LEFT_2.png");
+        this.inactifLeft3 = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_LEFT_3.png");
+        this.inactifRight1 = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_RIGHT.png");
+        this.inactifRight2 = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_RIGHT_2.png");
+        this.inactifRight3 = new Image("file:src/main/resources/com/example/sae_zeldalike/Personnage/Link/Inactif_RIGHT_3.png");
+
     }
 
 
@@ -83,6 +91,8 @@ public class VueLink extends VuePersonnage {
 
         ombre.centerXProperty().bind(spritePersonnage.translateXProperty().add(personnage.getLargeur()/2));
         ombre.centerYProperty().bind(spritePersonnage.translateYProperty().add(personnage.getLongueur()-5));
+
+
     }
 
 
@@ -167,18 +177,65 @@ public class VueLink extends VuePersonnage {
                 }
             }
             case "Inactif_UP"->{
-                this.spritePersonnage.setImage(inactifUp);
+                    this.spritePersonnage.setImage(inactifUp1);
+
+
+
             }
             case "Inactif_DOWN"->{
-                this.spritePersonnage.setImage(inactifDown);
+                if (numeroImagePersonnage<=2){
+                    this.spritePersonnage.setImage(inactifDown1);
+                    setNumeroImagePersonnage(getNumeroImage()+1);
+                }else if (numeroImagePersonnage<=4){
+                    this.spritePersonnage.setImage(inactifDown2);
+                    setNumeroImagePersonnage(getNumeroImage()+1);
+                }else if (numeroImagePersonnage<=6) {
+                    this.spritePersonnage.setImage(inactifDown3);
+                    if (getNumeroImage()<6) {
+                        setNumeroImagePersonnage(getNumeroImage() + 1);
+                    }else {
+                        setNumeroImagePersonnage(1);
+                    }
+                }
             }
             case "Inactif_LEFT"->{
-                this.spritePersonnage.setImage(inactifLeft);
+                if (numeroImagePersonnage<=2){
+                    this.spritePersonnage.setImage(inactifLeft1);
+                    setNumeroImagePersonnage(getNumeroImage()+1);
+                }else if (numeroImagePersonnage<=4){
+                    this.spritePersonnage.setImage(inactifLeft2);
+                    setNumeroImagePersonnage(getNumeroImage()+1);
+                }else if (numeroImagePersonnage<=6) {
+                    this.spritePersonnage.setImage(inactifLeft3);
+                    if (getNumeroImage()<6) {
+                        setNumeroImagePersonnage(getNumeroImage() + 1);
+                    }else {
+                        setNumeroImagePersonnage(1);
+                    }
+                }
+
             }
             case "Inactif_RIGHT"->{
-                this.spritePersonnage.setImage(inactifRight);
+                if (numeroImagePersonnage<=2){
+                    this.spritePersonnage.setImage(inactifRight1);
+                    setNumeroImagePersonnage(getNumeroImage()+1);
+                }else if (numeroImagePersonnage<=4){
+                    this.spritePersonnage.setImage(inactifRight2);
+                    setNumeroImagePersonnage(getNumeroImage()+1);
+                }else if (numeroImagePersonnage<=6) {
+                    this.spritePersonnage.setImage(inactifRight3);
+                    if (getNumeroImage()<6) {
+                        setNumeroImagePersonnage(getNumeroImage() + 1);
+                    }else {
+                        setNumeroImagePersonnage(1);
+                    }
+                }
             }
         }
+    }
+
+    public int getNumeroImage(){
+        return numeroImagePersonnage;
     }
 
     public StringProperty getDirectionProperty() {

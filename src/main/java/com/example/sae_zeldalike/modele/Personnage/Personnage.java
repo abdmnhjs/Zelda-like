@@ -17,8 +17,8 @@ public abstract class Personnage {
 
     private String id;
     private static int compteurPersonnage=0;
-    private IntegerProperty pointVie;
-    private IntegerProperty pointAttaque;
+    protected IntegerProperty pointVie;
+    protected IntegerProperty pointAttaque;
     private IntegerProperty positionX;
     private IntegerProperty positionY;
     private IntegerProperty vitesseDeplacement;
@@ -75,7 +75,7 @@ public abstract class Personnage {
     }
 
     public void tue(){
-        setPointDeVie(0);
+        setPointVie(0);
     }
     public boolean estVivant(){
         return getPointVie()>0;
@@ -123,8 +123,8 @@ public abstract class Personnage {
         return pointVie.getValue();
     }
     public IntegerProperty getPointVieProperty() { return pointVie;}
-    public void setPointVieProperty(int degats){
-        pointVie.setValue(getPointVie()-degats);
+    public void setPointVie(int pointVie) {
+        this.pointVie.set(pointVie);
     }
 
     public int getPointAttaque() {
@@ -140,9 +140,7 @@ public abstract class Personnage {
     public Environnement getEnvironnement() {
         return environnement;
     }
-    public void setPointDeVie(int pointVie) {
-        this.pointVie.set(pointVie);
-    }
+
 
     public Hitbox hitbox(int x,int y){
         Hitbox hitbox = new Hitbox(x,y,getLargeur(),getLongueur());

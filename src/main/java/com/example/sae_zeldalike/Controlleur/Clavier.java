@@ -53,112 +53,124 @@ public class Clavier implements EventHandler<KeyEvent> {
     }
 
     private void interactionTouche() {
-        int newX;
-        int newY;
 
-        if (touches.contains(KeyCode.Z)) {
-            newX = link.getPositionX();
-            newY = link.getPositionY() - link.getVitesseDeplacement();
-            if (!link.getEnvironnement().estDevantObstacle(link.hitbox(newX, newY))) {
-                link.setPositionYProperty(newY);
-            }
-            link.setDirection("UP");
-        }
-        if (touches.contains(KeyCode.S)) {
-            newX = link.getPositionX();
-            newY = link.getPositionY() + link.getVitesseDeplacement();
-            if (!link.getEnvironnement().estDevantObstacle(link.hitbox(newX, newY))) {
-                link.setPositionYProperty(newY);
-            }
-            link.setDirection("DOWN");
-        }
-        if (touches.contains(KeyCode.Q)) {
-            newX = link.getPositionX() - link.getVitesseDeplacement();
-            newY = link.getPositionY();
-            if (!link.getEnvironnement().estDevantObstacle(link.hitbox(newX, newY))) {
-                link.setPositionXProperty(newX);
-            }
-            link.setDirection("LEFT");
-        }
-        if (touches.contains(KeyCode.D)) {
-            newX = link.getPositionX() + link.getVitesseDeplacement();
-            newY = link.getPositionY();
-            if (!link.getEnvironnement().estDevantObstacle(link.hitbox(newX, newY))) {
-                link.setPositionXProperty(newX);
-            }
-            link.setDirection("RIGHT");
-        }
-        if (touches.contains(KeyCode.J)) {
-            Item item = link.essaiRamasserItem();
-            if (item != null) {
-                if (item instanceof Piece) {
-                    link.ajouterPiece(((Piece) item).getValeur());
-                    link.getEnvironnement().supprimerItem(item);
-                }if (item instanceof Stockable){
 
-                    if (link.emplacementInventaireLibre()){
+        if (link.estVivant()) {
 
-                        link.ajouteItemDansInventaire((Stockable) item);
+            int newX;
+            int newY;
+
+            if (touches.contains(KeyCode.Z)) {
+                newX = link.getPositionX();
+                newY = link.getPositionY() - link.getVitesseDeplacement();
+                if (!link.getEnvironnement().estDevantObstacle(link.hitbox(newX, newY))) {
+                    link.setPositionYProperty(newY);
+                }
+                link.setDirection("UP");
+            }
+            if (touches.contains(KeyCode.S)) {
+                newX = link.getPositionX();
+                newY = link.getPositionY() + link.getVitesseDeplacement();
+                if (!link.getEnvironnement().estDevantObstacle(link.hitbox(newX, newY))) {
+                    link.setPositionYProperty(newY);
+                }
+                link.setDirection("DOWN");
+            }
+            if (touches.contains(KeyCode.Q)) {
+                newX = link.getPositionX() - link.getVitesseDeplacement();
+                newY = link.getPositionY();
+                if (!link.getEnvironnement().estDevantObstacle(link.hitbox(newX, newY))) {
+                    link.setPositionXProperty(newX);
+                }
+                link.setDirection("LEFT");
+            }
+            if (touches.contains(KeyCode.D)) {
+                newX = link.getPositionX() + link.getVitesseDeplacement();
+                newY = link.getPositionY();
+                if (!link.getEnvironnement().estDevantObstacle(link.hitbox(newX, newY))) {
+                    link.setPositionXProperty(newX);
+                }
+                link.setDirection("RIGHT");
+            }
+            if (touches.contains(KeyCode.J)) {
+                Item item = link.essaiRamasserItem();
+                if (item != null) {
+                    if (item instanceof Piece) {
+                        link.ajouterPiece(((Piece) item).getValeur());
                         link.getEnvironnement().supprimerItem(item);
-                    }else {
-                        System.out.println("Inventaire plein");
                     }
+                    if (item instanceof Stockable) {
 
-                }if (item instanceof CoeurRouge){
-                    if (link.getPointDeVieMax()>= link.getPointVie()+((CoeurRouge) item).getPointDeVie()){
-                        link.setPointDeVie(link.getPointVie()+((CoeurRouge) item).getPointDeVie());
+                        if (link.emplacementInventaireLibre()) {
+
+                            link.ajouteItemDansInventaire((Stockable) item);
+                            link.getEnvironnement().supprimerItem(item);
+                        } else {
+                            System.out.println("Inventaire plein");
+                        }
+
+                    }
+                    if (item instanceof CoeurRouge) {
+                        if (link.getPointDeVieMax() >= link.getPointVie() + ((CoeurRouge) item).getPointDeVie()) {
+                            link.setPointVie(link.getPointVie() + ((CoeurRouge) item).getPointDeVie());
+                            link.getEnvironnement().supprimerItem(item);
+                        }
+                    }
+                    if (item instanceof CoeurBleu) {
+                        link.ajouterBouclier(((CoeurBleu) item).getVieAdditionelle());
                         link.getEnvironnement().supprimerItem(item);
                     }
                 }
             }
-        }
-        if (touches.contains(KeyCode.A)) {
+            if (touches.contains(KeyCode.A)) {
 //            System.out.println(link.getInventaire().getCaseActuel());
-            System.out.println(link.getInventaire().connaitreIndiceCaseVide());
-            System.out.println(link.getInventaire().getInventaire());
-            link.setPointDeVie(link.getPointVie()-1);
-        }
-        if (touches.contains(KeyCode.I)){
-            link.utiliserItemDansInventaire();
-        }
-        if (touches.contains(KeyCode.U)){
-            link.getInventaire().setCaseActuel(link.getInventaire().getCaseActuel()+1);
-        }
-        if (touches.contains(KeyCode.Y)){
-            link.getInventaire().setCaseActuel(link.getInventaire().getCaseActuel()-1);
-        }
-        if (touches.contains(KeyCode.AMPERSAND)){
-            link.getInventaire().setCaseActuel(0);
+                System.out.println(link.getInventaire().connaitreIndiceCaseVide());
+                System.out.println(link.getInventaire().getInventaire());
+                link.reduirePointsDeVie(5);
+                System.out.println("Coeur RED " + link.getPointVie());
+                System.out.println(link.getPointDeVieAdditionelle());
+            }
+            if (touches.contains(KeyCode.I)) {
+                link.utiliserItemDansInventaire();
+            }
+            if (touches.contains(KeyCode.U)) {
+                link.getInventaire().setCaseActuel(link.getInventaire().getCaseActuel() + 1);
+            }
+            if (touches.contains(KeyCode.Y)) {
+                link.getInventaire().setCaseActuel(link.getInventaire().getCaseActuel() - 1);
+            }
+            if (touches.contains(KeyCode.AMPERSAND)) {
+                link.getInventaire().setCaseActuel(0);
 
 //            System.out.println("Case de l'inventaire 0");
-        }
-        if (touches.contains(KeyCode.UNDEFINED)){
-            link.getInventaire().setCaseActuel(1);
+            }
+            if (touches.contains(KeyCode.UNDEFINED)) {
+                link.getInventaire().setCaseActuel(1);
 
 //            System.out.println("Case de l'inventaire 1");
-        }
-        if (touches.contains(KeyCode.QUOTEDBL)){
-            link.getInventaire().setCaseActuel(2);
+            }
+            if (touches.contains(KeyCode.QUOTEDBL)) {
+                link.getInventaire().setCaseActuel(2);
 
 //            System.out.println("Case de l'inventaire 2");
-        }
+            }
 
 
-        // Gestion des flèches
-        if (touches.contains(KeyCode.UP)) {
-            lancerFleche(KeyCode.UP);
-        }
-        if (touches.contains(KeyCode.DOWN)) {
-            lancerFleche(KeyCode.DOWN);
-        }
-        if (touches.contains(KeyCode.RIGHT)) {
-            lancerFleche(KeyCode.RIGHT);
-        }
-        if (touches.contains(KeyCode.LEFT)) {
-            lancerFleche(KeyCode.LEFT);
-        }
+            // Gestion des flèches
+            if (touches.contains(KeyCode.UP)) {
+                lancerFleche(KeyCode.UP);
+            }
+            if (touches.contains(KeyCode.DOWN)) {
+                lancerFleche(KeyCode.DOWN);
+            }
+            if (touches.contains(KeyCode.RIGHT)) {
+                lancerFleche(KeyCode.RIGHT);
+            }
+            if (touches.contains(KeyCode.LEFT)) {
+                lancerFleche(KeyCode.LEFT);
+            }
 
-
+        }
     }
 
     private void lancerFleche(KeyCode code) {

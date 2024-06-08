@@ -18,6 +18,7 @@ public class Link extends Personnage {
     private IntegerProperty portefeuille;
     private Inventaire inventaire;
     private IntegerProperty numeroCaseActuel;
+    private IntegerProperty pointDeVieAdditionelle;
     private IntegerProperty pointDeVieMax;
 
     public Link(Environnement environnement, int positionX, int positionY) {
@@ -26,7 +27,8 @@ public class Link extends Personnage {
         this.portefeuille= new SimpleIntegerProperty();
         this.inventaire=new Inventaire();
         this.numeroCaseActuel=new SimpleIntegerProperty(0);
-        this.pointDeVieMax = new SimpleIntegerProperty(getPointVie());
+        this.pointDeVieAdditionelle = new SimpleIntegerProperty(0);
+        this.pointDeVieMax = new SimpleIntegerProperty(getPointDeVieAdditionelle()+getPointVie());
 
     }
 
@@ -36,21 +38,48 @@ public class Link extends Personnage {
         this.portefeuille= new SimpleIntegerProperty();
         this.inventaire=new Inventaire();
         this.numeroCaseActuel=new SimpleIntegerProperty(0);
-        this.pointDeVieMax = new SimpleIntegerProperty(getPointVie());
+        this.pointDeVieAdditionelle = new SimpleIntegerProperty(0);
+        this.pointDeVieMax = new SimpleIntegerProperty(getPointDeVieAdditionelle()+getPointVie());
 
     }
 
+    public void ajouterBouclier(int ajout) {
+        pointDeVieAdditionelle.set(pointDeVieAdditionelle.get() + ajout);
+    }
+
+    public void setPointDeVieAdditionelle(int pointDeVieAdditionnelle) {
+        this.pointDeVieAdditionelle.setValue(pointDeVieAdditionnelle);
+    }
+
+    public int getPointDeVieAdditionelle() {
+        return pointDeVieAdditionelle.getValue();
+    }
+
+    public IntegerProperty getPointDeVieAdditionelleProperty() {
+        return pointDeVieAdditionelle;
+    }
+
     public int getPointDeVieMax() {
-        return pointDeVieMax.get();
+        return pointDeVieMax.getValue();
     }
 
     public IntegerProperty pointDeVieMaxProperty() {
         return pointDeVieMax;
     }
 
-    public void setPointDeVieMax(int pointDeVieMax) {
-        this.pointDeVieMax.set(pointDeVieMax);
+
+    public void reduirePointsDeVie(int dommages) {
+        int bouclierRestant = pointDeVieAdditionelle.get() - dommages;
+        if (bouclierRestant >= 0) {
+            pointDeVieAdditionelle.set(bouclierRestant);
+        } else {
+            pointDeVieAdditionelle.set(0);
+            int pvRestant = pointVie.get() + bouclierRestant; // bouclierRestant est négatif ici
+            pointVie.set(Math.max(pvRestant, 0));
+        }
     }
+
+
 
     public Inventaire getInventaire(){
         return inventaire;
@@ -139,6 +168,9 @@ public class Link extends Personnage {
                 if (item instanceof Piece) {
                     return item;
                 }if (item instanceof CoeurRouge){
+                    return item;
+                }
+                if (item instanceof CoeurBleu){
                     return item;
                 }
                 if (item instanceof Stockable) {

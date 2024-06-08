@@ -102,7 +102,9 @@ public class Controleur implements Initializable {
         this.link.ajouterFlèche(new Flèche(this.link.getPositionX(), this.link.getPositionY(),30, this.environnement));
 
         //Barre de vie Binder en fonction de la vie du personnage
-        link.getPointVieProperty().addListener(new ObservateurCoeurs(emplacementCoeurs,link.getPointVie()));
+        ObservateurCoeurs observateurCoeurs = new ObservateurCoeurs(emplacementCoeurs, link);
+        link.getPointVieProperty().addListener(observateurCoeurs);
+        link.getPointDeVieAdditionelleProperty().addListener(observateurCoeurs);
 
         //Observateur des vuesDesItems
         vueItems = new ArrayList<>();

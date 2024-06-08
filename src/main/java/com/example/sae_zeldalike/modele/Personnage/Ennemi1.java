@@ -37,10 +37,7 @@ public class Ennemi1 extends Personnage {
         }
 
 
-
-
     }
-
 
 
 }

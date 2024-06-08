@@ -17,7 +17,7 @@ public class Arme {
 
     public void faireDégâts(Personnage personnage, int dégâts){
         if(dégâts <= personnage.getPointVie() && dégâts > 0){
-            personnage.setPointDeVie(dégâts);
+            personnage.setPointVie(personnage.getPointVie()-dégâts);
         }
     }
 }

@@ -1,13 +1,7 @@
 package com.example.sae_zeldalike.Controlleur.Observateur;
 
-import com.example.sae_zeldalike.Vue.Item.VueBombe;
-import com.example.sae_zeldalike.Vue.Item.VueCoeurRouge;
-import com.example.sae_zeldalike.Vue.Item.VueItem;
-import com.example.sae_zeldalike.Vue.Item.VuePiece;
-import com.example.sae_zeldalike.modele.Item.Bombe;
-import com.example.sae_zeldalike.modele.Item.CoeurRouge;
-import com.example.sae_zeldalike.modele.Item.Item;
-import com.example.sae_zeldalike.modele.Item.Piece;
+import com.example.sae_zeldalike.Vue.Item.*;
+import com.example.sae_zeldalike.modele.Item.*;
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
 
@@ -50,6 +44,9 @@ public class ObservateurItem implements ListChangeListener<Item> {
                         vueItems.add(newItem);
                     }else if (item instanceof CoeurRouge){
                         newItem=new VueCoeurRouge(environnement,item);
+                        vueItems.add(newItem);
+                    }else if (item instanceof CoeurBleu){
+                        newItem=new VueCoeurBleu(environnement,item);
                         vueItems.add(newItem);
                     }
 

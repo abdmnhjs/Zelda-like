@@ -1,10 +1,22 @@
 package com.example.sae_zeldalike.Vue.Personnage;
 
 import com.example.sae_zeldalike.modele.Personnage.Personnage;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
+import javafx.scene.effect.Blend;
+import javafx.scene.effect.BlendMode;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.ColorInput;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.util.Duration;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public abstract class VuePersonnage {
 
@@ -22,7 +34,9 @@ public abstract class VuePersonnage {
         spritePersonnage.setFitHeight(personnage.getLongueur());
         spritePersonnage.setTranslateX(personnage.getPositionX());
         spritePersonnage.setTranslateY(personnage.getPositionY());
+
     }
+
 
     protected abstract void creerOmbre(Pane pane);
 
