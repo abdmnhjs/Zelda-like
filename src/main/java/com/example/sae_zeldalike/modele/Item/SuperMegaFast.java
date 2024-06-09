@@ -22,7 +22,6 @@ public class SuperMegaFast extends Item{
         int signeAleatoire = (int)((Math.random())*2);
         if(signeAleatoire==0){
             vitesse-=valRandom;
-            System.out.println(vitesse);
         }else {
             vitesse+=valRandom;
         }

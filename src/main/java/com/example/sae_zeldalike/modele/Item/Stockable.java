@@ -6,6 +6,8 @@ public interface Stockable {
 
     Item getItem();
 
+    public boolean effetUtiliser();
+
 
     public void utiliserCapacite();
 }

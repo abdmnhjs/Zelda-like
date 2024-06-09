@@ -94,6 +94,7 @@ public class Clavier implements EventHandler<KeyEvent> {
             }
             if (touches.contains(KeyCode.J)) {
                 Item item = link.essaiRamasserItem();
+                boolean laisserSurTerrain = false;
                 if (item != null) {
                     if (item instanceof Piece) {
                         link.ajouterPiece(((Piece) item).getValeur());
@@ -106,6 +107,7 @@ public class Clavier implements EventHandler<KeyEvent> {
 
                         } else {
                             System.out.println("Inventaire plein");
+                            laisserSurTerrain=true;
                         }
 
                     }
@@ -120,20 +122,31 @@ public class Clavier implements EventHandler<KeyEvent> {
 
                     }if (item instanceof SuperMegaFast){
                         link.setVitesseDeplacementProperty(link.getVitesseDeplacement()+((SuperMegaFast) item).getVitesse());
+                    }if (item instanceof Poison){
+                        link.ajouterEffet((Effet)item);
                     }
-                    link.getEnvironnement().supprimerItem(item);
+                    if (!laisserSurTerrain) {
+                        link.getEnvironnement().supprimerItem(item);
+                    }
                 }
             }
             if (touches.contains(KeyCode.A)) {
-//            System.out.println(link.getInventaire().getCaseActuel());
-                System.out.println(link.getInventaire().connaitreIndiceCaseVide());
-                System.out.println(link.getInventaire().getInventaire());
+                System.out.println(link.getEffets());
                 link.reduirePointsDeVie(5);
-                System.out.println("Coeur RED " + link.getPointVie());
-                System.out.println(link.getPointDeVieAdditionelle());
+                System.out.println(link.getInventaire().getInventaireCase1());
+                System.out.println(link.getInventaire().getInventaireCase2());
+                System.out.println(link.getInventaire().getInventaireCase3());
             }
             if (touches.contains(KeyCode.I)) {
                 link.utiliserItemDansInventaire();
+
+                    for (Personnage p : link.getEnvironnement().getPersonnages()) {
+                        if (link.getEffets().size()!=0) {
+
+                            link.getEffets().getFirst().appliquer(p);
+                        }
+                    }
+
             }
             if (touches.contains(KeyCode.U)) {
                 link.getInventaire().setCaseActuel(link.getInventaire().getCaseActuel() + 1);

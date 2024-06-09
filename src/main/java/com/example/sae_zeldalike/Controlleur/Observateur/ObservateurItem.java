@@ -51,6 +51,9 @@ public class ObservateurItem implements ListChangeListener<Item> {
                     }else if (item instanceof SuperMegaFast){
                         newItem=new VueSuperMegaFast(environnement,item);
                         vueItems.add(newItem);
+                    }else if (item instanceof Poison){
+                        newItem=new VuePoison(environnement,item);
+                        vueItems.add(newItem);
                     }
 
                 }

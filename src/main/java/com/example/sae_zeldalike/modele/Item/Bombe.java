@@ -32,9 +32,6 @@ public class Bombe extends Item implements Stockable {
         this.effetUtiliser=false;
     }
 
-    public boolean isEffetUtiliser() {
-        return effetUtiliser;
-    }
 
     public void setEffetUtiliser(boolean effetUtiliser) {
         this.effetUtiliser = effetUtiliser;
@@ -86,6 +83,10 @@ public class Bombe extends Item implements Stockable {
         return this;
     }
 
+    @Override
+    public boolean effetUtiliser() {
+        return effetUtiliser;
+    }
 
 
 }

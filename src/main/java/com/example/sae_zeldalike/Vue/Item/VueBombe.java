@@ -2,6 +2,7 @@ package com.example.sae_zeldalike.Vue.Item;
 
 import com.example.sae_zeldalike.modele.Item.Bombe;
 import com.example.sae_zeldalike.modele.Item.Item;
+import com.example.sae_zeldalike.modele.Item.Stockable;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -53,7 +54,7 @@ public class VueBombe extends VueItem {
     @Override
     public void animationItem(){
 
-            if (((Bombe) item).isEffetUtiliser()) {
+            if (((Stockable) item).effetUtiliser()) {
 
                 switch (getNumeroItem()) {
                     case 1 -> {

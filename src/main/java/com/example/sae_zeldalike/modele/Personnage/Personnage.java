@@ -27,6 +27,9 @@ public abstract class Personnage {
     private final int largeur;
     private final int longueur;
     private ArrayList<Arme> armes;
+    protected int dureeEffet;
+    protected boolean toucheParEffet;
+    protected int effetRalentissement;
 
     public Personnage( int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDeplacement, int longueur, int largeur) {
         this.id = "P"+compteurPersonnage;
@@ -41,7 +44,9 @@ public abstract class Personnage {
         this.longueur=longueur;
         this.largeur=largeur;
         this.armes = new ArrayList<>();
-
+        dureeEffet=0;
+        toucheParEffet=false;
+        effetRalentissement=0;
     }
 
     public Personnage( int pointVie, int pointAttaque, Environnement environnement, int vitesseDeplacement, int longueur, int largeur) {
@@ -58,6 +63,9 @@ public abstract class Personnage {
         this.positionX = new SimpleIntegerProperty();
         this.positionY = new SimpleIntegerProperty();
         genererPositionAleatoires();
+        dureeEffet=0;
+        toucheParEffet=false;
+        effetRalentissement=0;
 
     }
 
@@ -72,6 +80,30 @@ public abstract class Personnage {
         }while (!getEnvironnement().estDansTuile(11,hitbox(posX,posY)));
         setPositionXProperty(posX);
         setPositionYProperty(posY);
+    }
+
+    public void ralentir(int ralentissement, int duree) {
+        if (!estToucheParEffet()) {
+            effetRalentissement=ralentissement;
+            this.dureeEffet += duree;
+            setEstToucheParEffet(true);
+        }
+    }
+
+    public int getDureeEffet() {
+        return dureeEffet;
+    }
+
+    public void setDureeEffet(int dureeEffet) {
+        this.dureeEffet = dureeEffet;
+    }
+
+    public boolean estToucheParEffet() {
+        return toucheParEffet;
+    }
+
+    public void setEstToucheParEffet(boolean estToucheParEffet) {
+        this.toucheParEffet = estToucheParEffet;
     }
 
     public void tue(){

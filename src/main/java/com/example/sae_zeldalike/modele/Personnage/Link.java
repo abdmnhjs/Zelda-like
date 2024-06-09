@@ -20,6 +20,7 @@ public class Link extends Personnage {
     private IntegerProperty numeroCaseActuel;
     private IntegerProperty pointDeVieAdditionelle;
     private final IntegerProperty pointDeVieMax;
+    private ArrayList<Effet> effets;
 
     public Link(Environnement environnement, int positionX, int positionY) {
 
@@ -29,6 +30,7 @@ public class Link extends Personnage {
         this.numeroCaseActuel=new SimpleIntegerProperty(0);
         this.pointDeVieAdditionelle = new SimpleIntegerProperty(0);
         this.pointDeVieMax = new SimpleIntegerProperty(getPointDeVieAdditionelle()+getPointVie());
+        this.effets=new ArrayList<>();
 
     }
 
@@ -40,6 +42,7 @@ public class Link extends Personnage {
         this.numeroCaseActuel=new SimpleIntegerProperty(0);
         this.pointDeVieAdditionelle = new SimpleIntegerProperty(0);
         this.pointDeVieMax = new SimpleIntegerProperty(getPointDeVieAdditionelle()+getPointVie());
+        this.effets=new ArrayList<>();
 
     }
 
@@ -111,6 +114,7 @@ public class Link extends Personnage {
                             item.utiliserCapacite();
 
 
+
                             timer.cancel();
                         });
                     }
@@ -158,27 +162,32 @@ public class Link extends Personnage {
     }
 
 
-
     public Item essaiRamasserItem() {
 
         for (Item item : this.environnement.getItems()) {
 
             if ((this.getPositionY() - 20 <= item.getPositionY() && item.getPositionY() <= this.getPositionY() + 20)
                     && (this.getPositionX() - 20 <= item.getPositionX() && item.getPositionX() <= this.getPositionX() + 20)) {
-                if (item instanceof Piece) {
+
+                if (!(item instanceof Stockable)){
                     return item;
-                }if (item instanceof CoeurRouge){
-                    return item;
-                }
-                if (item instanceof CoeurBleu){
+                }else if (item instanceof Stockable && !((Stockable) item).effetUtiliser()){
                     return item;
                 }
-                if (item instanceof Stockable) {
-                    if (item instanceof Bombe && !((Bombe) item).isEffetUtiliser())
-                    return item;
-                }if (item instanceof SuperMegaFast) {
-                    return item;
-                }
+//                if (item instanceof Piece) {
+//                    return item;
+//                }if (item instanceof CoeurRouge){
+//                    return item;
+//                }
+//                if (item instanceof CoeurBleu){
+//                    return item;
+//                }
+//                if (item instanceof Stockable) {
+//                    if (item instanceof Bombe && !((Bombe) item).isEffetUtiliser())
+//                    return item;
+//                }if (item instanceof SuperMegaFast) {
+//                    return item;
+//                }
 
             }
         }
@@ -186,6 +195,13 @@ public class Link extends Personnage {
         return null;
     }
 
+    public ArrayList<Effet> getEffets() {
+        return effets;
+    }
+
+    public void ajouterEffet(Effet effet){
+        effets.add(effet);
+    }
 
     public int getPortefeuille(){
         return portefeuille.getValue();  }
