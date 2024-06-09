@@ -117,7 +117,11 @@ public abstract class Personnage {
         return vitesseDeplacement.getValue();
     }
     public IntegerProperty getVitesseDeplacementProperty(){ return vitesseDeplacement;}
-    public void setVitesseDeplacementProperty(int v){ vitesseDeplacement.setValue(v);}
+    public void setVitesseDeplacementProperty(int v){
+        if (v>0) {
+            vitesseDeplacement.setValue(v);
+        }
+    }
 
     public int getPointVie() {
         return pointVie.getValue();

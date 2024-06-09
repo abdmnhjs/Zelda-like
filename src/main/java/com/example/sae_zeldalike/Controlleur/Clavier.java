@@ -97,14 +97,13 @@ public class Clavier implements EventHandler<KeyEvent> {
                 if (item != null) {
                     if (item instanceof Piece) {
                         link.ajouterPiece(((Piece) item).getValeur());
-                        link.getEnvironnement().supprimerItem(item);
+
                     }
                     if (item instanceof Stockable) {
 
                         if (link.emplacementInventaireLibre()) {
-
                             link.ajouteItemDansInventaire((Stockable) item);
-                            link.getEnvironnement().supprimerItem(item);
+
                         } else {
                             System.out.println("Inventaire plein");
                         }
@@ -113,13 +112,16 @@ public class Clavier implements EventHandler<KeyEvent> {
                     if (item instanceof CoeurRouge) {
                         if (link.getPointDeVieMax() >= link.getPointVie() + ((CoeurRouge) item).getPointDeVie()) {
                             link.setPointVie(link.getPointVie() + ((CoeurRouge) item).getPointDeVie());
-                            link.getEnvironnement().supprimerItem(item);
+
                         }
                     }
                     if (item instanceof CoeurBleu) {
                         link.ajouterBouclier(((CoeurBleu) item).getVieAdditionelle());
-                        link.getEnvironnement().supprimerItem(item);
+
+                    }if (item instanceof SuperMegaFast){
+                        link.setVitesseDeplacementProperty(link.getVitesseDeplacement()+((SuperMegaFast) item).getVitesse());
                     }
+                    link.getEnvironnement().supprimerItem(item);
                 }
             }
             if (touches.contains(KeyCode.A)) {

@@ -26,6 +26,10 @@ public abstract class VueItem {
         spriteItem.setTranslateX(item.getPositionX());
         spriteItem.setTranslateY(item.getPositionY());
 
+        //Binding des coordonnées de l'item
+        spriteItem.translateXProperty().bind(item.getPositionXProperty());
+        spriteItem.translateYProperty().bind(item.getPositionYProperty());
+
     }
 
     protected abstract void creerOmbre(Pane pane);

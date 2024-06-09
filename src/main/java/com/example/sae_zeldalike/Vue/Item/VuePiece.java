@@ -21,9 +21,7 @@ public class VuePiece extends VueItem{
         creerOmbre(pane);
         pane.getChildren().add(spriteItem);
 
-        //Binding des coordonnées de l'item
-        spriteItem.translateXProperty().bind(item.getPositionXProperty());
-        spriteItem.translateYProperty().bind(item.getPositionYProperty());
+
 
     }
     protected void creerOmbre(Pane pane) {

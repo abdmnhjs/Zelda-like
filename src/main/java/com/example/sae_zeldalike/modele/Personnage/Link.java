@@ -19,7 +19,7 @@ public class Link extends Personnage {
     private Inventaire inventaire;
     private IntegerProperty numeroCaseActuel;
     private IntegerProperty pointDeVieAdditionelle;
-    private IntegerProperty pointDeVieMax;
+    private final IntegerProperty pointDeVieMax;
 
     public Link(Environnement environnement, int positionX, int positionY) {
 
@@ -174,8 +174,12 @@ public class Link extends Personnage {
                     return item;
                 }
                 if (item instanceof Stockable) {
+                    if (item instanceof Bombe && !((Bombe) item).isEffetUtiliser())
+                    return item;
+                }if (item instanceof SuperMegaFast) {
                     return item;
                 }
+
             }
         }
 

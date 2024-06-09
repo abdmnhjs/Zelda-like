@@ -14,10 +14,20 @@ public class CoeurRouge extends Item{
 
     }
 
-    public CoeurRouge(Environnement environnement,int pv) {
+    public CoeurRouge(Environnement environnement) {
         super(environnement, 16, 16);
-        if (pv>1 && pv<=10){
-            this.pointDeVie=pv;
+        vieAleatoires();
+    }
+
+    private void vieAleatoires(){
+
+
+        int vieAleatoire = (int)((Math.random())*10);
+        if(vieAleatoire<=5){
+            pointDeVie=vieAleatoire+1;
+
+        }else if (vieAleatoire>5){
+            pointDeVie=vieAleatoire+1;
         }
     }
 

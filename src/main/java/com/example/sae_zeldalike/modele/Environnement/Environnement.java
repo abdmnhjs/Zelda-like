@@ -198,14 +198,14 @@ public class Environnement {
             ajouterPersonnage(new Ennemi1(this));
         }
         for (int i =0;i<10;i++){
-            if (i<5){
-                ajouterItem(new CoeurRouge(this,10));
-            }else {
-                ajouterItem(new CoeurRouge(this,5));
-            }
+            ajouterItem(new CoeurRouge(this));
+
         }
         for (int i=0;i<10;i++){
             ajouterItem(new CoeurBleu(this));
+        }
+        for (int i=0;i<5;i++){
+            ajouterItem(new SuperMegaFast(this));
         }
     }
 

@@ -15,15 +15,16 @@ public class VueCoeurBleu extends VueItem{
         super(pane, item);
         initialiserItem();
         if (item instanceof CoeurBleu){
-            spriteItem.setImage(coeurPlein);
+            if (((CoeurBleu) item).getVieAdditionelle()==10) {
+                spriteItem.setImage(coeurPlein);
+            }else{
+                spriteItem.setImage(coeurDemi);
+            }
 
         }
         creerOmbre(pane);
         pane.getChildren().add(spriteItem);
 
-        //Binding des coordonnées de l'item
-        spriteItem.translateXProperty().bind(item.getPositionXProperty());
-        spriteItem.translateYProperty().bind(item.getPositionYProperty());
 
     }
 
@@ -41,7 +42,6 @@ public class VueCoeurBleu extends VueItem{
     protected void initialiserItem() {
         coeurPlein=new Image("file:src/main/resources/com/example/sae_zeldalike/ATH/CoeurBleu_Plein.png");
         coeurDemi=new Image("file:src/main/resources/com/example/sae_zeldalike/ATH/CoeurBleu_Demi.png");
-        coeurVide=new Image("file:src/main/resources/com/example/sae_zeldalike/ATH/CoeurBleu_Vide.png");
     }
 
     @Override
@@ -49,14 +49,15 @@ public class VueCoeurBleu extends VueItem{
 
     }
 
+
     @Override
     public Image getImagePrincipale() {
         if (((CoeurBleu) item).getVieAdditionelle()==10){
             return coeurPlein;
-        }else if (((CoeurBleu) item).getVieAdditionelle()>0){
+        }else if (((CoeurBleu) item).getVieAdditionelle()==5){
             return coeurDemi;
-        }else {
-            return coeurVide;
         }
+        return null;
+
     }
 }

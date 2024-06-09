@@ -25,9 +25,6 @@ public class VueCoeurRouge extends VueItem{
         creerOmbre(pane);
         pane.getChildren().add(spriteItem);
 
-        //Binding des coordonnées de l'item
-        spriteItem.translateXProperty().bind(item.getPositionXProperty());
-        spriteItem.translateYProperty().bind(item.getPositionYProperty());
 
     }
     @Override
@@ -49,7 +46,9 @@ public class VueCoeurRouge extends VueItem{
 
     @Override
     public void animationItem() {
+
     }
+
 
     @Override
     public Image getImagePrincipale() {
