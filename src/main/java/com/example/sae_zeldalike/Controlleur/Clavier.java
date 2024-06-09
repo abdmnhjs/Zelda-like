@@ -4,7 +4,6 @@ import com.example.sae_zeldalike.Vue.VueEpee;
 import com.example.sae_zeldalike.modele.Item.*;
 import com.example.sae_zeldalike.modele.Personnage.*;
 
-import com.example.sae_zeldalike.Vue.VueFlèche;
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -13,8 +12,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import com.example.sae_zeldalike.modele.Item.Arme;
-import com.example.sae_zeldalike.modele.Personnage.*;
 
 import java.util.HashSet;
 
@@ -197,27 +194,27 @@ public class Clavier implements EventHandler<KeyEvent> {
     if(this.link.arcEquipe()){
         switch (keyEvent.getCode()){
             case UP -> {
-                Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
-                flèche.setDirection("UP");
-                this.link.getArc().getFleches().add(flèche);
+                Projectile projectile = new Projectile(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
+                projectile.setDirection("UP");
+                this.link.getArc().getFleches().add(projectile);
                 this.link.tirerFleche();
             }
             case DOWN -> {
-                Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
-                flèche.setDirection("DOWN");
-                this.link.getArc().getFleches().add(flèche);
+                Projectile projectile = new Projectile(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
+                projectile.setDirection("DOWN");
+                this.link.getArc().getFleches().add(projectile);
                 this.link.tirerFleche();
             }
             case RIGHT -> {
-                Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
-                flèche.setDirection("RIGHT");
-                this.link.getArc().getFleches().add(flèche);
+                Projectile projectile = new Projectile(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
+                projectile.setDirection("RIGHT");
+                this.link.getArc().getFleches().add(projectile);
                 this.link.tirerFleche();
             }
             case LEFT -> {
-                Flèche flèche = new Flèche(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
-                flèche.setDirection("LEFT");
-                this.link.getArc().getFleches().add(flèche);
+                Projectile projectile = new Projectile(this.link.getPositionX()+16, this.link.getPositionY()+16, this.environnement, this.link.getArc());
+                projectile.setDirection("LEFT");
+                this.link.getArc().getFleches().add(projectile);
                 this.link.tirerFleche();
             }
         }

@@ -15,7 +15,7 @@ public class Environnement {
     private static int compteurEnvironnement=0;
     private ObservableList<Ennemi> personnages;
     private ObservableList<Item> items;
-    private ObservableList<Flèche> flèchesEnDéplacement;
+    private ObservableList<Projectile> flèchesEnDéplacement;
     private ObservableList<Epée> epeeEnMain;
     private ObservableList<Link> linkRemovalQueue;
     private Map map;
@@ -59,9 +59,9 @@ public class Environnement {
         }
     }
 
-    public void supprimerFleche(Flèche flèche){
+    public void supprimerFleche(Projectile projectile){
         for(int i=0;i<flèchesEnDéplacement.size();i++){
-            if(flèchesEnDéplacement.get(i).getId().equals(flèche.getId())){
+            if(flèchesEnDéplacement.get(i).getId().equals(projectile.getId())){
                 flèchesEnDéplacement.remove(i);
             }
         }
@@ -83,7 +83,7 @@ public class Environnement {
         }
     }
 
-    public ObservableList<Flèche> getFlèchesEnDéplacement() {
+    public ObservableList<Projectile> getFlèchesEnDéplacement() {
         return this.flèchesEnDéplacement;
     }
 

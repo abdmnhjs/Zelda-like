@@ -3,21 +3,17 @@ package com.example.sae_zeldalike.modele.Item;
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Hitbox;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi;
-import com.example.sae_zeldalike.modele.Personnage.Ennemi1;
-import com.example.sae_zeldalike.modele.Personnage.Personnage;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-import java.util.ArrayList;
-
-public class Flèche extends Arme {
+public class Projectile extends Arme {
     private IntegerProperty vitesseProperty;
     private static int compteurFleche = 0;
     private Arc arc;
-    private String id;
+    protected String id;
 
 
-    public Flèche(int x, int y,  Environnement environnement, Arc arc){
+    public Projectile(int x, int y, Environnement environnement, Arc arc){
         super(50, 0, environnement);
         this.xProperty = new SimpleIntegerProperty(x);
         this.yProperty = new SimpleIntegerProperty(y);
@@ -30,6 +26,18 @@ public class Flèche extends Arme {
         this.initialX = x;
         this.initialY = y;
         compteurFleche++;
+    }
+
+    public Projectile(int x, int y, Environnement environnement, int vitesse, int longueur, int largeur){
+        super(50, 0, environnement);
+        this.xProperty = new SimpleIntegerProperty(x);
+        this.yProperty = new SimpleIntegerProperty(y);
+        this.vitesseProperty = new SimpleIntegerProperty(vitesse);
+        this.longueur = longueur;
+        this.largeur = largeur;
+        this.direction = "N";
+        this.initialX = x;
+        this.initialY = y;
     }
 
 //    public boolean estDevantObstacle(int x, int y) {

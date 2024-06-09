@@ -1,25 +1,25 @@
 package com.example.sae_zeldalike.Controlleur.Observateur;
 
 import com.example.sae_zeldalike.Vue.VueFlèche;
-import com.example.sae_zeldalike.modele.Item.Flèche;
+import com.example.sae_zeldalike.modele.Item.Projectile;
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
 
-public class ObservateurFlechesEnDeplacement implements ListChangeListener<Flèche> {
+public class ObservateurFlechesEnDeplacement implements ListChangeListener<Projectile> {
     private Pane environnement;
     public ObservateurFlechesEnDeplacement(Pane environnement) {
         this.environnement = environnement;
     }
 
     @Override
-    public void onChanged(Change<? extends Flèche> change) {
+    public void onChanged(Change<? extends Projectile> change) {
         while (change.next()){
             if(change.wasAdded()){
-                for(Flèche fleche : change.getAddedSubList()){
+                for(Projectile fleche : change.getAddedSubList()){
                     new VueFlèche(fleche, this.environnement);
                 }
             } else if (change.wasRemoved()){
-                for(Flèche fleche : change.getRemoved()){
+                for(Projectile fleche : change.getRemoved()){
                     System.out.println(this.environnement.lookup("#"+fleche.getId()));
                     System.out.println(change.getRemoved());
                     System.out.println(fleche.getId());

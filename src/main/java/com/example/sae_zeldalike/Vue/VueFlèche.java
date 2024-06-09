@@ -1,43 +1,43 @@
 package com.example.sae_zeldalike.Vue;
 
-import com.example.sae_zeldalike.modele.Item.Flèche;
+import com.example.sae_zeldalike.modele.Item.Projectile;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 public class VueFlèche {
-    private Flèche flèche;
+    private Projectile projectile;
     private Pane pane;
     private ImageView spriteFlèche;
 
-    public VueFlèche(Flèche flèche, Pane pane){
-        this.flèche = flèche;
+    public VueFlèche(Projectile projectile, Pane pane){
+        this.projectile = projectile;
         this.pane = pane;
         this.spriteFlèche = new ImageView();
         creerFlèche(this.pane);
     }
 
     public void creerFlèche(Pane pane){
-        if(this.flèche.getDirection().equals("UP")){
+        if(this.projectile.getDirection().equals("UP")){
             this.spriteFlèche = new ImageView(new Image("file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-haut.png"));
-            this.spriteFlèche.setId(this.flèche.getId());
+            this.spriteFlèche.setId(this.projectile.getId());
         }
-        if(this.flèche.getDirection().equals("DOWN")){
+        if(this.projectile.getDirection().equals("DOWN")){
             this.spriteFlèche = new ImageView(new Image("file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-bas.png"));
-            this.spriteFlèche.setId(this.flèche.getId());
+            this.spriteFlèche.setId(this.projectile.getId());
         }
-        if(this.flèche.getDirection().equals("RIGHT")){
+        if(this.projectile.getDirection().equals("RIGHT")){
             this.spriteFlèche = new ImageView(new Image("file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-droite.png"));
-            this.spriteFlèche.setId(this.flèche.getId());
+            this.spriteFlèche.setId(this.projectile.getId());
         }
-        if(this.flèche.getDirection().equals("LEFT")){
+        if(this.projectile.getDirection().equals("LEFT")){
             this.spriteFlèche = new ImageView(new Image("file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-gauche.png"));
-            this.spriteFlèche.setId(this.flèche.getId());
+            this.spriteFlèche.setId(this.projectile.getId());
         }
-        this.spriteFlèche.setFitHeight(this.flèche.getLongueur());
-        this.spriteFlèche.setFitWidth(this.flèche.getLargeur());
-        this.spriteFlèche.translateXProperty().bind(this.flèche.getXProperty());
-        this.spriteFlèche.translateYProperty().bind(this.flèche.getYProperty());
+        this.spriteFlèche.setFitHeight(this.projectile.getLongueur());
+        this.spriteFlèche.setFitWidth(this.projectile.getLargeur());
+        this.spriteFlèche.translateXProperty().bind(this.projectile.getXProperty());
+        this.spriteFlèche.translateYProperty().bind(this.projectile.getYProperty());
         pane.getChildren().add(this.spriteFlèche);
     }
 
@@ -50,7 +50,7 @@ public class VueFlèche {
         }
     }
 
-    public Flèche getFlèche() {
-        return this.flèche;
+    public Projectile getFlèche() {
+        return this.projectile;
     }
 }
