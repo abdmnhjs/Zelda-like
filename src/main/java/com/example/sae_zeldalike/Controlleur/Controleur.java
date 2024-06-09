@@ -1,16 +1,9 @@
 package com.example.sae_zeldalike.Controlleur;
 
-import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurEpee;
-import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurFlechesEnDeplacement;
-import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurCaseInventaire;
-import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurCoeurs;
-import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurItem;
-import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurPersonnage;
+import com.example.sae_zeldalike.Controlleur.Observateur.*;
 import com.example.sae_zeldalike.Vue.*;
 import com.example.sae_zeldalike.Vue.Environnement.VueMap;
-import com.example.sae_zeldalike.Vue.Item.VueBombe;
 import com.example.sae_zeldalike.Vue.Item.VueItem;
-import com.example.sae_zeldalike.Vue.Item.VuePiece;
 import com.example.sae_zeldalike.Vue.Personnage.VueEnnemi1;
 import com.example.sae_zeldalike.Vue.Personnage.VueLink;
 import com.example.sae_zeldalike.Vue.Personnage.VuePersonnage;
@@ -19,36 +12,20 @@ import com.example.sae_zeldalike.modele.Item.*;
 import com.example.sae_zeldalike.modele.Personnage.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class Controleur implements Initializable {
 
@@ -123,7 +100,7 @@ public class Controleur implements Initializable {
         vueMap = new VueMap(tilePane, this.map);
         this.link.ajouterEpee(new Epée(link.getPositionX()+link.getLargeur(), link.getPositionY()+16, 50, 5, this.environnement));
         this.link.ajouterArc(new Arc(15, 100, this.environnement));
-        this.link.equiperEpee();
+        this.link.equiperArc();
 
         //Barre de vie Binder en fonction de la vie du personnage
         ObservateurCoeurs observateurCoeurs = new ObservateurCoeurs(emplacementCoeurs, link);
@@ -146,6 +123,8 @@ public class Controleur implements Initializable {
         this.environnement.getPersonnages().addListener(new ObservateurPersonnage(pane, vuePersos));
         this.environnement.getEpeeEnMain().addListener(new ObservateurEpee(pane, this.link));
         this.environnement.getPersonnages().addListener(new ObservateurPersonnage(pane,vuePersos));
+        this.environnement.getLinkRemovalQueue().addListener(new ObservateurLink(pane));
+        this.environnement.ajouterLink(this.link);
 
 
         //Observateur sur l'inventaire de Link
@@ -254,6 +233,12 @@ public class Controleur implements Initializable {
 
                         vueLink.animation();
                         this.clavier.interactionTouche();
+
+                        for(Ennemi ennemi : this.environnement.getPersonnages()){
+                            if(ennemi.estSurJoueur(this.link)){
+                                ennemi.essaieAttaquerJoueur(this.link);
+                            }
+                        }
 
                         if(this.link.epeeEquipee()){
                             for(int i = 0 ; i < this.environnement.getEpeeEnMain().size() ; i++){

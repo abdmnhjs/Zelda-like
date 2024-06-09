@@ -2,42 +2,21 @@ package com.example.sae_zeldalike.modele.Personnage;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 
+import java.util.ArrayList;
+
 public class Ennemi extends Personnage {
+    protected double probaAttaque;
+
     public Ennemi(int pointVie, int pointAttaque, Environnement environnement, int positionX, int positionY, int vitesseDeplacement, int longueur, int largeur) {
-        super(pointVie, pointAttaque, environnement, positionX, positionY, vitesseDeplacement, longueur, largeur);
+        super(pointVie, pointAttaque, environnement, positionX, positionY, vitesseDeplacement, longueur,largeur);
+
     }
 
-    /*
-
-    public void seDeplace() {
-        int probaDeplacement = (int) (Math.random() * 11);
-        if (probaDeplacement < 1) {
-            int probaX = (int) (Math.random() * 5);
-            int probaY = (int) (Math.random() * 5);
-
-            if (probaX <= 3) {
-                int probaDirectionX = (int) (Math.random() * 2);
-                if (probaDirectionX == 0) {
-                    setPositionXProperty(getPositionX() - getVitesseDeplacement());
-                }
-                if (probaDirectionX == 1) {
-                    setPositionXProperty(getPositionX() + getVitesseDeplacement());
-                }
-            }
-            if (probaY <= 2) {
-                int probaDirectionY = (int) (Math.random() * 2);
-                if (probaDirectionY == 0) {
-                    setPositionYProperty(getPositionY() - getVitesseDeplacement());
-                }
-                if (probaDirectionY == 1) {
-                    setPositionYProperty(getPositionY() + getVitesseDeplacement());
-                }
-            }
-        }
+    public Ennemi(int pointVie, int pointAttaque, Environnement environnement, int vitesseDeplacement, int longueur, int largeur) {
+        super(pointVie, pointAttaque, environnement,  vitesseDeplacement, longueur, largeur);
     }
 
 
-*/
 
     public void seDeplace(int cibleX , int cibleY) {
 
@@ -60,6 +39,39 @@ public class Ennemi extends Personnage {
                 setPositionYProperty(getPositionY() - getVitesseDeplacement());
             }
         }
+    }
 
+    public boolean proba(double pourcent){
+        double x= Math.random();
+        double pp=pourcent/100;
+        return (x<=pp);
+    }
+
+    public void essaieAttaquerJoueur(Link link){
+        ArrayList<Link> dead = new ArrayList<>();
+        System.out.println(link.getPointVie());
+        if(proba(this.probaAttaque)){
+            if(this.pointAttaque.getValue() <= link.getPointVie() && this.pointAttaque.getValue() > 0){
+                link.setPointVie(link.getPointVie() - this.pointAttaque.getValue());
+                if (!link.estVivant()){
+                    dead.add(link);
+                }
+
+            }
+        }
+
+        for (Link linkMort : dead) {
+            linkMort.getEnvironnement().supprimerLink(linkMort);
+        }
+    }
+
+    public boolean estSurJoueur(Link link){
+        if(getPositionX() < link.getPositionX() + link.getLargeur() &&
+                getPositionY() < link.getPositionY() + link.getLongueur() &&
+                getPositionX() + getLargeur() > link.getPositionX() &&
+                getPositionY() + getLongueur() > link.getPositionY()){
+            return true;
+        }
+        return false;
     }
 }

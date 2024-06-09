@@ -2,7 +2,9 @@ package com.example.sae_zeldalike.modele.Environnement;
 
 import com.example.sae_zeldalike.modele.Hitbox;
 import com.example.sae_zeldalike.modele.Item.*;
+import com.example.sae_zeldalike.modele.Personnage.Ennemi;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi1;
+import com.example.sae_zeldalike.modele.Personnage.Link;
 import com.example.sae_zeldalike.modele.Personnage.Personnage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,10 +13,11 @@ public class Environnement {
 
     private String id;
     private static int compteurEnvironnement=0;
-    private ObservableList<Personnage> personnages;
+    private ObservableList<Ennemi> personnages;
     private ObservableList<Item> items;
     private ObservableList<Flèche> flèchesEnDéplacement;
     private ObservableList<Epée> epeeEnMain;
+    private ObservableList<Link> linkRemovalQueue;
     private Map map;
 
     public Environnement(Map map){
@@ -26,9 +29,14 @@ public class Environnement {
         this.personnages= FXCollections.observableArrayList();
         this.items= FXCollections.observableArrayList();
         this.epeeEnMain = FXCollections.observableArrayList();
+        this.linkRemovalQueue = FXCollections.observableArrayList();
     }
 
-    public void ajouterPersonnage(Personnage personnage){
+    public void ajouterLink(Link link){
+        this.linkRemovalQueue.add(link);
+    }
+
+    public void ajouterPersonnage(Ennemi1 personnage){
         personnages.add(personnage);
     }
 
@@ -59,6 +67,14 @@ public class Environnement {
         }
     }
 
+    public void supprimerLink (Link link){
+        for(int i=0;i<linkRemovalQueue.size();i++){
+            if(linkRemovalQueue.get(i).getId().equals(link.getId())){
+                linkRemovalQueue.remove(i);
+            }
+        }
+    }
+
     public void supprimerPersonnage (Personnage personnage){
         for(int i=0;i<personnages.size();i++){
             if(personnages.get(i).getId().equals(personnage.getId())){
@@ -80,7 +96,7 @@ public class Environnement {
         return epeeEnMain;
     }
 
-    public ObservableList<Personnage> getPersonnages() {
+    public ObservableList<Ennemi> getPersonnages() {
         return personnages;
     }
 
@@ -220,6 +236,9 @@ public class Environnement {
         return id;
     }
 
+    public ObservableList<Link> getLinkRemovalQueue() {
+        return this.linkRemovalQueue;
+    }
 
     public void init() {
         for (int i = 0; i < 20; i++) {

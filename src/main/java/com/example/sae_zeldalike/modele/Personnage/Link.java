@@ -20,26 +20,29 @@ public class Link extends Personnage {
     private IntegerProperty numeroCaseActuel;
     private IntegerProperty pointDeVieAdditionelle;
     private IntegerProperty pointDeVieMax;
+    private String id;
 
     public Link(Environnement environnement, int positionX, int positionY) {
 
-        super(100, 0, environnement, positionX, positionY, 7, 32,32);
+        super(200, 0, environnement, positionX, positionY, 7, 32,32);
         this.portefeuille= new SimpleIntegerProperty();
         this.inventaire=new Inventaire();
         this.numeroCaseActuel=new SimpleIntegerProperty(0);
         this.pointDeVieAdditionelle = new SimpleIntegerProperty(0);
         this.pointDeVieMax = new SimpleIntegerProperty(getPointDeVieAdditionelle()+getPointVie());
+        this.id = "Link";
 
     }
 
     public Link(Environnement environnement) {
 
-        super(100, 0, environnement, 7, 32,32);
+        super(200, 0, environnement, 7, 32,32);
         this.portefeuille= new SimpleIntegerProperty();
         this.inventaire=new Inventaire();
         this.numeroCaseActuel=new SimpleIntegerProperty(0);
         this.pointDeVieAdditionelle = new SimpleIntegerProperty(0);
         this.pointDeVieMax = new SimpleIntegerProperty(getPointDeVieAdditionelle()+getPointVie());
+        this.id = "Link";
 
     }
 
