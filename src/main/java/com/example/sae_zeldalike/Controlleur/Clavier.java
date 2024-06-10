@@ -169,6 +169,15 @@ public class Clavier implements EventHandler<KeyEvent> {
 
 //            System.out.println("Case de l'inventaire 2");
             }
+            if (touches.contains(KeyCode.QUOTE)){
+                link.getInventaire().setCaseActuel(3);
+            }
+            if (touches.contains(KeyCode.DIGIT5)){
+                link.getInventaire().setCaseActuel(4);
+            }
+            if (touches.contains(KeyCode.DIGIT6)){
+                link.getInventaire().setCaseActuel(5);
+            }
 
 
             // Gestion des flèches
