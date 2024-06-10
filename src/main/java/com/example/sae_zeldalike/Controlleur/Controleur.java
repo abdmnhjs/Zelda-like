@@ -271,6 +271,13 @@ public class Controleur implements Initializable {
                             }
                         }
 
+                        for(int i = 0 ; i < this.environnement.getBoulesDeFeuEnDeplacement().size() ; i++){
+                            BouleDeFeu bouleDeFeu = this.environnement.getBoulesDeFeuEnDeplacement().get(i);
+                            if(bouleDeFeu.estSurEnnemi(this.link)){
+                                bouleDeFeu.faireDégâts(this.link, bouleDeFeu.getDégâts());
+                            }
+                        }
+
 
                         if(this.link.epeeEquipee()){
                             for(int i = 0 ; i < this.environnement.getEpeeEnMain().size() ; i++){
