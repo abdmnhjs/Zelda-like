@@ -95,6 +95,7 @@ public class Controleur implements Initializable {
         vueMap = new VueMap(tilePane, map);
         this.link = new Link(environnement);
         this.vueLink = new VueLink(pane, link);
+        environnement.ajouterPersonnage(link);
         this.ennemi1 =new Ennemi1(environnement);
         environnement.ajouterPersonnage(ennemi1);
         this.vueEnnemi1 =new VueEnnemi1(pane,ennemi1);

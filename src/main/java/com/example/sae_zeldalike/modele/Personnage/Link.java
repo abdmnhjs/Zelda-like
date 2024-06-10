@@ -70,15 +70,17 @@ public class Link extends Personnage {
         return pointDeVieMax;
     }
 
-
     public void reduirePointsDeVie(int dommages) {
         int bouclierRestant = pointDeVieAdditionelle.get() - dommages;
         if (bouclierRestant >= 0) {
             pointDeVieAdditionelle.set(bouclierRestant);
         } else {
             pointDeVieAdditionelle.set(0);
-            int pvRestant = pointVie.get() + bouclierRestant; // bouclierRestant est négatif ici
-            pointVie.set(Math.max(pvRestant, 0));
+            int pvRestant = pointVie.get() + bouclierRestant;
+            if (pvRestant<0){
+                pvRestant = 0;
+            }
+            pointVie.set(pvRestant);
         }
     }
 
