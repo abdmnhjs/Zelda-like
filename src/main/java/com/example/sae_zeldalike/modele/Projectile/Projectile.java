@@ -20,11 +20,12 @@ public class Projectile{
     protected final int longueur;
     private IntegerProperty vitesse;
     private final String direction;
+    private int degats;
 //    private Arc arc;
 
 
 
-    public Projectile(Environnement environnement, int positionX,int positionY,int largeur,int longueur,int vitesse){
+    public Projectile(Environnement environnement, int positionX,int positionY,int largeur,int longueur,int vitesse,int degats){
         this.environnement=environnement;
         this.positionX=new SimpleIntegerProperty(positionX);
         this.positionY=new SimpleIntegerProperty(positionY);
@@ -36,7 +37,16 @@ public class Projectile{
         this.positionInitaleY=positionY;
         this.vitesse = new SimpleIntegerProperty(vitesse);
         this.direction = null;
+        this.degats=degats;
 
+    }
+
+    public int getDegats() {
+        return degats;
+    }
+
+    public void setDegats(int degats) {
+        this.degats = degats;
     }
 
     public String getDirection() {
@@ -105,14 +115,7 @@ public class Projectile{
         setPositionY(getPositionY()+getVitesse());
     }
 
-//    public boolean depasseRayon(){
-//        int rayonAttaque = this.arc.getRayonAttaque();
-//        if(this.getX() < this.getX() - rayonAttaque || this.getX() > this.getX() + rayonAttaque ||
-//                this.getY() < this.getY() - rayonAttaque || this.getY() > this.getY() + rayonAttaque){
-//            return true;
-//        }
-//        return false;
-//    }
+
 
 
     public Hitbox hitbox(int x, int y){

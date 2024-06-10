@@ -284,8 +284,8 @@ public class Controleur implements Initializable {
 
                         for(Personnage ennemi1 : this.environnement.getPersonnages()){
                             if (ennemi1 instanceof Ennemi) {
-                                if (ennemi1.estSurJoueur(this.link)) {
-                                    ennemi1.essaieAttaquerJoueur(this.link);
+                                if (((Ennemi) ennemi1).estSurJoueur(this.link)) {
+                                    ((Ennemi) ennemi1).essaieAttaquerJoueur(this.link);
                                 }
                             }
                         }
@@ -389,7 +389,7 @@ public class Controleur implements Initializable {
 
                                 for (int j = 0 ; j < this.environnement.getPersonnages().size() ; j++) {
                                     if (projectile.estSurEnnemi(this.environnement.getPersonnages().get(j))) {
-                                        projectile.faireDégâts(this.environnement.getPersonnages().get(j), projectile.getDégâts());
+                                        projectile.faireDégâts(this.environnement.getPersonnages().get(j), projectile.getDegats());
                                         projectile.getEnvironnement().supprimerFleche(projectile);
                                         flechesASupprimer.add(projectile);
                                     }

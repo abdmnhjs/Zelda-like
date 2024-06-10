@@ -36,8 +36,8 @@ public class VueFlèche {
         }
         this.spriteFlèche.setFitHeight(this.projectile.getLongueur());
         this.spriteFlèche.setFitWidth(this.projectile.getLargeur());
-        this.spriteFlèche.translateXProperty().bind(this.projectile.getXProperty());
-        this.spriteFlèche.translateYProperty().bind(this.projectile.getYProperty());
+        this.spriteFlèche.translateXProperty().bind(this.projectile.getPositionXProperty());
+        this.spriteFlèche.translateYProperty().bind(this.projectile.getPositionYProperty());
         pane.getChildren().add(this.spriteFlèche);
     }
 

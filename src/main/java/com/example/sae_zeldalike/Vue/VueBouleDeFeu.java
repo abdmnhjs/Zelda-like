@@ -36,8 +36,8 @@ public class VueBouleDeFeu {
         }
         this.spriteBouleDeFeu.setFitHeight(this.bouleDeFeu.getLongueur());
         this.spriteBouleDeFeu.setFitWidth(this.bouleDeFeu.getLargeur());
-        this.spriteBouleDeFeu.translateXProperty().bind(this.bouleDeFeu.getXProperty());
-        this.spriteBouleDeFeu.translateYProperty().bind(this.bouleDeFeu.getYProperty());
+        this.spriteBouleDeFeu.translateXProperty().bind(this.bouleDeFeu.getPositionXProperty());
+        this.spriteBouleDeFeu.translateYProperty().bind(this.bouleDeFeu.getPositionYProperty());
         pane.getChildren().add(this.spriteBouleDeFeu);
     }
 
