@@ -67,6 +67,12 @@ public class Controleur implements Initializable {
     private ImageView case2;
     @FXML
     private ImageView case3;
+    @FXML
+    private ImageView case4;
+    @FXML
+    private ImageView case5;
+    @FXML
+    private ImageView case6;
 
     @FXML
     private StackPane emplacement1;
@@ -74,6 +80,12 @@ public class Controleur implements Initializable {
     private StackPane emplacement2;
     @FXML
     private StackPane emplacement3;
+    @FXML
+    private StackPane emplacement4;
+    @FXML
+    private StackPane emplacement5;
+    @FXML
+    private StackPane emplacement6;
 
 
     private Timeline gameLoop;
@@ -122,7 +134,7 @@ public class Controleur implements Initializable {
 
         //Observateur sur l'indice de la case de l'inventaire selectionné
 
-        link.getInventaire().getCaseActuelProperty().addListener(new ObservateurCaseInventaire(emplacement1,emplacement2,emplacement3));
+        link.getInventaire().getCaseActuelProperty().addListener(new ObservateurCaseInventaire(emplacement1,emplacement2,emplacement3,emplacement4,emplacement5,emplacement6));
 
 
         //Observateur sur la monnaie de Link
@@ -188,6 +200,36 @@ public class Controleur implements Initializable {
                 }
             }else {
                 case3.setImage(null);
+            }
+            if (link.getInventaire().getInventaireCase4() != null) {
+
+                for (int i=0;i<observateurItem.getVueItems().size();i++){
+                    if (link.getInventaire().getInventaireCase4().getItem().getId().equals(observateurItem.getVueItems().get(i).getSpriteId())){
+                        case4.setImage(observateurItem.getVueItems().get(i).getImagePrincipale());
+                    }
+                }
+            }else {
+                case4.setImage(null);
+            }
+            if (link.getInventaire().getInventaireCase5() != null) {
+
+                for (int i=0;i<observateurItem.getVueItems().size();i++){
+                    if (link.getInventaire().getInventaireCase5().getItem().getId().equals(observateurItem.getVueItems().get(i).getSpriteId())){
+                        case5.setImage(observateurItem.getVueItems().get(i).getImagePrincipale());
+                    }
+                }
+            }else {
+                case5.setImage(null);
+            }
+            if (link.getInventaire().getInventaireCase6() != null) {
+
+                for (int i=0;i<observateurItem.getVueItems().size();i++){
+                    if (link.getInventaire().getInventaireCase6().getItem().getId().equals(observateurItem.getVueItems().get(i).getSpriteId())){
+                        case6.setImage(observateurItem.getVueItems().get(i).getImagePrincipale());
+                    }
+                }
+            }else {
+                case6.setImage(null);
             }
         }
     }

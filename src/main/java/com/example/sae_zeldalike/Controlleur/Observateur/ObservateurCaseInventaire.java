@@ -13,11 +13,20 @@ public class ObservateurCaseInventaire implements ChangeListener<Number> {
     private StackPane emplacement2;
     @FXML
     private StackPane emplacement3;
+    @FXML
+    private StackPane emplacement4;
+    @FXML
+    private StackPane emplacement5;
+    @FXML
+    private StackPane emplacement6;
 
-    public ObservateurCaseInventaire(StackPane emplacement1, StackPane emplacement2, StackPane emplacement3) {
+    public ObservateurCaseInventaire(StackPane emplacement1, StackPane emplacement2, StackPane emplacement3, StackPane emplacement4, StackPane emplacement5, StackPane emplacement6) {
         this.emplacement1 = emplacement1;
         this.emplacement2 = emplacement2;
         this.emplacement3 = emplacement3;
+        this.emplacement4 = emplacement4;
+        this.emplacement5 = emplacement5;
+        this.emplacement6 = emplacement6;
         changementCaseActuel(0);
     }
 
@@ -31,10 +40,16 @@ public class ObservateurCaseInventaire implements ChangeListener<Number> {
         emplacement1.getStyleClass().remove("caseInventaireActuel");
         emplacement2.getStyleClass().remove("caseInventaireActuel");
         emplacement3.getStyleClass().remove("caseInventaireActuel");
+        emplacement4.getStyleClass().remove("caseInventaireActuel");
+        emplacement5.getStyleClass().remove("caseInventaireActuel");
+        emplacement6.getStyleClass().remove("caseInventaireActuel");
 
         emplacement1.setTranslateY(0);
         emplacement2.setTranslateY(0);
         emplacement3.setTranslateY(0);
+        emplacement4.setTranslateY(0);
+        emplacement5.setTranslateY(0);
+        emplacement6.setTranslateY(0);
 
         switch (numeroCaseActuel) {
             case 0:
@@ -49,7 +64,17 @@ public class ObservateurCaseInventaire implements ChangeListener<Number> {
                 emplacement3.getStyleClass().add("caseInventaireActuel");
                 emplacement3.setTranslateY(emplacement3.getTranslateY()-20);
                 break;
-            default:
+            case 3:
+                emplacement4.getStyleClass().add("caseInventaireActuel");
+                emplacement4.setTranslateY(emplacement3.getTranslateY()-20);
+                break;
+            case 4:
+                emplacement5.getStyleClass().add("caseInventaireActuel");
+                emplacement5.setTranslateY(emplacement3.getTranslateY()-20);
+                break;
+            case 5:
+                emplacement6.getStyleClass().add("caseInventaireActuel");
+                emplacement6.setTranslateY(emplacement3.getTranslateY()-20);
                 break;
         }
     }

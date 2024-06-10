@@ -14,7 +14,7 @@ public class Inventaire {
 
     public Inventaire(){
         this.indiceChangement=new SimpleIntegerProperty(-1);
-        this.inventaire= new Stockable[3];
+        this.inventaire= new Stockable[6];
         this.caseActuel = new SimpleIntegerProperty(0);
     }
 
@@ -42,6 +42,17 @@ public class Inventaire {
     }
     public Stockable getInventaireCase3(){
         return inventaire[2];
+    }
+    public Stockable getInventaireCase4(){
+        return inventaire[3];
+    }
+
+    public Stockable getInventaireCase5(){
+        return inventaire[4];
+    }
+
+    public Stockable getInventaireCase6(){
+        return inventaire[5];
     }
 
     public Stockable getInventaireCaseActuel(){

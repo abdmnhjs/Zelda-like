@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
@@ -16,7 +22,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="vue1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae_zeldalike.Controlleur.Controleur">
+<BorderPane stylesheets="vue1.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae_zeldalike.Controlleur.Controleur">
    <center>
       <Pane fx:id="pane" prefHeight="576.0" prefWidth="1088.0" BorderPane.alignment="CENTER">
          <TilePane fx:id="tilePane" prefColumns="61" prefRows="40" prefTileHeight="32" prefTileWidth="32" />
@@ -78,17 +84,20 @@
       </HBox>
    </top>
    <bottom>
-      <GridPane alignment="BOTTOM_CENTER" hgap="10.0" maxHeight="150.0" maxWidth="320.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="150.0" BorderPane.alignment="BOTTOM_CENTER">
+      <GridPane alignment="BOTTOM_CENTER" hgap="10.0" maxHeight="150.0" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="150.0" BorderPane.alignment="BOTTOM_CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <StackPane fx:id="emplacement1" maxHeight="100.0" maxWidth="100.0" style="-fx-border-color: black;" GridPane.columnIndex="0">
+            <StackPane fx:id="emplacement1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black;" GridPane.columnIndex="0">
                <children>
                   <ImageView fx:id="case1" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
                      <image>
@@ -100,7 +109,7 @@
                   <Insets />
                </GridPane.margin>
             </StackPane>
-            <StackPane fx:id="emplacement2" maxHeight="100.0" maxWidth="100.0" style="-fx-border-color: black;" GridPane.columnIndex="1">
+            <StackPane fx:id="emplacement2" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black;" GridPane.columnIndex="1">
                <children>
                   <ImageView fx:id="case2" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
 
@@ -110,7 +119,7 @@
                   <Insets />
                </GridPane.margin>
             </StackPane>
-            <StackPane fx:id="emplacement3" maxHeight="100.0" maxWidth="100.0" style="-fx-border-color: black;" GridPane.columnIndex="2">
+            <StackPane fx:id="emplacement3" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black;" GridPane.columnIndex="2">
                <children>
                   <ImageView fx:id="case3" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true">
                   </ImageView>
@@ -118,6 +127,21 @@
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
+            </StackPane>
+            <StackPane fx:id="emplacement4" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black;" GridPane.columnIndex="3">
+               <children>
+                  <ImageView fx:id="case4" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </StackPane>
+            <StackPane fx:id="emplacement5" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black;" GridPane.columnIndex="4">
+               <children>
+                  <ImageView fx:id="case5" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </StackPane>
+            <StackPane fx:id="emplacement6" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black;" GridPane.columnIndex="5">
+               <children>
+                  <ImageView fx:id="case6" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
             </StackPane>
          </children>
          <BorderPane.margin>
