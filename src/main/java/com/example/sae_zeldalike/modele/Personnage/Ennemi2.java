@@ -24,19 +24,17 @@ public class Ennemi2 extends Ennemi{
 
         int ennemiX = this.getPositionX();
         int ennemiY = this.getPositionY();
-        int ennemiWidth = this.getLargeur();
-        int ennemiHeight = this.getLongueur();
+        int ennemiLargeur = this.getLargeur();
 
         int linkX = link.getPositionX();
         int linkY = link.getPositionY();
-        int linkWidth = link.getLargeur();
-        int linkHeight = link.getLongueur();
+        int linkLargeur = link.getLargeur();
+        int linkHauteur = link.getLongueur();
 
-        // Vérifie si Link est au-dessus de l'ennemi et dans la même colonne (en prenant en compte les largeurs et hauteurs)
-        boolean isLinkAbove = linkY + linkHeight < ennemiY;
-        boolean isLinkInSameColumn = (linkX >= ennemiX && linkX <= ennemiX + ennemiWidth) || (linkX + linkWidth >= ennemiX && linkX + linkWidth <= ennemiX + ennemiWidth);
+        boolean linkAuDessus = linkY + linkHauteur < ennemiY;
+        boolean linkMemeColonne = (linkX >= ennemiX && linkX <= ennemiX + ennemiLargeur) || (linkX + linkLargeur >= ennemiX && linkX + linkLargeur <= ennemiX + ennemiLargeur);
 
-        if(isLinkAbove && isLinkInSameColumn) {
+        if(linkAuDessus && linkMemeColonne) {
             System.out.println("Link détecté au-dessus !");
             bouleDeFeu = new BouleDeFeu(ennemiX, ennemiY, this.environnement, 30, 32, 32);
             bouleDeFeu.setDirection("UP");
@@ -51,19 +49,17 @@ public class Ennemi2 extends Ennemi{
 
         int ennemiX = this.getPositionX();
         int ennemiY = this.getPositionY();
-        int ennemiWidth = this.getLargeur();
-        int ennemiHeight = this.getLongueur();
+        int ennemiLargeur = this.getLargeur();
+        int ennemiLongueur = this.getLongueur();
 
         int linkX = link.getPositionX();
         int linkY = link.getPositionY();
-        int linkWidth = link.getLargeur();
-        int linkHeight = link.getLongueur();
+        int linkLargeur = link.getLargeur();
 
-        // Vérifie si Link est en-dessous de l'ennemi et dans la même colonne (en prenant en compte les largeurs et hauteurs)
-        boolean isLinkBelow = linkY > ennemiY + ennemiHeight;
-        boolean isLinkInSameColumn = (linkX >= ennemiX && linkX <= ennemiX + ennemiWidth) || (linkX + linkWidth >= ennemiX && linkX + linkWidth <= ennemiX + ennemiWidth);
+        boolean linkEnDessous = linkY > ennemiY + ennemiLongueur;
+        boolean linkMemeColonne = (linkX >= ennemiX && linkX <= ennemiX + ennemiLargeur) || (linkX + linkLargeur >= ennemiX && linkX + linkLargeur <= ennemiX + ennemiLargeur);
 
-        if (isLinkBelow && isLinkInSameColumn) {
+        if (linkEnDessous && linkMemeColonne) {
             bouleDeFeu = new BouleDeFeu(ennemiX, ennemiY, this.environnement, 30, 32, 32);
             bouleDeFeu.setDirection("DOWN");
             this.environnement.ajouterBouleDeFeu(bouleDeFeu);
@@ -76,19 +72,18 @@ public class Ennemi2 extends Ennemi{
 
         int ennemiX = this.getPositionX();
         int ennemiY = this.getPositionY();
-        int ennemiWidth = this.getLargeur();
-        int ennemiHeight = this.getLongueur();
+        int ennemiLargeur = this.getLargeur();
+        int ennemiLongueur = this.getLongueur();
 
         int linkX = link.getPositionX();
         int linkY = link.getPositionY();
-        int linkWidth = link.getLargeur();
-        int linkHeight = link.getLongueur();
+        int linkLongueur = link.getLongueur();
 
         // Vérifie si Link est à droite de l'ennemi et dans la même ligne (en prenant en compte les longueurs et hauteurs)
-        boolean isLinkToTheRight = linkX > ennemiX + ennemiWidth;
-        boolean isLinkInSameRow = (linkY >= ennemiY && linkY <= ennemiY + ennemiHeight) || (linkY + linkHeight >= ennemiY && linkY + linkHeight <= ennemiY + ennemiHeight);
+        boolean linkADroite = linkX > ennemiX + ennemiLargeur;
+        boolean linkMemeLigne = (linkY >= ennemiY && linkY <= ennemiY + ennemiLongueur) || (linkY + linkLongueur >= ennemiY && linkY + linkLongueur <= ennemiY + ennemiLongueur);
 
-        if (isLinkToTheRight && isLinkInSameRow) {
+        if (linkADroite && linkMemeLigne) {
             bouleDeFeu = new BouleDeFeu(ennemiX, ennemiY, this.environnement, 30, 32, 32);
             bouleDeFeu.setDirection("RIGHT");
             this.environnement.ajouterBouleDeFeu(bouleDeFeu);
@@ -102,18 +97,17 @@ public class Ennemi2 extends Ennemi{
         int ennemiX = this.getPositionX();
         int ennemiY = this.getPositionY();
         int ennemiWidth = this.getLargeur();
-        int ennemiHeight = this.getLongueur();
+        int ennemiLongueur = this.getLongueur();
 
         int linkX = link.getPositionX();
         int linkY = link.getPositionY();
-        int linkWidth = link.getLargeur();
-        int linkHeight = link.getLongueur();
+        int linkLargeur = link.getLargeur();
+        int linkLongueur = link.getLongueur();
 
-        // Vérifie si Link est à gauche de l'ennemi et dans la même ligne (en prenant en compte les longueurs et hauteurs)
-        boolean isLinkToTheLeft = linkX + linkWidth < ennemiX;
-        boolean isLinkInSameRow = (linkY >= ennemiY && linkY <= ennemiY + ennemiHeight) || (linkY + linkHeight >= ennemiY && linkY + linkHeight <= ennemiY + ennemiHeight);
+        boolean linkAGauche = linkX + linkLargeur < ennemiX;
+        boolean linkMemeLigne = (linkY >= ennemiY && linkY <= ennemiY + ennemiLongueur) || (linkY + linkLongueur >= ennemiY && linkY + linkLongueur <= ennemiY + ennemiLongueur);
 
-        if (isLinkToTheLeft && isLinkInSameRow) {
+        if (linkAGauche && linkMemeLigne) {
             bouleDeFeu = new BouleDeFeu(ennemiX, ennemiY, this.environnement, 30, 32, 32);
             bouleDeFeu.setDirection("LEFT");
             this.environnement.ajouterBouleDeFeu(bouleDeFeu);
