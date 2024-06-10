@@ -66,15 +66,15 @@ public class ObservateurCaseInventaire implements ChangeListener<Number> {
                 break;
             case 3:
                 emplacement4.getStyleClass().add("caseInventaireActuel");
-                emplacement4.setTranslateY(emplacement3.getTranslateY()-20);
+                emplacement4.setTranslateY(emplacement4.getTranslateY()-20);
                 break;
             case 4:
                 emplacement5.getStyleClass().add("caseInventaireActuel");
-                emplacement5.setTranslateY(emplacement3.getTranslateY()-20);
+                emplacement5.setTranslateY(emplacement5.getTranslateY()-20);
                 break;
             case 5:
                 emplacement6.getStyleClass().add("caseInventaireActuel");
-                emplacement6.setTranslateY(emplacement3.getTranslateY()-20);
+                emplacement6.setTranslateY(emplacement6.getTranslateY()-20);
                 break;
         }
     }
