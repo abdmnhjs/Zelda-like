@@ -4,8 +4,11 @@ import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Hitbox;
 import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Arc;
 import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Arme;
+import com.example.sae_zeldalike.modele.Personnage.Personnage;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+
+import java.util.ArrayList;
 
 public class Projectile{
 
@@ -115,7 +118,19 @@ public class Projectile{
         setPositionY(getPositionY()+getVitesse());
     }
 
+    public void faireDégâts(Personnage personnage, int dégâts){
+        ArrayList<Personnage> dead = new ArrayList<>();
+        if(dégâts <= personnage.getPointVie() && dégâts > 0){
+            personnage.setPointVie(personnage.getPointVie() - dégâts);
+            if (!personnage.estVivant()){
+                dead.add(personnage);
+            }
 
+        }
+        for (Personnage perso : dead) {
+            perso.getEnvironnement().supprimerPersonnage(perso);
+        }
+    }
 
 
     public Hitbox hitbox(int x, int y){
