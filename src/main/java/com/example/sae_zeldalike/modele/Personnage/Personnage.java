@@ -178,14 +178,7 @@ public abstract class Personnage {
 
 
 
-    public Arc getArc(){
-        for(Arme arme : this.armes){
-            if(arme instanceof Arc){
-                return (Arc) arme;
-            }
-        }
-        return null;
-    }
+
 
     @Override
     public String toString() {

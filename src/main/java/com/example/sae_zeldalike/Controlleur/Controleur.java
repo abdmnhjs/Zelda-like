@@ -341,45 +341,45 @@ public class Controleur implements Initializable {
 
 
                                 if(projectile.getDirection().equals("UP")){
-                                    newX = projectile.getX();
-                                    newY = projectile.getY() - projectile.getVitesse();
+                                    newX = projectile.getPositionX();
+                                    newY = projectile.getPositionY() - projectile.getVitesse();
 
-                                        if (projectile.getY() > projectile.getInitialY() - link.getArc().getRayonAttaque()) {
+                                        if (projectile.getPositionY() > projectile.getPositionInitaleY() - link.getArc().getRayonAttaque()) {
                                             tempsRechargeFleche = 3000;
-                                                projectile.setyProperty(newY);
+                                                projectile.setPositionY(newY);
                                             } else {
                                                 projectile.getEnvironnement().supprimerFleche(projectile);
                                             }
                                     }
 
                                 if(projectile.getDirection().equals("DOWN")){
-                                    newX = projectile.getX();
-                                    newY = projectile.getY() + projectile.getVitesse();
-                                        if (projectile.getY() < projectile.getInitialY() + link.getArc().getRayonAttaque()) {
+                                    newX = projectile.getPositionX();
+                                    newY = projectile.getPositionY() + projectile.getVitesse();
+                                        if (projectile.getPositionY() < projectile.getPositionInitaleY() + link.getArc().getRayonAttaque()) {
                                             tempsRechargeFleche = 3000;
-                                            projectile.setyProperty(newY);
+                                            projectile.setPositionY(newY);
                                         } else {
                                             flechesASupprimer.add(projectile);
                                         }
 
                                     }
                                 if(projectile.getDirection().equals("RIGHT")){
-                                    newX = projectile.getX() + projectile.getVitesse();
-                                    newY = projectile.getY();
-                                        if (projectile.getX() < projectile.getInitialX() + link.getArc().getRayonAttaque()) {
+                                    newX = projectile.getPositionX() + projectile.getVitesse();
+                                    newY = projectile.getPositionY();
+                                        if (projectile.getPositionX() < projectile.getPositionInitaleX() + link.getArc().getRayonAttaque()) {
                                             tempsRechargeFleche = 3000;
-                                            projectile.setxProperty(newX);
+                                            projectile.setPositionX(newX);
                                         } else {
                                             flechesASupprimer.add(projectile);
                                         }
 
                                     }
                                 if(projectile.getDirection().equals("LEFT")){
-                                    newX = projectile.getX() - projectile.getVitesse();
-                                    newY = projectile.getY();
-                                        if (projectile.getX() > projectile.getInitialX() - link.getArc().getRayonAttaque()) {
+                                    newX = projectile.getPositionX() - projectile.getVitesse();
+                                    newY = projectile.getPositionY();
+                                        if (projectile.getPositionX() > projectile.getPositionInitaleX() - link.getArc().getRayonAttaque()) {
                                             tempsRechargeFleche = 3000;
-                                            projectile.setxProperty(newX);
+                                            projectile.setPositionX(newX);
                                         } else {
                                             flechesASupprimer.add(projectile);
                                         }

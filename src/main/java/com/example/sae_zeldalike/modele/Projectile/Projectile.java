@@ -16,14 +16,15 @@ public class Projectile{
     private IntegerProperty positionY;
     private int positionInitaleX;
     private int positionInitaleY;
-    private final int largeur;
-    private final int longueur;
+    protected final int largeur;
+    protected final int longueur;
     private IntegerProperty vitesse;
+    private final String direction;
 //    private Arc arc;
 
 
 
-    public Projectile(Environnement environnement, int positionX,int positionY,int largeur,int longueur,int vitesse ){
+    public Projectile(Environnement environnement, int positionX,int positionY,int largeur,int longueur,int vitesse){
         this.environnement=environnement;
         this.positionX=new SimpleIntegerProperty(positionX);
         this.positionY=new SimpleIntegerProperty(positionY);
@@ -34,8 +35,19 @@ public class Projectile{
         this.positionInitaleX=positionX;
         this.positionInitaleY=positionY;
         this.vitesse = new SimpleIntegerProperty(vitesse);
+        this.direction = null;
 
     }
+
+    public String getDirection() {
+        return direction;
+    }
+
+
+    public void setDirection(String direction) {
+        direction = direction;
+    }
+
 
     public void setPositionX(int positionX) {
         this.positionX.set(positionX);

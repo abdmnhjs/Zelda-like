@@ -1,6 +1,6 @@
 package com.example.sae_zeldalike.Vue.Item;
 
-import Bombe;
+
 import com.example.sae_zeldalike.modele.Item.Item;
 import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Stockable;
 import javafx.scene.image.Image;

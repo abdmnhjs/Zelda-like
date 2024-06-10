@@ -92,7 +92,14 @@ public class Link extends Personnage {
         }
     }
 
-
+    public Arc getArc(){
+        for(Stockable arme : this.inventaire.getInventaire()){
+            if(arme instanceof Arc){
+                return (Arc) arme;
+            }
+        }
+        return null;
+    }
 
     public Inventaire getInventaire(){
         return inventaire;
@@ -224,6 +231,14 @@ public class Link extends Personnage {
 
     public void ajouterPiece(int piece) {
         portefeuille.setValue(portefeuille.getValue()+piece);
+    }
+
+    public void attaquer(){
+        if (armeEquiper!=null){
+            if (getArmeEquiper() instanceof Arc){
+
+            }
+        }
     }
 
 }
