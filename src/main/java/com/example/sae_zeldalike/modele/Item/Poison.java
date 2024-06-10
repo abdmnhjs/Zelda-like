@@ -3,6 +3,8 @@ package com.example.sae_zeldalike.modele.Item;
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Personnage.Personnage;
 
+import java.util.Random;
+
 public class Poison extends Item implements Effet{
 
     private int ralentissement;
@@ -30,6 +32,11 @@ public class Poison extends Item implements Effet{
     @Override
     public void appliquer(Personnage personnage) {
 
-        personnage.ralentir(getRalentissement(),getNombreTour());
+        Random random = new Random();
+        // 50% de chance de ralentir le personnage
+        if (random.nextBoolean()) {
+            personnage.ralentir(getRalentissement(), getNombreTour());
+        }
+
     }
 }

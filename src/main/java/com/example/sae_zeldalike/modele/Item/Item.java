@@ -60,7 +60,6 @@ public class Item {
 
 
 
-
     public Environnement getEnvironnement() {
         return environnement;
     }

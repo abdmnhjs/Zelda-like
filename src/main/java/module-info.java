@@ -11,7 +11,6 @@ module com.example.sae_zeldalike {
     exports com.example.sae_zeldalike.Vue;
     opens com.example.sae_zeldalike.Vue to javafx.fxml;
 
-
     exports com.example.sae_zeldalike.Controlleur;
     opens com.example.sae_zeldalike.Controlleur to javafx.fxml;
     exports com.example.sae_zeldalike.Vue.Item;

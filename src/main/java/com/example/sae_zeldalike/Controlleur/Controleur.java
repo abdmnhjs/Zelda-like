@@ -187,7 +187,6 @@ public class Controleur implements Initializable {
                     }
                 }
             }else {
-                System.out.println("case3 vide");
                 case3.setImage(null);
             }
         }

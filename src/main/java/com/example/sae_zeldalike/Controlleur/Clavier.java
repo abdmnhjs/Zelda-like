@@ -143,7 +143,7 @@ public class Clavier implements EventHandler<KeyEvent> {
                     for (Personnage p : link.getEnvironnement().getPersonnages()) {
                         if (link.getEffets().size()!=0) {
 
-                            link.getEffets().getFirst().appliquer(p);
+                            link.getEffets().get(0).appliquer(p);
                         }
                     }
 
