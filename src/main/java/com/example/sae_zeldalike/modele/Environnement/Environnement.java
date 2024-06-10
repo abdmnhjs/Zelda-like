@@ -1,11 +1,9 @@
 package com.example.sae_zeldalike.modele.Environnement;
 
+import com.example.sae_zeldalike.modele.BouleDeFeu;
 import com.example.sae_zeldalike.modele.Hitbox;
 import com.example.sae_zeldalike.modele.Item.*;
-import com.example.sae_zeldalike.modele.Personnage.Ennemi;
-import com.example.sae_zeldalike.modele.Personnage.Ennemi1;
-import com.example.sae_zeldalike.modele.Personnage.Link;
-import com.example.sae_zeldalike.modele.Personnage.Personnage;
+import com.example.sae_zeldalike.modele.Personnage.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -14,10 +12,12 @@ public class Environnement {
     private String id;
     private static int compteurEnvironnement=0;
     private ObservableList<Ennemi> personnages;
+    private ObservableList<Ennemi2> ennemis2;
     private ObservableList<Item> items;
     private ObservableList<Projectile> flèchesEnDéplacement;
     private ObservableList<Epée> epeeEnMain;
     private ObservableList<Link> linkRemovalQueue;
+    private ObservableList<BouleDeFeu> boulesDeFeuEnDeplacement;
     private Map map;
 
     public Environnement(Map map){
@@ -27,9 +27,11 @@ public class Environnement {
         this.map=map;
         this.flèchesEnDéplacement = FXCollections.observableArrayList();
         this.personnages= FXCollections.observableArrayList();
+        this.ennemis2 = FXCollections.observableArrayList();
         this.items= FXCollections.observableArrayList();
         this.epeeEnMain = FXCollections.observableArrayList();
         this.linkRemovalQueue = FXCollections.observableArrayList();
+        this.boulesDeFeuEnDeplacement = FXCollections.observableArrayList();
     }
 
     public void ajouterLink(Link link){
@@ -40,9 +42,18 @@ public class Environnement {
         personnages.add(personnage);
     }
 
+    public void ajouterEnnemi2(Ennemi2 ennemi2){
+        ennemis2.add(ennemi2);
+    }
+
     public void ajouterItem(Item item){
         items.add(item);
     }
+
+    public void ajouterBouleDeFeu(BouleDeFeu bouleDeFeu){
+        boulesDeFeuEnDeplacement.add(bouleDeFeu);
+    }
+
     public void supprimerItem (Item item){
         for(int i=0;i<items.size();i++){
             if(items.get(i).getId().equals(item.getId())){
@@ -83,6 +94,22 @@ public class Environnement {
         }
     }
 
+    public void supprimerEnnemi2 (Ennemi2 ennemi2){
+        for(int i=0;i<ennemis2.size();i++){
+            if(ennemis2.get(i).getId().equals(ennemi2.getId())){
+                ennemis2.remove(i);
+            }
+        }
+    }
+
+    public void supprimerBouleDeFeu(BouleDeFeu bouleDeFeu){
+        for(int i = 0; i< boulesDeFeuEnDeplacement.size(); i++){
+            if(boulesDeFeuEnDeplacement.get(i).getId().equals(bouleDeFeu.getId())){
+                boulesDeFeuEnDeplacement.remove(i);
+            }
+        }
+    }
+
     public ObservableList<Projectile> getFlèchesEnDéplacement() {
         return this.flèchesEnDéplacement;
     }
@@ -98,6 +125,14 @@ public class Environnement {
 
     public ObservableList<Ennemi> getPersonnages() {
         return personnages;
+    }
+
+    public ObservableList<Ennemi2> getEnnemis2() {
+        return ennemis2;
+    }
+
+    public ObservableList<BouleDeFeu> getBoulesDeFeuEnDeplacement() {
+        return boulesDeFeuEnDeplacement;
     }
 
     public Map getMap() {
@@ -249,6 +284,7 @@ public class Environnement {
         }
         for (int i =0;i<10;i++){
             ajouterPersonnage(new Ennemi1(this));
+            ajouterEnnemi2(new Ennemi2(this));
         }
         for (int i =0;i<10;i++){
             if (i<5){

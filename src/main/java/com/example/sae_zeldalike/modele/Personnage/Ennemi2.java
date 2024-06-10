@@ -10,73 +10,114 @@ public class Ennemi2 extends Ennemi{
         this.probaAttaque = 80;
     }
 
-    public void tirerBouleDeFeu(){
+    public void essaieTirerBouleDeFeu(Link link){
         if(proba(probaAttaque)){
-            tirerProjectileHaut();
-            tirerProjectileBas();
-            tirerProjectileDroite();
-            tirerProjectileGauche();
+            tirerProjectileHaut(link);
+            tirerProjectileBas(link);
+            tirerProjectileDroite(link);
+            tirerProjectileGauche(link);
         }
     }
 
-    public void tirerProjectileHaut(){
+    public void tirerProjectileHaut(Link link) {
         BouleDeFeu bouleDeFeu;
-        int y = this.getPositionY();
-        int linkY = this.environnement.getLinkRemovalQueue().get(0).getPositionY();
-        while (y != linkY){
-            y--;
-            if(y == linkY){
-                bouleDeFeu = new BouleDeFeu(this.getPositionX(), this.getPositionY(), this.environnement, 30, 32, 32);
-                bouleDeFeu.seDeplacerHaut();
-            } else if (this.environnement.estDansLimiteTerrain(this.getPositionX(), y, this.getLongueur(), this.getLargeur())){
-                break;
-            }
+
+        int ennemiX = this.getPositionX();
+        int ennemiY = this.getPositionY();
+        int ennemiWidth = this.getLargeur();
+        int ennemiHeight = this.getLongueur();
+
+        int linkX = link.getPositionX();
+        int linkY = link.getPositionY();
+        int linkWidth = link.getLargeur();
+        int linkHeight = link.getLongueur();
+
+        // Vérifie si Link est au-dessus de l'ennemi et dans la même colonne (en prenant en compte les largeurs et hauteurs)
+        boolean isLinkAbove = linkY + linkHeight < ennemiY;
+        boolean isLinkInSameColumn = (linkX >= ennemiX && linkX <= ennemiX + ennemiWidth) || (linkX + linkWidth >= ennemiX && linkX + linkWidth <= ennemiX + ennemiWidth);
+
+        if(isLinkAbove && isLinkInSameColumn) {
+            System.out.println("Link détecté au-dessus !");
+            bouleDeFeu = new BouleDeFeu(ennemiX, ennemiY, this.environnement, 30, 32, 32);
+            bouleDeFeu.setDirection("UP");
+            this.environnement.ajouterBouleDeFeu(bouleDeFeu);
         }
     }
 
-    public void tirerProjectileBas(){
+
+
+    public void tirerProjectileBas(Link link) {
         BouleDeFeu bouleDeFeu;
-        int y = this.getPositionY();
-        int linkY = this.environnement.getLinkRemovalQueue().get(0).getPositionY();
-        while (y != linkY){
-            y++;
-            if(y == linkY){
-                bouleDeFeu = new BouleDeFeu(this.getPositionX(), this.getPositionY(), this.environnement, 30, 32, 32);
-                bouleDeFeu.seDeplacerBas();
-            } else if (this.environnement.estDansLimiteTerrain(this.getPositionX(), y, this.getLongueur(), this.getLargeur())){
-                break;
-            }
+
+        int ennemiX = this.getPositionX();
+        int ennemiY = this.getPositionY();
+        int ennemiWidth = this.getLargeur();
+        int ennemiHeight = this.getLongueur();
+
+        int linkX = link.getPositionX();
+        int linkY = link.getPositionY();
+        int linkWidth = link.getLargeur();
+        int linkHeight = link.getLongueur();
+
+        // Vérifie si Link est en-dessous de l'ennemi et dans la même colonne (en prenant en compte les largeurs et hauteurs)
+        boolean isLinkBelow = linkY > ennemiY + ennemiHeight;
+        boolean isLinkInSameColumn = (linkX >= ennemiX && linkX <= ennemiX + ennemiWidth) || (linkX + linkWidth >= ennemiX && linkX + linkWidth <= ennemiX + ennemiWidth);
+
+        if (isLinkBelow && isLinkInSameColumn) {
+            bouleDeFeu = new BouleDeFeu(ennemiX, ennemiY, this.environnement, 30, 32, 32);
+            bouleDeFeu.setDirection("DOWN");
+            this.environnement.ajouterBouleDeFeu(bouleDeFeu);
         }
     }
 
-    public void tirerProjectileDroite(){
+
+    public void tirerProjectileDroite(Link link) {
         BouleDeFeu bouleDeFeu;
-        int x = this.getPositionX();
-        int linkX = this.environnement.getLinkRemovalQueue().get(0).getPositionX();
-        while (x != linkX){
-            x++;
-            if(x == linkX){
-                bouleDeFeu = new BouleDeFeu(this.getPositionX(), this.getPositionY(), this.environnement, 30, 32, 32);
-                bouleDeFeu.seDeplacerDroite();
 
-            } else if (this.environnement.estDansLimiteTerrain(x, this.getPositionY(), this.getLongueur(), this.getLargeur())){
-                break;
-            }
+        int ennemiX = this.getPositionX();
+        int ennemiY = this.getPositionY();
+        int ennemiWidth = this.getLargeur();
+        int ennemiHeight = this.getLongueur();
+
+        int linkX = link.getPositionX();
+        int linkY = link.getPositionY();
+        int linkWidth = link.getLargeur();
+        int linkHeight = link.getLongueur();
+
+        // Vérifie si Link est à droite de l'ennemi et dans la même ligne (en prenant en compte les longueurs et hauteurs)
+        boolean isLinkToTheRight = linkX > ennemiX + ennemiWidth;
+        boolean isLinkInSameRow = (linkY >= ennemiY && linkY <= ennemiY + ennemiHeight) || (linkY + linkHeight >= ennemiY && linkY + linkHeight <= ennemiY + ennemiHeight);
+
+        if (isLinkToTheRight && isLinkInSameRow) {
+            bouleDeFeu = new BouleDeFeu(ennemiX, ennemiY, this.environnement, 30, 32, 32);
+            bouleDeFeu.setDirection("RIGHT");
+            this.environnement.ajouterBouleDeFeu(bouleDeFeu);
         }
     }
 
-    public void tirerProjectileGauche(){
+
+    public void tirerProjectileGauche(Link link) {
         BouleDeFeu bouleDeFeu;
-        int x = this.getPositionX();
-        int linkX = this.environnement.getLinkRemovalQueue().get(0).getPositionX();
-        while (x != linkX){
-            x--;
-            if(x == linkX){
-                bouleDeFeu = new BouleDeFeu(this.getPositionX(), this.getPositionY(), this.environnement, 30, 32, 32);
-                bouleDeFeu.seDeplacerDroite();
-            } else if (this.environnement.estDansLimiteTerrain(x, this.getPositionY(), this.getLongueur(), this.getLargeur())){
-                break;
-            }
+
+        int ennemiX = this.getPositionX();
+        int ennemiY = this.getPositionY();
+        int ennemiWidth = this.getLargeur();
+        int ennemiHeight = this.getLongueur();
+
+        int linkX = link.getPositionX();
+        int linkY = link.getPositionY();
+        int linkWidth = link.getLargeur();
+        int linkHeight = link.getLongueur();
+
+        // Vérifie si Link est à gauche de l'ennemi et dans la même ligne (en prenant en compte les longueurs et hauteurs)
+        boolean isLinkToTheLeft = linkX + linkWidth < ennemiX;
+        boolean isLinkInSameRow = (linkY >= ennemiY && linkY <= ennemiY + ennemiHeight) || (linkY + linkHeight >= ennemiY && linkY + linkHeight <= ennemiY + ennemiHeight);
+
+        if (isLinkToTheLeft && isLinkInSameRow) {
+            bouleDeFeu = new BouleDeFeu(ennemiX, ennemiY, this.environnement, 30, 32, 32);
+            bouleDeFeu.setDirection("LEFT");
+            this.environnement.ajouterBouleDeFeu(bouleDeFeu);
         }
     }
+
 }

@@ -2,7 +2,6 @@ package com.example.sae_zeldalike.modele;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Item.Projectile;
-import com.example.sae_zeldalike.modele.Personnage.Ennemi;
 
 public class BouleDeFeu extends Projectile {
     private static int compteurBouleDeFeu;

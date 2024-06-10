@@ -5,8 +5,10 @@ import com.example.sae_zeldalike.Vue.*;
 import com.example.sae_zeldalike.Vue.Environnement.VueMap;
 import com.example.sae_zeldalike.Vue.Item.VueItem;
 import com.example.sae_zeldalike.Vue.Personnage.VueEnnemi1;
+import com.example.sae_zeldalike.Vue.Personnage.VueEnnemi2;
 import com.example.sae_zeldalike.Vue.Personnage.VueLink;
 import com.example.sae_zeldalike.Vue.Personnage.VuePersonnage;
+import com.example.sae_zeldalike.modele.BouleDeFeu;
 import com.example.sae_zeldalike.modele.Environnement.*;
 import com.example.sae_zeldalike.modele.Item.*;
 import com.example.sae_zeldalike.modele.Personnage.*;
@@ -41,6 +43,7 @@ public class Controleur implements Initializable {
 
     private ArrayList<VueItem> vueItems;
     private ArrayList<VuePersonnage> vuePersos;
+    private ArrayList<VueEnnemi2> vueEnnemis2;
     private ArrayList<VueFlèche> vueFlèches;
 
 
@@ -117,6 +120,7 @@ public class Controleur implements Initializable {
 
         //Observateur des vuesPersonnages
         vuePersos = new ArrayList<>();
+        vueEnnemis2 = new ArrayList<>();
         vueFlèches = new ArrayList<>();
         this.environnement.getItems().addListener(new ObservateurItem(pane, vueItems));
         this.environnement.getFlèchesEnDéplacement().addListener(new ObservateurFlechesEnDeplacement(pane));
@@ -124,7 +128,10 @@ public class Controleur implements Initializable {
         this.environnement.getEpeeEnMain().addListener(new ObservateurEpee(pane, this.link));
         this.environnement.getPersonnages().addListener(new ObservateurEnnemi1(pane,vuePersos));
         this.environnement.getLinkRemovalQueue().addListener(new ObservateurLink(pane));
+        this.environnement.getBoulesDeFeuEnDeplacement().addListener(new ObservateurBoulesDeFeu(pane));
+        this.environnement.getEnnemis2().addListener(new ObservateurEnnemi2(pane,vueEnnemis2));
         this.environnement.ajouterLink(this.link);
+
 
 
         //Observateur sur l'inventaire de Link
@@ -170,6 +177,10 @@ public class Controleur implements Initializable {
 
         // demarre l'animation
         gameLoop.play();
+        for (Ennemi2 e : this.environnement.getEnnemis2()){
+            System.out.println("xE2 = "+e.getPositionX());
+            System.out.println("yE2 = "+e.getPositionY());
+        }
 
 
 
@@ -234,11 +245,32 @@ public class Controleur implements Initializable {
                         vueLink.animation();
                         this.clavier.interactionTouche();
 
-                        for(Ennemi ennemi : this.environnement.getPersonnages()){
-                            if(ennemi.estSurJoueur(this.link)){
-                                ennemi.essaieAttaquerJoueur(this.link);
+                        for(Ennemi ennemi1 : this.environnement.getPersonnages()){
+                            if(ennemi1.estSurJoueur(this.link)){
+                                ennemi1.essaieAttaquerJoueur(this.link);
                             }
                         }
+
+                        for(Ennemi2 ennemi2 : this.environnement.getEnnemis2()){
+                            ennemi2.essaieTirerBouleDeFeu(this.link);
+                        }
+
+                        for (int i = 0 ; i < this.environnement.getBoulesDeFeuEnDeplacement().size() ; i++) {
+                            BouleDeFeu bouleDeFeu = this.environnement.getBoulesDeFeuEnDeplacement().get(i);
+                            if(bouleDeFeu.getDirection().equals("UP")){
+                                bouleDeFeu.seDeplacerHaut();
+                            }
+                            if(bouleDeFeu.getDirection().equals("DOWN")){
+                                bouleDeFeu.seDeplacerBas();
+                            }
+                            if(bouleDeFeu.getDirection().equals("RIGHT")){
+                                bouleDeFeu.seDeplacerDroite();
+                            }
+                            if(bouleDeFeu.getDirection().equals("LEFT")){
+                                bouleDeFeu.seDeplacerGauche();
+                            }
+                        }
+
 
                         if(this.link.epeeEquipee()){
                             for(int i = 0 ; i < this.environnement.getEpeeEnMain().size() ; i++){
@@ -339,7 +371,8 @@ public class Controleur implements Initializable {
                                 monPerso.animation();
 
                                 Ennemi1 e1 = (Ennemi1) monPerso.getPersonnage();
-                                e1.seDeplace(link.getPositionX()+ link.getLargeur()/4, link.getPositionY()+ link.getLongueur()/4);
+                                //e1.seDeplace(link.getPositionX()+ link.getLargeur()/4, link.getPositionY()+ link.getLongueur()/4);
+                                e1.bfs(e1.getPositionX(), e1.getPositionY(), this.link.getPositionX(), this.link.getPositionY());
                             }
                         }
                     }

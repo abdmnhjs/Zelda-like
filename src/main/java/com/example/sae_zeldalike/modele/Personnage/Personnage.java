@@ -21,6 +21,8 @@ public abstract class Personnage {
     private StringProperty direction;
     private final int largeur;
     private final int longueur;
+    private int initalX;
+    private int initalY;
     private Arme armeCourante;
     private Arc arc;
     private Epée epée;
@@ -32,7 +34,9 @@ public abstract class Personnage {
         this.pointVie = new SimpleIntegerProperty(pointVie);
         this.pointAttaque = new SimpleIntegerProperty(pointAttaque);
         this.positionX = new SimpleIntegerProperty(positionX);
+        this.initalX = positionX;
         this.positionY = new SimpleIntegerProperty(positionY);
+        this.initalY = positionY;
         this.vitesseDeplacement = new SimpleIntegerProperty(vitesseDeplacement);
         this.environnement = environnement;
         this.direction = new SimpleStringProperty("Inactif_DOWN");
@@ -66,14 +70,24 @@ public abstract class Personnage {
     public void genererPositionAleatoires(){
         Random random = new Random();
         int posX,posY;
-        do{
-            posX = (random.nextInt((getEnvironnement().getMap().getColonne()-2)*getEnvironnement().getMap().getTailleTuile()));
-            posY = (random.nextInt((getEnvironnement().getMap().getLigne()-2)*getEnvironnement().getMap().getTailleTuile()));
 
-//            System.out.println("posX="+posX+",posY="+posY);
-        }while (!getEnvironnement().estDansTuile(11,hitbox(posX,posY)));
+        int taille = this.environnement.getMap().getCoordonnéesTuilesTraversables().size();
+
+
+        int[] couple = this.environnement.getMap().getCoordonnéesTuilesTraversables().get(random.nextInt(taille));
+
+        posX = couple[0];
+        posY = couple[1];
+
         setPositionXProperty(posX);
         setPositionYProperty(posY);
+
+        for(Personnage personnage : this.environnement.getPersonnages()){
+            if(personnage.getPositionX() == this.getPositionX() || personnage.getPositionY() == this.getPositionY()
+            || this.environnement.estDansLimiteTerrain(this.getPositionX(), this.getPositionX(), this.longueur, this.largeur)){
+                genererPositionAleatoires();
+            }
+        }
     }
 
     public void tue(){
@@ -97,6 +111,12 @@ public abstract class Personnage {
 
     public int getPositionX() {
         return positionX.getValue();
+    }
+    public int getInitialX(){
+        return this.initalX;
+    }
+    public int getInitialY(){
+        return this.initalY;
     }
     public IntegerProperty getPositionXProperty() {
         return positionX;

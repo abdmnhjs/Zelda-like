@@ -24,7 +24,7 @@ public class Link extends Personnage {
 
     public Link(Environnement environnement, int positionX, int positionY) {
 
-        super(200, 0, environnement, positionX, positionY, 7, 32,32);
+        super(200, 0, environnement, positionX, positionY, 5, 32,32);
         this.portefeuille= new SimpleIntegerProperty();
         this.inventaire=new Inventaire();
         this.numeroCaseActuel=new SimpleIntegerProperty(0);

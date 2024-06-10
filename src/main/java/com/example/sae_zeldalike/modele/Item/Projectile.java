@@ -2,7 +2,6 @@ package com.example.sae_zeldalike.modele.Item;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Hitbox;
-import com.example.sae_zeldalike.modele.Personnage.Ennemi;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
