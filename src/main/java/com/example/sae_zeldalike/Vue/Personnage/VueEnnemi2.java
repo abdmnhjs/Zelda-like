@@ -7,7 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
-public class VueEnnemi1 extends VuePersonnage{
+public class VueEnnemi2 extends VuePersonnage{
 
 
     private Image spritePerso1,spritePerso2,spritePerso3;
@@ -16,7 +16,7 @@ public class VueEnnemi1 extends VuePersonnage{
     private Rectangle arrPlanVie;
 
 
-    public VueEnnemi1 (Pane pane, Personnage personnage) {
+    public VueEnnemi2 (Pane pane, Personnage personnage) {
         super(pane, personnage);
         initialiser();
         this.spritePersonnage.setImage(spritePerso1);
@@ -79,7 +79,7 @@ public class VueEnnemi1 extends VuePersonnage{
     @Override
     protected void creerOmbre(Pane pane) {
         ombre = new Circle((personnage.getLargeur()/2.5));
-        ombre.setFill(Color.RED);
+        ombre.setFill(Color.BLUE);
         ombre.setId("O"+personnage.getId());
 
         pane.getChildren().add(this.ombre);

@@ -32,6 +32,7 @@ public class VueLink extends VuePersonnage {
 
         intialiserImage();
         this.spritePersonnage.setImage(down1);
+        this.spritePersonnage.setId(personnage.getId());
 
         spritePersonnage.translateXProperty().bind(personnage.getPositionXProperty());
         spritePersonnage.translateYProperty().bind(personnage.getPositionYProperty());

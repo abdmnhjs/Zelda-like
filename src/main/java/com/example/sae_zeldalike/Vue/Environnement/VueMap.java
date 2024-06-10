@@ -34,8 +34,8 @@ public class VueMap {
             for (int colonne = 0;colonne<map.getMap()[ligne].length;colonne++){
                 imageView = new ImageView();
                 switch (map.getMap()[ligne][colonne]){
-                    case 11 -> imageView.setImage(mur);
-                    case 54 -> imageView.setImage(sol);
+                    case 54 -> imageView.setImage(mur);
+                    case 11 -> imageView.setImage(sol);
                     case 55 -> imageView.setImage(piece);
                 }
                 this.tilePane.getChildren().add(imageView);

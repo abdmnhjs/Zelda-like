@@ -3,13 +3,12 @@ package com.example.sae_zeldalike.modele.Personnage;
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Inventaire;
 import com.example.sae_zeldalike.modele.Item.*;
+import com.example.sae_zeldalike.modele.Item.NonStockable.Effet;
+import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.*;
+import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.*;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 import java.util.*;
 
@@ -21,6 +20,7 @@ public class Link extends Personnage {
     private IntegerProperty pointDeVieAdditionelle;
     private final IntegerProperty pointDeVieMax;
     private ArrayList<Effet> effets;
+    private Arme armeEquiper;
 
     public Link(Environnement environnement, int positionX, int positionY) {
 
@@ -30,7 +30,7 @@ public class Link extends Personnage {
         this.numeroCaseActuel=new SimpleIntegerProperty(0);
         this.pointDeVieAdditionelle = new SimpleIntegerProperty(0);
         this.pointDeVieMax = new SimpleIntegerProperty(getPointDeVieAdditionelle()+getPointVie());
-        this.effets=new ArrayList<>();
+        armeEquiper=null;
 
     }
 
@@ -42,8 +42,16 @@ public class Link extends Personnage {
         this.numeroCaseActuel=new SimpleIntegerProperty(0);
         this.pointDeVieAdditionelle = new SimpleIntegerProperty(0);
         this.pointDeVieMax = new SimpleIntegerProperty(getPointDeVieAdditionelle()+getPointVie());
-        this.effets=new ArrayList<>();
+        armeEquiper=null;
+    }
 
+    public Arme getArmeEquiper() {
+        return armeEquiper;
+    }
+
+    public void setArmeEquiper(Arme armeEquiper) {
+
+        this.armeEquiper = armeEquiper;
     }
 
     public void ajouterBouclier(int ajout) {

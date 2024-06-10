@@ -1,15 +1,10 @@
-package com.example.sae_zeldalike.modele.Item;
+package com.example.sae_zeldalike.modele.Item.StockableDansInventaire;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
+import com.example.sae_zeldalike.modele.Item.Item;
 import com.example.sae_zeldalike.modele.Personnage.Personnage;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import javafx.application.Platform;
-import javafx.scene.image.Image;
 
 public class Bombe extends Item implements Stockable {
 

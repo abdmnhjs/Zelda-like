@@ -1,4 +1,4 @@
-package com.example.sae_zeldalike.modele.Item;
+package com.example.sae_zeldalike.modele.Item.NonStockable;
 
 import com.example.sae_zeldalike.modele.Personnage.Personnage;
 

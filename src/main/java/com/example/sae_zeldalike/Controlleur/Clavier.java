@@ -1,20 +1,22 @@
 package com.example.sae_zeldalike.Controlleur;
 
 import com.example.sae_zeldalike.modele.Item.*;
+import com.example.sae_zeldalike.modele.Item.NonStockable.*;
+import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Arc;
+import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Epée;
+import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Stockable;
+import com.example.sae_zeldalike.modele.Item.StockableDansPortefeuille.Piece;
 import com.example.sae_zeldalike.modele.Personnage.*;
 
-import com.example.sae_zeldalike.Vue.VueFlèche;
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
+import com.example.sae_zeldalike.modele.Projectile.Projectile;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
-import com.example.sae_zeldalike.modele.Item.Arme;
 
 import java.util.HashSet;
 
@@ -25,12 +27,15 @@ public class Clavier implements EventHandler<KeyEvent> {
     private HashSet<KeyCode> touches;
     private Environnement environnement;
     private Timeline mouvementContinu;
+    private String directionAttaque;
 
     public Clavier(Link link, Pane pane, Environnement environnement) {
         this.link = link;
         this.pane = pane;
         this.touches = new HashSet<>();
         this.environnement = environnement;
+        this.directionAttaque = "";
+
         initTimeline();
     }
 
@@ -44,6 +49,7 @@ public class Clavier implements EventHandler<KeyEvent> {
                 link.setDirection("Inactif_" + link.getDirection());
             }
         }
+        interactionTouche();
     }
 
     private void initTimeline() {
@@ -52,7 +58,7 @@ public class Clavier implements EventHandler<KeyEvent> {
         mouvementContinu.play();
     }
 
-    private void interactionTouche() {
+    public void interactionTouche() {
 
 
         if (link.estVivant()) {
@@ -107,7 +113,7 @@ public class Clavier implements EventHandler<KeyEvent> {
 
                         } else {
                             System.out.println("Inventaire plein");
-                            laisserSurTerrain=true;
+                            laisserSurTerrain = true;
                         }
 
                     }
@@ -120,10 +126,12 @@ public class Clavier implements EventHandler<KeyEvent> {
                     if (item instanceof CoeurBleu) {
                         link.ajouterBouclier(((CoeurBleu) item).getVieAdditionelle());
 
-                    }if (item instanceof SuperMegaFast){
-                        link.setVitesseDeplacementProperty(link.getVitesseDeplacement()+((SuperMegaFast) item).getVitesse());
-                    }if (item instanceof Poison){
-                        link.ajouterEffet((Effet)item);
+                    }
+                    if (item instanceof SuperMegaFast) {
+                        link.setVitesseDeplacementProperty(link.getVitesseDeplacement() + ((SuperMegaFast) item).getVitesse());
+                    }
+                    if (item instanceof Poison) {
+                        link.ajouterEffet((Effet) item);
                     }
                     if (!laisserSurTerrain) {
                         link.getEnvironnement().supprimerItem(item);
@@ -140,12 +148,12 @@ public class Clavier implements EventHandler<KeyEvent> {
             if (touches.contains(KeyCode.I)) {
                 link.utiliserItemDansInventaire();
 
-                    for (Personnage p : link.getEnvironnement().getPersonnages()) {
-                        if (link.getEffets().size()!=0) {
+                for (Personnage p : link.getEnvironnement().getPersonnages()) {
+                    if (link.getEffets().size() != 0) {
 
-                            link.getEffets().get(0).appliquer(p);
-                        }
+                        link.getEffets().get(0).appliquer(p);
                     }
+                }
 
             }
             if (touches.contains(KeyCode.U)) {
@@ -169,71 +177,73 @@ public class Clavier implements EventHandler<KeyEvent> {
 
 //            System.out.println("Case de l'inventaire 2");
             }
-            if (touches.contains(KeyCode.QUOTE)){
+            if (touches.contains(KeyCode.QUOTE)) {
                 link.getInventaire().setCaseActuel(3);
             }
-            if (touches.contains(KeyCode.DIGIT5)){
+            if (touches.contains(KeyCode.DIGIT5)) {
                 link.getInventaire().setCaseActuel(4);
             }
-            if (touches.contains(KeyCode.DIGIT6)){
+            if (touches.contains(KeyCode.DIGIT6)) {
                 link.getInventaire().setCaseActuel(5);
             }
-
-
-            // Gestion des flèches
-            if (touches.contains(KeyCode.UP)) {
-                lancerFleche(KeyCode.UP);
-            }
-            if (touches.contains(KeyCode.DOWN)) {
-                lancerFleche(KeyCode.DOWN);
-            }
-            if (touches.contains(KeyCode.RIGHT)) {
-                lancerFleche(KeyCode.RIGHT);
-            }
-            if (touches.contains(KeyCode.LEFT)) {
-                lancerFleche(KeyCode.LEFT);
-            }
-
         }
+        interactionToucheCombat();
     }
 
-    private void lancerFleche(KeyCode code) {
-        for (Arme arme : link.getArmes()) {
-            if (arme instanceof Arc) {
-                if (!((Arc) arme).getFlèches().isEmpty()) {
-                    Flèche flèche = ((Arc) arme).getFlèches().remove(0);
-                    VueFlèche vueFlèche;
-                    switch (code) {
-                        case UP:
-                            ((Arc) arme).getFlèches().add(new Flèche(link.getPositionX() + (flèche.getLargeur() / 2), link.getPositionY(), 30, environnement));
-                            vueFlèche = new VueFlèche(flèche, pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-haut.png");
-                            break;
-                        case DOWN:
-                            ((Arc) arme).getFlèches().add(new Flèche(link.getPositionX() + (flèche.getLargeur() / 2), link.getPositionY() + flèche.getLongueur(), 30, environnement));
-                            vueFlèche = new VueFlèche(flèche, pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-bas.png");
-                            break;
-                        case RIGHT:
-                            ((Arc) arme).getFlèches().add(new Flèche(link.getPositionX() + flèche.getLargeur(), link.getPositionY() + (flèche.getLongueur() / 2), 30, environnement));
-                            vueFlèche = new VueFlèche(flèche, pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-droite.png");
-                            break;
-                        case LEFT:
-                            ((Arc) arme).getFlèches().add(new Flèche(link.getPositionX(), link.getPositionY() + (flèche.getLongueur() / 2), 30, environnement));
-                            vueFlèche = new VueFlèche(flèche, pane, "file:src/main/resources/com/example/sae_zeldalike/Flèche/flèche-gauche.png");
-                            break;
-                        default:
-                            return;
-                    }
-                    ((Arc) arme).getFlèchesEnDéplacement().add(vueFlèche);
-                    vueFlèche.creerFlèche(pane);
-                    if (flèche.estDevantObstacle(flèche.getX(), flèche.getY()) || flèche.estDansLimiteTerrain(flèche.getX(), flèche.getY())) {
-                        vueFlèche.supprimerFlèche(pane);
-                        ((Arc) arme).getFlèchesEnDéplacement().remove(vueFlèche);
-                    }
+
+        public void interactionToucheCombat () {
+            if (this.link.getArmeEquiper() instanceof Arc) {
+                if (touches.contains(KeyCode.UP)) {
+                    Projectile projectile = new Projectile(this.link.getPositionX() + 16, this.link.getPositionY() + 16, this.environnement, this.link.getArc());
+                    projectile.setDirection("UP");
+                    this.link.getArc().getFleches().add(projectile);
+                    this.link.tirerFleche();
+                }
+                if (touches.contains(KeyCode.DOWN)) {
+                    Projectile projectile = new Projectile(this.link.getPositionX() + 16, this.link.getPositionY() + 16, this.environnement, this.link.getArc());
+                    projectile.setDirection("DOWN");
+                    this.link.getArc().getFleches().add(projectile);
+                    this.link.tirerFleche();
+                }
+                if (touches.contains(KeyCode.RIGHT)) {
+                    Projectile projectile = new Projectile(this.link.getPositionX() + 16, this.link.getPositionY() + 16, this.environnement, this.link.getArc());
+                    projectile.setDirection("RIGHT");
+                    this.link.getArc().getFleches().add(projectile);
+                    this.link.tirerFleche();
+                }
+                if (touches.contains(KeyCode.LEFT)) {
+                    Projectile projectile = new Projectile(this.link.getPositionX() + 16, this.link.getPositionY() + 16, this.environnement, this.link.getArc());
+                    projectile.setDirection("LEFT");
+                    this.link.getArc().getFleches().add(projectile);
+                    this.link.tirerFleche();
+                }
+
+            }
+        }
+        if (this.link.getArmeEquiper() instanceof Epée) {
+            Epée epée = new Epée(this.link.getPositionX() + 16, this.link.getPositionY() + 16, 50, 15, this.environnement);
+            if (touches.contains(KeyCode.UP)) {
+                    epée.setDirection("UP");
+                    this.link.utiliserEpee(epée);
+                }
+                if (touches.contains(KeyCode.DOWN)) {
+                    epée.setDirection("DOWN");
+                    this.link.utiliserEpee(epée);
+                }
+                if (touches.contains(KeyCode.RIGHT)) {
+                    epée.setDirection("RIGHT");
+                    this.link.utiliserEpee(epée);
+                }
+                if (touches.contains(KeyCode.LEFT)) {
+                    epée.setDirection("LEFT");
+                    this.link.utiliserEpee(epée);
                 }
             }
         }
     }
-
-
-
 }
+
+
+
+
+

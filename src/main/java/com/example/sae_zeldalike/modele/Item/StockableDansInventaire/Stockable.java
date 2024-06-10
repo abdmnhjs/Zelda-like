@@ -1,6 +1,6 @@
-package com.example.sae_zeldalike.modele.Item;
+package com.example.sae_zeldalike.modele.Item.StockableDansInventaire;
 
-import javafx.scene.image.Image;
+import com.example.sae_zeldalike.modele.Item.Item;
 
 public interface Stockable {
 

@@ -1,8 +1,9 @@
-package com.example.sae_zeldalike.modele.Item;
+package com.example.sae_zeldalike.modele.Item.NonStockable;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
+import com.example.sae_zeldalike.modele.Item.Item;
 
-public class SuperMegaFast extends Item{
+public class SuperMegaFast extends Item {
 
     private int vitesse;
 

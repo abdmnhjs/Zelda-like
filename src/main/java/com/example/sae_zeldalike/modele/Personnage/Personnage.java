@@ -2,15 +2,10 @@ package com.example.sae_zeldalike.modele.Personnage;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Hitbox;
-import com.example.sae_zeldalike.modele.Item.Arc;
-import com.example.sae_zeldalike.modele.Item.Arme;
-import com.example.sae_zeldalike.modele.Item.Item;
-import com.example.sae_zeldalike.modele.Item.Piece;
-import com.example.sae_zeldalike.modele.Item.Flèche;
-import com.example.sae_zeldalike.modele.Limitations;
+import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Arc;
+import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Arme;
 import javafx.beans.property.*;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class Personnage {
@@ -26,7 +21,6 @@ public abstract class Personnage {
     private StringProperty direction;
     private final int largeur;
     private final int longueur;
-    private ArrayList<Arme> armes;
     protected int dureeEffet;
     protected boolean toucheParEffet;
     protected int effetRalentissement;
@@ -43,7 +37,6 @@ public abstract class Personnage {
         this.direction = new SimpleStringProperty("Inactif_DOWN");
         this.longueur=longueur;
         this.largeur=largeur;
-        this.armes = new ArrayList<>();
         dureeEffet=0;
         toucheParEffet=false;
         effetRalentissement=0;
@@ -59,7 +52,7 @@ public abstract class Personnage {
         this.direction = new SimpleStringProperty("Inactif_DOWN");
         this.longueur=longueur;
         this.largeur=largeur;
-        this.armes = new ArrayList<>();
+
         this.positionX = new SimpleIntegerProperty();
         this.positionY = new SimpleIntegerProperty();
         genererPositionAleatoires();
@@ -184,21 +177,6 @@ public abstract class Personnage {
     }
 
 
-    public ArrayList<Arme> getArmes() {
-        return this.armes;
-    }
-
-    public void ajouterArme(Arme arme){
-        this.armes.add(arme);
-    }
-
-    public void ajouterFlèche(Flèche flèche){
-        for(Arme arme : this.armes){
-            if(arme instanceof Arc){
-                ((Arc) arme).getFlèches().add(flèche);
-            }
-        }
-    }
 
     public Arc getArc(){
         for(Arme arme : this.armes){
@@ -208,7 +186,6 @@ public abstract class Personnage {
         }
         return null;
     }
-
 
     @Override
     public String toString() {

@@ -2,6 +2,11 @@ package com.example.sae_zeldalike.Controlleur.Observateur;
 
 import com.example.sae_zeldalike.Vue.Item.*;
 import com.example.sae_zeldalike.modele.Item.*;
+import com.example.sae_zeldalike.modele.Item.NonStockable.CoeurBleu;
+import com.example.sae_zeldalike.modele.Item.NonStockable.CoeurRouge;
+import com.example.sae_zeldalike.modele.Item.NonStockable.Poison;
+import com.example.sae_zeldalike.modele.Item.NonStockable.SuperMegaFast;
+import com.example.sae_zeldalike.modele.Item.StockableDansPortefeuille.Piece;
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
 

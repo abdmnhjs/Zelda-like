@@ -1,6 +1,6 @@
 package com.example.sae_zeldalike.modele;
 
-import com.example.sae_zeldalike.modele.Item.Stockable;
+import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Stockable;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 

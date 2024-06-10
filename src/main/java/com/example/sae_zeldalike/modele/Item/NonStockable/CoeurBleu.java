@@ -1,8 +1,9 @@
-package com.example.sae_zeldalike.modele.Item;
+package com.example.sae_zeldalike.modele.Item.NonStockable;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
+import com.example.sae_zeldalike.modele.Item.Item;
 
-public class CoeurBleu extends Item{
+public class CoeurBleu extends Item {
 
     private int vieAdditionelle;
 

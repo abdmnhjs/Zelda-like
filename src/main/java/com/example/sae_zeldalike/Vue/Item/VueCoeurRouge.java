@@ -1,6 +1,6 @@
 package com.example.sae_zeldalike.Vue.Item;
 
-import com.example.sae_zeldalike.modele.Item.CoeurRouge;
+import com.example.sae_zeldalike.modele.Item.NonStockable.CoeurRouge;
 import com.example.sae_zeldalike.modele.Item.Item;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;

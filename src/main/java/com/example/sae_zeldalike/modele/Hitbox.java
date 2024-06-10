@@ -15,7 +15,6 @@ public class Hitbox {
         this.y = y;
         this.largeur=largeur;
         this.longueur=longueur;
-
     }
 
 
