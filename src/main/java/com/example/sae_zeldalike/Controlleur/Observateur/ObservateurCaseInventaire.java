@@ -1,5 +1,6 @@
 package com.example.sae_zeldalike.Controlleur.Observateur;
 
+import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Arme;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -20,6 +21,8 @@ public class ObservateurCaseInventaire implements ChangeListener<Number> {
     private StackPane emplacement5;
     @FXML
     private StackPane emplacement6;
+    private Arme armeEquiper;
+
 
     public ObservateurCaseInventaire(StackPane emplacement1, StackPane emplacement2, StackPane emplacement3, StackPane emplacement4, StackPane emplacement5, StackPane emplacement6) {
         this.emplacement1 = emplacement1;
@@ -44,6 +47,12 @@ public class ObservateurCaseInventaire implements ChangeListener<Number> {
         emplacement4.getStyleClass().remove("caseInventaireActuel");
         emplacement5.getStyleClass().remove("caseInventaireActuel");
         emplacement6.getStyleClass().remove("caseInventaireActuel");
+        emplacement1.getStyleClass().remove("armeEquiper");
+        emplacement2.getStyleClass().remove("armeEquiper");
+        emplacement3.getStyleClass().remove("armeEquiper");
+        emplacement4.getStyleClass().remove("armeEquiper");
+        emplacement5.getStyleClass().remove("armeEquiper");
+        emplacement6.getStyleClass().remove("armeEquiper");
 
         emplacement1.setTranslateY(0);
         emplacement2.setTranslateY(0);
@@ -55,7 +64,6 @@ public class ObservateurCaseInventaire implements ChangeListener<Number> {
         switch (numeroCaseActuel) {
             case 0:
                 emplacement1.getStyleClass().add("caseInventaireActuel");
-                emplacement1.getStyleClass().add("armeEquiper");
                 emplacement1.setTranslateY(emplacement1.getTranslateY()-20);
                 break;
             case 1:
@@ -79,5 +87,6 @@ public class ObservateurCaseInventaire implements ChangeListener<Number> {
                 emplacement6.setTranslateY(emplacement6.getTranslateY()-20);
                 break;
         }
+
     }
 }

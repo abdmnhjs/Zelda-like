@@ -18,6 +18,11 @@ public class Arc extends Arme {
         fleches = new ArrayList<>();
     }
 
+    @Override
+    public void utiliserCapacite() {
+
+    }
+
 
     public void tirerFleche(){
         this.getEnvironnement().getFlèchesEnDéplacement().add(this.fleches.get(0));

@@ -20,6 +20,10 @@ public class Ennemi extends Personnage {
         super(pointVie, pointAttaque, environnement,  vitesseDeplacement, longueur, largeur);
     }
 
+    @Override
+    public void reduirePointsDeVie(int degats) {
+        int nouveauxPV = getPointVie()-degats;
+    }
 
 
     public void seDeplace(int cibleX , int cibleY) {

@@ -156,6 +156,9 @@ public class Clavier implements EventHandler<KeyEvent> {
 //                }
 
             }
+            if (touches.contains(KeyCode.O)) {
+                link.setArmeEquiper(null);
+            }
             if (touches.contains(KeyCode.U)) {
                 link.getInventaire().setCaseActuel(link.getInventaire().getCaseActuel() + 1);
             }
@@ -219,25 +222,26 @@ public class Clavier implements EventHandler<KeyEvent> {
 //            }
 //
 //        }
-//        if (this.link.getArmeEquiper() instanceof Epée) {
-//            Epée epée = new Epée(this.link.getPositionX() + 16, this.link.getPositionY() + 16, 50, 15, this.environnement);
-//            if (touches.contains(KeyCode.UP)) {
-//                epée.setDirection("UP");
-//                this.link.utiliserEpee(epée);
-//            }
-//            if (touches.contains(KeyCode.DOWN)) {
-//                epée.setDirection("DOWN");
-//                this.link.utiliserEpee(epée);
-//            }
-//            if (touches.contains(KeyCode.RIGHT)) {
-//                epée.setDirection("RIGHT");
-//                this.link.utiliserEpee(epée);
-//            }
-//            if (touches.contains(KeyCode.LEFT)) {
-//                epée.setDirection("LEFT");
-//                this.link.utiliserEpee(epée);
-//            }
-//        }
+        if (this.link.getArmeEquiper() instanceof Epée) {
+
+            if (touches.contains(KeyCode.UP)) {
+                link.getArmeEquiper().setDirection("UP");
+                link.getArmeEquiper().utiliserCapacite();
+            }
+            if (touches.contains(KeyCode.DOWN)) {
+                link.getArmeEquiper().setDirection("DOWN");
+                link.getArmeEquiper().utiliserCapacite();
+            }
+            if (touches.contains(KeyCode.RIGHT)) {
+                link.getArmeEquiper().setDirection("RIGHT");
+                link.getArmeEquiper().utiliserCapacite();
+            }
+            if (touches.contains(KeyCode.LEFT)) {
+                link.getArmeEquiper().setDirection("LEFT");
+                link.getArmeEquiper().utiliserCapacite();
+            }
+
+        }
     }
 
 }

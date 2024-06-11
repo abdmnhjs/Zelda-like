@@ -29,7 +29,6 @@ public class VueEpee extends VueItem {
             System.out.println(((Arme) item).getDirection());
 
 
-
 //            creerEpee();
         }
         pane.getChildren().add(spriteItem);
@@ -42,25 +41,25 @@ public class VueEpee extends VueItem {
             if (perso.getDirection().equals("UP") || perso.getDirection().equals("Inactif_UP")) {
 
                 spriteItem.setImage(epeeH);
-                this.spriteItem.translateXProperty().bind(((Arme) item).getPersonnage().getPositionXProperty().add(((Arme) item).getPersonnage().getLargeur() / 7));
-                this.spriteItem.translateYProperty().bind(((Arme) item).getPersonnage().getPositionXProperty().add(((Arme) item).getPersonnage().getLargeur()));
+                this.spriteItem.translateXProperty().bind(((Arme) item).getPersonnage().getPositionXProperty().add(((Arme) item).getPersonnage().getLargeur() / 4));
+                this.spriteItem.translateYProperty().bind(((Arme) item).getPersonnage().getPositionYProperty().add(((Arme) item).getPersonnage().getLargeur()));
 
             }
             if (perso.getDirection().equals("DOWN")|| perso.getDirection().equals("Inactif_DOWN")) {
                 spriteItem.setImage(epeeB);
-                this.spriteItem.translateXProperty().bind(((Arme) item).getPersonnage().getPositionXProperty().add(((Arme) item).getPersonnage().getLargeur() / 7));
+                this.spriteItem.translateXProperty().bind(((Arme) item).getPersonnage().getPositionXProperty());
                 this.spriteItem.translateYProperty().bind(((Arme) item).getPersonnage().getPositionXProperty().add(((Arme) item).getPersonnage().getLargeur()));
 
             }
             if (perso.getDirection().equals("RIGHT")|| perso.getDirection().equals("Inactif_RIGHT")) {
                 spriteItem.setImage(epeeD);
-                this.spriteItem.translateXProperty().bind(((Arme) item).getPersonnage().getPositionXProperty().add(32));
-                this.spriteItem.translateXProperty().bind(((Arme) item).getPersonnage().getPositionXProperty().add(16));
+                this.spriteItem.translateXProperty().bind(((Arme) item).getPersonnage().getPositionXProperty().add(item.getLargeur()*2));
+                this.spriteItem.translateYProperty().bind(((Arme) item).getPersonnage().getPositionYProperty().add(item.getLongueur()));
             }
             if (perso.getDirection().equals("LEFT")|| perso.getDirection().equals("Inactif_LEFT")) {
                 spriteItem.setImage(epeeG);
-                this.spriteItem.translateXProperty().bind(((Arme) item).getPersonnage().getPositionXProperty().add(32));
-                this.spriteItem.translateXProperty().bind(((Arme) item).getPersonnage().getPositionXProperty().add(16));
+                this.spriteItem.translateXProperty().bind(((Arme) item).getPersonnage().getPositionXProperty().add(item.getLargeur()));
+                this.spriteItem.translateYProperty().bind(((Arme) item).getPersonnage().getPositionYProperty().add(item.getLongueur()/2));
 
             }
             this.spriteItem.setFitHeight(this.item.getLongueur());

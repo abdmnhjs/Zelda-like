@@ -1,20 +1,24 @@
 package com.example.sae_zeldalike.Controlleur.Observateur;
 
 import com.example.sae_zeldalike.Vue.Personnage.VueEnnemi1;
+import com.example.sae_zeldalike.Vue.Personnage.VueEnnemi2;
 import com.example.sae_zeldalike.Vue.Personnage.VuePersonnage;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi;
+import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi1;
+import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi2;
+import com.example.sae_zeldalike.modele.Personnage.Personnage;
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 
-public class ObservateurEnnemi1 implements ListChangeListener<Ennemi> {
+public class ObservateurPersonnage implements ListChangeListener<Ennemi> {
 
 
     private Pane environnement;
     private ArrayList<VuePersonnage> vuePersonnages;
 
-    public ObservateurEnnemi1(Pane pane, ArrayList<VuePersonnage> vuePersonnages){
+    public ObservateurPersonnage(Pane pane, ArrayList<VuePersonnage> vuePersonnages){
         this.environnement=pane;
         this.vuePersonnages=vuePersonnages;
     }
@@ -24,11 +28,16 @@ public class ObservateurEnnemi1 implements ListChangeListener<Ennemi> {
 
         while (change.next()) {
             if (change.wasAdded()){
-                for (Ennemi personnage : change.getAddedSubList()){
+                for (Personnage personnage : change.getAddedSubList()){
 
                     VuePersonnage newPerso;
-                    if (personnage instanceof Ennemi){
-                        newPerso =new VueEnnemi1(environnement,personnage);
+
+                    if (personnage instanceof Ennemi1){
+                        newPerso = new VueEnnemi1(environnement,personnage);
+                        vuePersonnages.add(newPerso);
+                    }
+                    if (personnage instanceof Ennemi2){
+                        newPerso =new VueEnnemi2(environnement,personnage);
                         vuePersonnages.add(newPerso);
                     }
                 }

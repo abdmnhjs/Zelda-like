@@ -43,7 +43,7 @@ public class Bombe extends Item implements Stockable {
             if ((this.getPositionY() - getRayonAttaque() <= personnage.getPositionY() && personnage.getPositionY() <= this.getPositionY() + getRayonAttaque())
                     && (this.getPositionX() - getRayonAttaque() <= personnage.getPositionX() && personnage.getPositionX() <= this.getPositionX() + getRayonAttaque())) {
 //                System.out.println(personnage.getClass()+ "est mort");
-                personnage.setPointVie(personnage.getPointVie()-getDegat());
+                personnage.reduirePointsDeVie(getDegat());
                 if (!personnage.estVivant()){
                     dead.add(personnage);
                 }

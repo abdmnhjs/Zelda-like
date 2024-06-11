@@ -3,13 +3,14 @@ package com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme;
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Item.Item;
 import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Stockable;
+import com.example.sae_zeldalike.modele.Personnage.Link;
 import com.example.sae_zeldalike.modele.Personnage.Personnage;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import java.util.ArrayList;
 
-public class Arme extends Item implements Stockable {
+public abstract class Arme extends Item implements Stockable {
 
     private int dégâts;
     private int rayonAttaque;
@@ -47,11 +48,12 @@ public class Arme extends Item implements Stockable {
     }
 
     public void setPersonnage(Personnage personnage) {
-        if (!estPorterParPerso()) {
+        if (!estPorterParPerso() && personnage!=null) {
             this.personnage = personnage;
-            setPositionX(personnage.getPositionX());
-            setPositionY(personnage.getPositionY());
             setPorterParPerso(true);
+        }else {
+            setPorterParPerso(false);
+            this.personnage=null;
         }
     }
 
@@ -126,7 +128,39 @@ public class Arme extends Item implements Stockable {
     }
 
     @Override
-    public void utiliserCapacite() {
+    public  void utiliserCapacite(){
+        for (Personnage personnage : getEnvironnement().getPersonnages()) {
 
+            if (!(personnage instanceof Link)) {
+
+                switch (getDirection()) {
+
+                    case "UP" -> {
+                        if (this.getPositionY() - getRayonAttaque() <= personnage.getPositionY()) {
+                            personnage.reduirePointsDeVie(getDégâts());
+                        }
+                        System.out.println("Attaque en H");
+                    }
+                    case "DOWN" -> {
+                        if (this.getPositionY() + getRayonAttaque() <= personnage.getPositionY()) {
+                            personnage.reduirePointsDeVie(getDégâts());
+                        }
+                        System.out.println("Attaque en B");
+                    }
+                    case "LEFT" -> {
+                        if (this.getPositionX() - getRayonAttaque() <= personnage.getPositionX()) {
+                            personnage.reduirePointsDeVie(getDégâts());
+                        }
+                        System.out.println("Attaque a G");
+                    }
+                    case "RIGHT" -> {
+                        if (this.getPositionX() + getRayonAttaque() <= personnage.getPositionX()) {
+                            personnage.reduirePointsDeVie(getDégâts());
+                        }
+                        System.out.println("Attaque a D");
+                    }
+                }
+            }
+        }
     }
 }

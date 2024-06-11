@@ -128,6 +128,8 @@ public abstract class Personnage {
         positionX.setValue(x);
     }
 
+    public abstract void reduirePointsDeVie(int degats);
+
     public int getPositionY() {
         return positionY.getValue();
     }

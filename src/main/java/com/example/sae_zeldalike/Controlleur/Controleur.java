@@ -114,9 +114,7 @@ public class Controleur implements Initializable {
         this.link = new Link(environnement);
         this.vueLink = new VueLink(pane, link);
         environnement.ajouterPersonnage(link);
-        this.ennemi1 =new Ennemi1(environnement);
-        this.vueEnnemi1 =new VueEnnemi1(pane,ennemi1);
-        environnement.ajouterPersonnage(ennemi1);
+
 
 
 
@@ -135,13 +133,13 @@ public class Controleur implements Initializable {
 
         //Observateur des vuesPersonnages
         vuePersos = new ArrayList<>();
-        vueEnnemis2 = new ArrayList<>();
+        this.environnement.getPersonnages().addListener(new ObservateurPersonnage(pane,vuePersos));
         vueFlèches = new ArrayList<>();
+
         this.environnement.getItems().addListener(new ObservateurItem(pane, vueItems));
         this.environnement.getFlèchesEnDéplacement().addListener(new ObservateurFlechesEnDeplacement(pane));
         this.environnement.getBoulesDeFeuEnDeplacement().addListener(new ObservateurBoulesDeFeu(pane));
-        this.environnement.getEnnemis2().addListener(new ObservateurEnnemi2(pane,vueEnnemis2));
-        this.environnement.ajouterLink(this.link);
+
 
         //Observateur sur l'inventaire de Link
         link.getInventaire().getIndiceChangementProperty().addListener((obs,old,nouv)-> mettreAjourInventaire(nouv.intValue(),observateurItem));
@@ -179,13 +177,12 @@ public class Controleur implements Initializable {
         this.pane.setTranslateX(pane.getPrefWidth() / 2 - link.getPositionX()-(link.getLargeur()/2));
         this.pane.setTranslateY(pane.getPrefHeight() /2 - link.getPositionY()-(link.getLongueur()/2));
 
-
         // demarre l'animation
         gameLoop.play();
-        for (Ennemi2 e : this.environnement.getEnnemis2()){
-            System.out.println("xE2 = "+e.getPositionX());
-            System.out.println("yE2 = "+e.getPositionY());
-        }
+//        for (Ennemi2 e : this.environnement.getEnnemis2()){
+//            System.out.println("xE2 = "+e.getPositionX());
+//            System.out.println("yE2 = "+e.getPositionY());
+//        }
 
 
 
@@ -306,95 +303,77 @@ public class Controleur implements Initializable {
                         }
 
 
-                        if(this.link.getArmeEquiper() instanceof Epée){
-                            for(int i = 0 ; i < this.environnement.getEpeeEnMain().size() ; i++){
-                                Epée epée = environnement.getEpeeEnMain().get(i);
-                                for(int j = 0 ; j < this.environnement.getPersonnages().size() ; j++){
-
-                                    Personnage ennemi = this.environnement.getPersonnages().get(j);
-
-                                    if(epée.estSurEnnemi(ennemi)){
-                                        epée.faireDégâts(ennemi, epée.getDégâts());
-                                        epée.getEnvironnement().supprimerEpee(epée);
-                                    } else {
-                                        epée.getEnvironnement().supprimerEpee(epée);
-                                    }
-                            }
-
-                            }
 
 
-                        }
-
-                        if(this.link.getArmeEquiper() instanceof Arc){
-                            ArrayList<Projectile> flechesASupprimer = new ArrayList<>();
-
-                            for (int i = 0 ; i < this.environnement.getFlèchesEnDéplacement().size() ; i++) {
-                                int newX;
-                                int newY;
-                                Projectile projectile = this.environnement.getFlèchesEnDéplacement().get(i);
-
-
-                                if(projectile.getDirection().equals("UP")){
-                                    newX = projectile.getPositionX();
-                                    newY = projectile.getPositionY() - projectile.getVitesse();
-
-                                        if (projectile.getPositionY() > projectile.getPositionInitaleY() - link.getArc().getRayonAttaque()) {
-                                            tempsRechargeFleche = 3000;
-                                                projectile.setPositionY(newY);
-                                            } else {
-                                                projectile.getEnvironnement().supprimerFleche(projectile);
-                                            }
-                                    }
-
-                                if(projectile.getDirection().equals("DOWN")){
-                                    newX = projectile.getPositionX();
-                                    newY = projectile.getPositionY() + projectile.getVitesse();
-                                        if (projectile.getPositionY() < projectile.getPositionInitaleY() + link.getArc().getRayonAttaque()) {
-                                            tempsRechargeFleche = 3000;
-                                            projectile.setPositionY(newY);
-                                        } else {
-                                            flechesASupprimer.add(projectile);
-                                        }
-
-                                    }
-                                if(projectile.getDirection().equals("RIGHT")){
-                                    newX = projectile.getPositionX() + projectile.getVitesse();
-                                    newY = projectile.getPositionY();
-                                        if (projectile.getPositionX() < projectile.getPositionInitaleX() + link.getArc().getRayonAttaque()) {
-                                            tempsRechargeFleche = 3000;
-                                            projectile.setPositionX(newX);
-                                        } else {
-                                            flechesASupprimer.add(projectile);
-                                        }
-
-                                    }
-                                if(projectile.getDirection().equals("LEFT")){
-                                    newX = projectile.getPositionX() - projectile.getVitesse();
-                                    newY = projectile.getPositionY();
-                                        if (projectile.getPositionX() > projectile.getPositionInitaleX() - link.getArc().getRayonAttaque()) {
-                                            tempsRechargeFleche = 3000;
-                                            projectile.setPositionX(newX);
-                                        } else {
-                                            flechesASupprimer.add(projectile);
-                                        }
-
-
-                                }
-
-                                for (int j = 0 ; j < this.environnement.getPersonnages().size() ; j++) {
-                                    if (projectile.estSurEnnemi(this.environnement.getPersonnages().get(j))) {
-                                        projectile.faireDégâts(this.environnement.getPersonnages().get(j), projectile.getDegats());
-                                        projectile.getEnvironnement().supprimerFleche(projectile);
-                                        flechesASupprimer.add(projectile);
-                                    }
-                                }
-                            }
-                            for (int i = 0 ; i < flechesASupprimer.size() ; i++) {
-                                this.environnement.supprimerFleche(flechesASupprimer.get(i));
-                            }
-
-                        }
+//                        if(this.link.getArmeEquiper() instanceof Arc){
+//                            ArrayList<Projectile> flechesASupprimer = new ArrayList<>();
+//
+//                            for (int i = 0 ; i < this.environnement.getFlèchesEnDéplacement().size() ; i++) {
+//                                int newX;
+//                                int newY;
+//                                Projectile projectile = this.environnement.getFlèchesEnDéplacement().get(i);
+//
+//
+//                                if(projectile.getDirection().equals("UP")){
+//                                    newX = projectile.getPositionX();
+//                                    newY = projectile.getPositionY() - projectile.getVitesse();
+//
+//                                        if (projectile.getPositionY() > projectile.getPositionInitaleY() - link.getArc().getRayonAttaque()) {
+//                                            tempsRechargeFleche = 3000;
+//                                                projectile.setPositionY(newY);
+//                                            } else {
+//                                                projectile.getEnvironnement().supprimerFleche(projectile);
+//                                            }
+//                                    }
+//
+//                                if(projectile.getDirection().equals("DOWN")){
+//                                    newX = projectile.getPositionX();
+//                                    newY = projectile.getPositionY() + projectile.getVitesse();
+//                                        if (projectile.getPositionY() < projectile.getPositionInitaleY() + link.getArc().getRayonAttaque()) {
+//                                            tempsRechargeFleche = 3000;
+//                                            projectile.setPositionY(newY);
+//                                        } else {
+//                                            flechesASupprimer.add(projectile);
+//                                        }
+//
+//                                    }
+//                                if(projectile.getDirection().equals("RIGHT")){
+//                                    newX = projectile.getPositionX() + projectile.getVitesse();
+//                                    newY = projectile.getPositionY();
+//                                        if (projectile.getPositionX() < projectile.getPositionInitaleX() + link.getArc().getRayonAttaque()) {
+//                                            tempsRechargeFleche = 3000;
+//                                            projectile.setPositionX(newX);
+//                                        } else {
+//                                            flechesASupprimer.add(projectile);
+//                                        }
+//
+//                                    }
+//                                if(projectile.getDirection().equals("LEFT")){
+//                                    newX = projectile.getPositionX() - projectile.getVitesse();
+//                                    newY = projectile.getPositionY();
+//                                        if (projectile.getPositionX() > projectile.getPositionInitaleX() - link.getArc().getRayonAttaque()) {
+//                                            tempsRechargeFleche = 3000;
+//                                            projectile.setPositionX(newX);
+//                                        } else {
+//                                            flechesASupprimer.add(projectile);
+//                                        }
+//
+//
+//                                }
+//
+//                                for (int j = 0 ; j < this.environnement.getPersonnages().size() ; j++) {
+//                                    if (projectile.estSurEnnemi(this.environnement.getPersonnages().get(j))) {
+//                                        projectile.faireDégâts(this.environnement.getPersonnages().get(j), projectile.getDegats());
+//                                        projectile.getEnvironnement().supprimerFleche(projectile);
+//                                        flechesASupprimer.add(projectile);
+//                                    }
+//                                }
+//                            }
+//                            for (int i = 0 ; i < flechesASupprimer.size() ; i++) {
+//                                this.environnement.supprimerFleche(flechesASupprimer.get(i));
+//                            }
+//
+//                        }
 
 
                         }

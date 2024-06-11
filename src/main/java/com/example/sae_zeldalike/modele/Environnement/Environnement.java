@@ -291,7 +291,6 @@ public class Environnement {
         }
         for (int i =0;i<10;i++){
             ajouterItem(new CoeurRouge(this));
-
         }
         for (int i=0;i<10;i++){
             ajouterItem(new CoeurBleu(this));
@@ -300,7 +299,7 @@ public class Environnement {
             ajouterItem(new SuperMegaFast(this));
         }for (int i=0;i<5;i++){
             ajouterItem(new Poison(this));
-        }for (int i=0;i<1;i++){
+        }for (int i=0;i<4;i++) {
             ajouterItem(new Epée(this));
         }
     }
