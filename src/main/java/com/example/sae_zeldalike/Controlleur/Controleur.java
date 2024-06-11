@@ -1,28 +1,32 @@
 package com.example.sae_zeldalike.Controlleur;
 
-import com.example.sae_zeldalike.Controlleur.Observateur.*;
+import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurCaseInventaire;
+import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurCoeurs;
+import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurItem;
+import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurPersonnage;
 import com.example.sae_zeldalike.Vue.*;
 import com.example.sae_zeldalike.Vue.Environnement.VueMap;
+import com.example.sae_zeldalike.Vue.Item.VueBombe;
 import com.example.sae_zeldalike.Vue.Item.VueItem;
+import com.example.sae_zeldalike.Vue.Item.VuePiece;
 import com.example.sae_zeldalike.Vue.Personnage.VueEnnemi1;
-import com.example.sae_zeldalike.Vue.Personnage.VueEnnemi2;
 import com.example.sae_zeldalike.Vue.Personnage.VueLink;
 import com.example.sae_zeldalike.Vue.Personnage.VuePersonnage;
-import com.example.sae_zeldalike.modele.Projectile.BouleDeFeu;
 import com.example.sae_zeldalike.modele.Environnement.*;
-import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Arc;
-import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Epée;
+import com.example.sae_zeldalike.modele.Item.*;
 import com.example.sae_zeldalike.modele.Personnage.*;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi1;
-import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi2;
-import com.example.sae_zeldalike.modele.Projectile.Projectile;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -33,6 +37,7 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
@@ -44,16 +49,9 @@ public class Controleur implements Initializable {
     private VueEnnemi1 vueEnnemi1;
     private Map map;
     private VueMap vueMap;
-    private VueEpee vueEpee;
-
 
     private ArrayList<VueItem> vueItems;
     private ArrayList<VuePersonnage> vuePersos;
-    private ArrayList<VueEnnemi2> vueEnnemis2;
-    private ArrayList<VueFlèche> vueFlèches;
-
-
-
     @FXML
     private Label nombrePiece;
     @FXML
@@ -78,6 +76,7 @@ public class Controleur implements Initializable {
     @FXML
     private ImageView case6;
 
+
     @FXML
     private StackPane emplacement1;
     @FXML
@@ -91,12 +90,9 @@ public class Controleur implements Initializable {
     @FXML
     private StackPane emplacement6;
 
-
     private Timeline gameLoop;
-    private Clavier clavier;
 
     private int temps;
-    private int tempsRechargeFleche;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -114,17 +110,15 @@ public class Controleur implements Initializable {
         this.link = new Link(environnement);
         this.vueLink = new VueLink(pane, link);
         environnement.ajouterPersonnage(link);
-
-
+        this.ennemi1 =new Ennemi1(environnement);
+        environnement.ajouterPersonnage(ennemi1);
+        this.vueEnnemi1 =new VueEnnemi1(pane,ennemi1);
 
 
         //Barre de vie Binder en fonction de la vie du personnage
         ObservateurCoeurs observateurCoeurs = new ObservateurCoeurs(emplacementCoeurs, link);
         link.getPointVieProperty().addListener(observateurCoeurs);
         link.getPointDeVieAdditionelleProperty().addListener(observateurCoeurs);
-
-//        this.nombrePiece.textProperty().bind(link.getPortefeuilleProperty().asString());
-        link.getPortefeuilleProperty().addListener((obs, old, nouv)-> this.nombrePiece.setText(nouv.toString()));
 
         //Observateur des vuesDesItems
         vueItems = new ArrayList<>();
@@ -134,18 +128,11 @@ public class Controleur implements Initializable {
         //Observateur des vuesPersonnages
         vuePersos = new ArrayList<>();
         this.environnement.getPersonnages().addListener(new ObservateurPersonnage(pane,vuePersos));
-        vueFlèches = new ArrayList<>();
-
-        this.environnement.getItems().addListener(new ObservateurItem(pane, vueItems));
-        this.environnement.getFlèchesEnDéplacement().addListener(new ObservateurFlechesEnDeplacement(pane));
-        this.environnement.getBoulesDeFeuEnDeplacement().addListener(new ObservateurBoulesDeFeu(pane));
-
 
         //Observateur sur l'inventaire de Link
         link.getInventaire().getIndiceChangementProperty().addListener((obs,old,nouv)-> mettreAjourInventaire(nouv.intValue(),observateurItem));
 
-        //Observateur sur l'indice de la case de l'inventaire selectionné
-
+        //Observateur sur l'indice de la case de l'inventaire selectionner
         link.getInventaire().getCaseActuelProperty().addListener(new ObservateurCaseInventaire(emplacement1,emplacement2,emplacement3,emplacement4,emplacement5,emplacement6));
 
 
@@ -158,10 +145,6 @@ public class Controleur implements Initializable {
         imagePerso.maxWidth(64);
         imagePerso.maxHeight(64);
         imagePerso.imageProperty().bind(vueLink.getSpritePersonnage().imageProperty());
-
-//        this.clavier = new Clavier(this.link, this.pane, this.environnement);
-//        pane.addEventFilter(KeyEvent.KEY_PRESSED,clavier);
-//        pane.addEventFilter(KeyEvent.KEY_RELEASED, clavier);
 
         environnement.init();
 
@@ -179,10 +162,6 @@ public class Controleur implements Initializable {
 
         // demarre l'animation
         gameLoop.play();
-//        for (Ennemi2 e : this.environnement.getEnnemis2()){
-//            System.out.println("xE2 = "+e.getPositionX());
-//            System.out.println("yE2 = "+e.getPositionY());
-//        }
 
 
 
@@ -221,36 +200,6 @@ public class Controleur implements Initializable {
             }else {
                 case3.setImage(null);
             }
-            if (link.getInventaire().getInventaireCase4() != null) {
-
-                for (int i=0;i<observateurItem.getVueItems().size();i++){
-                    if (link.getInventaire().getInventaireCase4().getItem().getId().equals(observateurItem.getVueItems().get(i).getSpriteId())){
-                        case4.setImage(observateurItem.getVueItems().get(i).getImagePrincipale());
-                    }
-                }
-            }else {
-                case4.setImage(null);
-            }
-            if (link.getInventaire().getInventaireCase5() != null) {
-
-                for (int i=0;i<observateurItem.getVueItems().size();i++){
-                    if (link.getInventaire().getInventaireCase5().getItem().getId().equals(observateurItem.getVueItems().get(i).getSpriteId())){
-                        case5.setImage(observateurItem.getVueItems().get(i).getImagePrincipale());
-                    }
-                }
-            }else {
-                case5.setImage(null);
-            }
-            if (link.getInventaire().getInventaireCase6() != null) {
-
-                for (int i=0;i<observateurItem.getVueItems().size();i++){
-                    if (link.getInventaire().getInventaireCase6().getItem().getId().equals(observateurItem.getVueItems().get(i).getSpriteId())){
-                        case6.setImage(observateurItem.getVueItems().get(i).getImagePrincipale());
-                    }
-                }
-            }else {
-                case6.setImage(null);
-            }
         }
     }
 
@@ -269,128 +218,51 @@ public class Controleur implements Initializable {
                     if (temps == 1000000) {
                         System.out.println("fini");
                         gameLoop.stop();
-                    }else if (temps % 10 == 0) {
+                    } else if (temps % 10 == 0) {
 
                         vueLink.animation();
 
-
-                        for(Personnage ennemi1 : this.environnement.getPersonnages()){
-                            if (ennemi1 instanceof Ennemi) {
-                                if (((Ennemi) ennemi1).estSurJoueur(this.link)) {
-                                    ((Ennemi) ennemi1).essaieAttaquerJoueur(this.link);
-                                }
-                            }
-                        }
-
-                        for(Ennemi2 ennemi2 : this.environnement.getEnnemis2()){
-                            ennemi2.essaieTirerBouleDeFeu(this.link);
-                        }
-
-                        for (int i = 0 ; i < this.environnement.getBoulesDeFeuEnDeplacement().size() ; i++) {
-                            BouleDeFeu bouleDeFeu = this.environnement.getBoulesDeFeuEnDeplacement().get(i);
-                            if(bouleDeFeu.getDirection().equals("UP")){
-                                bouleDeFeu.seDeplacerHaut();
-                            }
-                            if(bouleDeFeu.getDirection().equals("DOWN")){
-                                bouleDeFeu.seDeplacerBas();
-                            }
-                            if(bouleDeFeu.getDirection().equals("RIGHT")){
-                                bouleDeFeu.seDeplacerDroite();
-                            }
-                            if(bouleDeFeu.getDirection().equals("LEFT")){
-                                bouleDeFeu.seDeplacerGauche();
-                            }
-                        }
-
-
-
-
-//                        if(this.link.getArmeEquiper() instanceof Arc){
-//                            ArrayList<Projectile> flechesASupprimer = new ArrayList<>();
+//                        if (this.link.getArc().flècheLancée()) {
+//                            VueFlèche vueFleche = this.link.getArc().getFlèchesEnDéplacement().get(0);
+//                            Flèche flèche = vueFleche.getFlèche();
 //
-//                            for (int i = 0 ; i < this.environnement.getFlèchesEnDéplacement().size() ; i++) {
-//                                int newX;
-//                                int newY;
-//                                Projectile projectile = this.environnement.getFlèchesEnDéplacement().get(i);
+//                            switch (link.getDirection()) {
+//                                case "UP":
+//                                    flèche.seDeplacerHaut();
+//                                case "DOWN":
+//                                    flèche.seDeplacerBas();
+//                                case "RIGHT":
+//                                    flèche.seDeplacerDroite();
+//                                case "LEFT":
+//                                    flèche.seDeplacerGauche();
+//                                default:
 //
-//
-//                                if(projectile.getDirection().equals("UP")){
-//                                    newX = projectile.getPositionX();
-//                                    newY = projectile.getPositionY() - projectile.getVitesse();
-//
-//                                        if (projectile.getPositionY() > projectile.getPositionInitaleY() - link.getArc().getRayonAttaque()) {
-//                                            tempsRechargeFleche = 3000;
-//                                                projectile.setPositionY(newY);
-//                                            } else {
-//                                                projectile.getEnvironnement().supprimerFleche(projectile);
-//                                            }
-//                                    }
-//
-//                                if(projectile.getDirection().equals("DOWN")){
-//                                    newX = projectile.getPositionX();
-//                                    newY = projectile.getPositionY() + projectile.getVitesse();
-//                                        if (projectile.getPositionY() < projectile.getPositionInitaleY() + link.getArc().getRayonAttaque()) {
-//                                            tempsRechargeFleche = 3000;
-//                                            projectile.setPositionY(newY);
-//                                        } else {
-//                                            flechesASupprimer.add(projectile);
-//                                        }
-//
-//                                    }
-//                                if(projectile.getDirection().equals("RIGHT")){
-//                                    newX = projectile.getPositionX() + projectile.getVitesse();
-//                                    newY = projectile.getPositionY();
-//                                        if (projectile.getPositionX() < projectile.getPositionInitaleX() + link.getArc().getRayonAttaque()) {
-//                                            tempsRechargeFleche = 3000;
-//                                            projectile.setPositionX(newX);
-//                                        } else {
-//                                            flechesASupprimer.add(projectile);
-//                                        }
-//
-//                                    }
-//                                if(projectile.getDirection().equals("LEFT")){
-//                                    newX = projectile.getPositionX() - projectile.getVitesse();
-//                                    newY = projectile.getPositionY();
-//                                        if (projectile.getPositionX() > projectile.getPositionInitaleX() - link.getArc().getRayonAttaque()) {
-//                                            tempsRechargeFleche = 3000;
-//                                            projectile.setPositionX(newX);
-//                                        } else {
-//                                            flechesASupprimer.add(projectile);
-//                                        }
-//
-//
-//                                }
-//
-//                                for (int j = 0 ; j < this.environnement.getPersonnages().size() ; j++) {
-//                                    if (projectile.estSurEnnemi(this.environnement.getPersonnages().get(j))) {
-//                                        projectile.faireDégâts(this.environnement.getPersonnages().get(j), projectile.getDegats());
-//                                        projectile.getEnvironnement().supprimerFleche(projectile);
-//                                        flechesASupprimer.add(projectile);
-//                                    }
-//                                }
-//                            }
-//                            for (int i = 0 ; i < flechesASupprimer.size() ; i++) {
-//                                this.environnement.supprimerFleche(flechesASupprimer.get(i));
 //                            }
 //
+//                            if (flèche.estDevantObstacle(flèche.getX(), flèche.getY()) || flèche.estDansLimiteTerrain(flèche.getX(), flèche.getY())) {
+//                                Platform.runLater(() -> {
+//                                    vueFleche.supprimerFlèche(this.pane);
+//                                    this.link.getArc().getFlèchesEnDéplacement().remove(vueFleche);
+//                                    System.out.println("Flèche supprimée du pane et de la liste des flèches en déplacement");
+//                                });
+//                            }
 //                        }
 
-
-                        }
-
+                    }
                     else if (temps%4 ==0){
                         for (VuePersonnage monPerso : vuePersos){
                             if (monPerso instanceof VueEnnemi1){
                                 monPerso.animation();
 
                                 Ennemi1 e1 = (Ennemi1) monPerso.getPersonnage();
-                                //e1.seDeplace(link.getPositionX()+ link.getLargeur()/4, link.getPositionY()+ link.getLongueur()/4);
-                                e1.bfs(e1.getPositionX(), e1.getPositionY(), this.link.getPositionX(), this.link.getPositionY());
+                                e1.seDeplace(link.getPositionX()+ link.getLargeur()/4, link.getPositionY()+ link.getLongueur()/4);
                             }
                         }
                     }
                     if (temps % 9 == 0) {
 
+                        vueEnnemi1.animation();
+                        ennemi1.seDeplace(link.getPositionX()+ link.getLargeur()/4, link.getPositionY()+ link.getLongueur()/4);
                         this.pane.requestFocus();
                         for (VueItem monItem : vueItems){
                             monItem.animationItem();
@@ -398,7 +270,6 @@ public class Controleur implements Initializable {
                         }
                     }
 
-                    tempsRechargeFleche--;
                     temps++;
                 }
         );

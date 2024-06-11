@@ -44,12 +44,11 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
             if (change.wasRemoved()){
                 for (Personnage personnage : change.getRemoved()){
 
-                    if (personnage instanceof Ennemi){
+
                     this.environnement.getChildren().remove(environnement.lookup("#"+personnage.getId()));
                     this.environnement.getChildren().remove(environnement.lookup("#O"+personnage.getId()));
                     this.environnement.getChildren().remove(environnement.lookup("#L"+personnage.getId()));
                     this.environnement.getChildren().remove(environnement.lookup("#BCKGL"+personnage.getId()));
-                    }
                 }
             }
         }

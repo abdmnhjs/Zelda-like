@@ -7,7 +7,7 @@ import com.example.sae_zeldalike.modele.Personnage.Link;
 public class Ennemi2 extends Ennemi{
     private static int compteurEnnemi2 = 0;
     public Ennemi2(Environnement environnement){
-        super(200, 40, environnement, 5, 32, 32);
+        super(100, 40, environnement, 5, 32, 32);
         this.probaAttaque = 80;
     }
 

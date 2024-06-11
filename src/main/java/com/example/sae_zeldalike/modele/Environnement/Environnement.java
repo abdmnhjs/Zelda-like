@@ -22,10 +22,8 @@ public class Environnement {
     private String id;
     private static int compteurEnvironnement=0;
     private ObservableList<Personnage> personnages;
-    private ObservableList<Ennemi2> ennemis2;
     private ObservableList<Item> items;
     private ObservableList<Projectile> flèchesEnDéplacement;
-    private ObservableList<Epée> epeeEnMain;
     private ObservableList<Link> linkRemovalQueue;
     private ObservableList<BouleDeFeu> boulesDeFeuEnDeplacement;
     private Map map;
@@ -37,9 +35,8 @@ public class Environnement {
         this.map=map;
         this.flèchesEnDéplacement = FXCollections.observableArrayList();
         this.personnages= FXCollections.observableArrayList();
-        this.ennemis2 = FXCollections.observableArrayList();
         this.items= FXCollections.observableArrayList();
-        this.epeeEnMain = FXCollections.observableArrayList();
+
         this.linkRemovalQueue = FXCollections.observableArrayList();
         this.boulesDeFeuEnDeplacement = FXCollections.observableArrayList();
     }
@@ -50,10 +47,6 @@ public class Environnement {
 
     public void ajouterPersonnage(Personnage personnage){
         personnages.add(personnage);
-    }
-
-    public void ajouterEnnemi2(Ennemi2 ennemi2){
-        ennemis2.add(ennemi2);
     }
 
     public void ajouterItem(Item item){
@@ -72,13 +65,7 @@ public class Environnement {
         }
     }
 
-    public void supprimerEpee(Epée epée){
-        for(int i=0;i<epeeEnMain.size();i++){
-            if(epeeEnMain.get(i).getId().equals(epée.getId())){
-                epeeEnMain.remove(i);
-            }
-        }
-    }
+
 
     public void supprimerFleche(Projectile projectile){
         for(int i=0;i<flèchesEnDéplacement.size();i++){
@@ -104,13 +91,7 @@ public class Environnement {
         }
     }
 
-    public void supprimerEnnemi2 (Ennemi2 ennemi2){
-        for(int i=0;i<ennemis2.size();i++){
-            if(ennemis2.get(i).getId().equals(ennemi2.getId())){
-                ennemis2.remove(i);
-            }
-        }
-    }
+
 
     public void supprimerBouleDeFeu(BouleDeFeu bouleDeFeu){
         for(int i = 0; i< boulesDeFeuEnDeplacement.size(); i++){
@@ -129,16 +110,9 @@ public class Environnement {
         return items;
     }
 
-    public ObservableList<Epée> getEpeeEnMain() {
-        return epeeEnMain;
-    }
 
     public ObservableList<Personnage> getPersonnages() {
         return personnages;
-    }
-
-    public ObservableList<Ennemi2> getEnnemis2() {
-        return ennemis2;
     }
 
     public ObservableList<BouleDeFeu> getBoulesDeFeuEnDeplacement() {
@@ -287,7 +261,6 @@ public class Environnement {
         }
         for (int i =0;i<10;i++){
             ajouterPersonnage(new Ennemi1(this));
-            ajouterEnnemi2(new Ennemi2(this));
         }
         for (int i =0;i<10;i++){
             ajouterItem(new CoeurRouge(this));

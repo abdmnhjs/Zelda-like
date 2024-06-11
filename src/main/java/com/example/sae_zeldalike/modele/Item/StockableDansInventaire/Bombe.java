@@ -39,7 +39,7 @@ public class Bombe extends Item implements Stockable {
         System.out.println("Bombe va exploser");
 //        System.out.println("Bombe X= "+this.getPositionX()+" Y= "+this.getPositionY());
         for (Personnage personnage : this.getEnvironnement().getPersonnages()) {
-//            System.out.println("Perso X= "+personnage.getPositionX()+" Y= "+personnage.getPositionY());
+            System.out.println("Perso X= "+personnage.getPositionX()+" Y= "+personnage.getPositionY());
             if ((this.getPositionY() - getRayonAttaque() <= personnage.getPositionY() && personnage.getPositionY() <= this.getPositionY() + getRayonAttaque())
                     && (this.getPositionX() - getRayonAttaque() <= personnage.getPositionX() && personnage.getPositionX() <= this.getPositionX() + getRayonAttaque())) {
 //                System.out.println(personnage.getClass()+ "est mort");

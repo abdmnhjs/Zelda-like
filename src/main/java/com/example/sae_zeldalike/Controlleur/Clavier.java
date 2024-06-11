@@ -28,14 +28,12 @@ public class Clavier implements EventHandler<KeyEvent> {
     private HashSet<KeyCode> touches;
     private Environnement environnement;
     private Timeline mouvementContinu;
-    private String directionAttaque;
 
     public Clavier(Link link, Pane pane, Environnement environnement) {
         this.link = link;
         this.pane = pane;
         this.touches = new HashSet<>();
         this.environnement = environnement;
-        this.directionAttaque = "";
         initTimeline();
     }
 
@@ -49,11 +47,11 @@ public class Clavier implements EventHandler<KeyEvent> {
                 link.setDirection("Inactif_" + link.getDirection());
             }
         }
-        interactionTouche();
+//        interactionTouche();
     }
 
     private void initTimeline() {
-        mouvementContinu = new Timeline(new KeyFrame(Duration.seconds(0.040), ev -> interactionTouche()));
+        mouvementContinu = new Timeline(new KeyFrame(Duration.seconds(0.034), ev -> interactionTouche()));
         mouvementContinu.setCycleCount(Timeline.INDEFINITE);
         mouvementContinu.play();
     }
@@ -140,7 +138,7 @@ public class Clavier implements EventHandler<KeyEvent> {
             }
             if (touches.contains(KeyCode.A)) {
                 System.out.println(link.getEffets());
-                link.reduirePointsDeVie(5);
+                System.out.println(link.getEnvironnement().getPersonnages());
                 System.out.println(link.getArmeEquiper());
             }
             if (touches.contains(KeyCode.I)) {
@@ -222,7 +220,7 @@ public class Clavier implements EventHandler<KeyEvent> {
 //            }
 //
 //        }
-        if (this.link.getArmeEquiper() instanceof Epée) {
+        if (this.link.getArmeEquiper()!=null) {
 
             if (touches.contains(KeyCode.UP)) {
                 link.getArmeEquiper().setDirection("UP");

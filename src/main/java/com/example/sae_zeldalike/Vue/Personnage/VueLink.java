@@ -180,8 +180,6 @@ public class VueLink extends VuePersonnage {
             case "Inactif_UP"->{
                     this.spritePersonnage.setImage(inactifUp1);
 
-
-
             }
             case "Inactif_DOWN"->{
                 if (numeroImagePersonnage<=2){

@@ -23,6 +23,11 @@ public class Ennemi extends Personnage {
     @Override
     public void reduirePointsDeVie(int degats) {
         int nouveauxPV = getPointVie()-degats;
+        if (nouveauxPV>0) {
+            setPointVie(nouveauxPV);
+        }else {
+            setPointVie(0);
+        }
     }
 
 

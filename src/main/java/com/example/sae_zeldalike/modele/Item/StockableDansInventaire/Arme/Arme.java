@@ -129,38 +129,49 @@ public abstract class Arme extends Item implements Stockable {
 
     @Override
     public  void utiliserCapacite(){
-        for (Personnage personnage : getEnvironnement().getPersonnages()) {
+        ArrayList<Personnage>dead = new ArrayList<>();
 
-            if (!(personnage instanceof Link)) {
+        for (Personnage perso : getEnvironnement().getPersonnages()) {
+
+            if (!(perso instanceof Link)) {
 
                 switch (getDirection()) {
 
                     case "UP" -> {
-                        if (this.getPositionY() - getRayonAttaque() <= personnage.getPositionY()) {
-                            personnage.reduirePointsDeVie(getDégâts());
+                        if (this.getPositionY() - getRayonAttaque() >= personnage.getPositionY()
+                                && (this.getPositionX()<=personnage.getPositionX()|| this.getPositionX()+this.getLargeur()>= personnage.getPositionX())) {
+                            perso.reduirePointsDeVie(getDégâts());
                         }
-                        System.out.println("Attaque en H");
+                        System.out.println("Normalement c'est H "+getDirection());
                     }
                     case "DOWN" -> {
-                        if (this.getPositionY() + getRayonAttaque() <= personnage.getPositionY()) {
-                            personnage.reduirePointsDeVie(getDégâts());
+                        if (this.getPositionY() + getRayonAttaque() <= personnage.getPositionY()
+                                && (this.getPositionX()+this.getLargeur()/2<=personnage.getPositionX()|| this.getPositionX()+this.getLargeur()/2>= personnage.getPositionX())) {
+                            perso.reduirePointsDeVie(getDégâts());
                         }
                         System.out.println("Attaque en B");
                     }
                     case "LEFT" -> {
-                        if (this.getPositionX() - getRayonAttaque() <= personnage.getPositionX()) {
-                            personnage.reduirePointsDeVie(getDégâts());
+                        if (this.getPositionX() - getRayonAttaque() >= personnage.getPositionX() ) {
+                            perso.reduirePointsDeVie(getDégâts());
                         }
                         System.out.println("Attaque a G");
                     }
                     case "RIGHT" -> {
                         if (this.getPositionX() + getRayonAttaque() <= personnage.getPositionX()) {
-                            personnage.reduirePointsDeVie(getDégâts());
+                            perso.reduirePointsDeVie(getDégâts());
                         }
                         System.out.println("Attaque a D");
                     }
                 }
             }
+            if (!perso.estVivant()){
+                dead.add(perso);
+            }
+        }
+        System.out.println(dead.size());
+        for (Personnage perso : dead) {
+            perso.getEnvironnement().supprimerPersonnage(perso);
         }
     }
 }
