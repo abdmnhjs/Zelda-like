@@ -39,7 +39,7 @@ public class Projectile{
         this.positionInitaleX=positionX;
         this.positionInitaleY=positionY;
         this.vitesse = new SimpleIntegerProperty(vitesse);
-        this.direction = null;
+        this.direction = "N";
         this.degats=degats;
 
     }
@@ -130,6 +130,16 @@ public class Projectile{
         for (Personnage perso : dead) {
             perso.getEnvironnement().supprimerPersonnage(perso);
         }
+    }
+
+    public boolean estSurEnnemi(Personnage ennemi){
+        if(this.getPositionX() < ennemi.getPositionX() + ennemi.getLargeur() &&
+                this.getPositionX() + this.getLargeur() > ennemi.getPositionX() &&
+                this.getPositionY() < ennemi.getPositionY() + ennemi.getLongueur() &&
+                this.getPositionY() + this.getLongueur() > ennemi.getPositionY()){
+            return true;
+        }
+        return false;
     }
 
 

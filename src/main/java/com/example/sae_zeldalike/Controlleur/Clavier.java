@@ -141,19 +141,19 @@ public class Clavier implements EventHandler<KeyEvent> {
             if (touches.contains(KeyCode.A)) {
                 System.out.println(link.getEffets());
                 link.reduirePointsDeVie(5);
-                System.out.println(link.getInventaire().getInventaireCase1());
-                System.out.println(link.getInventaire().getInventaireCase2());
-                System.out.println(link.getInventaire().getInventaireCase3());
+                System.out.println(link.getArmeEquiper());
             }
             if (touches.contains(KeyCode.I)) {
                 link.utiliserItemDansInventaire();
 
-                for (Personnage p : link.getEnvironnement().getPersonnages()) {
-                    if (link.getEffets().size() != 0) {
-
-                        link.getEffets().get(0).appliquer(p);
-                    }
-                }
+//                for (Personnage p : link.getEnvironnement().getPersonnages()) {
+//                    if (link.getEffets().size() != 0) {
+//                        for (int i=0;i<link.getEffets().size();i++) {
+//                            link.getEffets().get(i).appliquer(p);
+//                        }
+//
+//                    }
+//                }
 
             }
             if (touches.contains(KeyCode.U)) {

@@ -300,6 +300,8 @@ public class Environnement {
             ajouterItem(new SuperMegaFast(this));
         }for (int i=0;i<5;i++){
             ajouterItem(new Poison(this));
+        }for (int i=0;i<1;i++){
+            ajouterItem(new Epée(this));
         }
     }
 

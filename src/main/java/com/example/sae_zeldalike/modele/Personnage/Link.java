@@ -108,18 +108,20 @@ public class Link extends Personnage {
 
         if (getInventaire().getInventaireCaseActuel()!=null) {
 
-            Stockable item = getInventaire().getInventaireCaseActuel();
-            item.getItem().setPositionX(getPositionX()-(getLargeur()/4));
-            item.getItem().setPositionY(getPositionY()-(getLongueur()/4));
+            if (!(inventaire.getInventaireCaseActuel() instanceof Arme)) {
 
-            getInventaire().modifieStockableInventaire(null);
-            getEnvironnement().ajouterItem(item.getItem());
-            getInventaire().setIndiceChangement(1);
+                Stockable item = getInventaire().getInventaireCaseActuel();
+                item.getItem().setPositionX(getPositionX() - (getLargeur() / 4));
+                item.getItem().setPositionY(getPositionY() - (getLongueur() / 4));
+
+                getInventaire().modifieStockableInventaire(null);
+                getEnvironnement().ajouterItem(item.getItem());
+                getInventaire().setIndiceChangement(1);
 
 
 //            item.utiliserCapacite();
 //            getInventaire().setIndiceChangement(-1);
-            ((Bombe) item).setEffetUtiliser(true);
+                ((Bombe) item).setEffetUtiliser(true);
 
                 Timer timer = new Timer();
 
@@ -131,15 +133,30 @@ public class Link extends Personnage {
                             item.utiliserCapacite();
 
 
-
                             timer.cancel();
                         });
                     }
                 };
                 timer.schedule(task, 1900);
 
-            getInventaire().setIndiceChangement(-1);
+                getInventaire().setIndiceChangement(-1);
 
+            }else {
+                if (getInventaire().getInventaireCaseActuel() instanceof  Arme ) {
+                    if (getArmeEquiper()==null|| getArmeEquiper()!=null) {
+                        Arme arme = (Arme) getInventaire().getInventaireCaseActuel();
+                        setArmeEquiper(arme);
+                        arme.setPersonnage(this);
+                        getEnvironnement().ajouterItem(arme);
+                    }
+//                    else {
+//                        Arme arme = getArmeEquiper();
+//                        setArmeEquiper(null);
+//                        arme.setPersonnage(null);
+//                        getEnvironnement().supprimerItem(arme);
+//                    }
+                }
+            }
         }
 
     }
@@ -188,7 +205,7 @@ public class Link extends Personnage {
 
                 if (!(item instanceof Stockable)){
                     return item;
-                }else if (item instanceof Stockable && !((Stockable) item).effetUtiliser()){
+                }else if ((item instanceof Stockable && !((Stockable) item).effetUtiliser())||(item instanceof Arme && ((Arme) item).getPersonnage()==null) ){
                     return item;
                 }
 //                if (item instanceof Piece) {

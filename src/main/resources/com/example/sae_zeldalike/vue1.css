@@ -2,3 +2,6 @@
     -fx-border-color: black;
     -fx-border-width: 5px;
 }
+.armeEquiper {
+    -fx-background-color: grey;
+}

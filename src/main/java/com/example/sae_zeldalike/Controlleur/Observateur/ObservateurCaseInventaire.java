@@ -4,6 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 
 public class ObservateurCaseInventaire implements ChangeListener<Number> {
 
@@ -54,6 +55,7 @@ public class ObservateurCaseInventaire implements ChangeListener<Number> {
         switch (numeroCaseActuel) {
             case 0:
                 emplacement1.getStyleClass().add("caseInventaireActuel");
+                emplacement1.getStyleClass().add("armeEquiper");
                 emplacement1.setTranslateY(emplacement1.getTranslateY()-20);
                 break;
             case 1:

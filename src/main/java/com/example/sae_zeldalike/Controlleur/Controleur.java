@@ -22,6 +22,7 @@ import javafx.animation.Timeline;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -114,12 +115,9 @@ public class Controleur implements Initializable {
         this.vueLink = new VueLink(pane, link);
         environnement.ajouterPersonnage(link);
         this.ennemi1 =new Ennemi1(environnement);
-        this.ennemi1 =new Ennemi1(this.environnement);
-        environnement.ajouterPersonnage(ennemi1);
         this.vueEnnemi1 =new VueEnnemi1(pane,ennemi1);
-        this.ennemi1 = new Ennemi1(this.environnement, 130, 220);
-        this.vueEnnemi1 = new VueEnnemi1(pane, ennemi1);
-        vueMap = new VueMap(tilePane, this.map);
+        environnement.ajouterPersonnage(ennemi1);
+
 
 
         //Barre de vie Binder en fonction de la vie du personnage
@@ -141,15 +139,9 @@ public class Controleur implements Initializable {
         vueFlèches = new ArrayList<>();
         this.environnement.getItems().addListener(new ObservateurItem(pane, vueItems));
         this.environnement.getFlèchesEnDéplacement().addListener(new ObservateurFlechesEnDeplacement(pane));
-        //this.environnement.getPersonnages().addListener(new ObservateurEnnemi1(pane, vuePersos));
-        this.environnement.getEpeeEnMain().addListener(new ObservateurEpee(pane, this.link));
-        //this.environnement.getPersonnages().addListener(new ObservateurEnnemi1(pane,vuePersos));
-        this.environnement.getLinkRemovalQueue().addListener(new ObservateurLink(pane));
         this.environnement.getBoulesDeFeuEnDeplacement().addListener(new ObservateurBoulesDeFeu(pane));
         this.environnement.getEnnemis2().addListener(new ObservateurEnnemi2(pane,vueEnnemis2));
         this.environnement.ajouterLink(this.link);
-
-
 
         //Observateur sur l'inventaire de Link
         link.getInventaire().getIndiceChangementProperty().addListener((obs,old,nouv)-> mettreAjourInventaire(nouv.intValue(),observateurItem));
@@ -168,7 +160,10 @@ public class Controleur implements Initializable {
         imagePerso.maxWidth(64);
         imagePerso.maxHeight(64);
         imagePerso.imageProperty().bind(vueLink.getSpritePersonnage().imageProperty());
+
         this.clavier = new Clavier(this.link, this.pane, this.environnement);
+//        pane.addEventFilter(KeyEvent.KEY_PRESSED,clavier);
+//        pane.addEventFilter(KeyEvent.KEY_RELEASED, clavier);
 
         environnement.init();
 
@@ -277,7 +272,7 @@ public class Controleur implements Initializable {
                     if (temps == 1000000) {
                         System.out.println("fini");
                         gameLoop.stop();
-                    } else if (temps % 10 == 0) {
+                    }else if (temps % 10 == 0) {
 
                         vueLink.animation();
                         this.clavier.interactionTouche();

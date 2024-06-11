@@ -1,11 +1,14 @@
 package com.example.sae_zeldalike.Controlleur.Observateur;
 
 import com.example.sae_zeldalike.Vue.Item.*;
+import com.example.sae_zeldalike.Vue.VueEpee;
 import com.example.sae_zeldalike.modele.Item.*;
 import com.example.sae_zeldalike.modele.Item.NonStockable.CoeurBleu;
 import com.example.sae_zeldalike.modele.Item.NonStockable.CoeurRouge;
 import com.example.sae_zeldalike.modele.Item.NonStockable.Poison;
 import com.example.sae_zeldalike.modele.Item.NonStockable.SuperMegaFast;
+import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Arc;
+import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Epée;
 import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Bombe;
 import com.example.sae_zeldalike.modele.Item.StockableDansPortefeuille.Piece;
 import javafx.collections.ListChangeListener;
@@ -60,6 +63,11 @@ public class ObservateurItem implements ListChangeListener<Item> {
                     }else if (item instanceof Poison){
                         newItem=new VuePoison(environnement,item);
                         vueItems.add(newItem);
+                    }else if (item instanceof Epée){
+                        newItem=new VueEpee(environnement,item);
+                        vueItems.add(newItem);
+                    }else if (item instanceof Arc){
+
                     }
 
                 }

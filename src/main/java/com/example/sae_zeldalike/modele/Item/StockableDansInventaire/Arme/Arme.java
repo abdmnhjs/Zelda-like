@@ -4,6 +4,8 @@ import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Item.Item;
 import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Stockable;
 import com.example.sae_zeldalike.modele.Personnage.Personnage;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 import java.util.ArrayList;
 
@@ -11,17 +13,21 @@ public class Arme extends Item implements Stockable {
 
     private int dégâts;
     private int rayonAttaque;
-    protected String direction;
+    protected StringProperty direction;
     protected int initialX;
     protected int initialY;
+    private Personnage personnage;
+    private boolean porterParPerso;
 
     public Arme(Environnement environnement, int positionX, int positionY, int largeur, int longueur,int degats,int rayonAttaque) {
         super(environnement, positionX, positionY, largeur, longueur);
         this.dégâts=degats;
         this.rayonAttaque=rayonAttaque;
-        this.direction=null;
+        this.direction=new SimpleStringProperty("UP");
         this.initialX=positionX;
         this.initialY=positionY;
+        this.personnage=null;
+        porterParPerso=false;
 
     }
 
@@ -29,11 +35,33 @@ public class Arme extends Item implements Stockable {
         super(environnement, largeur, longueur);
         this.dégâts=degats;
         this.rayonAttaque=rayonAttaque;
-        this.direction=null;
+        this.direction=new SimpleStringProperty("UP");
         this.initialX=getPositionX();
         this.initialY=getPositionY();
+        this.personnage=null;
+        porterParPerso=false;
     }
 
+    public Personnage getPersonnage() {
+        return personnage;
+    }
+
+    public void setPersonnage(Personnage personnage) {
+        if (!estPorterParPerso()) {
+            this.personnage = personnage;
+            setPositionX(personnage.getPositionX());
+            setPositionY(personnage.getPositionY());
+            setPorterParPerso(true);
+        }
+    }
+
+    public boolean estPorterParPerso() {
+        return porterParPerso;
+    }
+
+    public void setPorterParPerso(boolean porterParPerso) {
+        this.porterParPerso = porterParPerso;
+    }
 
     public void faireDégâts(Personnage personnage, int dégâts){
         ArrayList<Personnage> dead = new ArrayList<>();
@@ -60,11 +88,15 @@ public class Arme extends Item implements Stockable {
     }
 
     public String getDirection() {
-        return this.direction;
+        return this.direction.getValue();
     }
 
     public void setDirection(String direction) {
-        this.direction = direction;
+        this.direction.setValue(direction);
+    }
+
+    public StringProperty getDirectionProperty() {
+        return this.direction;
     }
 
     public int getInitialX() {
