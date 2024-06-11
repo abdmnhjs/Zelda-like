@@ -49,6 +49,8 @@ public class Ennemi extends Personnage {
         int tailleTuile = this.environnement.getMap().getTailleTuile();
         LinkedList<int[]> fifo = new LinkedList<>();
         HashSet<int[]> visited = new HashSet<>();
+        HashMap<int[], int[]> predecesseurs = new HashMap<>();
+        ArrayList<int[]> chemin;
         visited.add(s);
         fifo.addFirst(s);
 
@@ -56,17 +58,38 @@ public class Ennemi extends Personnage {
             s = fifo.pollFirst();
             if(this.environnement.getMap().getCoordonnéesTuilesTraversables().contains(new int[]{s[0] + tailleTuile, s[1]})){
                     fifo.addFirst(new int[]{s[0]+tailleTuile, s[1]});
+                    predecesseurs.put(s, new int[]{s[0]+tailleTuile, s[1]});
                 }
             if(this.environnement.getMap().getCoordonnéesTuilesTraversables().contains(new int[]{s[0]-tailleTuile, s[1]})){
                     fifo.addFirst(new int[]{s[0]-tailleTuile, s[1]});
+                    predecesseurs.put(s, new int[]{s[0]-tailleTuile, s[1]});
                 }
             if(this.environnement.getMap().getCoordonnéesTuilesTraversables().contains(new int[]{s[0], s[1]+tailleTuile})){
                     fifo.addFirst(new int[]{s[0], s[1]+tailleTuile});
+                    predecesseurs.put(s, new int[]{s[0], s[1]+tailleTuile});
                 }
             if(this.environnement.getMap().getCoordonnéesTuilesTraversables().contains(new int[]{s[0], s[1]-tailleTuile})){
                     fifo.addFirst(new int[]{s[0], s[1]-tailleTuile});
+                    predecesseurs.put(s, new int[]{s[0], s[1]-tailleTuile});
                 }
             }
+        chemin = parcourirPredecesseur(predecesseurs, xArrivee, yArrivee);
+        for(int i = chemin.size() - 1; i >= 0; i--){
+            this.seDeplace(chemin.get(i)[0], chemin.get(i)[1]);
+        }
+        }
+
+        public static ArrayList<int[]> parcourirPredecesseur(HashMap<int[], int[]> map, int xArrivee, int yArrivee){
+            int[] actuel = new int[]{xArrivee, yArrivee};
+            ArrayList<int[]> couples = new ArrayList<>();
+            couples.add(actuel);
+
+            while (actuel != null){
+                actuel = map.get(actuel);
+                couples.add(actuel);
+            }
+
+            return couples;
         }
 
 
