@@ -12,7 +12,7 @@ import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 
-public class ObservateurPersonnage implements ListChangeListener<Ennemi> {
+public class ObservateurPersonnage implements ListChangeListener<Personnage> {
 
 
     private Pane environnement;
@@ -23,34 +23,35 @@ public class ObservateurPersonnage implements ListChangeListener<Ennemi> {
         this.vuePersonnages=vuePersonnages;
     }
 
-    @Override
-    public void onChanged(Change<? extends Ennemi> change) {
 
+
+    @Override
+    public void onChanged(Change<? extends Personnage> change) {
         while (change.next()) {
             if (change.wasAdded()){
                 for (Personnage personnage : change.getAddedSubList()){
-
                     VuePersonnage newPerso;
 
                     if (personnage instanceof Ennemi1){
                         newPerso = new VueEnnemi1(environnement,personnage);
                         vuePersonnages.add(newPerso);
-                    }
-                    if (personnage instanceof Ennemi2){
+                    }if (personnage instanceof Ennemi2){
                         newPerso =new VueEnnemi2(environnement,personnage);
                         vuePersonnages.add(newPerso);
                     }
                 }
             }
             if (change.wasRemoved()){
-                for (Ennemi personnage : change.getRemoved()){
+                for (Personnage personnage : change.getRemoved()){
+
+                    if (personnage instanceof Ennemi){
                     this.environnement.getChildren().remove(environnement.lookup("#"+personnage.getId()));
                     this.environnement.getChildren().remove(environnement.lookup("#O"+personnage.getId()));
                     this.environnement.getChildren().remove(environnement.lookup("#L"+personnage.getId()));
                     this.environnement.getChildren().remove(environnement.lookup("#BCKGL"+personnage.getId()));
+                    }
                 }
             }
         }
-
     }
 }

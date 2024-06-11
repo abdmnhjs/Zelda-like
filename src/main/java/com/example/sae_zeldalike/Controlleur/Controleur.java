@@ -159,7 +159,7 @@ public class Controleur implements Initializable {
         imagePerso.maxHeight(64);
         imagePerso.imageProperty().bind(vueLink.getSpritePersonnage().imageProperty());
 
-        this.clavier = new Clavier(this.link, this.pane, this.environnement);
+//        this.clavier = new Clavier(this.link, this.pane, this.environnement);
 //        pane.addEventFilter(KeyEvent.KEY_PRESSED,clavier);
 //        pane.addEventFilter(KeyEvent.KEY_RELEASED, clavier);
 
@@ -272,7 +272,7 @@ public class Controleur implements Initializable {
                     }else if (temps % 10 == 0) {
 
                         vueLink.animation();
-                        this.clavier.interactionTouche();
+
 
                         for(Personnage ennemi1 : this.environnement.getPersonnages()){
                             if (ennemi1 instanceof Ennemi) {
@@ -391,16 +391,12 @@ public class Controleur implements Initializable {
                     }
                     if (temps % 9 == 0) {
 
-                        vueEnnemi1.animation();
-                        ennemi1.seDeplace(link.getPositionX()+ link.getLargeur()/4, link.getPositionY()+ link.getLongueur()/4);
                         this.pane.requestFocus();
                         for (VueItem monItem : vueItems){
                             monItem.animationItem();
 
                         }
                     }
-
-
 
                     tempsRechargeFleche--;
                     temps++;

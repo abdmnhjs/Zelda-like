@@ -302,6 +302,9 @@ public class Environnement {
         }for (int i=0;i<4;i++) {
             ajouterItem(new Epée(this));
         }
+//        for (int i=0;i<5;i++){
+//            ajouterPersonnage(new Ennemi1(this));
+//        }
     }
 
 
