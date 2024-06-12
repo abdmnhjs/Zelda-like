@@ -128,49 +128,6 @@ public abstract class Arme extends Item implements Stockable {
     }
 
     @Override
-    public  void utiliserCapacite(){
-        ArrayList<Personnage>dead = new ArrayList<>();
+    public abstract void utiliserCapacite();
 
-        for (Personnage perso : getEnvironnement().getPersonnages()) {
-
-            if (!(perso instanceof Link)) {
-
-                switch (getDirection()) {
-
-                    case "UP" -> {
-                        if (this.getEnvironnement().estDansLaZone(this.hitbox(this.getPositionX(),this.getPositionY()),perso.hitbox(perso.getPositionX(), perso.getPositionY()))) {
-                            perso.reduirePointsDeVie(getDégâts());
-                        }
-
-
-                    }
-                    case "DOWN" -> {
-                        if (this.getEnvironnement().estDansLaZone(this.hitbox(this.getPositionX(),this.getPositionY()),perso.hitbox(perso.getPositionX(), perso.getPositionY()))) {
-                            perso.reduirePointsDeVie(getDégâts());
-                        }
-                        System.out.println("Attaque en B");
-                    }
-                    case "LEFT" -> {
-                        if (this.getEnvironnement().estDansLaZone(this.hitbox(this.getPositionX(),this.getPositionY()),perso.hitbox(perso.getPositionX(), perso.getPositionY()))) {
-                            perso.reduirePointsDeVie(getDégâts());
-                        }
-                        System.out.println("Attaque a G");
-                    }
-                    case "RIGHT" -> {
-                        if (this.getEnvironnement().estDansLaZone(this.hitbox(this.getPositionX(),this.getPositionY()),perso.hitbox(perso.getPositionX(), perso.getPositionY()))) {
-                            perso.reduirePointsDeVie(getDégâts());
-                        }
-                        System.out.println("Attaque a D");
-                    }
-                }
-            }
-            if (!perso.estVivant()){
-                dead.add(perso);
-            }
-        }
-        System.out.println(dead.size());
-        for (Personnage perso : dead) {
-            perso.getEnvironnement().supprimerPersonnage(perso);
-        }
-    }
 }

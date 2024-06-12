@@ -119,6 +119,8 @@ public class Clavier implements EventHandler<KeyEvent> {
                         if (link.getPointDeVieMax() >= link.getPointVie() + ((CoeurRouge) item).getPointDeVie()) {
                             link.setPointVie(link.getPointVie() + ((CoeurRouge) item).getPointDeVie());
 
+                        }else{
+                            laisserSurTerrain=true;
                         }
                     }
                     if (item instanceof CoeurBleu) {

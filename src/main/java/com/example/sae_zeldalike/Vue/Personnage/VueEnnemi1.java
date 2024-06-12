@@ -65,13 +65,13 @@ public class VueEnnemi1 extends VuePersonnage{
         double largeurActuelle = vie.getWidth();
         double largeurMaximale = arrPlanVie.getWidth() - 5;
 
-        if (largeurActuelle >= largeurMaximale * 0.75) {
+        if (largeurActuelle >= largeurMaximale * 0.9) {
             vie.setFill(Color.GREEN);
-        }else if (largeurActuelle>=largeurMaximale*0.5){
-            vie.setFill(Color.YELLOW);
-        }else if (largeurActuelle >= largeurMaximale * 0.25) {
-            vie.setFill(Color.ORANGE);
-        }else {
+        }else if (largeurActuelle>=largeurMaximale*0.7){
+            vie.setFill(Color.YELLOWGREEN);
+        }else if (largeurActuelle >= largeurMaximale * 0.5) {
+            vie.setFill(Color.ORANGERED);
+        }else if (largeurActuelle< largeurMaximale*0.35){
             vie.setFill(Color.RED);
         }
     }
