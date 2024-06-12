@@ -6,11 +6,13 @@ import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Arc;
 public class Fleche extends Projectile {
 
     private Arc arc;
+    private final String direction;
 
     public Fleche(Environnement environnement, int positionX, int positionY, int largeur, int longueur, int vitesse,Arc arc) {
         super(environnement, positionX, positionY, largeur, longueur, vitesse,0);
         this.arc=arc;
         this.setDegats(arc.getDégâts());
+        this.direction = arc.getDirection();
     }
 
         public boolean depasseRayon(){
@@ -20,5 +22,10 @@ public class Fleche extends Projectile {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String getDirection() {
+        return direction;
     }
 }

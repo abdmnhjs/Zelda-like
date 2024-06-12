@@ -1,7 +1,8 @@
 package com.example.sae_zeldalike.Controlleur.Observateur;
 
 import com.example.sae_zeldalike.Vue.Item.*;
-import com.example.sae_zeldalike.Vue.VueEpee;
+import com.example.sae_zeldalike.Vue.Item.Arme.VueArc;
+import com.example.sae_zeldalike.Vue.Item.Arme.VueEpee;
 import com.example.sae_zeldalike.modele.Item.*;
 import com.example.sae_zeldalike.modele.Item.NonStockable.CoeurBleu;
 import com.example.sae_zeldalike.modele.Item.NonStockable.CoeurRouge;
@@ -67,6 +68,8 @@ public class ObservateurItem implements ListChangeListener<Item> {
                         newItem=new VueEpee(environnement,item);
                         vueItems.add(newItem);
                     }else if (item instanceof Arc){
+                        newItem = new VueArc(environnement,item);
+                        vueItems.add(newItem);
 
                     }
 

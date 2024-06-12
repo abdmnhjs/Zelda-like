@@ -1,5 +1,6 @@
 package com.example.sae_zeldalike.modele.Environnement;
 
+import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Arc;
 import com.example.sae_zeldalike.modele.Projectile.BouleDeFeu;
 import com.example.sae_zeldalike.modele.Hitbox;
 import com.example.sae_zeldalike.modele.Item.*;
@@ -23,7 +24,7 @@ public class Environnement {
     private static int compteurEnvironnement=0;
     private ObservableList<Personnage> personnages;
     private ObservableList<Item> items;
-    private ObservableList<Projectile> flèchesEnDéplacement;
+    private ObservableList<Projectile> projectiles;
     private ObservableList<Link> linkRemovalQueue;
     private ObservableList<BouleDeFeu> boulesDeFeuEnDeplacement;
     private Map map;
@@ -33,7 +34,7 @@ public class Environnement {
         this.id = "E"+compteurEnvironnement;
         compteurEnvironnement++;
         this.map=map;
-        this.flèchesEnDéplacement = FXCollections.observableArrayList();
+        this.projectiles = FXCollections.observableArrayList();
         this.personnages= FXCollections.observableArrayList();
         this.items= FXCollections.observableArrayList();
 
@@ -67,10 +68,10 @@ public class Environnement {
 
 
 
-    public void supprimerFleche(Projectile projectile){
-        for(int i=0;i<flèchesEnDéplacement.size();i++){
-            if(flèchesEnDéplacement.get(i).getId().equals(projectile.getId())){
-                flèchesEnDéplacement.remove(i);
+    public void supprimerProjectiles(Projectile projectile){
+        for(int i=0;i<projectiles.size();i++){
+            if(projectiles.get(i).getId().equals(projectile.getId())){
+                projectiles.remove(i);
             }
         }
     }
@@ -99,8 +100,12 @@ public class Environnement {
         }
     }
 
-    public ObservableList<Projectile> getFlèchesEnDéplacement() {
-        return this.flèchesEnDéplacement;
+    public void ajouterProjectiles(Projectile projectile){
+        projectiles.add(projectile);
+    }
+
+    public ObservableList<Projectile> getProjectiles() {
+        return this.projectiles;
     }
 
 
@@ -252,10 +257,10 @@ public class Environnement {
                 &&(hitboxItem.getX()+hitboxItem.getLargeur()>=hitboxPerso.getX()    ||hitboxItem.getX()+ hitboxItem.getLargeur()>=hitboxPerso.getX()+hitboxPerso.getLargeur())))){
             estDansSaZone = true;
         }
-        System.out.println("Y= "+hitboxItem.getY()+" <= "+hitboxPerso.getY()+" ou "+(hitboxPerso.getY()+hitboxPerso.getLongueur()));
-        System.out.println("Y= "+(hitboxItem.getY()+hitboxItem.getLongueur())+" >= "+hitboxPerso.getY()+" ou "+(hitboxPerso.getY()+hitboxPerso.getLongueur()));
-        System.out.println("X= "+hitboxItem.getX()+" <= "+hitboxPerso.getX()+" ou "+(hitboxPerso.getX()+ hitboxPerso.getLargeur()));
-        System.out.println("X= "+(hitboxItem.getX()+hitboxItem.getLargeur())+" >= "+hitboxPerso.getX()+" ou "+(hitboxPerso.getX()+hitboxPerso.getLargeur()));
+//        System.out.println("Y= "+hitboxItem.getY()+" <= "+hitboxPerso.getY()+" ou "+(hitboxPerso.getY()+hitboxPerso.getLongueur()));
+//        System.out.println("Y= "+(hitboxItem.getY()+hitboxItem.getLongueur())+" >= "+hitboxPerso.getY()+" ou "+(hitboxPerso.getY()+hitboxPerso.getLongueur()));
+//        System.out.println("X= "+hitboxItem.getX()+" <= "+hitboxPerso.getX()+" ou "+(hitboxPerso.getX()+ hitboxPerso.getLargeur()));
+//        System.out.println("X= "+(hitboxItem.getX()+hitboxItem.getLargeur())+" >= "+hitboxPerso.getX()+" ou "+(hitboxPerso.getX()+hitboxPerso.getLargeur()));
         return estDansSaZone;
 
     }
@@ -268,7 +273,8 @@ public class Environnement {
     }
 
     public void init() {
-        for (int i = 0; i < 20; i++) {
+
+        for (int i = 0; i < 40; i++) {
             ajouterItem(new Piece(this));
         }
         for (int i =0;i<10;i++){
@@ -277,7 +283,7 @@ public class Environnement {
         for (int i =0;i<10;i++){
             ajouterPersonnage(new Ennemi1(this));
         }
-        for (int i =0;i<10;i++){
+        for (int i =0;i<15;i++){
             ajouterItem(new CoeurRouge(this));
         }
         for (int i=0;i<10;i++){
@@ -285,14 +291,12 @@ public class Environnement {
         }
         for (int i=0;i<5;i++){
             ajouterItem(new SuperMegaFast(this));
-        }for (int i=0;i<5;i++){
+        }for (int i=0;i<2;i++){
             ajouterItem(new Poison(this));
         }for (int i=0;i<4;i++) {
             ajouterItem(new Epée(this));
+            ajouterItem(new Arc(this));
         }
-//        for (int i=0;i<5;i++){
-//            ajouterPersonnage(new Ennemi1(this));
-//        }
     }
 
 

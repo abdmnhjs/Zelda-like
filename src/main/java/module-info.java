@@ -19,4 +19,6 @@ module com.example.sae_zeldalike {
     opens com.example.sae_zeldalike.Vue.Personnage to javafx.fxml;
     exports com.example.sae_zeldalike.Vue.Environnement;
     opens com.example.sae_zeldalike.Vue.Environnement to javafx.fxml;
+    exports com.example.sae_zeldalike.Vue.Item.Arme;
+    opens com.example.sae_zeldalike.Vue.Item.Arme to javafx.fxml;
 }

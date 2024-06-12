@@ -140,7 +140,12 @@ public class Clavier implements EventHandler<KeyEvent> {
             }
             if (touches.contains(KeyCode.A)) {
                 System.out.println(link.getEffets());
-                System.out.println(link.getEnvironnement().getPersonnages());
+                for (Item item :link.getEnvironnement().getItems()){
+                    if (item instanceof Arc){
+                        System.out.println(item);
+                    }
+                }
+
                 System.out.println(link.getArmeEquiper());
             }
             if (touches.contains(KeyCode.I)) {
