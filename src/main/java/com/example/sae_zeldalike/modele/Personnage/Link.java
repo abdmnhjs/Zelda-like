@@ -207,15 +207,17 @@ public class Link extends Personnage {
 
         for (Item item : this.environnement.getItems()) {
 
-            if ((this.getPositionY() - 20 <= item.getPositionY() && item.getPositionY() <= this.getPositionY() + 20)
-                    && (this.getPositionX() - 20 <= item.getPositionX() && item.getPositionX() <= this.getPositionX() + 20)) {
+//            if ((this.getPositionY() - 20 <= item.getPositionY() && item.getPositionY() <= this.getPositionY() + 20)
+//                    && (this.getPositionX() - 20 <= item.getPositionX() && item.getPositionX() <= this.getPositionX() + 20)) {
 
-                if (!(item instanceof Stockable)){
-                    return item;
-                }else if ((item instanceof Stockable && !((Stockable) item).effetUtiliser())&& !(item instanceof Arme) ){
-                    return item;
-                }else if ((item instanceof Arme && ((Arme) item).getPersonnage()==null && !((Arme) item).estPorterParPerso())){
-                    return item;
+                if (getEnvironnement().estDansLaZone(this.hitbox(getPositionX(),getPositionY()),item.hitbox(item.getPositionX(),item.getPositionY()))) {
+                    if (!(item instanceof Stockable)) {
+                        return item;
+                    } else if ((item instanceof Stockable && !((Stockable) item).effetUtiliser()) && !(item instanceof Arme)) {
+                        return item;
+                    } else if ((item instanceof Arme && ((Arme) item).getPersonnage() == null && !((Arme) item).estPorterParPerso())) {
+                        return item;
+                    }
                 }
 //                if (item instanceof Piece) {
 //                    return item;
@@ -233,7 +235,7 @@ public class Link extends Personnage {
 //                }
 
             }
-        }
+//        }
 
         return null;
     }

@@ -91,8 +91,6 @@ public class Environnement {
         }
     }
 
-
-
     public void supprimerBouleDeFeu(BouleDeFeu bouleDeFeu){
         for(int i = 0; i< boulesDeFeuEnDeplacement.size(); i++){
             if(boulesDeFeuEnDeplacement.get(i).getId().equals(bouleDeFeu.getId())){
@@ -244,6 +242,23 @@ public class Environnement {
         return coinBasDroite && coinBasGauche && coinHautDroit && coinHautGauche;
     }
 
+    public boolean estDansLaZone(Hitbox hitboxItem,Hitbox hitboxPerso){
+        boolean estDansSaZone = false;
+
+
+        if (((  hitboxItem.getY()-hitboxItem.getLongueur()<=hitboxPerso.getY()    ||hitboxItem.getY()-hitboxItem.getLongueur()<=hitboxPerso.getY()+hitboxPerso.getLongueur())
+                &&(hitboxItem.getY()+hitboxItem.getLongueur()>=hitboxPerso.getY()   ||hitboxItem.getY()+hitboxItem.getLongueur()>=hitboxPerso.getY()+hitboxPerso.getLongueur())
+                &&((hitboxItem.getX()-hitboxItem.getLargeur()<=hitboxPerso.getX()   ||hitboxItem.getX()-hitboxItem.getLargeur()<=hitboxPerso.getX()+hitboxPerso.getLargeur())
+                &&(hitboxItem.getX()+hitboxItem.getLargeur()>=hitboxPerso.getX()    ||hitboxItem.getX()+ hitboxItem.getLargeur()>=hitboxPerso.getX()+hitboxPerso.getLargeur())))){
+            estDansSaZone = true;
+        }
+        System.out.println("Y= "+hitboxItem.getY()+" <= "+hitboxPerso.getY()+" ou "+(hitboxPerso.getY()+hitboxPerso.getLongueur()));
+        System.out.println("Y= "+(hitboxItem.getY()+hitboxItem.getLongueur())+" >= "+hitboxPerso.getY()+" ou "+(hitboxPerso.getY()+hitboxPerso.getLongueur()));
+        System.out.println("X= "+hitboxItem.getX()+" <= "+hitboxPerso.getX()+" ou "+(hitboxPerso.getX()+ hitboxPerso.getLargeur()));
+        System.out.println("X= "+(hitboxItem.getX()+hitboxItem.getLargeur())+" >= "+hitboxPerso.getX()+" ou "+(hitboxPerso.getX()+hitboxPerso.getLargeur()));
+        return estDansSaZone;
+
+    }
     public String getId() {
         return id;
     }

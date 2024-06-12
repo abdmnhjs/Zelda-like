@@ -114,7 +114,6 @@ public class Controleur implements Initializable {
         environnement.ajouterPersonnage(ennemi1);
         this.vueEnnemi1 =new VueEnnemi1(pane,ennemi1);
 
-
         //Barre de vie Binder en fonction de la vie du personnage
         ObservateurCoeurs observateurCoeurs = new ObservateurCoeurs(emplacementCoeurs, link);
         link.getPointVieProperty().addListener(observateurCoeurs);
@@ -134,7 +133,6 @@ public class Controleur implements Initializable {
 
         //Observateur sur l'indice de la case de l'inventaire selectionner
         link.getInventaire().getCaseActuelProperty().addListener(new ObservateurCaseInventaire(emplacement1,emplacement2,emplacement3,emplacement4,emplacement5,emplacement6));
-
 
         //Observateur sur la monnaie de Link
         link.getPortefeuilleProperty().addListener((obs, old, nouv)-> this.nombrePiece.setText(nouv.toString()));
@@ -162,7 +160,6 @@ public class Controleur implements Initializable {
 
         // demarre l'animation
         gameLoop.play();
-
 
 
     }
@@ -199,6 +196,36 @@ public class Controleur implements Initializable {
                 }
             }else {
                 case3.setImage(null);
+            }
+            if (link.getInventaire().getInventaireCase4() != null) {
+
+                for (int i=0;i<observateurItem.getVueItems().size();i++){
+                    if (link.getInventaire().getInventaireCase4().getItem().getId().equals(observateurItem.getVueItems().get(i).getSpriteId())){
+                        case4.setImage(observateurItem.getVueItems().get(i).getImagePrincipale());
+                    }
+                }
+            }else {
+                case4.setImage(null);
+            }
+            if (link.getInventaire().getInventaireCase5() != null) {
+
+                for (int i=0;i<observateurItem.getVueItems().size();i++){
+                    if (link.getInventaire().getInventaireCase5().getItem().getId().equals(observateurItem.getVueItems().get(i).getSpriteId())){
+                        case5.setImage(observateurItem.getVueItems().get(i).getImagePrincipale());
+                    }
+                }
+            }else {
+                case5.setImage(null);
+            }
+            if (link.getInventaire().getInventaireCase6() != null) {
+
+                for (int i=0;i<observateurItem.getVueItems().size();i++){
+                    if (link.getInventaire().getInventaireCase6().getItem().getId().equals(observateurItem.getVueItems().get(i).getSpriteId())){
+                        case6.setImage(observateurItem.getVueItems().get(i).getImagePrincipale());
+                    }
+                }
+            }else {
+                case6.setImage(null);
             }
         }
     }
@@ -256,13 +283,14 @@ public class Controleur implements Initializable {
 
                                 Ennemi1 e1 = (Ennemi1) monPerso.getPersonnage();
                                 e1.seDeplace(link.getPositionX()+ link.getLargeur()/4, link.getPositionY()+ link.getLongueur()/4);
+
                             }
                         }
                     }
                     if (temps % 9 == 0) {
 
-                        vueEnnemi1.animation();
-                        ennemi1.seDeplace(link.getPositionX()+ link.getLargeur()/4, link.getPositionY()+ link.getLongueur()/4);
+//                        vueEnnemi1.animation();
+//                        ennemi1.seDeplace(link.getPositionX()+ link.getLargeur()/4, link.getPositionY()+ link.getLongueur()/4);
                         this.pane.requestFocus();
                         for (VueItem monItem : vueItems){
                             monItem.animationItem();

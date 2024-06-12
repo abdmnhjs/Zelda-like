@@ -138,27 +138,26 @@ public abstract class Arme extends Item implements Stockable {
                 switch (getDirection()) {
 
                     case "UP" -> {
-                        if (this.getPositionY() - getRayonAttaque() >= personnage.getPositionY()
-                                && (this.getPositionX()<=personnage.getPositionX()|| this.getPositionX()+this.getLargeur()>= personnage.getPositionX())) {
+                        if (this.getEnvironnement().estDansLaZone(this.hitbox(this.getPositionX(),this.getPositionY()),perso.hitbox(perso.getPositionX(), perso.getPositionY()))) {
                             perso.reduirePointsDeVie(getDégâts());
                         }
-                        System.out.println("Normalement c'est H "+getDirection());
+
+
                     }
                     case "DOWN" -> {
-                        if (this.getPositionY() + getRayonAttaque() <= personnage.getPositionY()
-                                && (this.getPositionX()+this.getLargeur()/2<=personnage.getPositionX()|| this.getPositionX()+this.getLargeur()/2>= personnage.getPositionX())) {
+                        if (this.getEnvironnement().estDansLaZone(this.hitbox(this.getPositionX(),this.getPositionY()),perso.hitbox(perso.getPositionX(), perso.getPositionY()))) {
                             perso.reduirePointsDeVie(getDégâts());
                         }
                         System.out.println("Attaque en B");
                     }
                     case "LEFT" -> {
-                        if (this.getPositionX() - getRayonAttaque() >= personnage.getPositionX() ) {
+                        if (this.getEnvironnement().estDansLaZone(this.hitbox(this.getPositionX(),this.getPositionY()),perso.hitbox(perso.getPositionX(), perso.getPositionY()))) {
                             perso.reduirePointsDeVie(getDégâts());
                         }
                         System.out.println("Attaque a G");
                     }
                     case "RIGHT" -> {
-                        if (this.getPositionX() + getRayonAttaque() <= personnage.getPositionX()) {
+                        if (this.getEnvironnement().estDansLaZone(this.hitbox(this.getPositionX(),this.getPositionY()),perso.hitbox(perso.getPositionX(), perso.getPositionY()))) {
                             perso.reduirePointsDeVie(getDégâts());
                         }
                         System.out.println("Attaque a D");
