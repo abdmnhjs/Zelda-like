@@ -62,23 +62,23 @@ public class VueEpee extends VueItem {
                     || ((Arme)item).getDirection().equals("Inactif_UP")
             ) {
 
-                item.getPositionXProperty().bind(((Arme)item).getPersonnage().getPositionXProperty().subtract(item.getLargeur()/6));
-                item.getPositionYProperty().bind(((Arme)item).getPersonnage().getPositionYProperty().subtract(((Arme) item).getPersonnage().getLongueur()/2));
+                item.getPositionXProperty().bind(((Arme)item).getPersonnage().getPositionXProperty());
+                item.getPositionYProperty().bind(((Arme)item).getPersonnage().getPositionYProperty().subtract(((Arme) item).getPersonnage().getLongueur()/1.5));
                 spriteItem.setImage(epeeH);
 
             }
             if (((Arme)item).getDirection().equals("DOWN")
                     || ((Arme)item).getDirection().equals("Inactif_DOWN")
             ) {
-                item.getPositionXProperty().bind(((Arme)item).getPersonnage().getPositionXProperty().subtract(item.getLargeur()/6));
-                item.getPositionYProperty().bind(((Arme)item).getPersonnage().getPositionYProperty().add(((Arme) item).getPersonnage().getLongueur()/2));
+                item.getPositionXProperty().bind(((Arme)item).getPersonnage().getPositionXProperty());
+                item.getPositionYProperty().bind(((Arme)item).getPersonnage().getPositionYProperty().add(((Arme) item).getPersonnage().getLongueur()/1.5));
                 spriteItem.setImage(epeeB);
             }
             if (((Arme)item).getDirection().equals("RIGHT")
                     || ((Arme)item).getDirection().equals("Inactif_RIGHT")
             ) {
 
-                item.getPositionXProperty().bind(((Arme)item).getPersonnage().getPositionXProperty().add(((Arme) item).getPersonnage().getLargeur()/4));
+                item.getPositionXProperty().bind(((Arme)item).getPersonnage().getPositionXProperty().add(((Arme) item).getPersonnage().getLargeur()/1.5));
                 item.getPositionYProperty().bind(((Arme)item).getPersonnage().getPositionYProperty());
 
                 spriteItem.setImage(epeeD);
@@ -86,13 +86,11 @@ public class VueEpee extends VueItem {
             if (((Arme)item).getDirection().equals("LEFT")
                     || ((Arme)item).getDirection().equals("Inactif_LEFT")
             ) {
-                item.getPositionXProperty().bind(((Arme)item).getPersonnage().getPositionXProperty().subtract(((Arme) item).getPersonnage().getLargeur()));
+                item.getPositionXProperty().bind(((Arme)item).getPersonnage().getPositionXProperty().subtract(((Arme) item).getPersonnage().getLargeur()/1.5));
                 item.getPositionYProperty().bind(((Arme)item).getPersonnage().getPositionYProperty());
                 spriteItem.setImage(epeeG);
 
             }
-            this.spriteItem.setFitHeight(this.item.getLongueur());
-            this.spriteItem.setFitWidth(this.item.getLargeur());
         }
 
     }

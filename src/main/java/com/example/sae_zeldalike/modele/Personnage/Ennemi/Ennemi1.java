@@ -5,11 +5,11 @@ import com.example.sae_zeldalike.modele.Environnement.Environnement;
 public class Ennemi1 extends Ennemi {
 
     public Ennemi1(Environnement environnement, int positionX, int positionY) {
-        super(100, 1, environnement, positionX, positionY, 5, 32,32);
+        super(300, 1, environnement, positionX, positionY, 5, 32,32);
     }
 
     public Ennemi1(Environnement environnement) {
-        super(100, 1, environnement,  5, 32,32);
+        super(300, 1, environnement,  5, 32,32);
     }
 
 

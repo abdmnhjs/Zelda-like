@@ -190,8 +190,26 @@ public class Clavier implements EventHandler<KeyEvent> {
                 link.getInventaire().setCaseActuel(5);
             }
         }
-        interactionToucheCombat();
-    }
+        if (this.link.getArmeEquiper()!=null) {
+
+            if (touches.contains(KeyCode.UP)) {
+                link.getArmeEquiper().setDirection("UP");
+                link.getArmeEquiper().utiliserCapacite();
+            }
+            if (touches.contains(KeyCode.DOWN)) {
+                link.getArmeEquiper().setDirection("DOWN");
+                link.getArmeEquiper().utiliserCapacite();
+            }
+            if (touches.contains(KeyCode.RIGHT)) {
+                link.getArmeEquiper().setDirection("RIGHT");
+                link.getArmeEquiper().utiliserCapacite();
+            }
+            if (touches.contains(KeyCode.LEFT)) {
+                link.getArmeEquiper().setDirection("LEFT");
+                link.getArmeEquiper().utiliserCapacite();
+            }
+
+        }    }
 
 
     public void interactionToucheCombat() {
@@ -222,26 +240,7 @@ public class Clavier implements EventHandler<KeyEvent> {
 //            }
 //
 //        }
-        if (this.link.getArmeEquiper()!=null) {
 
-            if (touches.contains(KeyCode.UP)) {
-                link.getArmeEquiper().setDirection("UP");
-                link.getArmeEquiper().utiliserCapacite();
-            }
-            if (touches.contains(KeyCode.DOWN)) {
-                link.getArmeEquiper().setDirection("DOWN");
-                link.getArmeEquiper().utiliserCapacite();
-            }
-            if (touches.contains(KeyCode.RIGHT)) {
-                link.getArmeEquiper().setDirection("RIGHT");
-                link.getArmeEquiper().utiliserCapacite();
-            }
-            if (touches.contains(KeyCode.LEFT)) {
-                link.getArmeEquiper().setDirection("LEFT");
-                link.getArmeEquiper().utiliserCapacite();
-            }
-
-        }
     }
 
 }

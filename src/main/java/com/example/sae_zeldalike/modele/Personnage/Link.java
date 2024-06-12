@@ -19,7 +19,7 @@ public class Link extends Personnage {
     private IntegerProperty numeroCaseActuel;
     private IntegerProperty pointDeVieAdditionelle;
     private final IntegerProperty pointDeVieMax;
-    private ArrayList<Effet> effets;
+    protected ArrayList<Effet> effets;
     private Arme armeEquiper;
 
     public Link(Environnement environnement, int positionX, int positionY) {
@@ -30,6 +30,7 @@ public class Link extends Personnage {
         this.numeroCaseActuel=new SimpleIntegerProperty(0);
         this.pointDeVieAdditionelle = new SimpleIntegerProperty(0);
         this.pointDeVieMax = new SimpleIntegerProperty(getPointDeVieAdditionelle()+getPointVie());
+        effets = new ArrayList<>();
         armeEquiper=null;
 
     }
@@ -42,6 +43,7 @@ public class Link extends Personnage {
         this.numeroCaseActuel=new SimpleIntegerProperty(0);
         this.pointDeVieAdditionelle = new SimpleIntegerProperty(0);
         this.pointDeVieMax = new SimpleIntegerProperty(getPointDeVieAdditionelle()+getPointVie());
+        effets = new ArrayList<>();
         armeEquiper=null;
     }
 
@@ -107,11 +109,7 @@ public class Link extends Personnage {
         }
     }
 
-    public void attaquerAvecArmeEquiper(){
-        if (getArmeEquiper()!=null){
-            getArmeEquiper().utiliserCapacite();
-        }
-    }
+
 
 
 

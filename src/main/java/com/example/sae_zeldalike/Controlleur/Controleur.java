@@ -277,6 +277,17 @@ public class Controleur implements Initializable {
 
                     }
                     else if (temps%4 ==0){
+                        int compteur =0;
+                        for (Personnage ops : environnement.getPersonnages()) {
+                            if (ops instanceof Ennemi1){
+                                compteur++;
+                            }
+                        }
+                        if (compteur<=10){
+                            for (int cpt = 10-compteur;cpt>=0;cpt--){
+                                environnement.ajouterPersonnage(new Ennemi1(environnement));
+                            }
+                        }
                         for (VuePersonnage monPerso : vuePersos){
                             if (monPerso instanceof VueEnnemi1){
                                 monPerso.animation();
