@@ -14,13 +14,14 @@ import javafx.scene.shape.Circle;
 public class VueEpee extends VueItem {
 
     private Image epeeH,epeeB,epeeG,epeeD;
+    private String directionPrecedente;
 
     public VueEpee(Pane pane,Item item) {
         super(pane,item);
         initialiserItem();
         spriteItem.setImage(epeeH);
         creerOmbre(pane);
-
+        directionPrecedente="";
 
         if (((Arme)item).estPorterParPerso()){
 
@@ -53,6 +54,12 @@ public class VueEpee extends VueItem {
     @Override
     public void animationItem() {
         if (((Arme) item).estPorterParPerso()) {
+            String direction = ((Arme)item).getDirection();
+
+            if (direction.equals(directionPrecedente)) {
+                return;
+            }
+            directionPrecedente = direction;
 
             if (((Arme)item).getDirection().equals("UP")
                     || ((Arme)item).getDirection().equals("Inactif_UP")
