@@ -386,7 +386,7 @@ public class Controleur implements Initializable {
                     if (temps % 9 == 0) {
 
                         vueEnnemi1.animation();
-                        ennemi1.seDeplace(link.getPositionX()+ link.getLargeur()/4, link.getPositionY()+ link.getLongueur()/4);
+                        ennemi1.bfs(ennemi1.getPositionX(),ennemi1.getPositionY(), this.link.getPositionX(), this.link.getPositionY());
                         this.pane.requestFocus();
                         for (VueItem monItem : vueItems){
                             monItem.animationItem();

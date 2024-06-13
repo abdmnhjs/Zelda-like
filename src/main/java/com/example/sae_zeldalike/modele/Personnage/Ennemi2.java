@@ -35,7 +35,6 @@ public class Ennemi2 extends Ennemi{
         boolean linkMemeColonne = (linkX >= ennemiX && linkX <= ennemiX + ennemiLargeur) || (linkX + linkLargeur >= ennemiX && linkX + linkLargeur <= ennemiX + ennemiLargeur);
 
         if(linkAuDessus && linkMemeColonne) {
-            System.out.println("Link détecté au-dessus !");
             bouleDeFeu = new BouleDeFeu(ennemiX, ennemiY, this.environnement, 30, 32, 32);
             bouleDeFeu.setDirection("UP");
             this.environnement.ajouterBouleDeFeu(bouleDeFeu);

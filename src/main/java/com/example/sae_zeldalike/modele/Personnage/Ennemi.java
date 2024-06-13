@@ -2,10 +2,7 @@ package com.example.sae_zeldalike.modele.Personnage;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.*;
 
 public class Ennemi extends Personnage {
     protected double probaAttaque;
@@ -45,53 +42,71 @@ public class Ennemi extends Personnage {
     }
 
     public void bfs(int xDepart, int yDepart, int xArrivee, int yArrivee) {
-        int[] s = new int[]{xDepart, yDepart};
-        int tailleTuile = this.environnement.getMap().getTailleTuile();
-        LinkedList<int[]> fifo = new LinkedList<>();
-        HashSet<int[]> visited = new HashSet<>();
-        HashMap<int[], int[]> predecesseurs = new HashMap<>();
-        ArrayList<int[]> chemin;
-        visited.add(s);
-        fifo.addFirst(s);
+        int tailleTuile = 32;
+        int[] start = {yDepart, xDepart};
+        int[] destination = {yArrivee, xArrivee};
+        int[][] directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        Map<List<Integer>, int[]> predecesseurs = new HashMap<>();
+        LinkedList<int[]> queue = new LinkedList<>();
+        ArrayList<int[]> parcours = new ArrayList<>();
+        ArrayList<int[]> path = new ArrayList<>();
+        queue.addFirst(start);
+        parcours.add(start);
+        predecesseurs.put(Arrays.asList(start[0], start[1]), null);
 
-        while (!fifo.isEmpty()) {
-            s = fifo.pollFirst();
-            if(this.environnement.getMap().getCoordonnéesTuilesTraversables().contains(new int[]{s[0] + tailleTuile, s[1]})){
-                    fifo.addFirst(new int[]{s[0]+tailleTuile, s[1]});
-                    predecesseurs.put(s, new int[]{s[0]+tailleTuile, s[1]});
+        while (!queue.isEmpty()) {
+            int[] actuel = queue.pollLast();
+
+            for (int[] direction : directions) {
+                int nx = actuel[1] + direction[1] * tailleTuile;
+                int ny = actuel[0] + direction[0] * tailleTuile;
+                int[] ntab = {ny, nx};
+
+                if (Arrays.equals(actuel, destination)) {
+                    path = printPath(predecesseurs, actuel);
+                    return;
                 }
-            if(this.environnement.getMap().getCoordonnéesTuilesTraversables().contains(new int[]{s[0]-tailleTuile, s[1]})){
-                    fifo.addFirst(new int[]{s[0]-tailleTuile, s[1]});
-                    predecesseurs.put(s, new int[]{s[0]-tailleTuile, s[1]});
-                }
-            if(this.environnement.getMap().getCoordonnéesTuilesTraversables().contains(new int[]{s[0], s[1]+tailleTuile})){
-                    fifo.addFirst(new int[]{s[0], s[1]+tailleTuile});
-                    predecesseurs.put(s, new int[]{s[0], s[1]+tailleTuile});
-                }
-            if(this.environnement.getMap().getCoordonnéesTuilesTraversables().contains(new int[]{s[0], s[1]-tailleTuile})){
-                    fifo.addFirst(new int[]{s[0], s[1]-tailleTuile});
-                    predecesseurs.put(s, new int[]{s[0], s[1]-tailleTuile});
+
+                if (accessible(nx, ny) && !estMarque(ntab, parcours)) {
+                    parcours.add(ntab);
+                    predecesseurs.put(Arrays.asList(ntab[0], ntab[1]), actuel);
+                    queue.addFirst(ntab);
                 }
             }
-        chemin = parcourirPredecesseur(predecesseurs, xArrivee, yArrivee);
-        for(int i = chemin.size() - 1; i >= 0; i--){
-            this.seDeplace(chemin.get(i)[0], chemin.get(i)[1]);
-        }
         }
 
-        public static ArrayList<int[]> parcourirPredecesseur(HashMap<int[], int[]> map, int xArrivee, int yArrivee){
-            int[] actuel = new int[]{xArrivee, yArrivee};
-            ArrayList<int[]> couples = new ArrayList<>();
-            couples.add(actuel);
+        for (int i = 0 ; i < path.size() ; i++) {
+            this.seDeplace(path.get(i)[0], path.get(i)[1]);
+        }
+    }
 
-            while (actuel != null){
-                actuel = map.get(actuel);
-                couples.add(actuel);
+    public boolean accessible(int x, int y) {
+        for (int[] couple : this.environnement.getMap().getCoordonnéesTuilesTraversables()) {
+            if (x == couple[1] && y == couple[0]) {
+                return true;
             }
-
-            return couples;
         }
+        return false;
+    }
 
+    public boolean estMarque(int[] s, ArrayList<int[]> parcours) {
+        for (int[] coord : parcours) {
+            if (Arrays.equals(coord, s)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public ArrayList<int[]> printPath(Map<List<Integer>, int[]> predecesseurs, int[] destination) {
+        ArrayList<int[]> path = new ArrayList<>();
+        for (int[] at = destination; at != null; at = predecesseurs.get(Arrays.asList(at[0], at[1]))) {
+            path.add(at);
+        }
+        Collections.reverse(path);
+        System.out.println("Chemin trouvé: " + path);
+        return path;
+    }
 
     public boolean proba(double pourcent){
         double x= Math.random();
