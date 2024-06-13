@@ -12,12 +12,12 @@ public class Arc extends Arme {
 
 
     public Arc(Environnement environnement, int positionX, int positionY) {
-        super(environnement, positionX, positionY, 32, 32, 10, 80);
+        super(environnement, positionX, positionY, 32, 32, 10, 500);
 
     }
 
     public Arc(Environnement environnement) {
-        super(environnement, 32, 32, 10, 80);
+        super(environnement, 32, 32, 10, 500);
 
     }
 
@@ -26,16 +26,16 @@ public class Arc extends Arme {
 
         switch (getDirection()){
             case "UP"-> {
-                getEnvironnement().ajouterProjectiles(new Fleche(getEnvironnement(),(getPositionX()+getLargeur()/2),(getPositionY()+getLongueur()/2),12,24,getPersonnage().getVitesseDeplacement(),this));
+                getEnvironnement().ajouterProjectiles(new Fleche(getEnvironnement(),(getPositionX()+getLargeur()/2),(getPositionY()+getLongueur()/2),12,24,getPersonnage().getVitesseDeplacement(),this,this.getDirection()));
             }
             case "DOWN"-> {
-                getEnvironnement().ajouterProjectiles(new Fleche(getEnvironnement(),(getPositionX()+getLargeur()/2),(getPositionY()+getLongueur()/2),12,24,getPersonnage().getVitesseDeplacement(),this));
+                getEnvironnement().ajouterProjectiles(new Fleche(getEnvironnement(),(getPositionX()+getLargeur()/2),(getPositionY()+getLongueur()/2),12,24,getPersonnage().getVitesseDeplacement(),this,this.getDirection()));
             }
             case "LEFT"-> {
-                getEnvironnement().ajouterProjectiles(new Fleche(getEnvironnement(),(getPositionX()+getLargeur()/2),(getPositionY()+getLongueur()/2),24,12,getPersonnage().getVitesseDeplacement(),this));
+                getEnvironnement().ajouterProjectiles(new Fleche(getEnvironnement(),(getPositionX()-getLargeur()/2),(getPositionY()+getLongueur()/2),24,12,getPersonnage().getVitesseDeplacement(),this,this.getDirection()));
             }
             case "RIGHT"-> {
-                getEnvironnement().ajouterProjectiles(new Fleche(getEnvironnement(),(getPositionX()+getLargeur()/2),(getPositionY()+getLongueur()/2),24,12,getPersonnage().getVitesseDeplacement(),this));
+                getEnvironnement().ajouterProjectiles(new Fleche(getEnvironnement(),(getPositionX()+getLargeur()/2),(getPositionY()+getLongueur()/2),24,12,getPersonnage().getVitesseDeplacement(),this,this.getDirection()));
             }
         }
 

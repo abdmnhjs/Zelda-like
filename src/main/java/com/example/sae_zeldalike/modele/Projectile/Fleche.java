@@ -6,26 +6,51 @@ import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Arc;
 public class Fleche extends Projectile {
 
     private Arc arc;
-    private final String direction;
 
-    public Fleche(Environnement environnement, int positionX, int positionY, int largeur, int longueur, int vitesse,Arc arc) {
-        super(environnement, positionX, positionY, largeur, longueur, vitesse,0);
+    public Fleche(Environnement environnement, int positionX, int positionY, int largeur, int longueur, int vitesse,Arc arc,String direction) {
+        super(environnement, positionX, positionY, largeur, longueur, vitesse,0,direction);
         this.arc=arc;
         this.setDegats(arc.getDégâts());
-        this.direction = arc.getDirection();
+
     }
 
-        public boolean depasseRayon(){
-        int rayonAttaque = this.arc.getRayonAttaque();
-        if(this.getPositionX() < this.getPositionX() - rayonAttaque || this.getPositionX() > this.getPositionX() + rayonAttaque ||
-                this.getPositionY() < this.getPositionY() - rayonAttaque || this.getPositionY() > this.getPositionY() + rayonAttaque){
-            return true;
+    public boolean peutEncoreSeDeplacer(){
+        boolean peut=false;
+
+
+        switch (getDirection()){
+            case "UP"->{
+                if (getPositionInitaleY() - (getPositionY() - getVitesse()) <= arc.getRayonAttaque()) {
+                        peut = true;
+
+                }
+            }
+            case "RIGHT"->{
+                if ((getPositionX()+getVitesse())-getPositionInitaleX()<=arc.getRayonAttaque()){
+
+                        peut = true;
+
+                }
+            }
+            case "DOWN"->{
+                if ((getPositionY()+getVitesse())-getPositionInitaleY()<=arc.getRayonAttaque()){
+
+                        peut = true;
+
+                }
+            }
+            case "LEFT"->{
+                if (getPositionInitaleX() - (getPositionX() - getVitesse()) <= arc.getRayonAttaque()) {
+
+                        peut = true;
+                }
+            }
         }
-        return false;
+        return peut;
+
     }
 
-    @Override
-    public String getDirection() {
-        return direction;
-    }
+
+
+
 }

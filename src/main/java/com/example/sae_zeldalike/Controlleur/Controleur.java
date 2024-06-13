@@ -1,9 +1,6 @@
 package com.example.sae_zeldalike.Controlleur;
 
-import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurCaseInventaire;
-import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurCoeurs;
-import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurItem;
-import com.example.sae_zeldalike.Controlleur.Observateur.ObservateurPersonnage;
+import com.example.sae_zeldalike.Controlleur.Observateur.*;
 import com.example.sae_zeldalike.Vue.*;
 import com.example.sae_zeldalike.Vue.Environnement.VueMap;
 import com.example.sae_zeldalike.Vue.Item.VueBombe;
@@ -12,11 +9,15 @@ import com.example.sae_zeldalike.Vue.Item.VuePiece;
 import com.example.sae_zeldalike.Vue.Personnage.VueEnnemi1;
 import com.example.sae_zeldalike.Vue.Personnage.VueLink;
 import com.example.sae_zeldalike.Vue.Personnage.VuePersonnage;
+import com.example.sae_zeldalike.Vue.Projectile.VueFleche;
+import com.example.sae_zeldalike.Vue.Projectile.VueProjectile;
 import com.example.sae_zeldalike.modele.Environnement.*;
 import com.example.sae_zeldalike.modele.Item.*;
 import com.example.sae_zeldalike.modele.Personnage.*;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi1;
+import com.example.sae_zeldalike.modele.Projectile.Fleche;
+import com.example.sae_zeldalike.modele.Projectile.Projectile;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -52,6 +53,7 @@ public class Controleur implements Initializable {
 
     private ArrayList<VueItem> vueItems;
     private ArrayList<VuePersonnage> vuePersos;
+    private ArrayList<VueProjectile> vueProjectiles;
     @FXML
     private Label nombrePiece;
     @FXML
@@ -127,6 +129,10 @@ public class Controleur implements Initializable {
         //Observateur des vuesPersonnages
         vuePersos = new ArrayList<>();
         this.environnement.getPersonnages().addListener(new ObservateurPersonnage(pane,vuePersos));
+
+        //Observateur des VuesProjectiles
+        vueProjectiles=new ArrayList<>();
+        this.environnement.getProjectiles().addListener(new ObservateurProjectile(pane,vueProjectiles));
 
         //Observateur sur l'inventaire de Link
         link.getInventaire().getIndiceChangementProperty().addListener((obs,old,nouv)-> mettreAjourInventaire(nouv.intValue(),observateurItem));
@@ -295,6 +301,14 @@ public class Controleur implements Initializable {
                                 Ennemi1 e1 = (Ennemi1) monPerso.getPersonnage();
                                 e1.seDeplace(link.getPositionX()+ link.getLargeur()/4, link.getPositionY()+ link.getLongueur()/4);
 
+                            }
+                        }
+                        for (VueProjectile projectile : vueProjectiles){
+                            if (projectile instanceof VueFleche){
+                                projectile.animationProjectile();
+
+                                Fleche fleche = (Fleche) projectile.getProjectile();
+                                fleche.deplacement();
                             }
                         }
                     }

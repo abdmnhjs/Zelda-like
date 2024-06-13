@@ -4,42 +4,41 @@ import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Hitbox;
 import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Arc;
 import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Arme;
+import com.example.sae_zeldalike.modele.Personnage.Link;
 import com.example.sae_zeldalike.modele.Personnage.Personnage;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 import java.util.ArrayList;
 
-public class Projectile{
+public abstract class Projectile{
 
     private Environnement environnement;
     private static int compteurProjectile = 0;
     protected String id;
-    private IntegerProperty positionX;
-    private IntegerProperty positionY;
-    private int positionInitaleX;
-    private int positionInitaleY;
+    protected IntegerProperty positionX;
+    protected IntegerProperty positionY;
+    private final int positionInitaleX;
+    private final int positionInitaleY;
     protected final int largeur;
     protected final int longueur;
-    private IntegerProperty vitesse;
-    private final String direction;
+    protected IntegerProperty vitesse;
+    protected final String direction;
     private int degats;
-//    private Arc arc;
 
 
-
-    public Projectile(Environnement environnement, int positionX,int positionY,int largeur,int longueur,int vitesse,int degats){
+    public Projectile(Environnement environnement, int positionX,int positionY,int largeur,int longueur,int vitesse,int degats,String direction){
         this.environnement=environnement;
         this.positionX=new SimpleIntegerProperty(positionX);
         this.positionY=new SimpleIntegerProperty(positionY);
-        this.id="P"+compteurProjectile;
+        this.id="PROJECTILE"+compteurProjectile;
         compteurProjectile++;
         this.largeur=largeur;
         this.longueur=longueur;
         this.positionInitaleX=positionX;
         this.positionInitaleY=positionY;
         this.vitesse = new SimpleIntegerProperty(vitesse);
-        this.direction = "N";
+        this.direction = direction;
         this.degats=degats;
 
     }
@@ -118,14 +117,51 @@ public class Projectile{
         setPositionY(getPositionY()+getVitesse());
     }
 
-    public void faireDégâts(Personnage personnage, int dégâts){
-        ArrayList<Personnage> dead = new ArrayList<>();
-        if(dégâts <= personnage.getPointVie() && dégâts > 0){
-            personnage.setPointVie(personnage.getPointVie() - dégâts);
-            if (!personnage.estVivant()){
-                dead.add(personnage);
-            }
+    public void faireDégâts(Personnage personnage){
 
+        personnage.reduirePointsDeVie(getDegats());
+
+        getEnvironnement().supprimerProjectiles(this);
+    }
+
+
+    public abstract boolean peutEncoreSeDeplacer();
+
+    public void deplacement(){
+
+        ArrayList<Personnage> dead = new ArrayList<>();
+        boolean finito=false;
+        if (peutEncoreSeDeplacer()){
+        switch (getDirection()){
+
+            case "UP"->{
+                    seDeplacerHaut();
+
+            }
+            case "RIGHT"->{
+                seDeplacerDroite();
+            }
+            case "DOWN"->{
+                seDeplacerBas();
+            }
+            case "LEFT"->{
+                seDeplacerGauche();
+            }
+        }
+
+        for (Personnage personnage : getEnvironnement().getPersonnages()){
+            if (! (personnage instanceof Link)){
+                if (getEnvironnement().estDansLaZone(this.hitbox(getPositionX(),getPositionY()),personnage.hitbox(personnage.getPositionX(),personnage.getPositionY()))&& !finito){
+                    faireDégâts(personnage);
+                    if (!personnage.estVivant()){
+                        dead.add(personnage);
+                    }
+                    finito=true;
+                }
+            }
+        }
+        }else {
+            getEnvironnement().supprimerProjectiles(this);
         }
         for (Personnage perso : dead) {
             perso.getEnvironnement().supprimerPersonnage(perso);
@@ -166,6 +202,8 @@ public class Projectile{
     public String getId() {
         return this.id;
     }
+
+
 
 
 }

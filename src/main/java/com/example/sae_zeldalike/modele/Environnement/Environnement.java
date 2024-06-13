@@ -183,6 +183,7 @@ public class Environnement {
 //        System.out.println(map.getMap()[hitbox.getYBas()][hitbox.getXGauche()]);
 //        System.out.println("Coin BD: (" + hitbox.getXDroite() + ", " + hitbox.getYBas() + ")");
 //        System.out.println(map.getMap()[hitbox.getYBas()][hitbox.getXDroite()]);
+//            System.out.println();
 
             if (this.map.getMap()[hitbox.getYHaut()][hitbox.getXGauche()] == 54) {
                 coinHautGauche=true;
@@ -195,10 +196,10 @@ public class Environnement {
                 coinBasDroite=true;
             }
             //Connaitre valeurs des booleans
-//        System.out.println("coin HG"+ coinHautGauche);
-//        System.out.println("coin HD"+ coinHautDroit);
-//        System.out.println("coin BG"+ coinBasGauche);
-//        System.out.println("coin BD"+ coinBasDroite);
+//        System.out.println("coin HG "+ coinHautGauche);
+//        System.out.println("coin HD "+ coinHautDroit);
+//        System.out.println("coin BG "+ coinBasGauche);
+//        System.out.println("coin BD "+ coinBasDroite+"\n");
 
             return coinBasDroite || coinBasGauche || coinHautDroit || coinHautGauche;
 
@@ -247,22 +248,43 @@ public class Environnement {
         return coinBasDroite && coinBasGauche && coinHautDroit && coinHautGauche;
     }
 
-    public boolean estDansLaZone(Hitbox hitboxItem,Hitbox hitboxPerso){
-        boolean estDansSaZone = false;
+//    public boolean estDansLaZone(Hitbox hitboxItem,Hitbox hitboxPerso){
+//        boolean estDansSaZone = false;
+//
+//
+//        if (((  hitboxItem.getY()-hitboxItem.getLongueur()<=hitboxPerso.getY()    ||hitboxItem.getY()-hitboxItem.getLongueur()<=hitboxPerso.getY()+hitboxPerso.getLongueur())
+//                &&(hitboxItem.getY()+hitboxItem.getLongueur()>=hitboxPerso.getY()   ||hitboxItem.getY()+hitboxItem.getLongueur()>=hitboxPerso.getY()+hitboxPerso.getLongueur())
+//                &&((hitboxItem.getX()-hitboxItem.getLargeur()<=hitboxPerso.getX()   ||hitboxItem.getX()-hitboxItem.getLargeur()<=hitboxPerso.getX()+hitboxPerso.getLargeur())
+//                &&(hitboxItem.getX()+hitboxItem.getLargeur()>=hitboxPerso.getX()    ||hitboxItem.getX()+ hitboxItem.getLargeur()>=hitboxPerso.getX()+hitboxPerso.getLargeur())))){
+//            estDansSaZone = true;
+//        }
+////        System.out.println("Y= "+hitboxItem.getY()+" <= "+hitboxPerso.getY()+" ou "+(hitboxPerso.getY()+hitboxPerso.getLongueur()));
+////        System.out.println("Y= "+(hitboxItem.getY()+hitboxItem.getLongueur())+" >= "+hitboxPerso.getY()+" ou "+(hitboxPerso.getY()+hitboxPerso.getLongueur()));
+////        System.out.println("X= "+hitboxItem.getX()+" <= "+hitboxPerso.getX()+" ou "+(hitboxPerso.getX()+ hitboxPerso.getLargeur()));
+////        System.out.println("X= "+(hitboxItem.getX()+hitboxItem.getLargeur())+" >= "+hitboxPerso.getX()+" ou "+(hitboxPerso.getX()+hitboxPerso.getLargeur()));
+//        return estDansSaZone;
+//
+//    }
 
+    public boolean estDansLaZone(Hitbox hitboxItem, Hitbox hitboxPerso) {
+        // Récupérer les coordonnées des hitboxes
+        int itemX = hitboxItem.getX();
+        int itemY = hitboxItem.getY();
+        int itemLargeur = hitboxItem.getLargeur();
+        int itemLongueur = hitboxItem.getLongueur();
 
-        if (((  hitboxItem.getY()-hitboxItem.getLongueur()<=hitboxPerso.getY()    ||hitboxItem.getY()-hitboxItem.getLongueur()<=hitboxPerso.getY()+hitboxPerso.getLongueur())
-                &&(hitboxItem.getY()+hitboxItem.getLongueur()>=hitboxPerso.getY()   ||hitboxItem.getY()+hitboxItem.getLongueur()>=hitboxPerso.getY()+hitboxPerso.getLongueur())
-                &&((hitboxItem.getX()-hitboxItem.getLargeur()<=hitboxPerso.getX()   ||hitboxItem.getX()-hitboxItem.getLargeur()<=hitboxPerso.getX()+hitboxPerso.getLargeur())
-                &&(hitboxItem.getX()+hitboxItem.getLargeur()>=hitboxPerso.getX()    ||hitboxItem.getX()+ hitboxItem.getLargeur()>=hitboxPerso.getX()+hitboxPerso.getLargeur())))){
-            estDansSaZone = true;
-        }
-//        System.out.println("Y= "+hitboxItem.getY()+" <= "+hitboxPerso.getY()+" ou "+(hitboxPerso.getY()+hitboxPerso.getLongueur()));
-//        System.out.println("Y= "+(hitboxItem.getY()+hitboxItem.getLongueur())+" >= "+hitboxPerso.getY()+" ou "+(hitboxPerso.getY()+hitboxPerso.getLongueur()));
-//        System.out.println("X= "+hitboxItem.getX()+" <= "+hitboxPerso.getX()+" ou "+(hitboxPerso.getX()+ hitboxPerso.getLargeur()));
-//        System.out.println("X= "+(hitboxItem.getX()+hitboxItem.getLargeur())+" >= "+hitboxPerso.getX()+" ou "+(hitboxPerso.getX()+hitboxPerso.getLargeur()));
-        return estDansSaZone;
+        int persoX = hitboxPerso.getX();
+        int persoY = hitboxPerso.getY();
+        int persoLargeur = hitboxPerso.getLargeur();
+        int persoLongueur = hitboxPerso.getLongueur();
 
+        // Vérifier le chevauchement horizontal
+        boolean chevauchementHorizontal = itemX < persoX + persoLargeur && itemX + itemLargeur > persoX;
+        // Vérifier le chevauchement vertical
+        boolean chevauchementVertical = itemY < persoY + persoLongueur && itemY + itemLongueur > persoY;
+
+        // Les deux hitboxes se chevauchent si elles se chevauchent à la fois horizontalement et verticalement
+        return chevauchementHorizontal && chevauchementVertical;
     }
     public String getId() {
         return id;

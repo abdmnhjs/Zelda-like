@@ -41,4 +41,8 @@ public abstract class VueProjectile {
     public void setNumeroImageProjectile(int numeroImageProjectile) {
         this.numeroImageProjectile = numeroImageProjectile;
     }
+
+    public Projectile getProjectile() {
+        return projectile;
+    }
 }

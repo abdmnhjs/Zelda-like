@@ -28,8 +28,6 @@ public class VueEpee extends VueItem {
             System.out.println(((Arme) item).getDirection());
 
         }
-        this.spriteItem.translateXProperty().bind(( item).getPositionXProperty());
-        this.spriteItem.translateYProperty().bind(( item).getPositionYProperty());
         pane.getChildren().add(spriteItem);
 
     }
@@ -55,7 +53,7 @@ public class VueEpee extends VueItem {
     @Override
     public void animationItem() {
         if (((Arme) item).estPorterParPerso()) {
-            Personnage perso = ((Arme) item).getPersonnage();
+
             if (((Arme)item).getDirection().equals("UP")
                     || ((Arme)item).getDirection().equals("Inactif_UP")
             ) {
