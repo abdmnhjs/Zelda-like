@@ -10,7 +10,7 @@ public class VueBouleDeFeu {
     private Pane pane;
     private ImageView spriteBouleDeFeu;
 
-    public VueBouleDeFeu(Projectile bouleDeFeu, Pane pane){
+    public VueBouleDeFeu( Pane pane,Projectile bouleDeFeu){
         this.bouleDeFeu = bouleDeFeu;
         this.pane = pane;
         this.spriteBouleDeFeu = new ImageView();

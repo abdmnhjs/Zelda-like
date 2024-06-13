@@ -5,6 +5,7 @@ import com.example.sae_zeldalike.Vue.Personnage.VueEnnemi2;
 import com.example.sae_zeldalike.Vue.Personnage.VuePersonnage;
 import com.example.sae_zeldalike.Vue.Projectile.VueFleche;
 import com.example.sae_zeldalike.Vue.Projectile.VueProjectile;
+import com.example.sae_zeldalike.Vue.VueBouleDeFeu;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi1;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi2;
 import com.example.sae_zeldalike.modele.Personnage.Personnage;
@@ -37,6 +38,8 @@ public class ObservateurProjectile implements ListChangeListener<Projectile> {
                         newProjectile = new VueFleche(environnement,projectile);
                         vueProjectiles.add(newProjectile);
                     }if (projectile instanceof BouleDeFeu){
+//                        newProjectile =new VueBouleDeFeu(environnement,projectile);
+//                        vueProjectiles.add(newProjectile);
                     }
                 }
             }
