@@ -19,16 +19,32 @@ public class Hitbox {
 
 
     public int getXGauche(){
-        return (getX()+12)/(getLargeur());
+        if (getLargeur()>30) {
+            return (getX() + 12) / (getLargeur());
+        }else{
+            return (getX())/getLargeur();
+        }
     }
     public int getXDroite(){
-        return (getX()+getLargeur()-12)/getLargeur();
+        if (getLargeur()>30) {
+            return (getX() + getLargeur() - 12) / getLargeur();
+        }else {
+            return (getX()+getLargeur())/getLargeur();
+        }
     }
     public int getYHaut(){
-        return (getY()+7)/(getLongueur());
+        if (getLongueur()>30) {
+            return (getY() + 7) / (getLongueur());
+        }else {
+            return (getY())/getLongueur();
+        }
     }
     public int getYBas(){
-        return (getY()+getLongueur()-7)/getLongueur();
+        if (getLongueur()>30) {
+            return (getY() + getLongueur() - 7) / getLongueur();
+        }else {
+            return (getY()+getLongueur())/getLongueur();
+        }
     }
 
     public int getX(){

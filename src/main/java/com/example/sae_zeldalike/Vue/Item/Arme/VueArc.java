@@ -58,6 +58,7 @@ public class VueArc extends VueItem {
 
                 item.getPositionXProperty().bind(((Arme)item).getPersonnage().getPositionXProperty());
                 item.getPositionYProperty().bind(((Arme)item).getPersonnage().getPositionYProperty().subtract(((Arme) item).getPersonnage().getLongueur()/1.5));
+
                 spriteItem.setImage(arcH);
 
             }
@@ -66,6 +67,7 @@ public class VueArc extends VueItem {
             ) {
                 item.getPositionXProperty().bind(((Arme)item).getPersonnage().getPositionXProperty());
                 item.getPositionYProperty().bind(((Arme)item).getPersonnage().getPositionYProperty().add(((Arme) item).getPersonnage().getLongueur()/1.5));
+
                 spriteItem.setImage(arcB);
             }
             if (((Arme)item).getDirection().equals("RIGHT")
@@ -82,6 +84,7 @@ public class VueArc extends VueItem {
             ) {
                 item.getPositionXProperty().bind(((Arme)item).getPersonnage().getPositionXProperty().subtract(((Arme) item).getPersonnage().getLargeur()/1.5));
                 item.getPositionYProperty().bind(((Arme)item).getPersonnage().getPositionYProperty());
+
                 spriteItem.setImage(arcG);
 
             }
