@@ -46,43 +46,43 @@ public class Ennemi extends Personnage {
         int[] start = {yDepart, xDepart};
         int[] destination = {yArrivee, xArrivee};
         int[][] directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-        Map<List<Integer>, int[]> predecesseurs = new HashMap<>();
+        Map<int[], int[]> predecesseurs = new HashMap<>();
         LinkedList<int[]> queue = new LinkedList<>();
         ArrayList<int[]> parcours = new ArrayList<>();
-        ArrayList<int[]> path = new ArrayList<>();
+
         queue.addFirst(start);
         parcours.add(start);
-        predecesseurs.put(Arrays.asList(start[0], start[1]), null);
+        predecesseurs.put(start, null);
 
         while (!queue.isEmpty()) {
-            int[] actuel = queue.pollLast();
+            int[] current = queue.removeFirst();
 
             for (int[] direction : directions) {
-                int nx = actuel[1] + direction[1] * tailleTuile;
-                int ny = actuel[0] + direction[0] * tailleTuile;
-                int[] ntab = {ny, nx};
+                int newX = current[1] + direction[1] * tailleTuile;
+                int newY = current[0] + direction[0] * tailleTuile;
+                int[] newPath = {newY, newX};
 
-                if (Arrays.equals(actuel, destination)) {
-                    path = printPath(predecesseurs, actuel);
+                if (newX == xArrivee && newY == yArrivee) {
+                    printPath(predecesseurs, destination);
                     return;
                 }
 
-                if (accessible(nx, ny) && !estMarque(ntab, parcours)) {
-                    parcours.add(ntab);
-                    predecesseurs.put(Arrays.asList(ntab[0], ntab[1]), actuel);
-                    queue.addFirst(ntab);
+                if (!estMarque(newPath, parcours) && accessible(newPath)) {
+                    parcours.add(newPath);
+                    queue.addLast(newPath);
+                    predecesseurs.put(newPath, current);
                 }
             }
         }
-
-        for (int i = 0 ; i < path.size() ; i++) {
-            this.seDeplace(path.get(i)[0], path.get(i)[1]);
-        }
     }
 
-    public boolean accessible(int x, int y) {
-        for (int[] couple : this.environnement.getMap().getCoordonnéesTuilesTraversables()) {
-            if (x == couple[1] && y == couple[0]) {
+    public boolean accessible(int[] coord) {
+        int[][] map = this.environnement.getMap().getMap();
+        int tileX = coord[1] / 32;
+        int tileY = coord[0] / 32;
+
+        if (tileY >= 0 && tileY < map.length && tileX >= 0 && tileX < map[tileY].length) {
+            if (map[tileY][tileX] == 11) {
                 return true;
             }
         }
@@ -98,15 +98,26 @@ public class Ennemi extends Personnage {
         return false;
     }
 
-    public ArrayList<int[]> printPath(Map<List<Integer>, int[]> predecesseurs, int[] destination) {
+    public void printPath(Map<int[], int[]> predecesseurs, int[] destination) {
         ArrayList<int[]> path = new ArrayList<>();
-        for (int[] at = destination; at != null; at = predecesseurs.get(Arrays.asList(at[0], at[1]))) {
-            path.add(at);
+        int[] current = destination;
+        path.add(current);
+
+        while (predecesseurs.containsKey(current)) {
+            current = predecesseurs.get(current);
+            if (current != null) {
+                path.add(current);
+            }
         }
+
         Collections.reverse(path);
-        System.out.println("Chemin trouvé: " + path);
-        return path;
+        System.out.println(path);
+        for (int i = 1; i < path.size(); i++) {
+            this.seDeplace(path.get(i)[1], path.get(i)[0]);
+        }
     }
+
+
 
     public boolean proba(double pourcent){
         double x= Math.random();

@@ -218,9 +218,6 @@ public class Environnement {
         }
 
         return true;
-
-
-
     }
 
     public boolean estDansLimiteTerrain(int x, int y, int longueur, int largeur){

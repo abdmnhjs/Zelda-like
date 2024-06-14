@@ -378,8 +378,9 @@ public class Controleur implements Initializable {
                                 monPerso.animation();
 
                                 Ennemi1 e1 = (Ennemi1) monPerso.getPersonnage();
-                                //e1.seDeplace(link.getPositionX()+ link.getLargeur()/4, link.getPositionY()+ link.getLongueur()/4);
-                                e1.bfs(e1.getPositionX(), e1.getPositionY(), this.link.getPositionX(), this.link.getPositionY());
+                                e1.seDeplace(link.getPositionX()+ link.getLargeur()/4, link.getPositionY()+ link.getLongueur()/4);
+                                //e1.bfs(e1.getPositionX(), e1.getPositionY(), link.getPositionX()+ link.getLargeur()/4, link.getPositionY()+ link.getLongueur()/4);
+
                             }
                         }
                     }
