@@ -1,6 +1,7 @@
 package com.example.sae_zeldalike.modele.Personnage;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
+import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi;
 
 import java.util.ArrayList;
 

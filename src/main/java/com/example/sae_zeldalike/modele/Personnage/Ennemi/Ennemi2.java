@@ -36,8 +36,7 @@ public class Ennemi2 extends Ennemi{
         boolean linkMemeColonne = (linkX >= ennemiX && linkX <= ennemiX + ennemiLargeur) || (linkX + linkLargeur >= ennemiX && linkX + linkLargeur <= ennemiX + ennemiLargeur);
 
         if(linkAuDessus && linkMemeColonne) {
-            bouleDeFeu = new BouleDeFeu(ennemiX, ennemiY, this.environnement, 30, 32, 32);
-            bouleDeFeu.setDirection("UP");
+            bouleDeFeu = new BouleDeFeu(this.environnement,ennemiX, ennemiY, 30,"UP");
             this.environnement.ajouterBouleDeFeu(bouleDeFeu);
         }
     }
