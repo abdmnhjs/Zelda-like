@@ -277,7 +277,7 @@ public class Environnement {
 
     public void init() {
 
-        for (int i = 0; i < 40; i++) {
+        for (int i = 0; i < 20; i++) {
             ajouterItem(new Piece(this));
         }
         for (int i =0;i<10;i++){
@@ -289,10 +289,9 @@ public class Environnement {
         }
         for (int i =0;i<15;i++){
             ajouterItem(new CoeurRouge(this));
-        }
-        for (int i=0;i<10;i++){
             ajouterItem(new CoeurBleu(this));
         }
+
         for (int i=0;i<5;i++){
             ajouterItem(new SuperMegaFast(this));
         }for (int i=0;i<2;i++){

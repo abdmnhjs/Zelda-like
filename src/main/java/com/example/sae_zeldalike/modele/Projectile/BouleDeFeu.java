@@ -11,7 +11,39 @@ public class BouleDeFeu extends Projectile {
     }
 
     @Override
-    public boolean peutEncoreSeDeplacer() {
-        return false;
+    public boolean peutEncoreSeDeplacer(){
+        boolean peut=false;
+        int newX=getPositionX();
+        int newY=getPositionY();
+
+
+        switch (getDirection()){
+            case "UP"->{
+                newY=getPositionY()-getVitesse();
+                    if (!getEnvironnement().estDevantObstacle(hitbox(newX,newY))) {
+                        peut = true;
+                    }
+            }
+            case "RIGHT"->{
+                newX=getPositionX()+getVitesse();
+                    if (!getEnvironnement().estDevantObstacle(hitbox(newX,newY))){
+                        peut = true;
+                    }
+            }
+            case "DOWN"->{
+                newY=getPositionY()+getVitesse();
+                    if (!getEnvironnement().estDevantObstacle(hitbox(newX,newY))){
+                        peut = true;
+                    }
+            }
+            case "LEFT"->{
+                newX=getPositionX()-getVitesse();
+                    if (!getEnvironnement().estDevantObstacle(hitbox(newX,newY))){
+                        peut = true;
+                    }
+            }
+        }
+        return peut;
+
     }
 }

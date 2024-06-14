@@ -9,6 +9,7 @@ import com.example.sae_zeldalike.modele.Item.StockableDansPortefeuille.Piece;
 import com.example.sae_zeldalike.modele.Personnage.*;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
+import com.example.sae_zeldalike.modele.Projectile.BouleDeFeu;
 import com.example.sae_zeldalike.modele.Projectile.Fleche;
 import com.example.sae_zeldalike.modele.Projectile.Projectile;
 import javafx.animation.KeyFrame;
@@ -140,11 +141,13 @@ public class Clavier implements EventHandler<KeyEvent> {
             }
             if (touches.contains(KeyCode.A)) {
                 System.out.println(link.getEffets());
-                for (Item item : link.getEnvironnement().getItems()) {
-                    if (item instanceof Arc) {
-                        System.out.println(item);
-                    }
-                }
+//                for (Item item : link.getEnvironnement().getItems()) {
+//                    if (item instanceof Arc) {
+//                        System.out.println(item);
+//                    }
+//                }
+                link.getEnvironnement().ajouterProjectiles(new BouleDeFeu(link.getEnvironnement(), link.getPositionX(), link.getPositionY(), 10, "UP"));
+                System.out.println(link.getEnvironnement().getProjectiles());
 
                 System.out.println(link.getArmeEquiper());
             }
@@ -194,30 +197,31 @@ public class Clavier implements EventHandler<KeyEvent> {
             if (touches.contains(KeyCode.DIGIT6)) {
                 link.getInventaire().setCaseActuel(5);
             }
-        }
 
-        if (touches.contains(KeyCode.UP)) {
-            if (this.link.getArmeEquiper() != null) {
-                link.getArmeEquiper().setDirection("UP");
-                link.getArmeEquiper().utiliserCapacite();
+
+            if (touches.contains(KeyCode.UP)) {
+                if (this.link.getArmeEquiper() != null) {
+                    link.getArmeEquiper().setDirection("UP");
+                    link.getArmeEquiper().utiliserCapacite();
+                }
             }
-        }
-        if (touches.contains(KeyCode.DOWN)) {
-            if (this.link.getArmeEquiper() != null) {
-                link.getArmeEquiper().setDirection("DOWN");
-                link.getArmeEquiper().utiliserCapacite();
+            if (touches.contains(KeyCode.DOWN)) {
+                if (this.link.getArmeEquiper() != null) {
+                    link.getArmeEquiper().setDirection("DOWN");
+                    link.getArmeEquiper().utiliserCapacite();
+                }
             }
-        }
-        if (touches.contains(KeyCode.RIGHT)) {
-            if (this.link.getArmeEquiper() != null) {
-                link.getArmeEquiper().setDirection("RIGHT");
-                link.getArmeEquiper().utiliserCapacite();
+            if (touches.contains(KeyCode.RIGHT)) {
+                if (this.link.getArmeEquiper() != null) {
+                    link.getArmeEquiper().setDirection("RIGHT");
+                    link.getArmeEquiper().utiliserCapacite();
+                }
             }
-        }
-        if (touches.contains(KeyCode.LEFT)) {
-            if (this.link.getArmeEquiper() != null) {
-                link.getArmeEquiper().setDirection("LEFT");
-                link.getArmeEquiper().utiliserCapacite();
+            if (touches.contains(KeyCode.LEFT)) {
+                if (this.link.getArmeEquiper() != null) {
+                    link.getArmeEquiper().setDirection("LEFT");
+                    link.getArmeEquiper().utiliserCapacite();
+                }
             }
         }
 

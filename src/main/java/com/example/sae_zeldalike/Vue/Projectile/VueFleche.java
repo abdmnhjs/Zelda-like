@@ -11,10 +11,12 @@ public class VueFleche extends VueProjectile{
             flecheD1,flecheD2,flecheD3,flecheD4,
             flecheB1,flecheB2,flecheB3,flecheB4;
 
+    private int numeroImageProjectile;
     public VueFleche(Pane pane, Projectile projectile){
         super(pane,projectile);
         initialiserProjectile();
         spriteProjectile.setImage(null);
+        this.numeroImageProjectile=1;
 
         pane.getChildren().add(spriteProjectile);
     }
@@ -106,6 +108,13 @@ public class VueFleche extends VueProjectile{
         flecheD4=new Image("file:src/main/resources/com/example/sae_zeldalike/Projectile/Fleche/fleche_RIGHT_4.png");
 
 
+    }
+
+    public int getNumeroImageProjectile() {
+        return numeroImageProjectile;
+    }
+    public void setNumeroImageProjectile(int numeroImageProjectile) {
+        this.numeroImageProjectile = numeroImageProjectile;
     }
 
     @Override

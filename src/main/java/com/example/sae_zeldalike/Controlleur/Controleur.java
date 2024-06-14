@@ -15,6 +15,7 @@ import com.example.sae_zeldalike.modele.Environnement.*;
 import com.example.sae_zeldalike.modele.Item.*;
 import com.example.sae_zeldalike.modele.Personnage.*;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi;
+import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi1;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi2;
 import com.example.sae_zeldalike.modele.Projectile.BouleDeFeu;
 import com.example.sae_zeldalike.modele.Projectile.Fleche;
@@ -291,10 +292,15 @@ public class Controleur implements Initializable {
                             if (ennemi2 instanceof Ennemi2) {
                                 ((Ennemi2)ennemi2).essaieTirerBouleDeFeu(this.link);
                             }
+                        }
+                        ArrayList<BouleDeFeu> bouledefeu = new ArrayList<>();
+                        for (int i =0;i<this.environnement.getProjectiles().size();i++){
+                            if (environnement.getProjectiles().get(i) instanceof BouleDeFeu){
+                                bouledefeu.add((BouleDeFeu) environnement.getProjectiles().get(i));
                             }
-
-                        for (int i = 0 ; i < this.environnement.getBoulesDeFeuEnDeplacement().size() ; i++) {
-                            BouleDeFeu bouleDeFeu = this.environnement.getBoulesDeFeuEnDeplacement().get(i);
+                        }
+                        for (int i = 0 ; i < bouledefeu.size() ; i++) {
+                            BouleDeFeu bouleDeFeu = bouledefeu.get(i);
                             if(bouleDeFeu.getDirection().equals("UP")){
                                 bouleDeFeu.seDeplacerHaut();
                             }
@@ -422,21 +428,26 @@ public class Controleur implements Initializable {
                             }
                         }
                         for (VuePersonnage monPerso : vuePersos){
+                            monPerso.animation();
                             if (monPerso instanceof VueEnnemi1){
-                                monPerso.animation();
 
-//                                Ennemi1 e1 = (Ennemi1) monPerso.getPersonnage();
-//                                e1.seDeplace((link.getPositionX()+ link.getLargeur()/4), (link.getPositionY()+ link.getLongueur()/4));
+
+                                Ennemi1 e1 = (Ennemi1) monPerso.getPersonnage();
+                                e1.seDeplace(link.getPositionX()+ link.getLargeur()/4, link.getPositionY()+ link.getLongueur()/4);
+                                //e1.bfs(e1.getPositionX(), e1.getPositionY(), link.getPositionX()+ link.getLargeur()/4, link.getPositionY()+ link.getLongueur()/4);
 
                             }
                         }
-                        for (VueProjectile projectile : vueProjectiles){
-                            if (projectile instanceof VueFleche){
-                                projectile.animationProjectile();
-
-                                Fleche fleche = (Fleche) projectile.getProjectile();
-                                fleche.deplacement();
-                            }
+                        for (VueProjectile vueProjectile : vueProjectiles){
+//                            if (projectile instanceof VueFleche){
+//                                projectile.animationProjectile();
+//
+//                                Fleche fleche = (Fleche) projectile.getProjectile();
+//                                fleche.deplacement();
+//                            }
+                            vueProjectile.animationProjectile();
+                            Projectile projectile = vueProjectile.getProjectile();
+                            projectile.deplacement();
                         }
                     }
                     if (temps % 9 == 0) {

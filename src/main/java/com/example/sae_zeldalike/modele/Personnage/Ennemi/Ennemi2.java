@@ -36,8 +36,7 @@ public class Ennemi2 extends Ennemi{
         boolean linkMemeColonne = (linkX >= ennemiX && linkX <= ennemiX + ennemiLargeur) || (linkX + linkLargeur >= ennemiX && linkX + linkLargeur <= ennemiX + ennemiLargeur);
 
         if(linkAuDessus && linkMemeColonne) {
-            bouleDeFeu = new BouleDeFeu(this.environnement,ennemiX, ennemiY, 30,"UP");
-            this.environnement.ajouterBouleDeFeu(bouleDeFeu);
+            this.environnement.ajouterProjectiles(new BouleDeFeu(this.environnement,ennemiX, ennemiY, 30,"UP"));
         }
     }
 
@@ -59,9 +58,7 @@ public class Ennemi2 extends Ennemi{
         boolean linkMemeColonne = (linkX >= ennemiX && linkX <= ennemiX + ennemiLargeur) || (linkX + linkLargeur >= ennemiX && linkX + linkLargeur <= ennemiX + ennemiLargeur);
 
         if (linkEnDessous && linkMemeColonne) {
-            bouleDeFeu = new BouleDeFeu(environnement,ennemiX,ennemiY,30,"DOWN");
-            bouleDeFeu.setDirection("DOWN");
-            this.environnement.ajouterBouleDeFeu(bouleDeFeu);
+            this.environnement.ajouterBouleDeFeu( new BouleDeFeu(environnement,ennemiX,ennemiY,30,"DOWN"));
         }
     }
 
@@ -83,9 +80,7 @@ public class Ennemi2 extends Ennemi{
         boolean linkMemeLigne = (linkY >= ennemiY && linkY <= ennemiY + ennemiLongueur) || (linkY + linkLongueur >= ennemiY && linkY + linkLongueur <= ennemiY + ennemiLongueur);
 
         if (linkADroite && linkMemeLigne) {
-            bouleDeFeu = new BouleDeFeu(environnement,ennemiX,ennemiY,30,"RIGHT");
-            bouleDeFeu.setDirection("RIGHT");
-            this.environnement.ajouterBouleDeFeu(bouleDeFeu);
+            this.environnement.ajouterBouleDeFeu(new BouleDeFeu(environnement,ennemiX,ennemiY,30,"RIGHT"));
         }
     }
 
@@ -107,9 +102,7 @@ public class Ennemi2 extends Ennemi{
         boolean linkMemeLigne = (linkY >= ennemiY && linkY <= ennemiY + ennemiLongueur) || (linkY + linkLongueur >= ennemiY && linkY + linkLongueur <= ennemiY + ennemiLongueur);
 
         if (linkAGauche && linkMemeLigne) {
-            bouleDeFeu = new BouleDeFeu(environnement,ennemiX,ennemiY,30,"LEFT");
-            bouleDeFeu.setDirection("LEFT");
-            this.environnement.ajouterBouleDeFeu(bouleDeFeu);
+            this.environnement.ajouterBouleDeFeu(new BouleDeFeu(environnement,ennemiX,ennemiY,30,"LEFT"));
         }
     }
 

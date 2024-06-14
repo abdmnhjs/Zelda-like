@@ -1,56 +1,56 @@
 package com.example.sae_zeldalike.Vue;
 
+import com.example.sae_zeldalike.Vue.Projectile.VueProjectile;
 import com.example.sae_zeldalike.modele.Projectile.Projectile;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
-public class VueBouleDeFeu {
-    private Projectile bouleDeFeu;
-    private Pane pane;
-    private ImageView spriteBouleDeFeu;
+public class VueBouleDeFeu extends VueProjectile {
 
-    public VueBouleDeFeu( Pane pane,Projectile bouleDeFeu){
-        this.bouleDeFeu = bouleDeFeu;
-        this.pane = pane;
-        this.spriteBouleDeFeu = new ImageView();
-        creerBouleDeFeu(this.pane);
+    private Image bdfH,bdfD,bdfB,bdfG;
+
+    public VueBouleDeFeu( Pane pane,Projectile projectile){
+        super(pane,projectile);
+        initialiserProjectile();
+        spriteProjectile.setImage(null);
+
+
+        pane.getChildren().add(spriteProjectile);
+//        creerBouleDeFeu(this.pane);
     }
 
-    public void creerBouleDeFeu(Pane pane){
-        if(this.bouleDeFeu.getDirection().equals("UP")){
-            this.spriteBouleDeFeu = new ImageView(new Image("file:src/main/resources/com/example/sae_zeldalike/BouleDeFeu/bouledefeu-haut.png"));
-            this.spriteBouleDeFeu.setId(this.bouleDeFeu.getId());
-        }
-        if(this.bouleDeFeu.getDirection().equals("DOWN")){
-            this.spriteBouleDeFeu = new ImageView(new Image("file:src/main/resources/com/example/sae_zeldalike/BouleDeFeu/bouledefeu-bas.png"));
-            this.spriteBouleDeFeu.setId(this.bouleDeFeu.getId());
-        }
-        if(this.bouleDeFeu.getDirection().equals("RIGHT")){
-            this.spriteBouleDeFeu = new ImageView(new Image("file:src/main/resources/com/example/sae_zeldalike/BouleDeFeu/bouledefeu-droite.png"));
-            this.spriteBouleDeFeu.setId(this.bouleDeFeu.getId());
-        }
-        if(this.bouleDeFeu.getDirection().equals("LEFT")){
-            this.spriteBouleDeFeu = new ImageView(new Image("file:src/main/resources/com/example/sae_zeldalike/BouleDeFeu/bouledefeu-gauche.png"));
-            this.spriteBouleDeFeu.setId(this.bouleDeFeu.getId());
-        }
-        this.spriteBouleDeFeu.setFitHeight(this.bouleDeFeu.getLongueur());
-        this.spriteBouleDeFeu.setFitWidth(this.bouleDeFeu.getLargeur());
-        this.spriteBouleDeFeu.translateXProperty().bind(this.bouleDeFeu.getPositionXProperty());
-        this.spriteBouleDeFeu.translateYProperty().bind(this.bouleDeFeu.getPositionYProperty());
-        pane.getChildren().add(this.spriteBouleDeFeu);
-    }
-
-    public void supprimerFlèche(Pane pane){
-        if (this.spriteBouleDeFeu != null) {
-            pane.getChildren().remove(this.spriteBouleDeFeu);
-            System.out.println("Flèche view removed from pane");
-        } else {
-            System.out.println("No spriteFlèche to remove");
+    @Override
+    public void animationProjectile() {
+        switch (projectile.getDirection()){
+            case "UP"->{
+                spriteProjectile.setImage(bdfH);
+            }
+            case "DOWN"->{
+                spriteProjectile.setImage(bdfB);
+            }
+            case "LEFT"->{
+                spriteProjectile.setImage(bdfG);
+            }case "RIGHT"->{
+                spriteProjectile.setImage(bdfD);
+            }
         }
     }
 
-    public Projectile getBouleDeFeu() {
-        return this.bouleDeFeu;
+    @Override
+    protected void initialiserProjectile() {
+
+        bdfH = new Image("file:src/main/resources/com/example/sae_zeldalike/BouleDeFeu/bouledefeu-haut.png");
+        bdfD = new Image("file:src/main/resources/com/example/sae_zeldalike/BouleDeFeu/bouledefeu-droite.png");
+        bdfB= new Image("file:src/main/resources/com/example/sae_zeldalike/BouleDeFeu/bouledefeu-droite.png");
+        bdfG = new Image("file:src/main/resources/com/example/sae_zeldalike/BouleDeFeu/bouledefeu-gauche.png");
     }
+
+    @Override
+    public Image getImagePrincipale() {
+        return bdfH;
+    }
+
+
+
 }

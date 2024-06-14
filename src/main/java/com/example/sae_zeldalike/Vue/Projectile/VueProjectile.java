@@ -10,11 +10,11 @@ public abstract class VueProjectile {
 
     protected Projectile projectile;
     protected ImageView spriteProjectile;
-    private int numeroImageProjectile;
+
 
     public VueProjectile(Pane pane, Projectile projectile){
         this.projectile = projectile;
-        this.numeroImageProjectile=1;
+
         this.spriteProjectile=new ImageView();
         spriteProjectile.setFitWidth(projectile.getLargeur());
         spriteProjectile.setFitHeight(projectile.getLongueur());
@@ -35,12 +35,7 @@ public abstract class VueProjectile {
         return spriteProjectile.getId();
     }
 
-    public int getNumeroImageProjectile() {
-        return numeroImageProjectile;
-    }
-    public void setNumeroImageProjectile(int numeroImageProjectile) {
-        this.numeroImageProjectile = numeroImageProjectile;
-    }
+
 
     public Projectile getProjectile() {
         return projectile;

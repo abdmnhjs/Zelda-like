@@ -38,8 +38,8 @@ public class ObservateurProjectile implements ListChangeListener<Projectile> {
                         newProjectile = new VueFleche(environnement,projectile);
                         vueProjectiles.add(newProjectile);
                     }if (projectile instanceof BouleDeFeu){
-//                        newProjectile =new VueBouleDeFeu(environnement,projectile);
-//                        vueProjectiles.add(newProjectile);
+                        newProjectile =new VueBouleDeFeu(environnement,projectile);
+                        vueProjectiles.add(newProjectile);
                     }
                 }
             }
