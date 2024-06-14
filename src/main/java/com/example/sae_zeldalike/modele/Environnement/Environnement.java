@@ -208,9 +208,6 @@ public class Environnement {
         }
 
         return true;
-
-
-
     }
 
     public boolean estDansTuile(int valeurTuile,Hitbox hitbox){

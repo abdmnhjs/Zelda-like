@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d68f44cc-42ae-46c4-b79e-09da1a472c7e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Vue/Item/Arme/VueArc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Vue/Item/Arme/VueArc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Environnement/Environnement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Environnement/Environnement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Item/StockableDansInventaire/Arme/Arc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Item/StockableDansInventaire/Arme/Arc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Projectile/Fleche.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Projectile/Fleche.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Projectile/Projectile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Projectile/Projectile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Personnage/Ennemi2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Personnage/Ennemi2.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,7 +16,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -28,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Item" />
+        <entry key="$PROJECT_DIR$" value="Controlleur" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,7 +37,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/abdmnhjs/Zelda-like.git&quot;,
-    &quot;accountId&quot;: &quot;e2cb2ea7-df17-42a7-8ddc-d6dba0cd8adc&quot;
+    &quot;accountId&quot;: &quot;c4ce7e1d-ad4d-431f-a583-71ef2aac4a18&quot;
   }
 }</component>
   <component name="MarkdownSettingsMigration">
@@ -69,18 +64,19 @@
     &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Inventaire__Arme&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ennemis&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/etudiants/info/edetommaso/Documents/Semestre 2/DOO/LoupMouton24&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/chaar/IdeaProjects/SAE_Zelda-like/src/main/java/com/example/sae_zeldalike/Vue/VueEpee.java&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;two.files.diff.last.used.file&quot;: &quot;C:/Users/chaar/IdeaProjects/SAE_Zelda-like/src/main/java/com/example/sae_zeldalike/Vue/VueEpee.java&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -102,17 +98,14 @@
       <list>
         <item itemvalue="Application.Lancement" />
         <item itemvalue="Application.Lancement" />
-        <item itemvalue="Application.Lancement" />
-        <item itemvalue="Application.Lancement" />
-        <item itemvalue="Application.Lancement" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
       </set>
     </attachedChunks>
   </component>
@@ -135,6 +128,15 @@
       <workItem from="1717018617080" duration="264000" />
       <workItem from="1717019014363" duration="2630000" />
       <workItem from="1717025427088" duration="750000" />
+      <workItem from="1717501522669" duration="7996000" />
+      <workItem from="1717602854456" duration="569000" />
+      <workItem from="1717605319771" duration="10224000" />
+      <workItem from="1717658727485" duration="9000000" />
+      <workItem from="1717696550078" duration="156000" />
+      <workItem from="1717698013289" duration="6822000" />
+      <workItem from="1717720840363" duration="2924000" />
+      <workItem from="1717762467447" duration="6224000" />
+      <workItem from="1717865515664" duration="315000" />
       <workItem from="1717233021631" duration="2786000" />
       <workItem from="1717238720876" duration="7948000" />
       <workItem from="1717247340143" duration="4585000" />
@@ -165,26 +167,13 @@
       <workItem from="1717862304716" duration="825000" />
       <workItem from="1717864829095" duration="836000" />
       <workItem from="1717866602609" duration="525000" />
-      <workItem from="1717867428445" duration="803000" />
-      <workItem from="1717874609366" duration="2755000" />
-      <workItem from="1717895571900" duration="3202000" />
-      <workItem from="1717933831641" duration="3660000" />
-      <workItem from="1717938366149" duration="723000" />
-      <workItem from="1717939538721" duration="2714000" />
-      <workItem from="1718049076888" duration="298000" />
-      <workItem from="1718056004708" duration="3187000" />
-      <workItem from="1718065421616" duration="698000" />
-      <workItem from="1718066638904" duration="2352000" />
-      <workItem from="1718069121427" duration="1722000" />
-      <workItem from="1718213035866" duration="1526000" />
-      <workItem from="1718217500729" duration="2414000" />
-      <workItem from="1718220147349" duration="4916000" />
-      <workItem from="1718225233374" duration="1108000" />
-      <workItem from="1718227594453" duration="976000" />
-      <workItem from="1718229488761" duration="3672000" />
-      <workItem from="1718233890167" duration="2223000" />
-      <workItem from="1718236470416" duration="476000" />
-      <workItem from="1718312579773" duration="1022000" />
+      <workItem from="1717867428445" duration="391000" />
+      <workItem from="1717884624634" duration="4458000" />
+      <workItem from="1717889662155" duration="199000" />
+      <workItem from="1717895482727" duration="1041000" />
+      <workItem from="1717925486845" duration="7604000" />
+      <workItem from="1717938708198" duration="11512000" />
+      <workItem from="1718012399667" duration="9649000" />
     </task>
     <servers />
   </component>
@@ -196,19 +185,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/Item" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>

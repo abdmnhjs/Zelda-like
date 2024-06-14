@@ -27,7 +27,7 @@ public class Map {
 
         for(int y = 0 ; y < this.map.length ; y++){
             for(int x = 0 ; x < this.map[y].length ; x++){
-                if(this.map[y][x] != 54){
+                if(this.map[y][x] == 11){
                     this.coordonnéesTuilesTraversables.add(new int[]{y * tailleTuile, x * tailleTuile});
                     this.coordonnéesToutesTuiles.add(new int[]{y * tailleTuile, x * tailleTuile});
                 } else {
@@ -53,6 +53,10 @@ public class Map {
 
     public ArrayList<int[]> getCoordonnéesTuilesTraversables() {
         return this.coordonnéesTuilesTraversables;
+    }
+
+    public ArrayList<int[]> getCoordonnéesTuilesNonTraversables() {
+        return this.coordonnéesTuilesNonTraversables;
     }
 
     public boolean verifValeurTuile(int val, int x, int y) {

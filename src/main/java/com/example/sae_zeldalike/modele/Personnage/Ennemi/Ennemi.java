@@ -4,6 +4,7 @@ import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Personnage.Link;
 import com.example.sae_zeldalike.modele.Personnage.Personnage;
 
+import java.util.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -55,29 +56,81 @@ public class Ennemi extends Personnage {
     }
 
     public void bfs(int xDepart, int yDepart, int xArrivee, int yArrivee) {
-        int[] s = new int[]{xDepart, yDepart};
-        int tailleTuile = this.environnement.getMap().getTailleTuile();
-        LinkedList<int[]> fifo = new LinkedList<>();
-        HashSet<int[]> visited = new HashSet<>();
-        visited.add(s);
-        fifo.addFirst(s);
+        int tailleTuile = 32;
+        int[] start = {yDepart, xDepart};
+        int[] destination = {yArrivee, xArrivee};
+        int[][] directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        Map<int[], int[]> predecesseurs = new HashMap<>();
+        LinkedList<int[]> queue = new LinkedList<>();
+        ArrayList<int[]> parcours = new ArrayList<>();
 
-        while (!fifo.isEmpty()) {
-            s = fifo.pollFirst();
-            if(this.environnement.getMap().getCoordonnéesTuilesTraversables().contains(new int[]{s[0] + tailleTuile, s[1]})){
-                    fifo.addFirst(new int[]{s[0]+tailleTuile, s[1]});
+        queue.addFirst(start);
+        parcours.add(start);
+        predecesseurs.put(start, null);
+
+        while (!queue.isEmpty()) {
+            int[] current = queue.removeFirst();
+
+            for (int[] direction : directions) {
+                int newX = current[1] + direction[1] * tailleTuile;
+                int newY = current[0] + direction[0] * tailleTuile;
+                int[] newPath = {newY, newX};
+
+                if (newX == xArrivee && newY == yArrivee) {
+                    printPath(predecesseurs, destination);
+                    return;
                 }
-            if(this.environnement.getMap().getCoordonnéesTuilesTraversables().contains(new int[]{s[0]-tailleTuile, s[1]})){
-                    fifo.addFirst(new int[]{s[0]-tailleTuile, s[1]});
-                }
-            if(this.environnement.getMap().getCoordonnéesTuilesTraversables().contains(new int[]{s[0], s[1]+tailleTuile})){
-                    fifo.addFirst(new int[]{s[0], s[1]+tailleTuile});
-                }
-            if(this.environnement.getMap().getCoordonnéesTuilesTraversables().contains(new int[]{s[0], s[1]-tailleTuile})){
-                    fifo.addFirst(new int[]{s[0], s[1]-tailleTuile});
+
+                if (!estMarque(newPath, parcours) && accessible(newPath)) {
+                    parcours.add(newPath);
+                    queue.addLast(newPath);
+                    predecesseurs.put(newPath, current);
                 }
             }
         }
+    }
+
+    public boolean accessible(int[] coord) {
+        int[][] map = this.environnement.getMap().getMap();
+        int tileX = coord[1] / 32;
+        int tileY = coord[0] / 32;
+
+        if (tileY >= 0 && tileY < map.length && tileX >= 0 && tileX < map[tileY].length) {
+            if (map[tileY][tileX] == 11) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean estMarque(int[] s, ArrayList<int[]> parcours) {
+        for (int[] coord : parcours) {
+            if (Arrays.equals(coord, s)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void printPath(Map<int[], int[]> predecesseurs, int[] destination) {
+        ArrayList<int[]> path = new ArrayList<>();
+        int[] current = destination;
+        path.add(current);
+
+        while (predecesseurs.containsKey(current)) {
+            current = predecesseurs.get(current);
+            if (current != null) {
+                path.add(current);
+            }
+        }
+
+        Collections.reverse(path);
+        System.out.println(path);
+        for (int i = 1; i < path.size(); i++) {
+            this.seDeplace(path.get(i)[1], path.get(i)[0]);
+        }
+    }
+
 
 
     public boolean proba(double pourcent){
