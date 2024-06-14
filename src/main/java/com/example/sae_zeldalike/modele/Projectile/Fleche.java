@@ -16,33 +16,46 @@ public class Fleche extends Projectile {
 
     public boolean peutEncoreSeDeplacer(){
         boolean peut=false;
+        int newX=getPositionX();
+        int newY=getPositionY();
 
 
         switch (getDirection()){
             case "UP"->{
+                newY=getPositionY()-getVitesse();
                 if (getPositionInitaleY() - (getPositionY() - getVitesse()) <= arc.getRayonAttaque()) {
+                    if (!getEnvironnement().estDevantObstacle(hitbox(newX,newY))){
                         peut = true;
+                    }
+
+
 
                 }
             }
             case "RIGHT"->{
+                newX=getPositionX()+getVitesse();
                 if ((getPositionX()+getVitesse())-getPositionInitaleX()<=arc.getRayonAttaque()){
-
+                    if (!getEnvironnement().estDevantObstacle(hitbox(newX,newY))){
                         peut = true;
+                    }
 
                 }
             }
             case "DOWN"->{
+                newY=getPositionY()+getVitesse();
                 if ((getPositionY()+getVitesse())-getPositionInitaleY()<=arc.getRayonAttaque()){
-
+                    if (!getEnvironnement().estDevantObstacle(hitbox(newX,newY))){
                         peut = true;
+                    }
 
                 }
             }
             case "LEFT"->{
+                newX=getPositionX()-getVitesse();
                 if (getPositionInitaleX() - (getPositionX() - getVitesse()) <= arc.getRayonAttaque()) {
-
+                    if (!getEnvironnement().estDevantObstacle(hitbox(newX,newY))){
                         peut = true;
+                    }
                 }
             }
         }

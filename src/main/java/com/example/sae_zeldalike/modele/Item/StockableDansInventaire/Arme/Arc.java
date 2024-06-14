@@ -26,16 +26,16 @@ public class Arc extends Arme {
 
         switch (getDirection()){
             case "UP"-> {
-                getEnvironnement().ajouterProjectiles(new Fleche(getEnvironnement(),(getPositionX()+getLargeur()/2),(getPositionY()+getLongueur()/2),12,24,getPersonnage().getVitesseDeplacement(),this,this.getDirection()));
+                getEnvironnement().ajouterProjectiles(new Fleche(getEnvironnement(),(getPositionX()),(getPositionY()),32,32,getPersonnage().getVitesseDeplacement(),this,this.getDirection()));
             }
             case "DOWN"-> {
-                getEnvironnement().ajouterProjectiles(new Fleche(getEnvironnement(),(getPositionX()+getLargeur()/2),(getPositionY()+getLongueur()/2),12,24,getPersonnage().getVitesseDeplacement(),this,this.getDirection()));
+                getEnvironnement().ajouterProjectiles(new Fleche(getEnvironnement(),(getPositionX()),(getPositionY()),32,32,getPersonnage().getVitesseDeplacement(),this,this.getDirection()));
             }
             case "LEFT"-> {
-                getEnvironnement().ajouterProjectiles(new Fleche(getEnvironnement(),(getPositionX()-getLargeur()/2),(getPositionY()+getLongueur()/2),24,12,getPersonnage().getVitesseDeplacement(),this,this.getDirection()));
+                getEnvironnement().ajouterProjectiles(new Fleche(getEnvironnement(),(getPositionX()),(getPositionY()),32,32,getPersonnage().getVitesseDeplacement(),this,this.getDirection()));
             }
             case "RIGHT"-> {
-                getEnvironnement().ajouterProjectiles(new Fleche(getEnvironnement(),(getPositionX()+getLargeur()/2),(getPositionY()+getLongueur()/2),24,12,getPersonnage().getVitesseDeplacement(),this,this.getDirection()));
+                getEnvironnement().ajouterProjectiles(new Fleche(getEnvironnement(),(getPositionX()),(getPositionY()),32,32,getPersonnage().getVitesseDeplacement(),this,this.getDirection()));
             }
         }
 

@@ -174,6 +174,8 @@ public class Environnement {
         boolean coinBasDroite=false;
 
         if (estDansLimiteTerrain(hitbox)){
+
+//            System.out.println("est dans limite");
 //          Connaitre les coordonées
 //        System.out.println("Coin HG: (" + hitbox.getXGauche()+ ", " + hitbox.getYHaut() + ")");
 //        System.out.println(map.getMap()[hitbox.getYHaut()][hitbox.getXGauche()]);

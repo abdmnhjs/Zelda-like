@@ -117,7 +117,7 @@ public abstract class Projectile{
         setPositionY(getPositionY()+getVitesse());
     }
 
-    public void faireDégâts(Personnage personnage){
+    public void faireDegats(Personnage personnage){
 
         personnage.reduirePointsDeVie(getDegats());
 
@@ -152,7 +152,7 @@ public abstract class Projectile{
         for (Personnage personnage : getEnvironnement().getPersonnages()){
             if (! (personnage instanceof Link)){
                 if (getEnvironnement().estDansLaZone(this.hitbox(getPositionX(),getPositionY()),personnage.hitbox(personnage.getPositionX(),personnage.getPositionY()))&& !finito){
-                    faireDégâts(personnage);
+                    faireDegats(personnage);
                     if (!personnage.estVivant()){
                         dead.add(personnage);
                     }
@@ -160,7 +160,8 @@ public abstract class Projectile{
                 }
             }
         }
-        }else {
+        }
+        else {
             getEnvironnement().supprimerProjectiles(this);
         }
         for (Personnage perso : dead) {
