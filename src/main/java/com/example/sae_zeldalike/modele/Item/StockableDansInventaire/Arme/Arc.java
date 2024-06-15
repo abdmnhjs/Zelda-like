@@ -6,7 +6,7 @@ import com.example.sae_zeldalike.modele.Projectile.Fleche;
 public class Arc extends Arme {
 
     public Arc(Environnement environnement) {
-        super(environnement, 32, 32, 10, 100);
+        super(environnement, 32, 32, 10, 200);
 
     }
 
