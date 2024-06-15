@@ -35,6 +35,7 @@ public class Clavier implements EventHandler<KeyEvent> {
                 link.setDirection("Inactif_" + link.getDirection());
             }
         }
+        interactionTouchesCombat(keyEvent);
     }
 
     private void initTimeline() {
@@ -44,7 +45,6 @@ public class Clavier implements EventHandler<KeyEvent> {
     }
 
     public void interactionTouche() {
-
 
         if (link.estVivant()) {
 
@@ -125,11 +125,7 @@ public class Clavier implements EventHandler<KeyEvent> {
                     }
                 }
             }
-            if (touches.contains(KeyCode.A)) {
-                System.out.println(link.getEffets());
-                System.out.println(link.getEnvironnement().getProjectiles());
-                System.out.println(link.getArmeEquiper());
-            }
+
             if (touches.contains(KeyCode.I)) {
                 link.utiliserItemDansInventaire();
             }
@@ -163,37 +159,39 @@ public class Clavier implements EventHandler<KeyEvent> {
                 link.getInventaire().setCaseActuel(5);
             }
 
+        }
 
-            if (touches.contains(KeyCode.UP)) {
+    }
+
+    public void interactionTouchesCombat(KeyEvent keyEvent){
+        switch (keyEvent.getCode()){
+            case UP -> {
                 if (this.link.getArmeEquiper() != null) {
                     link.getArmeEquiper().setDirection("UP");
                     link.getArmeEquiper().utiliserCapacite();
                 }
             }
-            if (touches.contains(KeyCode.DOWN)) {
+            case DOWN -> {
                 if (this.link.getArmeEquiper() != null) {
                     link.getArmeEquiper().setDirection("DOWN");
                     link.getArmeEquiper().utiliserCapacite();
                 }
             }
-            if (touches.contains(KeyCode.RIGHT)) {
+            case RIGHT -> {
                 if (this.link.getArmeEquiper() != null) {
                     link.getArmeEquiper().setDirection("RIGHT");
                     link.getArmeEquiper().utiliserCapacite();
                 }
             }
-            if (touches.contains(KeyCode.LEFT)) {
+            case LEFT -> {
                 if (this.link.getArmeEquiper() != null) {
                     link.getArmeEquiper().setDirection("LEFT");
                     link.getArmeEquiper().utiliserCapacite();
+                    }
                 }
             }
         }
-
     }
-
-
-}
 
 
 
