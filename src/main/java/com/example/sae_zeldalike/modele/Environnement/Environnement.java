@@ -1,6 +1,7 @@
 package com.example.sae_zeldalike.modele.Environnement;
 
 import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Arc;
+import com.example.sae_zeldalike.modele.Personnage.Ennemi.Magicien;
 import com.example.sae_zeldalike.modele.Projectile.BouleDeFeu;
 import com.example.sae_zeldalike.modele.Hitbox;
 import com.example.sae_zeldalike.modele.Item.*;
@@ -319,6 +320,7 @@ public class Environnement {
             ajouterItem(new Epée(this));
             ajouterItem(new Arc(this));
         }
+        ajouterPersonnage(new Magicien(this));
     }
 
 

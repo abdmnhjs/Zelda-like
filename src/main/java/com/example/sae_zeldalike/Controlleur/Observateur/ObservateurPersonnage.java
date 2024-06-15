@@ -2,10 +2,12 @@ package com.example.sae_zeldalike.Controlleur.Observateur;
 
 import com.example.sae_zeldalike.Vue.Personnage.VueEnnemi1;
 import com.example.sae_zeldalike.Vue.Personnage.VueEnnemi2;
+import com.example.sae_zeldalike.Vue.Personnage.VueMagicien;
 import com.example.sae_zeldalike.Vue.Personnage.VuePersonnage;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi1;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi2;
+import com.example.sae_zeldalike.modele.Personnage.Ennemi.Magicien;
 import com.example.sae_zeldalike.modele.Personnage.Personnage;
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
@@ -37,6 +39,9 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
                         vuePersonnages.add(newPerso);
                     }if (personnage instanceof Ennemi2){
                         newPerso =new VueEnnemi2(environnement,personnage);
+                        vuePersonnages.add(newPerso);
+                    }if (personnage instanceof Magicien) {
+                        newPerso = new VueMagicien(environnement,personnage);
                         vuePersonnages.add(newPerso);
                     }
                 }

@@ -1,8 +1,11 @@
-package com.example.sae_zeldalike.Test;
+package java.test.java;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi1;
 import com.example.sae_zeldalike.modele.Environnement.Map ;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class MethodesTest {
