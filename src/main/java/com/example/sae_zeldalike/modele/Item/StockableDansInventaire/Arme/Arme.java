@@ -65,29 +65,29 @@ public abstract class Arme extends Item implements Stockable {
         this.porterParPerso = porterParPerso;
     }
 
-    public void faireDégâts(Personnage personnage, int dégâts){
-        ArrayList<Personnage> dead = new ArrayList<>();
-        if(dégâts <= personnage.getPointVie() && dégâts > 0){
-            personnage.setPointVie(personnage.getPointVie() - dégâts);
-            if (!personnage.estVivant()){
-                dead.add(personnage);
-            }
-
-        }
-        for (Personnage perso : dead) {
-            perso.getEnvironnement().supprimerPersonnage(perso);
-        }
-    }
-
-    public boolean estSurEnnemi(Personnage ennemi){
-        if(super.getPositionX() < ennemi.getPositionX() + ennemi.getLargeur() &&
-                this.getPositionX() + this.getLargeur() > ennemi.getPositionX() &&
-                this.getPositionX() < ennemi.getPositionY() + ennemi.getLongueur() &&
-                this.getPositionX() + this.getLongueur() > ennemi.getPositionY()){
-            return true;
-        }
-        return false;
-    }
+//    public void faireDégâts(Personnage personnage, int dégâts){
+//        ArrayList<Personnage> dead = new ArrayList<>();
+//        if(dégâts <= personnage.getPointVie() && dégâts > 0){
+//            personnage.setPointVie(personnage.getPointVie() - dégâts);
+//            if (!personnage.estVivant()){
+//                dead.add(personnage);
+//            }
+//
+//        }
+//        for (Personnage perso : dead) {
+//            perso.getEnvironnement().supprimerPersonnage(perso);
+//        }
+//    }
+//
+//    public boolean estSurEnnemi(Personnage ennemi){
+//        if(super.getPositionX() < ennemi.getPositionX() + ennemi.getLargeur() &&
+//                this.getPositionX() + this.getLargeur() > ennemi.getPositionX() &&
+//                this.getPositionX() < ennemi.getPositionY() + ennemi.getLongueur() &&
+//                this.getPositionX() + this.getLongueur() > ennemi.getPositionY()){
+//            return true;
+//        }
+//        return false;
+//    }
 
     public String getDirection() {
         return this.direction.getValue();
