@@ -60,7 +60,7 @@ public class Clavier implements EventHandler<KeyEvent> {
     public void interactionTouche() {
 
 
-//        if (link.estVivant()) {
+        if (link.estVivant()) {
 
             int newX;
             int newY;
@@ -223,7 +223,7 @@ public class Clavier implements EventHandler<KeyEvent> {
                     link.getArmeEquiper().utiliserCapacite();
                 }
             }
-//        }
+        }
 
     }
 

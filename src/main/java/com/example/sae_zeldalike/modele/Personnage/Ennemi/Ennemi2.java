@@ -8,7 +8,7 @@ public class Ennemi2 extends Ennemi{
     private static int compteurEnnemi2 = 0;
     public Ennemi2(Environnement environnement){
         super(100, 40, environnement, 5, 32, 32);
-        this.probaAttaque = 40;
+        this.probaAttaque = 20;
     }
 
     public void essaieTirerBouleDeFeu(Link link){
@@ -105,5 +105,4 @@ public class Ennemi2 extends Ennemi{
             this.environnement.ajouterProjectiles(new BouleDeFeu(environnement,ennemiX,ennemiY,10,"LEFT"));
         }
     }
-
 }

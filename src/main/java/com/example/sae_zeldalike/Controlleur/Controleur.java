@@ -462,6 +462,9 @@ public class Controleur implements Initializable {
                     }
 
                     temps++;
+                    if (!link.estVivant()){
+                        gameLoop.stop();
+                    }
                 }
         );
         gameLoop.getKeyFrames().add(kf);
