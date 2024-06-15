@@ -1,7 +1,6 @@
 package com.example.sae_zeldalike.Vue.Item;
 
 import com.example.sae_zeldalike.modele.Item.Item;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -32,15 +31,6 @@ public abstract class VueItem {
 
     protected abstract void creerOmbre(Pane pane);
     protected abstract void initialiserItem();
-
-    public ImageView getSpriteItem() {
-        return spriteItem;
-    }
-
-    public void setSpriteItem(Image image) {
-        this.spriteItem.setImage(image);
-    }
-
     public int getNumeroItem(){
         return numeroImageItem;
     }

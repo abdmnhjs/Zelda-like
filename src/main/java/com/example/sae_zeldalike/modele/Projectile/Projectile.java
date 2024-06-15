@@ -55,22 +55,12 @@ public abstract class Projectile{
         return direction;
     }
 
-
-    public void setDirection(String direction) {
-        direction = direction;
-    }
-
-
     public void setPositionX(int positionX) {
         this.positionX.set(positionX);
     }
 
     public void setPositionY(int positionY) {
         this.positionY.set(positionY);
-    }
-
-    public void setVitesse(int vitesse) {
-        this.vitesse.set(vitesse);
     }
 
     public int getLargeur() {
@@ -105,10 +95,6 @@ public abstract class Projectile{
         return positionInitaleY;
     }
 
-    public IntegerProperty getVitesseProperty() {
-        return vitesse;
-    }
-
     public void seDeplacerHaut(){
         setPositionY(getPositionY()-getVitesse());
     }
@@ -120,22 +106,18 @@ public abstract class Projectile{
     public void faireDegats(Personnage personnage){
 
         personnage.reduirePointsDeVie(getDegats());
-
         getEnvironnement().supprimerProjectiles(this);
     }
-
 
     public abstract boolean peutEncoreSeDeplacer();
 
     public void deplacement(){
-
 
         if (peutEncoreSeDeplacer()) {
             switch (getDirection()) {
 
                 case "UP" -> {
                     seDeplacerHaut();
-
                 }
                 case "RIGHT" -> {
                     seDeplacerDroite();
@@ -149,8 +131,6 @@ public abstract class Projectile{
             }
             estDevantEnnemi();
         }
-
-
         else {
             getEnvironnement().supprimerProjectiles(this);
         }
@@ -158,17 +138,6 @@ public abstract class Projectile{
     }
 
     public abstract void estDevantEnnemi();
-
-    public boolean estSurEnnemi(Personnage ennemi){
-        if(this.getPositionX() < ennemi.getPositionX() + ennemi.getLargeur() &&
-                this.getPositionX() + this.getLargeur() > ennemi.getPositionX() &&
-                this.getPositionY() < ennemi.getPositionY() + ennemi.getLongueur() &&
-                this.getPositionY() + this.getLongueur() > ennemi.getPositionY()){
-            return true;
-        }
-        return false;
-    }
-
 
     public Hitbox hitbox(int x, int y){
         Hitbox hitbox = new Hitbox(x,y,getLargeur(),getLongueur());
@@ -193,8 +162,5 @@ public abstract class Projectile{
     public String getId() {
         return this.id;
     }
-
-
-
 
 }

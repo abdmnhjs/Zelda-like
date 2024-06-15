@@ -8,10 +8,6 @@ import java.util.ArrayList;
 
 public class Epée extends Arme {
 
-    public Epée(Environnement environnement, int positionX, int positionY) {
-        super(environnement, positionX, positionY, 32, 32, 10, 32);
-    }
-
     public Epée(Environnement environnement) {
         super(environnement, 32, 32, 10,32);
     }
@@ -30,40 +26,6 @@ public class Epée extends Arme {
                     if (getPersonnage() instanceof Link && ((Link) getPersonnage()).getEffets().size() != 0) {
                         ((Link) getPersonnage()).getEffets().get(0).appliquer(perso);
                     }
-
-//                    switch (getDirection()) {
-//
-//                    case "UP" -> {
-//                            perso.reduirePointsDeVie(getDégâts());
-//                            if (getPersonnage() instanceof Link && ((Link) getPersonnage()).getEffets().size() != 0) {
-//                                ((Link) getPersonnage()).getEffets().get(0).appliquer(perso);
-//                            }
-//
-//
-//                    }
-//                    case "DOWN" -> {
-//                            perso.reduirePointsDeVie(getDégâts());
-//                            if (getPersonnage() instanceof Link && ((Link) getPersonnage()).getEffets().size() != 0) {
-//                                ((Link) getPersonnage()).getEffets().get(0).appliquer(perso);
-//                            }
-//
-//                    }
-//                    case "LEFT" -> {
-//                            perso.reduirePointsDeVie(getDégâts());
-//                            if (getPersonnage() instanceof Link && ((Link) getPersonnage()).getEffets().size() != 0) {
-//                                ((Link) getPersonnage()).getEffets().get(0).appliquer(perso);
-//                            }
-//
-//                    }
-//                    case "RIGHT" -> {
-//                            perso.reduirePointsDeVie(getDégâts());
-//                            if (getPersonnage() instanceof Link && ((Link) getPersonnage()).getEffets().size() != 0) {
-//                                ((Link) getPersonnage()).getEffets().get(0).appliquer(perso);
-//                            }
-//
-//                    }
-//                }
-
                 }
 
             }
@@ -71,7 +33,6 @@ public class Epée extends Arme {
                 dead.add(perso);
             }
         }
-//        System.out.println(dead.size());
         for (Personnage perso : dead) {
             perso.getEnvironnement().supprimerPersonnage(perso);
         }

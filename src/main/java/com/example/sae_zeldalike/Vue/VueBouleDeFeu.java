@@ -3,7 +3,6 @@ package com.example.sae_zeldalike.Vue;
 import com.example.sae_zeldalike.Vue.Projectile.VueProjectile;
 import com.example.sae_zeldalike.modele.Projectile.Projectile;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 public class VueBouleDeFeu extends VueProjectile {
@@ -17,7 +16,6 @@ public class VueBouleDeFeu extends VueProjectile {
 
 
         pane.getChildren().add(spriteProjectile);
-//        creerBouleDeFeu(this.pane);
     }
 
     @Override

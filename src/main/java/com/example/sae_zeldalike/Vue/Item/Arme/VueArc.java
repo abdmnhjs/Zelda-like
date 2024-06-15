@@ -50,49 +50,6 @@ public class VueArc extends VueItem {
         this.arcH = new Image("file:src/main/resources/com/example/sae_zeldalike/Item/Arme/Arc/arc_UP.png");
     }
 
-//    @Override
-//    public void animationItem() {
-//        if (((Arme) item).estPorterParPerso()) {
-//
-//            if (((Arme)item).getDirection().equals("UP")
-//                    || ((Arme)item).getDirection().equals("Inactif_UP")
-//            ) {
-//
-//                item.getPositionXProperty().bind(((Arme)item).getPersonnage().getPositionXProperty());
-//                item.getPositionYProperty().bind(((Arme)item).getPersonnage().getPositionYProperty().subtract(((Arme) item).getPersonnage().getLongueur()/1.5));
-//
-//                spriteItem.setImage(arcH);
-//
-//            }
-//            if (((Arme)item).getDirection().equals("DOWN")
-//                    || ((Arme)item).getDirection().equals("Inactif_DOWN")
-//            ) {
-//                item.getPositionXProperty().bind(((Arme)item).getPersonnage().getPositionXProperty());
-//                item.getPositionYProperty().bind(((Arme)item).getPersonnage().getPositionYProperty().add(((Arme) item).getPersonnage().getLongueur()/1.5));
-//
-//                spriteItem.setImage(arcB);
-//            }
-//            if (((Arme)item).getDirection().equals("RIGHT")
-//                    || ((Arme)item).getDirection().equals("Inactif_RIGHT")
-//            ) {
-//
-//                item.getPositionXProperty().bind(((Arme)item).getPersonnage().getPositionXProperty().add(((Arme) item).getPersonnage().getLargeur()/1.5));
-//                item.getPositionYProperty().bind(((Arme)item).getPersonnage().getPositionYProperty());
-//
-//                spriteItem.setImage(arcD);
-//            }
-//            if (((Arme)item).getDirection().equals("LEFT")
-//                    || ((Arme)item).getDirection().equals("Inactif_LEFT")
-//            ) {
-//                item.getPositionXProperty().bind(((Arme)item).getPersonnage().getPositionXProperty().subtract(((Arme) item).getPersonnage().getLargeur()/1.5));
-//                item.getPositionYProperty().bind(((Arme)item).getPersonnage().getPositionYProperty());
-//
-//                spriteItem.setImage(arcG);
-//
-//            }
-//        }
-//    }
-
     @Override
     public void animationItem() {
         if (((Arme) item).estPorterParPerso()) {

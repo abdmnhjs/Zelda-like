@@ -1,6 +1,5 @@
 package com.example.sae_zeldalike.Vue.Projectile;
 
-import com.example.sae_zeldalike.modele.Item.Item;
 import com.example.sae_zeldalike.modele.Projectile.Projectile;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,13 +29,6 @@ public abstract class VueProjectile {
     public abstract void animationProjectile();
     protected abstract void initialiserProjectile();
     public abstract Image getImagePrincipale();
-
-    public String getSpriteId(){
-        return spriteProjectile.getId();
-    }
-
-
-
     public Projectile getProjectile() {
         return projectile;
     }

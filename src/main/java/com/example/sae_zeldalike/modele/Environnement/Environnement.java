@@ -1,7 +1,6 @@
 package com.example.sae_zeldalike.modele.Environnement;
 
 import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Arc;
-import com.example.sae_zeldalike.modele.Projectile.BouleDeFeu;
 import com.example.sae_zeldalike.modele.Hitbox;
 import com.example.sae_zeldalike.modele.Item.*;
 import com.example.sae_zeldalike.modele.Item.NonStockable.CoeurBleu;
@@ -26,7 +25,6 @@ public class Environnement {
     private ObservableList<Item> items;
     private ObservableList<Projectile> projectiles;
     private ObservableList<Link> linkRemovalQueue;
-    private ObservableList<BouleDeFeu> boulesDeFeuEnDeplacement;
     private Map map;
 
     public Environnement(Map map){
@@ -39,7 +37,6 @@ public class Environnement {
         this.items= FXCollections.observableArrayList();
 
         this.linkRemovalQueue = FXCollections.observableArrayList();
-        this.boulesDeFeuEnDeplacement = FXCollections.observableArrayList();
     }
 
     public void ajouterLink(Link link){
@@ -54,10 +51,6 @@ public class Environnement {
         items.add(item);
     }
 
-    public void ajouterBouleDeFeu(BouleDeFeu bouleDeFeu){
-        boulesDeFeuEnDeplacement.add(bouleDeFeu);
-    }
-
     public void supprimerItem (Item item){
         for(int i=0;i<items.size();i++){
             if(items.get(i).getId().equals(item.getId())){
@@ -65,8 +58,6 @@ public class Environnement {
             }
         }
     }
-
-
 
     public void supprimerProjectiles(Projectile projectile){
         for(int i=0;i<projectiles.size();i++){
@@ -92,14 +83,6 @@ public class Environnement {
         }
     }
 
-    public void supprimerBouleDeFeu(BouleDeFeu bouleDeFeu){
-        for(int i = 0; i< boulesDeFeuEnDeplacement.size(); i++){
-            if(boulesDeFeuEnDeplacement.get(i).getId().equals(bouleDeFeu.getId())){
-                boulesDeFeuEnDeplacement.remove(i);
-            }
-        }
-    }
-
     public void ajouterProjectiles(Projectile projectile){
         projectiles.add(projectile);
     }
@@ -108,18 +91,12 @@ public class Environnement {
         return this.projectiles;
     }
 
-
     public ObservableList<Item> getItems() {
         return items;
     }
 
-
     public ObservableList<Personnage> getPersonnages() {
         return personnages;
-    }
-
-    public ObservableList<BouleDeFeu> getBoulesDeFeuEnDeplacement() {
-        return boulesDeFeuEnDeplacement;
     }
 
     public Map getMap() {
@@ -139,13 +116,6 @@ public class Environnement {
         int coinHY = (hitbox.getY())/ hitbox.getLongueur();
         int coinBY = (hitbox.getY()+ hitbox.getLongueur()-1)/ hitbox.getLongueur();
 
-        //Connaitre les coordonées
-//        System.out.println("Coin HG: (" + hitbox.getXGauche() + ", " + hitbox.getYHaut() + ")");
-//        System.out.println("Coin HD: (" + hitbox.getXDroite() + ", " + hitbox.getYHaut() + ")");
-//        System.out.println("Coin BG: (" + hitbox.getXGauche() + ", " + hitbox.getYBas() + ")");
-//        System.out.println("Coin BD: (" + hitbox.getXDroite() + ", " + hitbox.getYBas() + ")");
-
-
         if ((coinGX>=0 && coinGX< map.getColonne()-1) && (coinHY>=0 && coinHY< map.getLigne()-1)){
             coinHautGauche=true;
         }if ((coinGX>=0 && coinGX< map.getColonne()-1)&&(coinBY>0 && coinBY<=map.getLigne()-1)){
@@ -155,11 +125,6 @@ public class Environnement {
         }if ((coinDX>0 && coinDX<=map.getColonne()-1)&&(coinBY>0 && coinBY<=map.getLigne()-1)){
             coinBasDroite=true;
         }
-        //Connaitre la valeur du boolean
-//      System.out.println("coin HG dans limites: " + coinHautGauche);
-//      System.out.println("coin HD dans limites: " + coinHautDroit);
-//      System.out.println("coin BG dans limites: " + coinBasGauche);
-//      System.out.println("coin BD dans limites: " + coinBasDroite);
 
         return coinBasDroite && coinBasGauche && coinHautDroit && coinHautGauche;
 
@@ -175,18 +140,6 @@ public class Environnement {
 
         if (estDansLimiteTerrain(hitbox)){
 
-//            System.out.println("est dans limite");
-//          Connaitre les coordonées
-//        System.out.println("Coin HG: (" + hitbox.getXGauche()+ ", " + hitbox.getYHaut() + ")");
-//        System.out.println(map.getMap()[hitbox.getYHaut()][hitbox.getXGauche()]);
-//        System.out.println("Coin HD: (" + hitbox.getXDroite() + ", " + hitbox.getYHaut() + ")");
-//        System.out.println(map.getMap()[hitbox.getYHaut()][hitbox.getXDroite()]);
-//        System.out.println("Coin BG: (" + hitbox.getXGauche() + ", " + hitbox.getYBas() + ")");
-//        System.out.println(map.getMap()[hitbox.getYBas()][hitbox.getXGauche()]);
-//        System.out.println("Coin BD: (" + hitbox.getXDroite() + ", " + hitbox.getYBas() + ")");
-//        System.out.println(map.getMap()[hitbox.getYBas()][hitbox.getXDroite()]);
-//            System.out.println();
-
             if (this.map.getMap()[hitbox.getYHaut()][hitbox.getXGauche()] == 54) {
                 coinHautGauche=true;
             }if (this.map.getMap()[hitbox.getYHaut()][hitbox.getXDroite()]==54){
@@ -197,11 +150,6 @@ public class Environnement {
             }if (this.map.getMap()[hitbox.getYBas()][hitbox.getXDroite()]==54){
                 coinBasDroite=true;
             }
-            //Connaitre valeurs des booleans
-//        System.out.println("coin HG "+ coinHautGauche);
-//        System.out.println("coin HD "+ coinHautDroit);
-//        System.out.println("coin BG "+ coinBasGauche);
-//        System.out.println("coin BD "+ coinBasDroite+"\n");
 
             return coinBasDroite || coinBasGauche || coinHautDroit || coinHautGauche;
 
@@ -223,11 +171,6 @@ public class Environnement {
         int coinHY = (hitbox.getY())/ getMap().getTailleTuile();
         int coinBY = (hitbox.getY()+ hitbox.getLongueur()-1)/ getMap().getTailleTuile();
 
-//        System.out.println("Coin HG: (" + hitbox.getXGauche() + ", " + hitbox.getYHaut() + ")");
-//        System.out.println("Coin HD: (" + hitbox.getXDroite() + ", " + hitbox.getYHaut() + ")");
-//        System.out.println("Coin BG: (" + hitbox.getXGauche() + ", " + hitbox.getYBas() + ")");
-//        System.out.println("Coin BD: (" + hitbox.getXDroite() + ", " + hitbox.getYBas() + ")");
-
         if (this.map.getMap()[coinHY][coinGX] == valeurTuile) {
             coinHautGauche=true;
         }if (this.map.getMap()[coinHY][coinDX]==valeurTuile){
@@ -238,12 +181,6 @@ public class Environnement {
         }if (this.map.getMap()[coinBY][coinDX]==valeurTuile){
             coinBasDroite=true;
         }
-
-//        System.out.println("coin HG"+ coinHautGauche);
-//        System.out.println("coin HD"+ coinHautDroit);
-//        System.out.println("coin BG"+ coinBasGauche);
-//        System.out.println("coin BD"+ coinBasDroite);
-
         return coinBasDroite && coinBasGauche && coinHautDroit && coinHautGauche;
     }
 

@@ -10,12 +10,6 @@ public class Poison extends Item implements Effet {
 
     private int ralentissement;
     private int nombreTour;
-    public Poison(Environnement environnement, int positionX, int positionY) {
-        super(environnement, positionX, positionY, 32, 32);
-        this.ralentissement = 4;
-        this.nombreTour = 10;
-
-    }
 
     public Poison(Environnement environnement) {
         super(environnement, 32, 32);

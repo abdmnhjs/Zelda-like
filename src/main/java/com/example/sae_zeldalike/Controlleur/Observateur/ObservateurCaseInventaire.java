@@ -5,7 +5,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 
 public class ObservateurCaseInventaire implements ChangeListener<Number> {
 

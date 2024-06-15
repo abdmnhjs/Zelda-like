@@ -23,22 +23,18 @@ public class Fleche extends Projectile {
         int newX=getPositionX();
         int newY=getPositionY();
 
-
         switch (getDirection()){
             case "UP"->{
                 newY=getPositionY()-getVitesse();
-                if (getPositionInitaleY() - (getPositionY() - getVitesse()) <= arc.getRayonAttaque()) {
+                if (getPositionInitaleY() - newY <= arc.getRayonAttaque()) {
                     if (!getEnvironnement().estDevantObstacle(hitbox(newX,newY))){
                         peut = true;
                     }
-
-
-
                 }
             }
             case "RIGHT"->{
                 newX=getPositionX()+getVitesse();
-                if ((getPositionX()+getVitesse())-getPositionInitaleX()<=arc.getRayonAttaque()){
+                if (newX-getPositionInitaleX()<=arc.getRayonAttaque()){
                     if (!getEnvironnement().estDevantObstacle(hitbox(newX,newY))){
                         peut = true;
                     }
@@ -47,7 +43,7 @@ public class Fleche extends Projectile {
             }
             case "DOWN"->{
                 newY=getPositionY()+getVitesse();
-                if ((getPositionY()+getVitesse())-getPositionInitaleY()<=arc.getRayonAttaque()){
+                if (newY-getPositionInitaleY()<=arc.getRayonAttaque()){
                     if (!getEnvironnement().estDevantObstacle(hitbox(newX,newY))){
                         peut = true;
                     }
@@ -56,7 +52,7 @@ public class Fleche extends Projectile {
             }
             case "LEFT"->{
                 newX=getPositionX()-getVitesse();
-                if (getPositionInitaleX() - (getPositionX() - getVitesse()) <= arc.getRayonAttaque()) {
+                if (getPositionInitaleX() - newX <= arc.getRayonAttaque()) {
                     if (!getEnvironnement().estDevantObstacle(hitbox(newX,newY))){
                         peut = true;
                     }
@@ -86,6 +82,4 @@ public class Fleche extends Projectile {
             perso.getEnvironnement().supprimerPersonnage(perso);
         }
     }
-
-
 }

@@ -15,8 +15,6 @@ public class VuePoison extends VueItem{
         spriteItem.setImage(poison);
         creerOmbre(pane);
         pane.getChildren().add(spriteItem);
-
-
     }
     @Override
     protected void creerOmbre(Pane pane) {

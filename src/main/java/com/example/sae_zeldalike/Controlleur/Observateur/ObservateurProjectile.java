@@ -1,14 +1,8 @@
 package com.example.sae_zeldalike.Controlleur.Observateur;
 
-import com.example.sae_zeldalike.Vue.Personnage.VueEnnemi1;
-import com.example.sae_zeldalike.Vue.Personnage.VueEnnemi2;
-import com.example.sae_zeldalike.Vue.Personnage.VuePersonnage;
 import com.example.sae_zeldalike.Vue.Projectile.VueFleche;
 import com.example.sae_zeldalike.Vue.Projectile.VueProjectile;
 import com.example.sae_zeldalike.Vue.VueBouleDeFeu;
-import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi1;
-import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi2;
-import com.example.sae_zeldalike.modele.Personnage.Personnage;
 import com.example.sae_zeldalike.modele.Projectile.BouleDeFeu;
 import com.example.sae_zeldalike.modele.Projectile.Fleche;
 import com.example.sae_zeldalike.modele.Projectile.Projectile;
@@ -45,7 +39,6 @@ public class ObservateurProjectile implements ListChangeListener<Projectile> {
             }
             if (change.wasRemoved()){
                 for (Projectile projectile : change.getRemoved()){
-//                    System.out.println(projectile.getId());
                     this.environnement.getChildren().remove(environnement.lookup("#"+projectile.getId()));
                 }
             }

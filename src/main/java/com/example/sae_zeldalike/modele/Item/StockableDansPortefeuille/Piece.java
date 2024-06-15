@@ -9,13 +9,6 @@ public class Piece extends Item {
 
     private final IntegerProperty valeur;
 
-    public Piece(Environnement environnement, int positionX, int positionY) {
-        super(environnement, positionX, positionY,16,16);
-        this.valeur = new SimpleIntegerProperty(5);
-    }
-
-
-
     public Piece(Environnement environnement) {
         super(environnement,16,16);
         this.valeur = new SimpleIntegerProperty(5);
@@ -25,11 +18,4 @@ public class Piece extends Item {
         return valeur.getValue();
     }
 
-    public IntegerProperty valeurProperty() {
-        return valeur;
-    }
-
-    public void setValeur(int valeur) {
-        this.valeur.setValue(valeur);
-    }
 }

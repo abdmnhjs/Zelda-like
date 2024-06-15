@@ -3,13 +3,10 @@ package com.example.sae_zeldalike.Vue.Item.Arme;
 import com.example.sae_zeldalike.Vue.Item.VueItem;
 import com.example.sae_zeldalike.modele.Item.Item;
 import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Arme;
-import com.example.sae_zeldalike.modele.Personnage.Personnage;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-
-
 
 public class VueEpee extends VueItem {
 

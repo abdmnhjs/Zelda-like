@@ -13,14 +13,11 @@ public class Map {
     private ArrayList<int[]> coordonnéesTuilesTraversables;
     private ArrayList<int[]> coordonnéesTuilesNonTraversables;
 
-
     public Map(String filePath) throws IOException {
         this.map = JsonToMap.loadMapFromJson(filePath);
         this.ligne = map.length;
         this.colonne = map[0].length;
         tailleTuile=32;
-
-
         this.coordonnéesToutesTuiles = new ArrayList<>();
         this.coordonnéesTuilesTraversables = new ArrayList<>();
         this.coordonnéesTuilesNonTraversables = new ArrayList<>();
@@ -36,32 +33,11 @@ public class Map {
                 }
             }
         }
-
-
-
-
-
-
     }
     public int[][] getMap() {
         return map;
     }
-    public int getTuile(int posX, int posY) {
-        return map[posY][posX];
-    }
-    public int getValeurTuile(int posX,int posY) { return map[posY][posX];}
 
-    public ArrayList<int[]> getCoordonnéesTuilesTraversables() {
-        return this.coordonnéesTuilesTraversables;
-    }
-
-    public ArrayList<int[]> getCoordonnéesTuilesNonTraversables() {
-        return this.coordonnéesTuilesNonTraversables;
-    }
-
-    public boolean verifValeurTuile(int val, int x, int y) {
-        return map[y][x]==val;
-    }
     public int getTailleTuile(){
         return tailleTuile;
     }

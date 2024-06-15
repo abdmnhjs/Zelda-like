@@ -2,10 +2,7 @@ package com.example.sae_zeldalike.modele.Projectile;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi;
-import com.example.sae_zeldalike.modele.Personnage.Link;
 import com.example.sae_zeldalike.modele.Personnage.Personnage;
-
-import java.util.ArrayList;
 
 public class BouleDeFeu extends Projectile {
 
@@ -24,25 +21,25 @@ public class BouleDeFeu extends Projectile {
 
         switch (getDirection()){
             case "UP"->{
-                newY=getPositionY()-getVitesse();
+                newY-=getVitesse();
                     if (!getEnvironnement().estDevantObstacle(hitbox(newX,newY))) {
                         peut = true;
                     }
             }
             case "RIGHT"->{
-                newX=getPositionX()+getVitesse();
+                newX+=getVitesse();
                     if (!getEnvironnement().estDevantObstacle(hitbox(newX,newY))){
                         peut = true;
                     }
             }
             case "DOWN"->{
-                newY=getPositionY()+getVitesse();
+                newY+=getVitesse();
                     if (!getEnvironnement().estDevantObstacle(hitbox(newX,newY))){
                         peut = true;
                     }
             }
             case "LEFT"->{
-                newX=getPositionX()-getVitesse();
+                newX-=getVitesse();
                     if (!getEnvironnement().estDevantObstacle(hitbox(newX,newY))){
                         peut = true;
                     }
@@ -54,21 +51,14 @@ public class BouleDeFeu extends Projectile {
 
     @Override
     public void estDevantEnnemi() {
-        ArrayList<Personnage> dead = new ArrayList<>();
         boolean finito=false;
         for (Personnage personnage : getEnvironnement().getPersonnages()){
             if (! (personnage instanceof Ennemi)){
                 if (getEnvironnement().estDansLaZone(this.hitbox(getPositionX(),getPositionY()),personnage.hitbox(personnage.getPositionX(),personnage.getPositionY()))&& !finito){
                     faireDegats(personnage);
-//                    if (!personnage.estVivant()){
-//                        dead.add(personnage);
-//                    }
                     finito=true;
                 }
             }
         }
-//        for (Personnage perso : dead) {
-//            perso.getEnvironnement().supprimerPersonnage(perso);
-//        }
     }
 }

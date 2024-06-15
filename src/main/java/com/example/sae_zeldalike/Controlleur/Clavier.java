@@ -2,39 +2,26 @@ package com.example.sae_zeldalike.Controlleur;
 
 import com.example.sae_zeldalike.modele.Item.*;
 import com.example.sae_zeldalike.modele.Item.NonStockable.*;
-import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Arc;
-import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Epée;
 import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Stockable;
 import com.example.sae_zeldalike.modele.Item.StockableDansPortefeuille.Piece;
 import com.example.sae_zeldalike.modele.Personnage.*;
-
-import com.example.sae_zeldalike.modele.Environnement.Environnement;
-import com.example.sae_zeldalike.modele.Projectile.BouleDeFeu;
-import com.example.sae_zeldalike.modele.Projectile.Fleche;
-import com.example.sae_zeldalike.modele.Projectile.Projectile;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-
 import java.util.HashSet;
 
 public class Clavier implements EventHandler<KeyEvent> {
 
     private Link link;
-    private Pane pane;
     private HashSet<KeyCode> touches;
-    private Environnement environnement;
     private Timeline mouvementContinu;
 
-    public Clavier(Link link, Pane pane, Environnement environnement) {
+    public Clavier(Link link) {
         this.link = link;
-        this.pane = pane;
         this.touches = new HashSet<>();
-        this.environnement = environnement;
         initTimeline();
     }
 
@@ -48,7 +35,6 @@ public class Clavier implements EventHandler<KeyEvent> {
                 link.setDirection("Inactif_" + link.getDirection());
             }
         }
-//        interactionTouche();
     }
 
     private void initTimeline() {
@@ -141,28 +127,11 @@ public class Clavier implements EventHandler<KeyEvent> {
             }
             if (touches.contains(KeyCode.A)) {
                 System.out.println(link.getEffets());
-//                for (Item item : link.getEnvironnement().getItems()) {
-//                    if (item instanceof Arc) {
-//                        System.out.println(item);
-//                    }
-//                }
-//                link.getEnvironnement().ajouterProjectiles(new BouleDeFeu(link.getEnvironnement(), link.getPositionX(), link.getPositionY(), 10, "UP"));
                 System.out.println(link.getEnvironnement().getProjectiles());
-
                 System.out.println(link.getArmeEquiper());
             }
             if (touches.contains(KeyCode.I)) {
                 link.utiliserItemDansInventaire();
-
-//                for (Personnage p : link.getEnvironnement().getPersonnages()) {
-//                    if (link.getEffets().size() != 0) {
-//                        for (int i=0;i<link.getEffets().size();i++) {
-//                            link.getEffets().get(i).appliquer(p);
-//                        }
-//
-//                    }
-//                }
-
             }
             if (touches.contains(KeyCode.O)) {
                 link.setArmeEquiper(null);
@@ -175,18 +144,14 @@ public class Clavier implements EventHandler<KeyEvent> {
             }
             if (touches.contains(KeyCode.AMPERSAND)) {
                 link.getInventaire().setCaseActuel(0);
-
-//            System.out.println("Case de l'inventaire 0");
             }
             if (touches.contains(KeyCode.UNDEFINED)) {
                 link.getInventaire().setCaseActuel(1);
 
-//            System.out.println("Case de l'inventaire 1");
             }
             if (touches.contains(KeyCode.QUOTEDBL)) {
                 link.getInventaire().setCaseActuel(2);
 
-//            System.out.println("Case de l'inventaire 2");
             }
             if (touches.contains(KeyCode.QUOTE)) {
                 link.getInventaire().setCaseActuel(3);

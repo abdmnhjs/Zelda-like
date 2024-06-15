@@ -9,12 +9,10 @@ import javafx.scene.shape.Rectangle;
 
 public class VueEnnemi1 extends VuePersonnage{
 
-
     private Image spritePerso1,spritePerso2,spritePerso3;
     private boolean degresif = true;
     private Rectangle vie;
     private Rectangle arrPlanVie;
-
 
     public VueEnnemi1 (Pane pane, Personnage personnage) {
         super(pane, personnage);
@@ -25,7 +23,6 @@ public class VueEnnemi1 extends VuePersonnage{
         pane.getChildren().add(spritePersonnage);
         spritePersonnage.translateXProperty().bind(personnage.getPositionXProperty());
         spritePersonnage.translateYProperty().bind(personnage.getPositionYProperty());
-
         vie.widthProperty().addListener((obs,old,nouv)->mettreAJourCouleurBarreDeVie());
     }
 
@@ -44,7 +41,6 @@ public class VueEnnemi1 extends VuePersonnage{
         arrPlanVie.setArcHeight(20);
         arrPlanVie.setArcWidth(10);
         pane.getChildren().add(arrPlanVie);
-
         vie = new Rectangle();
         vie.setFill(Color.GREEN);
         vie.setWidth((personnage.getPointVie())/2);
@@ -53,7 +49,6 @@ public class VueEnnemi1 extends VuePersonnage{
         vie.setArcHeight(20);
         vie.setArcWidth(10);
         pane.getChildren().add(vie);
-
         arrPlanVie.translateXProperty().bind(personnage.getPositionXProperty().add((personnage.getLargeur()-arrPlanVie.getWidth())/2));
         arrPlanVie.translateYProperty().bind(personnage.getPositionYProperty().add(((personnage.getLongueur()-arrPlanVie.getHeight())/2)-personnage.getLongueur()/2));
         vie.translateXProperty().bind(personnage.getPositionXProperty().add(((personnage.getLargeur()-vie.getWidth())/2)));
@@ -113,8 +108,5 @@ public class VueEnnemi1 extends VuePersonnage{
                 degresif = false;
             }
         }
-
     }
-
-
 }

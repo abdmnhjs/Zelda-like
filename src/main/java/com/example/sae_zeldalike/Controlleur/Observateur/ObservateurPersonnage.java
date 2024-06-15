@@ -3,7 +3,6 @@ package com.example.sae_zeldalike.Controlleur.Observateur;
 import com.example.sae_zeldalike.Vue.Personnage.VueEnnemi1;
 import com.example.sae_zeldalike.Vue.Personnage.VueEnnemi2;
 import com.example.sae_zeldalike.Vue.Personnage.VuePersonnage;
-import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi1;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi2;
 import com.example.sae_zeldalike.modele.Personnage.Personnage;
@@ -31,7 +30,6 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
             if (change.wasAdded()){
                 for (Personnage personnage : change.getAddedSubList()){
                     VuePersonnage newPerso;
-
                     if (personnage instanceof Ennemi1){
                         newPerso = new VueEnnemi1(environnement,personnage);
                         vuePersonnages.add(newPerso);
@@ -43,8 +41,6 @@ public class ObservateurPersonnage implements ListChangeListener<Personnage> {
             }
             if (change.wasRemoved()){
                 for (Personnage personnage : change.getRemoved()){
-
-
                     this.environnement.getChildren().remove(environnement.lookup("#"+personnage.getId()));
                     this.environnement.getChildren().remove(environnement.lookup("#O"+personnage.getId()));
                     this.environnement.getChildren().remove(environnement.lookup("#L"+personnage.getId()));

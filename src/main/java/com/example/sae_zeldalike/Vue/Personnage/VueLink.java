@@ -6,7 +6,6 @@ import com.example.sae_zeldalike.modele.Personnage.Personnage;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -26,7 +25,7 @@ public class VueLink extends VuePersonnage {
     public VueLink(Pane pane, Personnage personnage ) {
 
         super(pane, personnage);
-        this.clavier = new Clavier((Link)personnage, pane, personnage.getEnvironnement());
+        this.clavier = new Clavier((Link)personnage);
         pane.addEventFilter(KeyEvent.KEY_PRESSED,clavier);
         pane.addEventFilter(KeyEvent.KEY_RELEASED, clavier);
 
@@ -237,14 +236,8 @@ public class VueLink extends VuePersonnage {
         return numeroImagePersonnage;
     }
 
-    public StringProperty getDirectionProperty() {
-        return direction;
-    }
     public String getDirection(){
         return direction.getValue();
-    }
-    public void setDirectionProperty(String direction) {
-        this.direction.setValue(direction);
     }
 
 

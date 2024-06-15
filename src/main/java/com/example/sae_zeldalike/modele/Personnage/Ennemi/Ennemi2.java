@@ -5,7 +5,6 @@ import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Personnage.Link;
 
 public class Ennemi2 extends Ennemi{
-    private static int compteurEnnemi2 = 0;
     public Ennemi2(Environnement environnement){
         super(100, 20, environnement, 5, 32, 32);
         this.probaAttaque = 20;
@@ -21,7 +20,6 @@ public class Ennemi2 extends Ennemi{
     }
 
     public void tirerProjectileHaut(Link link) {
-        BouleDeFeu bouleDeFeu;
 
         int ennemiX = this.getPositionX();
         int ennemiY = this.getPositionY();
@@ -43,7 +41,6 @@ public class Ennemi2 extends Ennemi{
 
 
     public void tirerProjectileBas(Link link) {
-        BouleDeFeu bouleDeFeu;
 
         int ennemiX = this.getPositionX();
         int ennemiY = this.getPositionY();
@@ -64,7 +61,6 @@ public class Ennemi2 extends Ennemi{
 
 
     public void tirerProjectileDroite(Link link) {
-        BouleDeFeu bouleDeFeu;
 
         int ennemiX = this.getPositionX();
         int ennemiY = this.getPositionY();
@@ -75,7 +71,6 @@ public class Ennemi2 extends Ennemi{
         int linkY = link.getPositionY();
         int linkLongueur = link.getLongueur();
 
-        // Vérifie si Link est à droite de l'ennemi et dans la même ligne (en prenant en compte les longueurs et hauteurs)
         boolean linkADroite = linkX > ennemiX + ennemiLargeur;
         boolean linkMemeLigne = (linkY >= ennemiY && linkY <= ennemiY + ennemiLongueur) || (linkY + linkLongueur >= ennemiY && linkY + linkLongueur <= ennemiY + ennemiLongueur);
 
@@ -86,11 +81,9 @@ public class Ennemi2 extends Ennemi{
 
 
     public void tirerProjectileGauche(Link link) {
-        BouleDeFeu bouleDeFeu;
 
         int ennemiX = this.getPositionX();
         int ennemiY = this.getPositionY();
-        int ennemiWidth = this.getLargeur();
         int ennemiLongueur = this.getLongueur();
 
         int linkX = link.getPositionX();

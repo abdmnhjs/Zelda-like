@@ -22,28 +22,20 @@ public class ObservateurItem implements ListChangeListener<Item> {
 
     private Pane environnement;
     private ArrayList<VueItem> vueItems ;
-
     private Item itemsupprimer;
     private Item itemAjouter;
-
-
 
     public ObservateurItem(Pane jeu, ArrayList<VueItem> vueItems) {
         this.environnement=jeu;
         this.vueItems=vueItems;
-
     }
     @Override
     public void onChanged(Change<? extends Item> change) {
 
         while (change.next()) {
-
             if (change.wasAdded()){
-
-
                 for (Item item : change.getAddedSubList()){
                     itemAjouter=item;
-
                     VueItem newItem;
                     if (item instanceof Piece){
                         newItem=new VuePiece(environnement,item);
@@ -70,9 +62,7 @@ public class ObservateurItem implements ListChangeListener<Item> {
                     }else if (item instanceof Arc){
                         newItem = new VueArc(environnement,item);
                         vueItems.add(newItem);
-
                     }
-
                 }
             }
             else if (change.wasRemoved()){

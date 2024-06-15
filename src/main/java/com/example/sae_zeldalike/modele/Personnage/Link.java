@@ -16,7 +16,6 @@ public class Link extends Personnage {
 
     private IntegerProperty portefeuille;
     private Inventaire inventaire;
-    private IntegerProperty numeroCaseActuel;
     private IntegerProperty pointDeVieAdditionelle;
     private final IntegerProperty pointDeVieMax;
     protected ArrayList<Effet> effets;
@@ -27,7 +26,6 @@ public class Link extends Personnage {
         super(100, 0, environnement, positionX, positionY, 7, 32,32);
         this.portefeuille= new SimpleIntegerProperty();
         this.inventaire=new Inventaire();
-        this.numeroCaseActuel=new SimpleIntegerProperty(0);
         this.pointDeVieAdditionelle = new SimpleIntegerProperty(0);
         this.pointDeVieMax = new SimpleIntegerProperty(getPointDeVieAdditionelle()+getPointVie());
         effets = new ArrayList<>();
@@ -40,7 +38,6 @@ public class Link extends Personnage {
         super(100, 0, environnement, 7, 32,32);
         this.portefeuille= new SimpleIntegerProperty();
         this.inventaire=new Inventaire();
-        this.numeroCaseActuel=new SimpleIntegerProperty(0);
         this.pointDeVieAdditionelle = new SimpleIntegerProperty(0);
         this.pointDeVieMax = new SimpleIntegerProperty(getPointDeVieAdditionelle()+getPointVie());
         effets = new ArrayList<>();
@@ -53,8 +50,6 @@ public class Link extends Personnage {
 
     public void setArmeEquiper(Arme arme) {
         desequiperArme();
-
-
         if (arme!=null) {
             this.armeEquiper = arme;
             getEnvironnement().ajouterItem(getArmeEquiper());
@@ -75,10 +70,6 @@ public class Link extends Personnage {
         pointDeVieAdditionelle.set(pointDeVieAdditionelle.get() + ajout);
     }
 
-    public void setPointDeVieAdditionelle(int pointDeVieAdditionnelle) {
-        this.pointDeVieAdditionelle.setValue(pointDeVieAdditionnelle);
-    }
-
     public int getPointDeVieAdditionelle() {
         return pointDeVieAdditionelle.getValue();
     }
@@ -89,10 +80,6 @@ public class Link extends Personnage {
 
     public int getPointDeVieMax() {
         return pointDeVieMax.getValue();
-    }
-
-    public IntegerProperty pointDeVieMaxProperty() {
-        return pointDeVieMax;
     }
 
     public void reduirePointsDeVie(int degats) {
@@ -108,10 +95,6 @@ public class Link extends Personnage {
             pointVie.set(pvRestant);
         }
     }
-
-
-
-
 
     public Inventaire getInventaire(){
         return inventaire;
@@ -130,9 +113,6 @@ public class Link extends Personnage {
                 getEnvironnement().ajouterItem(item.getItem());
                 getInventaire().setIndiceChangement(1);
 
-
-//            item.utiliserCapacite();
-//            getInventaire().setIndiceChangement(-1);
                 ((Bombe) item).setEffetUtiliser(true);
 
                 Timer timer = new Timer();
@@ -155,11 +135,8 @@ public class Link extends Personnage {
 
             }else {
                 if (getInventaire().getInventaireCaseActuel() instanceof  Arme ) {
-
                         Arme arme = (Arme) getInventaire().getInventaireCaseActuel();
                         setArmeEquiper(arme);
-
-
                 }
             }
         }
@@ -177,6 +154,7 @@ public class Link extends Personnage {
     }
 
     public void ajouteItemDansInventaire(Stockable item) {
+
         if (emplacementInventaireLibre()) {
 
             modifieCaseInventaire(item);
@@ -190,7 +168,6 @@ public class Link extends Personnage {
         if (getInventaire().getInventaireCaseActuel()==null){
             getInventaire().modifieStockableInventaire(item);
         }
-
         else{
             ArrayList<Integer> indice = getInventaire().connaitreIndiceCaseVide();
             if (indice.size()!=0){
@@ -200,13 +177,9 @@ public class Link extends Personnage {
 
     }
 
-
-    public Item essaiRamasserItem() {
+    public Item essaiRamasserItem(){
 
         for (Item item : this.environnement.getItems()) {
-
-//            if ((this.getPositionY() - 20 <= item.getPositionY() && item.getPositionY() <= this.getPositionY() + 20)
-//                    && (this.getPositionX() - 20 <= item.getPositionX() && item.getPositionX() <= this.getPositionX() + 20)) {
 
                 if (getEnvironnement().estDansLaZone(this.hitbox(getPositionX(),getPositionY()),item.hitbox(item.getPositionX(),item.getPositionY()))) {
                     if (!(item instanceof Stockable)) {
@@ -217,24 +190,7 @@ public class Link extends Personnage {
                         return item;
                     }
                 }
-//                if (item instanceof Piece) {
-//                    return item;
-//                }if (item instanceof CoeurRouge){
-//                    return item;
-//                }
-//                if (item instanceof CoeurBleu){
-//                    return item;
-//                }
-//                if (item instanceof Stockable) {
-//                    if (item instanceof Bombe && !((Bombe) item).isEffetUtiliser())
-//                    return item;
-//                }if (item instanceof SuperMegaFast) {
-//                    return item;
-//                }
-
             }
-//        }
-
         return null;
     }
 
@@ -246,25 +202,12 @@ public class Link extends Personnage {
         effets.add(effet);
     }
 
-    public int getPortefeuille(){
-        return portefeuille.getValue();  }
     public IntegerProperty getPortefeuilleProperty(){
         return portefeuille;
-    }
-    public void setPortefeuilleProperty(int portefeuille){
-        this.portefeuille.setValue(portefeuille);
     }
 
     public void ajouterPiece(int piece) {
         portefeuille.setValue(portefeuille.getValue()+piece);
-    }
-
-    public void attaquer(){
-        if (armeEquiper!=null){
-            if (getArmeEquiper() instanceof Arc){
-
-            }
-        }
     }
 
 }

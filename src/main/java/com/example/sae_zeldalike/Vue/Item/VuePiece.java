@@ -13,14 +13,9 @@ public class VuePiece extends VueItem{
     public VuePiece(Pane pane, Item item) {
         super(pane, item);
         initialiserItem();
-
         spriteItem.setImage(pieceImage1);
-
         creerOmbre(pane);
         pane.getChildren().add(spriteItem);
-
-
-
     }
     protected void creerOmbre(Pane pane) {
         ombre = new Circle((item.getLargeur()/4));
