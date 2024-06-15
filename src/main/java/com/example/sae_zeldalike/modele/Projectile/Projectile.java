@@ -129,45 +129,35 @@ public abstract class Projectile{
 
     public void deplacement(){
 
-        ArrayList<Personnage> dead = new ArrayList<>();
-        boolean finito=false;
-        if (peutEncoreSeDeplacer()){
-        switch (getDirection()){
 
-            case "UP"->{
+        if (peutEncoreSeDeplacer()) {
+            switch (getDirection()) {
+
+                case "UP" -> {
                     seDeplacerHaut();
 
-            }
-            case "RIGHT"->{
-                seDeplacerDroite();
-            }
-            case "DOWN"->{
-                seDeplacerBas();
-            }
-            case "LEFT"->{
-                seDeplacerGauche();
-            }
-        }
-
-        for (Personnage personnage : getEnvironnement().getPersonnages()){
-            if (! (personnage instanceof Link)){
-                if (getEnvironnement().estDansLaZone(this.hitbox(getPositionX(),getPositionY()),personnage.hitbox(personnage.getPositionX(),personnage.getPositionY()))&& !finito){
-                    faireDegats(personnage);
-                    if (!personnage.estVivant()){
-                        dead.add(personnage);
-                    }
-                    finito=true;
+                }
+                case "RIGHT" -> {
+                    seDeplacerDroite();
+                }
+                case "DOWN" -> {
+                    seDeplacerBas();
+                }
+                case "LEFT" -> {
+                    seDeplacerGauche();
                 }
             }
+            estDevantEnnemi();
         }
-        }
+
+
         else {
             getEnvironnement().supprimerProjectiles(this);
         }
-        for (Personnage perso : dead) {
-            perso.getEnvironnement().supprimerPersonnage(perso);
-        }
+
     }
+
+    public abstract void estDevantEnnemi();
 
     public boolean estSurEnnemi(Personnage ennemi){
         if(this.getPositionX() < ennemi.getPositionX() + ennemi.getLargeur() &&

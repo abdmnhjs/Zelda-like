@@ -8,7 +8,7 @@ public class Ennemi2 extends Ennemi{
     private static int compteurEnnemi2 = 0;
     public Ennemi2(Environnement environnement){
         super(100, 40, environnement, 5, 32, 32);
-        this.probaAttaque = 80;
+        this.probaAttaque = 40;
     }
 
     public void essaieTirerBouleDeFeu(Link link){
@@ -36,7 +36,7 @@ public class Ennemi2 extends Ennemi{
         boolean linkMemeColonne = (linkX >= ennemiX && linkX <= ennemiX + ennemiLargeur) || (linkX + linkLargeur >= ennemiX && linkX + linkLargeur <= ennemiX + ennemiLargeur);
 
         if(linkAuDessus && linkMemeColonne) {
-            this.environnement.ajouterProjectiles(new BouleDeFeu(this.environnement,ennemiX, ennemiY, 30,"UP"));
+            this.environnement.ajouterProjectiles(new BouleDeFeu(this.environnement,ennemiX, ennemiY, 10,"UP"));
         }
     }
 
@@ -58,7 +58,7 @@ public class Ennemi2 extends Ennemi{
         boolean linkMemeColonne = (linkX >= ennemiX && linkX <= ennemiX + ennemiLargeur) || (linkX + linkLargeur >= ennemiX && linkX + linkLargeur <= ennemiX + ennemiLargeur);
 
         if (linkEnDessous && linkMemeColonne) {
-            this.environnement.ajouterBouleDeFeu( new BouleDeFeu(environnement,ennemiX,ennemiY,30,"DOWN"));
+            this.environnement.ajouterProjectiles(new BouleDeFeu(environnement, ennemiX, ennemiY, 10, "DOWN"));
         }
     }
 
@@ -80,7 +80,7 @@ public class Ennemi2 extends Ennemi{
         boolean linkMemeLigne = (linkY >= ennemiY && linkY <= ennemiY + ennemiLongueur) || (linkY + linkLongueur >= ennemiY && linkY + linkLongueur <= ennemiY + ennemiLongueur);
 
         if (linkADroite && linkMemeLigne) {
-            this.environnement.ajouterBouleDeFeu(new BouleDeFeu(environnement,ennemiX,ennemiY,30,"RIGHT"));
+            this.environnement.ajouterProjectiles(new BouleDeFeu(environnement,ennemiX,ennemiY,10,"RIGHT"));
         }
     }
 
@@ -102,7 +102,7 @@ public class Ennemi2 extends Ennemi{
         boolean linkMemeLigne = (linkY >= ennemiY && linkY <= ennemiY + ennemiLongueur) || (linkY + linkLongueur >= ennemiY && linkY + linkLongueur <= ennemiY + ennemiLongueur);
 
         if (linkAGauche && linkMemeLigne) {
-            this.environnement.ajouterBouleDeFeu(new BouleDeFeu(environnement,ennemiX,ennemiY,30,"LEFT"));
+            this.environnement.ajouterProjectiles(new BouleDeFeu(environnement,ennemiX,ennemiY,10,"LEFT"));
         }
     }
 

@@ -2,6 +2,10 @@ package com.example.sae_zeldalike.modele.Projectile;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
 import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Arc;
+import com.example.sae_zeldalike.modele.Personnage.Link;
+import com.example.sae_zeldalike.modele.Personnage.Personnage;
+
+import java.util.ArrayList;
 
 public class Fleche extends Projectile {
 
@@ -63,7 +67,25 @@ public class Fleche extends Projectile {
 
     }
 
-
+    @Override
+    public void estDevantEnnemi() {
+        ArrayList<Personnage> dead = new ArrayList<>();
+        boolean finito=false;
+        for (Personnage personnage : getEnvironnement().getPersonnages()){
+            if (! (personnage instanceof Link)){
+                if (getEnvironnement().estDansLaZone(this.hitbox(getPositionX(),getPositionY()),personnage.hitbox(personnage.getPositionX(),personnage.getPositionY()))&& !finito){
+                    faireDegats(personnage);
+                    if (!personnage.estVivant()){
+                        dead.add(personnage);
+                    }
+                    finito=true;
+                }
+            }
+        }
+        for (Personnage perso : dead) {
+            perso.getEnvironnement().supprimerPersonnage(perso);
+        }
+    }
 
 
 }

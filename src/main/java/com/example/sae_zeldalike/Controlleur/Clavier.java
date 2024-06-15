@@ -60,7 +60,7 @@ public class Clavier implements EventHandler<KeyEvent> {
     public void interactionTouche() {
 
 
-        if (link.estVivant()) {
+//        if (link.estVivant()) {
 
             int newX;
             int newY;
@@ -146,7 +146,7 @@ public class Clavier implements EventHandler<KeyEvent> {
 //                        System.out.println(item);
 //                    }
 //                }
-                link.getEnvironnement().ajouterProjectiles(new BouleDeFeu(link.getEnvironnement(), link.getPositionX(), link.getPositionY(), 10, "UP"));
+//                link.getEnvironnement().ajouterProjectiles(new BouleDeFeu(link.getEnvironnement(), link.getPositionX(), link.getPositionY(), 10, "UP"));
                 System.out.println(link.getEnvironnement().getProjectiles());
 
                 System.out.println(link.getArmeEquiper());
@@ -223,7 +223,7 @@ public class Clavier implements EventHandler<KeyEvent> {
                     link.getArmeEquiper().utiliserCapacite();
                 }
             }
-        }
+//        }
 
     }
 

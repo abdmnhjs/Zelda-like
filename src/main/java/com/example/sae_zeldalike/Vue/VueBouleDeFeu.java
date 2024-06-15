@@ -42,7 +42,7 @@ public class VueBouleDeFeu extends VueProjectile {
 
         bdfH = new Image("file:src/main/resources/com/example/sae_zeldalike/BouleDeFeu/bouledefeu-haut.png");
         bdfD = new Image("file:src/main/resources/com/example/sae_zeldalike/BouleDeFeu/bouledefeu-droite.png");
-        bdfB= new Image("file:src/main/resources/com/example/sae_zeldalike/BouleDeFeu/bouledefeu-droite.png");
+        bdfB= new Image("file:src/main/resources/com/example/sae_zeldalike/BouleDeFeu/bouledefeu-bas.png");
         bdfG = new Image("file:src/main/resources/com/example/sae_zeldalike/BouleDeFeu/bouledefeu-gauche.png");
     }
 
