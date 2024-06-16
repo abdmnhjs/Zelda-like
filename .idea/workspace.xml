@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d68f44cc-42ae-46c4-b79e-09da1a472c7e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/sae_zeldalike/modele/Environnement/EnvironnementTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/sae_zeldalike/modele/Personnage/LinkTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Environnement/Environnement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Environnement/Environnement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/sae_zeldalike/modele/Environnement/EnvironnementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/sae_zeldalike/modele/Environnement/EnvironnementTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +62,7 @@
     "Downloaded.Files.Path.Enabled": "false",
     "Git.Branch.Popup.ShowAllRemotes": "true",
     "JUnit.EnvironnementTest.ajouterLink.executor": "Run",
+    "JUnit.EnvironnementTest.estDansLaZone.executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
@@ -91,10 +92,11 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.example.sae_zeldalike.modele.Personnage" />
       <recent name="com.example.sae_zeldalike.modele.Environnement" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.EnvironnementTest.ajouterLink">
+  <component name="RunManager" selected="JUnit.EnvironnementTest.estDansLaZone">
     <configuration name="Lancement" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.sae_zeldalike.Lancement" />
       <module name="SAE_Zelda-like" />
@@ -124,8 +126,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="EnvironnementTest.estDansLaZone" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SAE_Zelda-like" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.sae_zeldalike.modele.Environnement.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.sae_zeldalike.modele.Environnement" />
+      <option name="MAIN_CLASS_NAME" value="com.example.sae_zeldalike.modele.Environnement.EnvironnementTest" />
+      <option name="METHOD_NAME" value="estDansLaZone" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.EnvironnementTest.estDansLaZone" />
         <item itemvalue="JUnit.EnvironnementTest.ajouterLink" />
         <item itemvalue="Application.Lancement" />
         <item itemvalue="Application.Lancement" />
