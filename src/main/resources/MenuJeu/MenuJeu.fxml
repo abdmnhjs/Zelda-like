@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+
+
+<BorderPane stylesheets="MenuJeu.css" id="pane" prefHeight="461.0" prefWidth="786.0" style="-fx-background-color: black; "  xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae_zeldalike.Controlleur.MenuJeu.ControleurMenuJeu">
+
+
+<center>
+
+    <StackPane alignment="CENTER">
+        <VBox alignment="CENTER" prefHeight="270.0" prefWidth="740.0" spacing="10" style="-fx-alignment: center;">
+            <!-- Vos boutons -->
+            <Button id="boutJouer" onAction="#jouer" prefHeight="100.0" prefWidth="300.0" textAlignment="CENTER">
+                <graphic>
+                    <Label id="JouerText" text="JOUER">
+                        <font>
+                            <Font name="Rubik Bold Italic" size="59.0" />
+                        </font>
+                    </Label>
+                </graphic>
+            </Button>
+
+
+        </VBox>
+    </StackPane>
+</center>
+<bottom>
+    <StackPane prefHeight="60.0" prefWidth="200.0" translateY="-60.0" BorderPane.alignment="CENTER">
+        <children>
+            <Button fx:id="aidebout" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#aide" text="AIDE" translateX="-50.0" StackPane.alignment="CENTER_RIGHT">
+                <font>
+                    <Font name="Rubik Bold Italic" size="22.0" />
+                </font>
+            </Button>
+
+            <Button fx:id="credit" mnemonicParsing="false" onAction="#credit" text="CREDITS" translateX="50.0" StackPane.alignment="CENTER_LEFT">
+                <font>
+                    <Font name="Rubik Bold Italic" size="21.0" />
+                </font>
+            </Button>
+            <Button fx:id="quitter" mnemonicParsing="false" onAction="#quitter" text="QUITTER">
+                <font>
+                    <Font name="Rubik Bold Italic" size="20.0" />
+                </font>
+            </Button>
+        </children>
+    </StackPane>
+</bottom>
+<top>
+    <StackPane prefHeight="60.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <children>
+            <ImageView translateY="100.0">
+
+            </ImageView>
+        </children>
+    </StackPane>
+</top>
+</BorderPane>

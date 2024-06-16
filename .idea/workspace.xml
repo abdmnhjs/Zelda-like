@@ -5,7 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d68f44cc-42ae-46c4-b79e-09da1a472c7e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Clavier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Clavier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/MenuJeu/Commande.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/MenuJeu/ControleurMenuJeu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/MenuJeu/MenuJeu.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/MenuJeu/MenuJeu.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/MenuJeu/aide.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Observateur/ObservateurPersonnage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Controlleur/Observateur/ObservateurPersonnage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Lancement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/Lancement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Item/StockableDansInventaire/Arme/Arc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sae_zeldalike/modele/Item/StockableDansInventaire/Arme/Arc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +25,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -53,40 +64,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Lancement.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Git.Branch.Popup.ShowAllRemotes": "true",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "0cba0405",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/chaar/IdeaProjects/SAE_Zelda-like/src/main/java/com/example/sae_zeldalike/Vue/VueEpee.java",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "settings.sync",
-    "two.files.diff.last.used.file": "C:/Users/chaar/IdeaProjects/SAE_Zelda-like/src/main/java/com/example/sae_zeldalike/Vue/VueEpee.java",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Lancement.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;sprint3&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/chaar/IdeaProjects/SAE_Zelda-like/src/main/java/com/example/sae_zeldalike/Vue/VueEpee.java&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;,
+    &quot;two.files.diff.last.used.file&quot;: &quot;C:/Users/chaar/IdeaProjects/SAE_Zelda-like/src/main/java/com/example/sae_zeldalike/Vue/VueEpee.java&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/MenuJeu/image" />
+      <recent name="$PROJECT_DIR$/src/main/resources/MenuJeu" />
+      <recent name="$PROJECT_DIR$/src/main/resources/com/example/sae_zeldalike" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Lancement" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.sae_zeldalike.Lancement" />
       <module name="SAE_Zelda-like" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.sae_zeldalike.*" />
+          <option name="PATTERN" value="com.example.sae_zeldalike.Controlleur.MenuJeu.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -105,8 +123,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
       </set>
     </attachedChunks>
   </component>
@@ -180,6 +198,15 @@
       <workItem from="1718443845633" duration="1486000" />
       <workItem from="1718450722939" duration="298000" />
       <workItem from="1718451356061" duration="5109000" />
+      <workItem from="1718551124999" duration="607000" />
+      <workItem from="1718552281576" duration="2652000" />
+      <workItem from="1718556354570" duration="2530000" />
+      <workItem from="1718562126778" duration="1216000" />
+      <workItem from="1718565047408" duration="2602000" />
+      <workItem from="1718567758876" duration="301000" />
+      <workItem from="1718568385371" duration="1005000" />
+      <workItem from="1718570217295" duration="1232000" />
+      <workItem from="1718571798785" duration="1299000" />
     </task>
     <servers />
   </component>

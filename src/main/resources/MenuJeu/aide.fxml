@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="pane" prefHeight="557.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sae_zeldalike.Controlleur.MenuJeu.Aide">
+    <children>
+        <Text id="textsolo" fill="WHITE" layoutX="226.0" layoutY="58.0" text="Commandes" textAlignment="CENTER" wrappingWidth="339.0">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="46.0" />
+            </font>
+        </Text>
+        <TableView fx:id="tableView" layoutX="20.0" layoutY="103.0" prefHeight="400.0" prefWidth="750.0">
+            <columns>
+                <TableColumn fx:id="toucheColumn" prefWidth="198.0" text="Touche" />
+                <TableColumn fx:id="actionColumn" prefWidth="466.0" text="Action effectuée" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

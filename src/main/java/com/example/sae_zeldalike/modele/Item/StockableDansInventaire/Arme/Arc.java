@@ -16,5 +16,4 @@ public class Arc extends Arme {
     }
 
 
-
 }

@@ -15,11 +15,13 @@ public class Lancement extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("vue1.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MenuJeu/MenuJeu.fxml"));
         Parent root = loader.load();
-        Scene scene = new Scene(root,1088,800);
-        scene.getStylesheets().add(getClass().getResource("vue1.css").toExternalForm());
+        Scene scene = new Scene(root, 1088, 800);
+        scene.getStylesheets().addAll(getClass().getResource("/MenuJeu/MenuJeu.css").toExternalForm());
+
         stage.setScene(scene);
+
         stage.setTitle("Zelda");
         stage.show();
     }

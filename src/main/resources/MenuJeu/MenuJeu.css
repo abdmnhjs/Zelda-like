@@ -1,0 +1,48 @@
+#pane {
+    -fx-background-image: url("image/zelda.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-position: center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
+
+#textsolo {
+    -fx-color: white;
+}
+
+#boutJouer {
+    -fx-outline: 0;
+    -fx-grid-gap: 8px;
+    -fx-align-items: center;
+    -fx-background-color: purple;
+    -fx-text-fill: #000;
+    -fx-border-color: #000;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-cursor: hand;
+    -fx-display: inline-flex;
+    -fx-flex-shrink: 0;
+    -fx-font-size: 16px;
+    -fx-gap: 8px;
+    -fx-justify-content: center;
+    -fx-line-spacing: 1.5;
+    -fx-padding: 12px 16px;
+    -fx-text-decoration: none;
+    -fx-text-overrun: ellipsis;
+    -fx-transition: all .14s ease-out;
+    -fx-white-space: nowrap;
+}
+
+#boutJouer:hover {
+    -fx-effect: dropshadow(gaussian, #000, 0, 4, 0, 0);
+    -fx-translate-x: -4px;
+    -fx-translate-y: -4px;
+    -fx-background-color: white;
+}
+
+#JouerText {
+}
+
+#boutJouer:focused {
+    -fx-outline-offset: 1px;
+}
