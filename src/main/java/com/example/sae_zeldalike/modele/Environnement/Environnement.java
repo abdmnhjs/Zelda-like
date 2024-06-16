@@ -35,7 +35,6 @@ public class Environnement {
         this.projectiles = FXCollections.observableArrayList();
         this.personnages= FXCollections.observableArrayList();
         this.items= FXCollections.observableArrayList();
-
         this.linkRemovalQueue = FXCollections.observableArrayList();
     }
 
