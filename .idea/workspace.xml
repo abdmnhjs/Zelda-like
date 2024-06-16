@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d68f44cc-42ae-46c4-b79e-09da1a472c7e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/sae_zeldalike/modele/Personnage/LinkTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/sae_zeldalike/modele/Environnement/EnvironnementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/sae_zeldalike/modele/Environnement/EnvironnementTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/sae_zeldalike/modele/Environnement/EnvironnementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/com/example/sae_zeldalike/modele/Environnement/EnvironnementTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="moulady" />
+        <entry key="$PROJECT_DIR$" value="sprint3" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -72,6 +71,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "JUnit",
     "kotlin-language-version-configured": "true",
+    "last_directory_selection": "/home/edetommaso/Documents/S2/SAE Dev/Zelda-like/src/test",
     "last_opened_file_path": "C:/Users/chaar/IdeaProjects/SAE_Zelda-like/src/main/java/com/example/sae_zeldalike/Vue/VueEpee.java",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -96,7 +96,7 @@
       <recent name="com.example.sae_zeldalike.modele.Environnement" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.EnvironnementTest.estDansLaZone">
+  <component name="RunManager" selected="JUnit.EnvironnementTest.estDansTuile">
     <configuration name="Lancement" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.sae_zeldalike.Lancement" />
       <module name="SAE_Zelda-like" />
@@ -142,11 +142,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="EnvironnementTest.estDansTuile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SAE_Zelda-like" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.sae_zeldalike.modele.Environnement.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.sae_zeldalike.modele.Environnement" />
+      <option name="MAIN_CLASS_NAME" value="com.example.sae_zeldalike.modele.Environnement.EnvironnementTest" />
+      <option name="METHOD_NAME" value="estDansTuile" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.EnvironnementTest.estDansTuile" />
         <item itemvalue="JUnit.EnvironnementTest.estDansLaZone" />
         <item itemvalue="JUnit.EnvironnementTest.ajouterLink" />
-        <item itemvalue="Application.Lancement" />
         <item itemvalue="Application.Lancement" />
         <item itemvalue="Application.Lancement" />
       </list>

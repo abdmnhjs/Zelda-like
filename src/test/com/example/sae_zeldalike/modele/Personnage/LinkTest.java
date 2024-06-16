@@ -5,7 +5,6 @@ import com.example.sae_zeldalike.modele.Inventaire;
 import com.example.sae_zeldalike.modele.Item.Item;
 import com.example.sae_zeldalike.modele.Item.NonStockable.CoeurRouge;
 import com.example.sae_zeldalike.modele.Item.NonStockable.Effet;
-import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Arme;
 import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Epée;
 import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Stockable;
 import javafx.beans.property.IntegerProperty;
