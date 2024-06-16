@@ -304,7 +304,7 @@ public class Environnement {
             ajouterItem(new Bombe(this));
         }
         for (int i =0;i<10;i++){
-            ajouterPersonnage(new Ennemi1(this));
+//            ajouterPersonnage(new Ennemi1(this));
         }
         for (int i =0;i<15;i++){
             ajouterItem(new CoeurRouge(this));

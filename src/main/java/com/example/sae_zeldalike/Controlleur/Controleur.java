@@ -6,9 +6,8 @@ import com.example.sae_zeldalike.Vue.Environnement.VueMap;
 import com.example.sae_zeldalike.Vue.Item.VueBombe;
 import com.example.sae_zeldalike.Vue.Item.VueItem;
 import com.example.sae_zeldalike.Vue.Item.VuePiece;
+import com.example.sae_zeldalike.Vue.Personnage.*;
 import com.example.sae_zeldalike.Vue.Personnage.VueEnnemi1;
-import com.example.sae_zeldalike.Vue.Personnage.VueLink;
-import com.example.sae_zeldalike.Vue.Personnage.VuePersonnage;
 import com.example.sae_zeldalike.Vue.Projectile.VueFleche;
 import com.example.sae_zeldalike.Vue.Projectile.VueProjectile;
 import com.example.sae_zeldalike.modele.Environnement.*;
@@ -16,6 +15,8 @@ import com.example.sae_zeldalike.modele.Item.*;
 import com.example.sae_zeldalike.modele.Personnage.*;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi;
 import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi1;
+import com.example.sae_zeldalike.modele.Personnage.Ennemi.Ennemi2;
+import com.example.sae_zeldalike.modele.Personnage.Ennemi.Magicien;
 import com.example.sae_zeldalike.modele.Projectile.Fleche;
 import com.example.sae_zeldalike.modele.Projectile.Projectile;
 import javafx.animation.KeyFrame;
@@ -283,18 +284,20 @@ public class Controleur implements Initializable {
 
                     }
                     else if (temps%4 ==0){
-                        int compteur =0;
-                        for (Personnage ops : environnement.getPersonnages()) {
-                            if (ops instanceof Ennemi1){
-                                compteur++;
-                            }
-                        }
-                        if (compteur<=10){
-                            for (int cpt = 10-compteur;cpt>=0;cpt--){
-                                environnement.ajouterPersonnage(new Ennemi1(environnement));
-                            }
-                        }
+//                        int compteur =0;
+//                        for (Personnage ops : environnement.getPersonnages()) {
+//                            if (ops instanceof Ennemi1){
+//                                compteur++;
+//                            }
+//                        }
+//                        if (compteur<=10){
+//                            for (int cpt = 10-compteur;cpt>=0;cpt--){
+//                                environnement.ajouterPersonnage(new Ennemi1(environnement));
+//                            }
+//                        }
                         for (VuePersonnage monPerso : vuePersos){
+
+
                             if (monPerso instanceof VueEnnemi1){
                                 monPerso.animation();
 
@@ -302,6 +305,20 @@ public class Controleur implements Initializable {
                                 e1.seDeplace(link.getPositionX()+ link.getLargeur()/4, link.getPositionY()+ link.getLongueur()/4);
 
                             }
+                            if (monPerso instanceof VueEnnemi2) {
+                                monPerso.animation();
+                                Ennemi2 e2 = (Ennemi2) monPerso.getPersonnage();
+                                e2.seDeplace(link.getPositionX()+ link.getLargeur()/4, link.getPositionY()+ link.getLongueur()/4);
+
+                            }
+                                if (monPerso instanceof VueMagicien){
+                                    monPerso.animation();
+                                    Magicien mage = (Magicien) monPerso.getPersonnage();
+                                    mage.invocationPersonnage();
+                                    mage.seDeplace(link.getPositionX()+ link.getLargeur()/4, link.getPositionY()+ link.getLongueur()/4);
+
+
+                                }
                         }
                         for (VueProjectile projectile : vueProjectiles){
                             if (projectile instanceof VueFleche){
