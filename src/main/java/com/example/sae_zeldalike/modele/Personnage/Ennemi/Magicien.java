@@ -26,7 +26,6 @@ public class Magicien extends Ennemi {
 
         if (compteur < 5 && this.estVivant()) {
 
-
             int[][] coordonnées = {{50, 150}, {150, 250}, {350, 150}, {150, 50}, {100, 150}};
 
             for (int i = 0; i < 5; i++) {
