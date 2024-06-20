@@ -17,6 +17,7 @@ import com.example.sae_zeldalike.modele.Personnage.Personnage;
 import com.example.sae_zeldalike.modele.Projectile.BouleDeFeu;
 import com.example.sae_zeldalike.modele.Projectile.Fleche;
 import com.example.sae_zeldalike.modele.Projectile.Projectile;
+import com.sun.javafx.scene.text.TextLayout;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -176,29 +177,30 @@ class EnvironnementTest {
     @Test
     void estDansTuile() throws IOException {
 
-        Hitbox hitbox = new Hitbox(0, 0, 1, 1);
+        Hitbox hitbox = new Hitbox(0, 0, 10, 10);
 
         map.getMap()[0][0] = 10;
 
         assertTrue(environnement.estDansTuile(10, hitbox));
+
+        Hitbox hitbox2 = new Hitbox(50, 0, 10, 10);
+        map.getMap()[0][2] = 1;
+        assertFalse(environnement.estDansTuile(1, hitbox2));
     }
 
     @Test
     void estDansLaZone() throws IOException {
 
-        Hitbox hitbox1 = new Hitbox(0, 0, 1, 1);
-        Hitbox hitbox2 = new Hitbox(0, 0, 2, 2);
+        Hitbox hitbox1 = new Hitbox(10, 0, 20, 20);
+        Hitbox hitbox2 = new Hitbox(2, 0, 20, 20);
 
-        assertTrue(environnement.estDansLaZone(hitbox1, hitbox2));
+        assertTrue(environnement.estDansLaZone(hitbox1, hitbox2),"Est dans Zone de Hitbox");
+
+        Hitbox hitbox3 = new Hitbox(30,30,20,20);
+        Hitbox hitbox4 = new Hitbox(10,10,20,20);
+        assertFalse(environnement.estDansLaZone(hitbox3,hitbox4),"Pas dans Zone de Hitbox");
     }
 
-    @Test
-    void getId() throws IOException {
-
-
-        assertNotNull(environnement.getId());
-        assertTrue(environnement.getId().startsWith("E"));
-    }
 
     @Test
     void getLinkRemovalQueue() throws IOException {

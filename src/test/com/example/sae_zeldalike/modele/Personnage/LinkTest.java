@@ -79,6 +79,9 @@ class LinkTest {
         link.reduirePointsDeVie(10);
         assertEquals(0, link.getPointDeVieAdditionelle());
         assertEquals(95, link.getPointVie());
+        link.reduirePointsDeVie(100000);
+        assertEquals(0,link.getPointDeVieAdditionelle());
+        assertEquals(0,link.getPointVie());
     }
 
     @Test
