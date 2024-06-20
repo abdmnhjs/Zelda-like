@@ -18,6 +18,7 @@ import com.example.sae_zeldalike.modele.Projectile.BouleDeFeu;
 import com.example.sae_zeldalike.modele.Projectile.Fleche;
 import com.example.sae_zeldalike.modele.Projectile.Projectile;
 import javafx.collections.ObservableList;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -26,10 +27,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class EnvironnementTest {
 
+    private Map map;
+    private Environnement environnement;
+    @BeforeEach
+    void setUp() throws IOException {
+        this.map = new Map("src/main/resources/1erTerrain.json");
+        this.environnement = new Environnement(map);
+    }
     @Test
     void ajouterLink() throws IOException {
-        Map map = new Map("src/main/resources/terrain2.json");
-        Environnement environnement = new Environnement(map);
+
         Link link = new Link(environnement);
 
         environnement.ajouterLink(link);
@@ -39,8 +46,7 @@ class EnvironnementTest {
 
     @Test
     void ajouterPersonnage() throws IOException {
-        Map map = new Map("src/main/resources/terrain2.json");
-        Environnement environnement = new Environnement(map);
+
         Personnage personnage = new Ennemi1(environnement);
 
         environnement.ajouterPersonnage(personnage);
@@ -50,8 +56,7 @@ class EnvironnementTest {
 
     @Test
     void ajouterItem() throws IOException {
-        Map map = new Map("src/main/resources/terrain2.json");
-        Environnement environnement = new Environnement(map);
+
         Item item = new CoeurRouge(environnement);
 
         environnement.ajouterItem(item);
@@ -61,8 +66,7 @@ class EnvironnementTest {
 
     @Test
     void supprimerItem() throws IOException {
-        Map map = new Map("src/main/resources/terrain2.json");
-        Environnement environnement = new Environnement(map);
+
         Item item = new CoeurRouge(environnement);
 
         environnement.ajouterItem(item);
@@ -73,8 +77,7 @@ class EnvironnementTest {
 
     @Test
     void supprimerProjectiles() throws IOException {
-        Map map = new Map("src/main/resources/terrain2.json");
-        Environnement environnement = new Environnement(map);
+
         Projectile projectile = new Fleche(environnement, 15, 15, 32, 32, 30, new Arc(environnement), "UP");
         environnement.ajouterProjectiles(projectile);
         environnement.supprimerProjectiles(projectile);
@@ -84,8 +87,7 @@ class EnvironnementTest {
 
     @Test
     void supprimerLink() throws IOException {
-        Map map = new Map("src/main/resources/terrain2.json");
-        Environnement environnement = new Environnement(map);
+
         Link link = new Link(environnement);
 
         environnement.ajouterLink(link);
@@ -96,8 +98,7 @@ class EnvironnementTest {
 
     @Test
     void supprimerPersonnage() throws IOException {
-        Map map = new Map("src/main/resources/terrain2.json");
-        Environnement environnement = new Environnement(map);
+
         Personnage personnage = new Ennemi1(environnement);
 
         environnement.ajouterPersonnage(personnage);
@@ -108,8 +109,7 @@ class EnvironnementTest {
 
     @Test
     void ajouterProjectiles() throws IOException {
-        Map map = new Map("src/main/resources/terrain2.json");
-        Environnement environnement = new Environnement(map);
+
         Projectile projectile = new BouleDeFeu(environnement, 15, 15, 32, "UP");
 
         environnement.ajouterProjectiles(projectile);
@@ -119,8 +119,7 @@ class EnvironnementTest {
 
     @Test
     void getProjectiles() throws IOException {
-        Map map = new Map("src/main/resources/terrain2.json");
-        Environnement environnement = new Environnement(map);
+
         Projectile projectile = new Fleche(environnement, 15, 15, 32, 32, 30, new Arc(environnement), "UP");
 
         environnement.ajouterProjectiles(projectile);
@@ -133,8 +132,7 @@ class EnvironnementTest {
 
     @Test
     void getItems() throws IOException {
-        Map map = new Map("src/main/resources/terrain2.json");
-        Environnement environnement = new Environnement(map);
+
         Item item = new CoeurRouge(environnement);
 
         environnement.ajouterItem(item);
@@ -147,8 +145,7 @@ class EnvironnementTest {
 
     @Test
     void getPersonnages() throws IOException {
-        Map map = new Map("src/main/resources/terrain2.json");
-        Environnement environnement = new Environnement(map);
+
         Personnage personnage = new Ennemi1(environnement);
 
         environnement.ajouterPersonnage(personnage);
@@ -161,16 +158,13 @@ class EnvironnementTest {
 
     @Test
     void getMap() throws IOException {
-        Map map = new Map("src/main/resources/terrain2.json");
-        Environnement environnement = new Environnement(map);
 
         assertEquals(map, environnement.getMap());
     }
 
     @Test
     void estDevantObstacle() throws IOException {
-        Map map = new Map("src/main/resources/terrain2.json");
-        Environnement environnement = new Environnement(map);
+
         Hitbox hitbox = new Hitbox(0, 0, 1, 1);
 
         // On suppose que la tuile (0, 0) est un obstacle
@@ -181,8 +175,7 @@ class EnvironnementTest {
 
     @Test
     void estDansTuile() throws IOException {
-        Map map = new Map("src/main/resources/terrain2.json");
-        Environnement environnement = new Environnement(map);
+
         Hitbox hitbox = new Hitbox(0, 0, 1, 1);
 
         map.getMap()[0][0] = 10;
@@ -192,8 +185,7 @@ class EnvironnementTest {
 
     @Test
     void estDansLaZone() throws IOException {
-        Map map = new Map("src/main/resources/1erTerrain.json");
-        Environnement environnement = new Environnement(map);
+
         Hitbox hitbox1 = new Hitbox(0, 0, 1, 1);
         Hitbox hitbox2 = new Hitbox(0, 0, 2, 2);
 
@@ -202,8 +194,7 @@ class EnvironnementTest {
 
     @Test
     void getId() throws IOException {
-        Map map = new Map("src/main/resources/terrain2.json");
-        Environnement environnement = new Environnement(map);
+
 
         assertNotNull(environnement.getId());
         assertTrue(environnement.getId().startsWith("E"));
@@ -211,8 +202,7 @@ class EnvironnementTest {
 
     @Test
     void getLinkRemovalQueue() throws IOException {
-        Map map = new Map("src/main/resources/terrain2.json");
-        Environnement environnement = new Environnement(map);
+
         Link link = new Link(environnement);
 
         environnement.ajouterLink(link);
@@ -225,8 +215,7 @@ class EnvironnementTest {
 
     @Test
     void init() throws IOException {
-        Map map = new Map("src/main/resources/1erTerrain.json");
-        Environnement environnement = new Environnement(map);
+
 
         environnement.init();
 

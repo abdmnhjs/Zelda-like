@@ -1,6 +1,7 @@
 package com.example.sae_zeldalike.modele.Personnage;
 
 import com.example.sae_zeldalike.modele.Environnement.Environnement;
+import com.example.sae_zeldalike.modele.Environnement.Map;
 import com.example.sae_zeldalike.modele.Inventaire;
 import com.example.sae_zeldalike.modele.Item.Item;
 import com.example.sae_zeldalike.modele.Item.NonStockable.CoeurRouge;
@@ -8,15 +9,25 @@ import com.example.sae_zeldalike.modele.Item.NonStockable.Effet;
 import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Arme.Epée;
 import com.example.sae_zeldalike.modele.Item.StockableDansInventaire.Stockable;
 import javafx.beans.property.IntegerProperty;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class LinkTest {
 
+    private Map map;
     private Environnement environnement;
     private Link link;
 
+    @BeforeEach
+    void setUp() throws IOException {
+        this.map = new Map("src/main/resources/1erTerrain.json");
+        environnement = new Environnement(map);
+        link = new Link(environnement);
+    }
     @Test
     void getArmeEquiper() {
         Epée epee = new Epée(environnement);
